@@ -3,6 +3,7 @@
     createMemoryContext(string ID)
     destroyMemoryContext(string ID)
     SysBeep(int freq,int time)
+    Sleep(int time)
     addVirtualPage(string ID, int PageSize)
     addInterprocessPage(string ID, int PageSize,string windowName,int address)
     addMultiPage(string ID, int PageSize, int pagelistSize, string** pagelist)
@@ -12,60 +13,55 @@
     destroyPage(string ID)
     readMemFromContext(string ContextID,int Address,int length,char* buf)
     writeMemToContext(string ContextID,int Address,int length,char* buf)
+    multiPageSwapBanks(string ID, int bankNum)
 --]]
 
 createMemoryContext("mem1")
---Sleep(100)
 addVirtualPage("page1",256)
 addVirtualPage("page2",256)
 addMultiPage("page3",2,{"page1","page2"})
---Sleep(100)
-linkPageToMemorySpace("mem1","page1")
-linkPageToMemorySpace("mem1","page2")
-
-linkPageToMemorySpace("mem1","page3") --multipage!
+--linkPageToMemorySpace("mem1","page1")
+--linkPageToMemorySpace("mem1","page2")
+linkPageToMemorySpace("mem1","page3") --linking the multipage as the first page to show off memory swapping potential
 
 --SysBeep(600,200)
-i = 12
+length = 10
+i = 1
 j = {}
 
---j[1] = i
-str = "helloWorld"
-
-leng = 0;
-for itr = 1, #str do
-    local c = str:sub(itr,itr)
-	leng = leng+1
-	j[itr] = string.byte(str,itr);
-	--print(c..string.byte(str,itr))
-	--print(str.byte(itr))
-
-    -- do something with c
+while i<=length do
+	j[i] = i
+	i=i+1
 end
-
-writeMemToContext("mem1",0,leng,j)
-
---SysBeep(500,200)
---i=10
---Sleep(500);
-i = readMemFromContext("mem1",0,10)
-print(string.char(i[1])..string.char(i[2])..string.char(i[3])..string.char(i[4])..string.char(i[5])..string.char(i[6])..string.char(i[7])..string.char(i[8])..string.char(i[9])..string.char(i[10]))
-
---SysBeep(500,200)
---Sleep(100);
-
---[[
+multiPageSwapBanks("page3", 0) --bank numbers start at 0 so it is the first bank and 1 is the seccond bank
+writeMemToContext("mem1",0,length,j)
+multiPageSwapBanks("page3", 1)
 while i>0 do
-	SysBeep(400,200)
-	--print(i)
-	--print(j)
-	--print(readMemFromContext("mem1",0,2))
-	--print("hi")
-	--Sleep(1)
-	i = i-1
+	j[length-i+1] = i
+	i=i-1
 end
---]]
+writeMemToContext("mem1",0,length,j)
 
---Sleep(500);
---destroyPage("page1")
-destroyMemoryContext("mem1")
+multiPageSwapBanks("page3", 0) --swapping back to bank 0 (page1)
+k = readMemFromContext("mem1",0,length) --note that we are reading from address '0' this is the "top" of our memory space.
+
+--printing the contents of bank 0
+i=0
+while i<=length do
+	print(k[i])
+	i=i+1
+end
+
+multiPageSwapBanks("page3", 1) --swapping to bank 1 (page2)
+k = readMemFromContext("mem1",0,length)
+
+--printing the contents of bank 1 to show they are different.
+i=0
+while i<=length do
+	print(k[i])
+	i=i+1
+end
+
+destroyPage("page1") --we have to clean these up manually because multipages don't destroy pages they refrence.
+destroyPage("page2") --note: destroying a page frees it from the memoryContext that its linked to. So you can replace it by linking another.
+destroyMemoryContext("mem1") --page3 is destroyed by the memoryContext when it dies because they are linked.
