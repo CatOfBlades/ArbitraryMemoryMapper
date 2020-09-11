@@ -36,4 +36,8 @@ The code::blocks target LuaMap is a lua script processor.
       A good fix that I havent gotten arround to as of 9/11/2020 would be to expose a function to lua that unlinks the page from a memory context,
         that way a user could unlink shared pages before destroying the memoryContext.
         
+ Note: example lua scripts can be found in the "LuaScripts" subdirectory.
+      If you want to play arround with this project just drop the bin/LuaMap/LuaMap.exe into the /LuaScripts directory and run it in a console.
+      
+        
         
