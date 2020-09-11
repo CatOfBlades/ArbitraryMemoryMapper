@@ -40,4 +40,5 @@ The code::blocks target LuaMap is a lua script processor.
       If you want to play arround with this project just drop the bin/LuaMap/LuaMap.exe into the /LuaScripts directory and run it in a console.
       
         
-        
+ It's a bit buggy and I would be happy if people could fork it and improve upon it.
+ Generally so long as the changes improve usability and don't constrain it I would be happy to merge them.
