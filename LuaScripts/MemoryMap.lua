@@ -26,7 +26,7 @@ require "vardump"
 		-- so a page script that has a loop might lock your program
 
 createMemoryContext("mem0")
-addLuaPage("page0","X_win_page.lua")
+addVirtualPage("page0", 64)
 addLuaPage("page1","LuaPageTest01.lua")
 linkPageToMemorySpace("mem0","page0")
 linkPageToMemorySpace("mem0","page1")
