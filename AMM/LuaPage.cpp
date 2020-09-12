@@ -140,13 +140,13 @@ void luaPage::setParent(addressSpace* addrSp)
     if(addrSp)
     {
         _next = addrSp->_next;
-        if(_next == nullptr)
+        if(_next == NULL)
         {
             _bottom = this;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = addrSp->_top;
-            while(_search != nullptr)
+            while(_search != NULL)
             {
                 _search->_bottom = _bottom;
                 _search = _search->_next;
@@ -162,15 +162,15 @@ void luaPage::setParent(addressSpace* addrSp)
     }
     else
     {
-        _next = nullptr;
-        _bottom = nullptr;
-        _top = nullptr;
+        _next = NULL;
+        _bottom = NULL;
+        _top = NULL;
     }
 }
 luaPage::luaPage(lua_State* L)
 {
     memoryTypeID = "Lua_Page";
-    if(L!=nullptr)
+    if(L!=NULL)
     {
         freeLuaOnDestruct = 0;
         pageLuaState = L;
@@ -182,16 +182,16 @@ luaPage::luaPage(lua_State* L)
         luaL_openlibs(pageLuaState);
     }
     _this = this;
-    _next = nullptr;
-    _last = nullptr;
-    _top = nullptr;
-    _bottom = nullptr;
+    _next = NULL;
+    _last = NULL;
+    _top = NULL;
+    _bottom = NULL;
 }
 luaPage::luaPage(lua_State* L,addressSpace* parent,std::string pageDef)
 {
     memoryTypeID = "Lua_Page";
     int r = 0;
-    if(L!=nullptr)
+    if(L!=NULL)
     {
         freeLuaOnDestruct = 0;
         pageLuaState = L;
@@ -210,13 +210,13 @@ luaPage::luaPage(lua_State* L,addressSpace* parent,std::string pageDef)
     if(parent)
     {
         _next = parent->_next;
-        if(_next == nullptr)
+        if(_next == NULL)
         {
             _bottom = this;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = parent->_top;
-            while(_search != nullptr)
+            while(_search != NULL)
             {
                 _search->_bottom = _bottom;
                 _search = _search->_next;
@@ -232,16 +232,16 @@ luaPage::luaPage(lua_State* L,addressSpace* parent,std::string pageDef)
     }
     else
     {
-        _next = nullptr;
-        _bottom = nullptr;
-        _top = nullptr;
+        _next = NULL;
+        _bottom = NULL;
+        _top = NULL;
     }
 }
 luaPage::luaPage(lua_State* L,addressSpace* parent)
 {
     memoryTypeID = "Lua_Page";
     //int r = 0;
-    if(L!=nullptr)
+    if(L!=NULL)
     {
         freeLuaOnDestruct = 0;
         pageLuaState = L;
@@ -259,13 +259,13 @@ luaPage::luaPage(lua_State* L,addressSpace* parent)
     if(parent)
     {
         _next = parent->_next;
-        if(_next == nullptr)
+        if(_next == NULL)
         {
             _bottom = this;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = parent->_top;
-            while(_search != nullptr)
+            while(_search != NULL)
             {
                 _search->_bottom = _bottom;
                 _search = _search->_next;
@@ -281,9 +281,9 @@ luaPage::luaPage(lua_State* L,addressSpace* parent)
     }
     else
     {
-        _next = nullptr;
-        _bottom = nullptr;
-        _top = nullptr;
+        _next = NULL;
+        _bottom = NULL;
+        _top = NULL;
     }
 }
 luaPage::~luaPage()

@@ -70,17 +70,17 @@ virtualPage::virtualPage(addressSpace* parent,  unsigned int Size)
     _this = this;
 
     //printf("testQ1 parent: %p\n", parent);
-    if(parent != nullptr)
+    if(parent != NULL)
     {
         //printf("testQ2\n");
         _next = parent->_next;
-        if(_next == nullptr)
+        if(_next == NULL)
         {
             _bottom = this;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = parent->_top;
-            while(_search != nullptr)
+            while(_search != NULL)
             {
                 _search->_bottom = _bottom;
                 _search = _search->_next;
@@ -96,9 +96,9 @@ virtualPage::virtualPage(addressSpace* parent,  unsigned int Size)
     }
     else
     {
-        _next = nullptr;
-        _bottom = nullptr;
-        _top = nullptr;
+        _next = NULL;
+        _bottom = NULL;
+        _top = NULL;
     }
 }
 //#include <windows.h>

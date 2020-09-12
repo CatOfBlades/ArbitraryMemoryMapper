@@ -28,9 +28,9 @@ void virtualMemorySpace::virtualMemorySpace::recalcSize()//check the linked list
     PageAddresses.clear();
 
     memorySize = 0;
-    if(top == nullptr){return;};
+    if(top == NULL){return;};
     addressSpace* _search = top;
-    while(_search != nullptr)// loop ends when the pointer to _search is set to zero through the last iterations _search->_next being zero.
+    while(_search != NULL)// loop ends when the pointer to _search is set to zero through the last iterations _search->_next being zero.
     {
         PageAddresses.push_back(memorySize);
         memorySize += _search->_size();
@@ -39,7 +39,7 @@ void virtualMemorySpace::virtualMemorySpace::recalcSize()//check the linked list
     return;
 }
 
-addressSpace* virtualMemorySpace::_getAddressPage(unsigned long int addr,unsigned long int* offset) //returns NULLPTR if the address is out of scope of this memory space.
+addressSpace* virtualMemorySpace::_getAddressPage(unsigned long int addr,unsigned long int* offset) //returns NULL if the address is out of scope of this memory space.
 {
     /**
     returns a pointer to the page that the address is in.
@@ -55,12 +55,12 @@ addressSpace* virtualMemorySpace::_getAddressPage(unsigned long int addr,unsigne
         */
 
 
-    if(addr > memorySize){return nullptr;};//address is outside of the scope of this memory space;
+    if(addr > memorySize){return NULL;};//address is outside of the scope of this memory space;
 
     addressSpace* _search = top;
-    //if(_search == nullptr){return nullptr;}
+    //if(_search == NULL){return NULL;}
 
-    while(_search != nullptr) // loop ends when the pointer to _search is set to nullptr through the last iterations _search->_next being nullptr.
+    while(_search != NULL) // loop ends when the pointer to _search is set to NULL through the last iterations _search->_next being NULL.
     {
         if(addr < _search->_size())
         {
@@ -70,16 +70,16 @@ addressSpace* virtualMemorySpace::_getAddressPage(unsigned long int addr,unsigne
         addr -= _search->_size(); // If you subtract a page's size from an address you get the address from the point of view of the next page
         _search = _search->_next;
     }
-    return nullptr; //if not found return a null pointer.
+    return NULL; //if not found return a null pointer.
 }
 
 //void* getAddressPointer(unsigned long int addr); //in an arbitrary memory model, direct address pointers aren't possible, only ones that refer to the virtual memory model.
 
 void virtualMemorySpace::addPage(unsigned int Size)
 {
-    if(top == nullptr) //if we don't have any pages
+    if(top == NULL) //if we don't have any pages
     {
-        top = new virtualPage(nullptr,Size); //make this the first page.
+        top = new virtualPage(NULL,Size); //make this the first page.
         bottom = top; // the only page is also the last page
     }
     else
@@ -100,19 +100,19 @@ void virtualMemorySpace::removePage()
         if(bottom == top) //this is our only page
         {
             top->cleanupAndUnlink();
-            top = nullptr;
-            bottom = nullptr;
+            top = NULL;
+            bottom = NULL;
         }
         else
         {
             //printf("removing page:n \n");
             addressSpace* _tmp = bottom;
             bottom = _tmp->_last;
-            bottom->_next = nullptr;
+            bottom->_next = NULL;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = top;
-            while(_search != nullptr)
+            while(_search != NULL)
             {
                 _search->_bottom = bottom;
                 _search = _search->_next;
@@ -125,13 +125,13 @@ void virtualMemorySpace::removePage()
 
 void virtualMemorySpace::addAddressSpace(addressSpace* AS)
 {
-    if(top == nullptr) //if we don't have any pages
+    if(top == NULL) //if we don't have any pages
     {
         top = AS; //make this the first page.
         bottom = top; // the only page is also the last page
 
-        AS->_last = nullptr; //this is our only page so no page before or after
-        AS->_next = nullptr;
+        AS->_last = NULL; //this is our only page so no page before or after
+        AS->_next = NULL;
         AS->_top = AS;
     }
     else
@@ -140,12 +140,12 @@ void virtualMemorySpace::addAddressSpace(addressSpace* AS)
         bottom = AS;
         AS->_last = _tmpaddr;
         _tmpaddr->_next = AS;
-        AS->_next = nullptr;
+        AS->_next = NULL;
     }
 
     //pages need to be informed what the new bottom of the list is.
     addressSpace* _search = top;
-    while(_search != nullptr)
+    while(_search != NULL)
     {
         _search->_bottom = bottom;
         _search = _search->_next;
@@ -159,7 +159,7 @@ void virtualMemorySpace::addAddressSpace(addressSpace* AS)
 void virtualMemorySpace::_getPageListInAddressRange( long unsigned int lowAddress, long unsigned int highAddress, addressSpace** pagelist, unsigned int* pagecount)
 {
 
-    if(top == nullptr) //if we don't have any pages
+    if(top == NULL) //if we don't have any pages
     {
         *pagecount = 0; //let the caller know there are no pages.
         return;
@@ -176,7 +176,7 @@ void virtualMemorySpace::_getPageListInAddressRange( long unsigned int lowAddres
 
     //printf("addressDif:%i\n",(int)addressDifference); //for checking our work so far
 
-    pagelist[0] = nullptr; //has to be something that is not a valid pointer.
+    pagelist[0] = NULL; //has to be something that is not a valid pointer.
 
     while(lowAddress<=highAddress)
     {
@@ -225,7 +225,7 @@ unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigne
             while(startAddress>=PageAddresses[i])
             {
                 i++;
-                if(i>PageAddresses.size() || _search->_next == nullptr)
+                if(i>PageAddresses.size() || _search->_next == NULL)
                 {
                     break;
                     //return;
@@ -267,7 +267,7 @@ unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigne
     highAddress -= memoryOffset; //in other functions that return an address we have to add that offset back.
                                  //this allows us some memory remapping functionality.
 
-    if(top == nullptr) //if we don't have any pages
+    if(top == NULL) //if we don't have any pages
     {
         //Beep(400,100);
         return 0; //no bytes can be written if theres no space to write to.
@@ -331,7 +331,7 @@ unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigne
             while(startAddress>=PageAddresses[i])
             {
                 i++;
-                if(i>PageAddresses.size() || _search->_next == nullptr)
+                if(i>PageAddresses.size() || _search->_next == NULL)
                 {
                     break;
                     //return;
@@ -375,7 +375,7 @@ unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigne
     //printf("address:%i\n",(int)Address);
     //printf("length:%i\n",(int)length);
 
-    if(top == nullptr) //if we don't have any pages
+    if(top == NULL) //if we don't have any pages
     {
         return 0; //no bytes can be written if theres no space to write to.
     }
@@ -409,13 +409,13 @@ unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigne
 
 unsigned int virtualMemorySpace::pageCount()
 {
-    if(top == nullptr) //if we don't have any pages
+    if(top == NULL) //if we don't have any pages
     {
         return 0;
     }
     int pagecount = 0;
     addressSpace* _search = top;
-    while(_search != nullptr) // loop ends when the pointer to _search is set to nullptr through the last iterations _search->_next being nullptr.
+    while(_search != NULL) // loop ends when the pointer to _search is set to NULL through the last iterations _search->_next being NULL.
     {
         pagecount += 1;
         _search = _search->_next;
@@ -430,7 +430,7 @@ void virtualMemorySpace::addressRange(unsigned long int* lowMem,unsigned long in
     //in other functions that recieve an address we have to subtract the offset.
     //this allows us some memory remapping functionality.
 
-    if(top == nullptr) //if we don't have any pages
+    if(top == NULL) //if we don't have any pages
     {
         *highMem = memoryOffset;
         return;
@@ -438,7 +438,7 @@ void virtualMemorySpace::addressRange(unsigned long int* lowMem,unsigned long in
     *lowMem = memoryOffset;
     unsigned long int byteCount = 0;
     addressSpace* _search = top;
-    while(_search != nullptr) // loop ends when the pointer to _search is set to nullptr through the last iterations _search->_next being nullptr.
+    while(_search != NULL) // loop ends when the pointer to _search is set to NULL through the last iterations _search->_next being NULL.
     {
         byteCount += _search->_size();
         _search = _search->_next;

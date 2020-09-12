@@ -1,6 +1,9 @@
 
 #include "interprocessMemorySpace.h"
 
+#include <stdio.h>
+using namespace std;
+
 /**
 The purpose of this file is to show how one might implement an address space that is in another process
 **/
@@ -8,14 +11,14 @@ The purpose of this file is to show how one might implement an address space tha
 
 void applicationMem::attachProcess(DWORD processID)
 {
-    hProcess = nullptr;
+    hProcess = NULL;
     hProcess = OpenProcess(PROCESS_ALL_ACCESS,0,processID);
     _processID = processID;
 }
 void applicationMem::dettachProcess(HANDLE processHandle)
 {
     CloseHandle(hProcess);
-    hProcess = nullptr;
+    hProcess = NULL;
     _processID = 0;
 }
 unsigned long int applicationMem::_size()
@@ -24,7 +27,7 @@ unsigned long int applicationMem::_size()
 }
 bool applicationMem::_is_free()
 {
-    if(hProcess == nullptr)
+    if(hProcess == NULL)
     {
         return 0;
     }
@@ -35,7 +38,7 @@ bool applicationMem::_is_free()
 }
 unsigned char* applicationMem::_content()
 {
-    if(hProcess == nullptr)
+    if(hProcess == NULL)
     {
         return 0;
     }
@@ -44,7 +47,7 @@ unsigned char* applicationMem::_content()
     {
         return _pageContent;
     }
-    return nullptr;
+    return NULL;
 }
 unsigned char applicationMem::readByte(unsigned long int offset)
 {
@@ -115,13 +118,13 @@ applicationMem::applicationMem(addressSpace* parent, DWORD procID, unsigned int 
     if(parent)
     {
         _next = parent->_next;
-        if(_next == nullptr)
+        if(_next == NULL)
         {
             _bottom = this;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = parent->_top;
-            while(_search != nullptr)
+            while(_search != NULL)
             {
                 _search->_bottom = _bottom;
                 _search = _search->_next;
@@ -137,9 +140,9 @@ applicationMem::applicationMem(addressSpace* parent, DWORD procID, unsigned int 
     }
     else
     {
-        _next = nullptr;
-        _bottom = nullptr;
-        _top = nullptr;
+        _next = NULL;
+        _bottom = NULL;
+        _top = NULL;
     }
 }
 applicationMem::~applicationMem()

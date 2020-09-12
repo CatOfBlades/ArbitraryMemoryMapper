@@ -179,7 +179,7 @@ void destroyPage(string ID)
 
 void addVirtualPage(string ID,int PageSize)
 {
-    addressSpace* AS = new virtualPage(nullptr,(unsigned int)PageSize);
+    addressSpace* AS = new virtualPage(NULL,(unsigned int)PageSize);
 
     pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
     pair<string,addressSpace*> valu(ID,AS);
@@ -208,7 +208,7 @@ void addInterprocessPage(string ID,int PageSize,string windowName,int address)
     {
         //Beep(600,100);
     }
-    addressSpace* AS = new applicationMem(nullptr, processid, (unsigned int)PageSize,(HANDLE)address);
+    addressSpace* AS = new applicationMem(NULL, processid, (unsigned int)PageSize,(HANDLE)address);
 
     pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
     pair <string,addressSpace*> valu(ID,AS);
@@ -272,7 +272,7 @@ void addLuaPage(string ID, string luafile) //Lua defined memory page.
     lua_State* L = luaL_newstate();
     luaL_openlibs(L);
     lua_RegisterMemoryFunctions(L);
-    luaPage* AS = new luaPage(L,nullptr,luafile);
+    luaPage* AS = new luaPage(L,NULL,luafile);
     AS->freeLuaOnDestruct = 1;
 
     pair<unordered_map<string,addressSpace*>::iterator,bool> IB;

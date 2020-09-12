@@ -18,7 +18,7 @@ class addressSpace
 	virtual unsigned long int _size();
 	virtual bool _is_free(); //returns 0 if this page is reserved/unreadable and unwritable
 	virtual unsigned char* _content(); // returns an array of bytes of the same length as is returned by _size()
-			//or returns NULLPTR if either the size changed after the last call or the space is unreadable.
+			//or returns NULL if either the size changed after the last call or the space is unreadable.
 
 	virtual unsigned char readByte(unsigned long int offset);
 	virtual void writeByte(unsigned long int offset,unsigned char Byt);

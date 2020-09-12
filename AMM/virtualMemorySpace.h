@@ -32,7 +32,7 @@ class virtualMemorySpace
 
 	void recalcSize();//check the linked list to see how much memory we are working with.
 
-    addressSpace* _getAddressPage(unsigned long int addr,unsigned long int* offset); //returns NULLPTR if the address is out of scope of this memory space.
+    addressSpace* _getAddressPage(unsigned long int addr,unsigned long int* offset); //returns NULL if the address is out of scope of this memory space.
 
     void _getPageListInAddressRange( long unsigned int lowAddress, long unsigned int highAddress, addressSpace** pagelist,unsigned int* pagecount);
         //This function intentionally verbose. Sadly it's length could interfere with code written with it.

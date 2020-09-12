@@ -20,7 +20,7 @@ unsigned char* memorySpacePage::_content()
 {
     if(_pageSize<=0)
     {
-        return nullptr;
+        return NULL;
     }
     readMem(0,_pageContent,_pageSize);
     return _pageContent;
@@ -62,7 +62,7 @@ void memorySpacePage::linkToVM(virtualMemorySpace* VM,unsigned long int address,
 memorySpacePage::memorySpacePage()
 {
     memoryTypeID = "MemSpPag";
-    childVM = nullptr;
+    childVM = NULL;
     _address = 0;
     _pageSize = 0;
 }
@@ -75,10 +75,10 @@ memorySpacePage::memorySpacePage(virtualMemorySpace* VM,unsigned long int addres
     _pageContent = new unsigned char[_pageSize];
 
     _this = this;
-    _next = nullptr;
-    _last = nullptr;
-    _top = nullptr;
-    _bottom = nullptr;
+    _next = NULL;
+    _last = NULL;
+    _top = NULL;
+    _bottom = NULL;
 }
 memorySpacePage::memorySpacePage(addressSpace* parent, unsigned int Size)
 {
@@ -91,13 +91,13 @@ memorySpacePage::memorySpacePage(addressSpace* parent, unsigned int Size)
     if(parent)
     {
         _next = parent->_next;
-        if(_next == nullptr)
+        if(_next == NULL)
         {
             _bottom = this;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = parent->_top;
-            while(_search != nullptr)
+            while(_search != NULL)
             {
                 _search->_bottom = _bottom;
                 _search = _search->_next;
@@ -113,9 +113,9 @@ memorySpacePage::memorySpacePage(addressSpace* parent, unsigned int Size)
     }
     else
     {
-        _next = nullptr;
-        _bottom = nullptr;
-        _top = nullptr;
+        _next = NULL;
+        _bottom = NULL;
+        _top = NULL;
     }
 }
 memorySpacePage::~memorySpacePage()
