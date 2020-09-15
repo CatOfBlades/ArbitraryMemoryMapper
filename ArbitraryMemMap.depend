@@ -1,12 +1,13 @@
 # depslib dependency file v1.0
-1599804646 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\addressspace.cpp
+1599877578 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\addressspace.cpp
 	"addressSpace.h"
 
-1599804457 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\addressspace.h
+1599877578 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\addressspace.h
 	<string>
 
-1599862648 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\interprocessmemoryspace.cpp
+1599877578 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\interprocessmemoryspace.cpp
 	"interprocessMemorySpace.h"
+	<stdio.h>
 
 1598297964 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\interprocessmemoryspace.h
 	"addressSpace.h"
@@ -21,7 +22,7 @@
 	"virtualMemorySpace.h"
 	<vector>
 
-1599850364 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\virtualmemoryspace.h
+1599877578 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\virtualmemoryspace.h
 	"addressSpace.h"
 	"virtualPage.h"
 	<vector>
@@ -29,29 +30,30 @@
 1598158074 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\virtualpage.h
 	"addressSpace.h"
 
-1599804646 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\selfrefrence.cpp
+1599877578 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\selfrefrence.cpp
 	"selfRefrence.h"
 
 1598308138 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\selfrefrence.h
 	"addressSpace.h"
 	"virtualMemorySpace.h"
 
-1599863336 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\virtualmemoryspace.cpp
+1599877578 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\virtualmemoryspace.cpp
 	"virtualMemorySpace.h"
 	<windows.h>
 	<stdio.h>
 
-1599804646 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\virtualpage.cpp
+1599877578 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\virtualpage.cpp
 	"virtualPage.h"
 	"stdio.h"
 
 1598300762 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\arbitrarymemmap.cpp
 	"ArbitraryMemMap.h"
 
-1599784388 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\arbitrarymemmap.h
+1600213241 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\arbitrarymemmap.h
 	"AMM/addressSpace.h"
 	"AMM/virtualPage.h"
 	"AMM/virtualMemorySpace.h"
+	"AMM/LoggedPage.h"
 	"AMM/InterprocessMemorySpace.h"
 	"AMM/selfRefrence.h"
 	"AMM/multiPage.h"
@@ -256,7 +258,7 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1599845473 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\luapage.cpp
+1599877578 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\luapage.cpp
 	"LuaPage.h"
 	<string>
 	<stdio.h>
@@ -640,7 +642,7 @@
 
 1598326068 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\remappingvalues.h
 
-1599864750 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\luamemorymapper.cpp
+1599877578 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\luamemorymapper.cpp
 	<iostream>
 	<stdio.h>
 	<windows.h>
@@ -1271,4 +1273,13 @@
 	"remappingValues.h"
 
 1599876911 c:\users\momma\desktop\arbitrarymemorymapper\remappingvalues.h
+
+1600212591 source:c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\loggedpage.cpp
+	"loggedpage.h"
+	"time.h"
+
+1600210818 c:\users\jarem\desktop\micah\code\test_x86_emulator\arbitrarymemmap\amm\loggedpage.h
+	"addressSpace.h"
+	<string>
+	<stdio.h>
 

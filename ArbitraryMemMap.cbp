@@ -50,6 +50,8 @@
 		</Compiler>
 		<Unit filename="AMM/InterprocessMemorySpace.cpp" />
 		<Unit filename="AMM/InterprocessMemorySpace.h" />
+		<Unit filename="AMM/LoggedPage.cpp" />
+		<Unit filename="AMM/LoggedPage.h" />
 		<Unit filename="AMM/LuaPage.cpp" />
 		<Unit filename="AMM/LuaPage.h" />
 		<Unit filename="AMM/addressSpace.cpp" />

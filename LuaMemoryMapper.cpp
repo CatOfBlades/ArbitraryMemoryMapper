@@ -11,11 +11,13 @@
 #define USING_SELF_REFRENCE
 #define USING_MULTI_PAGE
 #define USING_LUA_PAGE
+#define USINGPAGELOGGING
 #include "ArbitraryMemMap.h"
 #undef USINGINTERPROCESS
 #undef USING_SELF_REFRENCE
 #undef USING_MULTI_PAGE
 #undef USING_LUA_PAGE
+#undef USINGPAGELOGGING
 
 using namespace std;
 
@@ -55,6 +57,7 @@ void addInterprocessPage(string ID, int PageSize,string windowName,int address);
 void addMultiPage(string ID, int pagelistSize, string** pagelist);
 void addMetaPage(string ID, int PageSize,string SubMemorySpaceName,int address); //SelfRefrence.cpp
 void addLuaPage(string ID, string luafile); //Lua defined memory page.
+void addLoggedPage(string ID, string logfile, string pageID);
 
 int lua_CreateMemoryContext(lua_State* L);
 int lua_DestroyMemoryContext(lua_State* L);
@@ -65,6 +68,7 @@ int lua_addInterprocessPage(lua_State* L);
 int lua_addMultiPage(lua_State* L);
 int lua_addMetaPage(lua_State* L);
 int lua_addLuaPage(lua_State* L);
+int lua_addLoggedPage(lua_State* L);
 int lua_linkPageToMemorySpace(lua_State* L);
 int lua_destroyPage(lua_State* L);
 int lua_readMemFromContext(lua_State* L);
@@ -120,6 +124,7 @@ void lua_RegisterMemoryFunctions(lua_State* L)
     lua_register(L,"addMultiPage",lua_addMultiPage);
     lua_register(L,"addMetaPage",lua_addMetaPage);
     lua_register(L,"addLuaPage",lua_addLuaPage);
+    lua_register(L,"addLoggedPage",lua_addLoggedPage);
     lua_register(L,"linkPageToMemorySpace",lua_linkPageToMemorySpace);
     lua_register(L,"destroyPage",lua_destroyPage);
     lua_register(L,"readMemFromContext",lua_readMemFromContext);
@@ -288,6 +293,23 @@ void addLuaPage(string ID, string luafile) //Lua defined memory page.
         return;
     }
 }
+void addLoggedPage(string ID, string logfile, string pageID)
+{
+    loggedPage* AS = new loggedPage(logfile,memoryPages.at(pageID));
+
+    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
+    pair <string,addressSpace*> valu(ID,AS);
+    IB = memoryPages.insert(valu);
+    if(IB.second)
+    {
+        return;
+    }
+    else
+    {
+        delete AS; //if theres already a page with the name we don't need the new one.
+        return;
+    }
+}
 
 void readMemFromContext(string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf)
 {
@@ -404,6 +426,15 @@ int lua_addLuaPage(lua_State* L)
     string ID = lua_tostring(L,1);
     string fileName = lua_tostring(L,2);
     addLuaPage(ID,fileName);
+    return 0;
+}
+int lua_addLoggedPage(lua_State* L)
+{
+    //(string ID, string logfile, string pageID)
+    string ID = lua_tostring(L,1);
+    string fileName = lua_tostring(L,2);
+    string pageID = lua_tostring(L,3);
+    addLoggedPage(ID,fileName,pageID);
     return 0;
 }
 int lua_linkPageToMemorySpace(lua_State* L)

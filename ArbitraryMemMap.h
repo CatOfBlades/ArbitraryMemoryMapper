@@ -22,6 +22,9 @@ And as new regions of memory become avalible, treating them as if they are in th
 #include "AMM/addressSpace.h"
 #include "AMM/virtualPage.h"
 #include "AMM/virtualMemorySpace.h"
+#ifdef USINGPAGELOGGING
+#include "AMM/LoggedPage.h"
+#endif
 #ifdef USINGINTERPROCESS
     #include "AMM/InterprocessMemorySpace.h"
 #endif

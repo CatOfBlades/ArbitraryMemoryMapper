@@ -8,6 +8,7 @@
     addMultiPage(string ID, int PageSize, int pagelistSize, string** pagelist)
     addMetaPage(string ID, int PageSize,string SubMemorySpaceName,int address)
     addLuaPage(string ID, string luafile)
+	addLoggedPage(string ID, string logfile, string pageID)
     linkPageToMemorySpace(string MemorySpaceName,string PageName)
     destroyPage(string ID)
     readMemFromContext(string ContextID,int Address,int length,char* buf)
