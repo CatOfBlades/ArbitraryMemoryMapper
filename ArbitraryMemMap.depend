@@ -1957,8 +1957,9 @@
 1609135219 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\addressspace.h
 	<string>
 
-1609135219 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
-	"interprocessMemorySpace.h"
+1609138668 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
+	"../Defines.h"
+	"InterprocessMemorySpace.h"
 	<stdio.h>
 
 1609135945 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.h
@@ -2576,4 +2577,18 @@
 	<windows.h>
 
 1609136600 /home/debian/ArbitraryMemoryMapper/Defines.h
+
+1609138668 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapper.cpp
+	<iostream>
+	<stdio.h>
+	"Defines.h"
+	<windows.h>
+	<unistd.h>
+	<string>
+	<vector>
+	<unordered_map>
+	"ArbitraryMemMap.h"
+	"lua-5.4.0/src/lua.h"
+	"lua-5.4.0/src/lauxlib.h"
+	"lua-5.4.0/src/lualib.h"
 
