@@ -19,6 +19,7 @@ And as new regions of memory become avalible, treating them as if they are in th
 	Each virtual function tells the 'virtualMemorySpace' object how reads and writes should be handled.
 **/
 
+#include "Defines.h"
 #include "AMM/addressSpace.h"
 #include "AMM/virtualPage.h"
 #include "AMM/virtualMemorySpace.h"

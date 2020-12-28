@@ -3,6 +3,7 @@
 #ifndef VIRTUALMEMORYSPACE_H_INCLUDED
 #define VIRTUALMEMORYSPACE_H_INCLUDED
 
+#include "../Defines.h"
 #include "addressSpace.h"
 #include "virtualPage.h"
 #include <vector>

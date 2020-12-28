@@ -1,8 +1,9 @@
 
 #include "virtualMemorySpace.h"
-#ifdef WIN32
+
+#ifdef WINBUILD
 #include <windows.h>
-#endif // WIN32
+#endif // WINBUILD
 
 #include <stdio.h>
 

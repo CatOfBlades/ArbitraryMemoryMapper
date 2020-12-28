@@ -2,14 +2,19 @@
 #include <iostream>
 #include <stdio.h>
 //#include <libdis.h>
-#ifdef WIN32
+#include "Defines.h"
+
+#ifdef WINBUILD
 #include <windows.h>
-#endif // WIN32
+#endif // WINBUILD
+
 #include <string>
 #include <vector>
 #include <unordered_map>
 
-//#define USINGINTERPROCESS
+#ifdef WINBUILD
+#define USINGINTERPROCESS
+#endif // WINBUILD
 #define USING_SELF_REFRENCE
 #define USING_MULTI_PAGE
 #define USING_LUA_PAGE
@@ -202,6 +207,8 @@ void addVirtualPage(string ID,int PageSize)
     }
     return;
 }
+
+#ifdef WINBUILD
 void addInterprocessPage(string ID,int PageSize,string windowName,int address)
 {
     DWORD processid = NULL;
@@ -231,6 +238,8 @@ void addInterprocessPage(string ID,int PageSize,string windowName,int address)
     }
     return;
 }
+#endif // WINBUILD
+
 void addMultiPage(string ID, int pagelistSize,string** pagelist)
 {
 
