@@ -6,6 +6,8 @@
 
 #ifdef WINBUILD
 #include <windows.h>
+#else
+#include <unistd.h>
 #endif // WINBUILD
 
 #include <string>
@@ -86,8 +88,9 @@ void lua_RegisterMemoryFunctions(lua_State* L);
 
 void lua_handle_error(lua_State* L,int errcode);
 
+#ifdef WINBUILD
 BOOL SetPrivilege(HANDLE hToken, LPCTSTR lpszPrivilege, BOOL bEnablePrivilege);
-
+#endif // WINBUILD
 
  /******************************************************************************\
                                 int main()
@@ -96,6 +99,7 @@ BOOL SetPrivilege(HANDLE hToken, LPCTSTR lpszPrivilege, BOOL bEnablePrivilege);
 int main()
 {
 
+#ifdef WINBUILD
     HANDLE hProcess=GetCurrentProcess();
     HANDLE hToken;
 
@@ -108,6 +112,7 @@ int main()
         }
         CloseHandle(hToken);
     }
+#endif // WINBUILD
 
     lua_State* L = luaL_newstate();
     luaL_openlibs(L);
@@ -127,7 +132,9 @@ void lua_RegisterMemoryFunctions(lua_State* L)
     lua_register(L,"SysBeep",lua_Beep);
     lua_register(L,"Sleep",lua_Sleep);
     lua_register(L,"addVirtualPage",lua_addVirtualPage);
+    #ifdef WINBUILD
     lua_register(L,"addInterprocessPage",lua_addInterprocessPage);
+    #endif // WINBUILD
     lua_register(L,"addMultiPage",lua_addMultiPage);
     lua_register(L,"addMetaPage",lua_addMetaPage);
     lua_register(L,"addLuaPage",lua_addLuaPage);
@@ -348,13 +355,21 @@ int lua_Beep(lua_State* L)
 {
     int a = lua_tointeger(L,1);
     int b = lua_tointeger(L,2);
+    #ifdef WINBUILD
     Beep(a,b);
+    #else
+    system("echo $'\a'");
+    #endif //WINBUILD
     return 0;
 }
 int lua_Sleep(lua_State* L)
 {
     int a = lua_tointeger(L,1);
+    #ifdef WINBUILD
     Sleep(a);
+    #else
+    usleep(a*1000);
+    #endif //WINBUILD
     return 0;
 }
 
@@ -366,6 +381,7 @@ int lua_addVirtualPage(lua_State* L)
     addVirtualPage(ID,pageSize);
     return 0;
 }
+#ifdef WINBUILD
 int lua_addInterprocessPage(lua_State* L)
 {
     string ID = lua_tostring(L,1);
@@ -375,6 +391,7 @@ int lua_addInterprocessPage(lua_State* L)
     addInterprocessPage(ID,pageSize,WindowName,(unsigned int)address);
     return 0;
 }
+#endif // WINBUILD
 int lua_addMultiPage(lua_State* L)
 {
     string ID = lua_tostring(L,1);
@@ -540,6 +557,7 @@ void lua_handle_error(lua_State* L,int errcode)
     }
 }
 
+#ifdef WINBUILD
 //
 //  SetPrivilege enables/disables process token privilege.
 //
@@ -569,4 +587,4 @@ BOOL SetPrivilege(HANDLE hToken, LPCTSTR lpszPrivilege, BOOL bEnablePrivilege)
     }
     return bRet;
 }
-
+#endif //WINBUILD

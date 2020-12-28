@@ -1,5 +1,9 @@
 
-#include "interprocessMemorySpace.h"
+#include "../Defines.h"
+
+#ifdef WINBUILD //currently interprocess is only supported in windows
+
+#include "InterprocessMemorySpace.h"
 
 #include <stdio.h>
 using namespace std;
@@ -154,3 +158,4 @@ applicationMem::~applicationMem()
     }
 }
 
+#endif //WINBUILD
