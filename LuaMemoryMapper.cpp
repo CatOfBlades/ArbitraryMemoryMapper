@@ -2,12 +2,14 @@
 #include <iostream>
 #include <stdio.h>
 //#include <libdis.h>
+#ifdef WIN32
 #include <windows.h>
+#endif // WIN32
 #include <string>
 #include <vector>
 #include <unordered_map>
 
-#define USINGINTERPROCESS
+//#define USINGINTERPROCESS
 #define USING_SELF_REFRENCE
 #define USING_MULTI_PAGE
 #define USING_LUA_PAGE

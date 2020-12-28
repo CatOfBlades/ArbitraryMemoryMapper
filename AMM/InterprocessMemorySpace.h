@@ -3,7 +3,9 @@
 #define INTERPROCESSMEMORYSPACE_H_INCLUDED
 
 #include "addressSpace.h"
+#ifdef WIN32
 #include <windows.h>
+#endif // WIN32
 
 /**
 The purpose of this file is to show how one might implement an address space that is in another process

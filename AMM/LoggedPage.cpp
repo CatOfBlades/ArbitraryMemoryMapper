@@ -1,5 +1,5 @@
 
-#include "loggedpage.h"
+#include "LoggedPage.h"
 #include "time.h"
 
 unsigned long int loggedPage::_size()

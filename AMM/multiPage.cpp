@@ -1,7 +1,9 @@
 
 #include "multiPage.h"
 
+#ifdef WIN32
 #include <windows.h>
+#endif
 
 unsigned long int multiPage::_size()
 {
