@@ -220,7 +220,7 @@ unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigne
     while(length>totalBytesRead)
     {
         //Beep(400,100);
-        PageAddresses;
+        //PageAddresses;
 
         addressSpace* _search = top;
         int i=0;
@@ -326,7 +326,7 @@ unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigne
     while(length>totalBytesWritten)
     {
         //Beep(400,100);
-        PageAddresses;
+        //PageAddresses;
 
         addressSpace* _search = top;
         int i=0;

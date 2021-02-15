@@ -42,3 +42,6 @@ The code::blocks target LuaMap is a lua script processor.
         
  It's a bit buggy and I would be happy if people could fork it and improve upon it.
  Generally so long as the changes improve usability and don't constrain it I would be happy to merge them.
+
+The file "virtualMemoryMapper.lua" is a implimentation of the base classes in lua natively.
+it's features are limited but can be included into lua scripts without needing any extra includes or compilation.
