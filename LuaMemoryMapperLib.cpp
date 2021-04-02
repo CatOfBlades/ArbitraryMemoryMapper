@@ -15,6 +15,19 @@ These contexts being filetypes, videogame memories or any context that defines v
 unordered_map<string,virtualMemorySpace*> memorySpaces; //This is the memory contexts we have opened with createMemoryContext()
 unordered_map<string,addressSpace*> memoryPages;
 
+/**
+for creating interfaces on the C++ side we need a way to expose the memory space and address space pointers
+**/
+unordered_map<string,virtualMemorySpace*>* getMemorySpaceList()
+{
+    return &memorySpaces;
+}
+unordered_map<string,addressSpace*>* getMemoryPageList()
+{
+    return &memoryPages;
+}
+/** **/
+
 /******************************************************************************\
                                 int main()
 
