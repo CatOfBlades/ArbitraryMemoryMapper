@@ -17,6 +17,11 @@ class virtualMemorySpace
     unsigned long int memoryOffset; //The virtual offset for addresses in our memory space. (unsigned so no negative offsets)
     unsigned long int memorySize; // calculated as more pages are added refers to how much virtual memory we have addressable in bytes;
     vector<unsigned long int> PageAddresses; //calculated when memorySize is updated.
+    short islooped;
+        //'islooped' mods addresses to start back at the beginning if they are past the end of this memory space.
+        //set is looped to zero if you want to use it as a proxy for a fragment of memory instead of a whole virtual system.
+        //if you don't get it don't worry it's a subtle thing that makes access times faster by ignoring sanity checks when set to zero.
+        //IE might crash if you access out of bounds and this isn't equal to one.
 
     /**
     The memory offset allows for memory spaces to be defined which don't start at 0;

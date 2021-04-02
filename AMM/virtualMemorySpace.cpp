@@ -11,12 +11,14 @@ virtualMemorySpace::virtualMemorySpace()//if you don't need a memory offset then
 {
     memoryOffset=0;
     top=0;
+    islooped = MEMSPACE_LOOP_DEFAULT;
 }
 
 virtualMemorySpace::virtualMemorySpace(int memoffset)
 {
     memoryOffset = memoffset;
     top=0;
+    islooped = MEMSPACE_LOOP_DEFAULT;
 }
 
 virtualMemorySpace::~virtualMemorySpace()
@@ -59,7 +61,14 @@ addressSpace* virtualMemorySpace::_getAddressPage(unsigned long int addr,unsigne
         */
 
 
-    if(addr > memorySize){return NULL;};//address is outside of the scope of this memory space;
+    if(islooped)
+    {
+        addr%=memorySize;
+    }
+    else
+    {
+        if(addr >= memorySize){return NULL;};//address is outside of the scope of this memory space;
+    }
 
     addressSpace* _search = top;
     //if(_search == NULL){return NULL;}
@@ -206,10 +215,19 @@ void virtualMemorySpace::_getPageListInAddressRange( long unsigned int lowAddres
 unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigned char* buf, unsigned long int length)
 {
 
+    //recalcSize();//might not be needed every read...
+
+
     //printf("address:%i\n",(int)Address);
     //printf("length:%i\n",(int)length);
     //printf("memoryOffset:%i\n",(int)memoryOffset);
     Address -= memoryOffset;
+
+    if(islooped)
+    {
+        Address%=memorySize;
+    }
+
     int totalBytesRead = 0;
 
     unsigned long int startAddress = Address;
@@ -316,6 +334,12 @@ unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigne
     //printf("length:%i\n",(int)length);
     //printf("memoryOffset:%i\n",(int)memoryOffset);
     Address -= memoryOffset;
+
+    if(islooped)
+    {
+        Address%=memorySize;
+    }
+
     int totalBytesWritten = 0;
 
     unsigned long int startAddress = Address;
