@@ -70,6 +70,8 @@
 		<Unit filename="LuaMemoryMapper.cpp">
 			<Option target="LuaMap" />
 		</Unit>
+		<Unit filename="LuaMemoryMapperLib.cpp" />
+		<Unit filename="LuaMemoryMapperLib.h" />
 		<Unit filename="lua-5.4.0/src/lapi.c">
 			<Option compilerVar="CC" />
 		</Unit>
