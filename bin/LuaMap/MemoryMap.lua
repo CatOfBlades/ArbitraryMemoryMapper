@@ -62,6 +62,22 @@ while i<=length do
 	i=i+1
 end
 
+print("wraptest:") --testing the new memory wrap functionality. no longer crashing upon negitive addresses or otherwise out of bound accesses.
+i=0
+j[1] = 7
+while i<length do
+	writeMemToContext("mem1",-5+i,1,j)
+	i=i+1
+end
+
+i=0
+while i<length+5 do
+	k = readMemFromContext("mem1",-5+i,1)
+	print(k[1])
+	i=i+1
+end
+
+
 destroyPage("page1") --we have to clean these up manually because multipages don't destroy pages they refrence.
 destroyPage("page2") --note: destroying a page frees it from the memoryContext that its linked to. So you can replace it by linking another.
 destroyMemoryContext("mem1") --page3 is destroyed by the memoryContext when it dies because they are linked.
