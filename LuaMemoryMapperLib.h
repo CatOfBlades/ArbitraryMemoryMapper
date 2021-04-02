@@ -37,6 +37,13 @@ extern "C"
     #include "lua-5.4.0/src/lualib.h"
 }
 
+/**
+for creating interfaces on the C++ side we need a way to expose the memory space and address space pointers
+**/
+unordered_map<string,virtualMemorySpace*>* getMemorySpaceList();
+unordered_map<string,addressSpace*>* getMemoryPageList();
+/** **/
+
 string createMemoryContext(string ID);
 void destroyMemoryContext(string ID);
 
