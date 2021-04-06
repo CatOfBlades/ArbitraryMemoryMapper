@@ -212,227 +212,164 @@ void virtualMemorySpace::_getPageListInAddressRange( long unsigned int lowAddres
     return;
 }
 
-unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigned char* buf, unsigned long int length)
+/*
+unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
 {
 
-    //recalcSize();//might not be needed every read...
+    //printf("write:%i, addr:%i, bufaddr:0x%08x, len:%i\n",write,addr,buf,len);
+    //Beep(400,100);
+    unsigned long int numBytes = len;
 
-
-    //printf("address:%i\n",(int)Address);
-    //printf("length:%i\n",(int)length);
-    //printf("memoryOffset:%i\n",(int)memoryOffset);
-    Address -= memoryOffset;
+    addr -= memoryOffset;
 
     if(islooped)
     {
-        Address%=memorySize;
+        addr%=memorySize;
     }
 
-    int totalBytesRead = 0;
-
-    unsigned long int startAddress = Address;
-    unsigned long int endAddress = Address+length;
-    //printf("startAddress:%i\n",(int)startAddress);
-    //printf("endAddress:%i\n",(int)endAddress);
-
-    while(length>totalBytesRead)
-    {
-        //Beep(400,100);
-        //PageAddresses;
-
-        addressSpace* _search = top;
-        int i=0;
-        if(startAddress>0)
+	vector<addressSpace*> PageList; //indexed list of pointers to pages;
+	addressSpace* _search = top;
+	int i=0;
+	while(1)
+	{
+		PageList.push_back(_search);
+		PageAddresses[i]; //indexed list of addresses of pages;
+		_search = _search->_next;
+		i++;
+		if(_search == NULL)
         {
-            while(startAddress>=PageAddresses[i])
-            {
-                i++;
-                if(i>PageAddresses.size() || _search->_next == NULL)
+            break;
+        }
+	}
+
+	int j = i;
+	while(i>0) //uses the number of pages counted by the last while loop;
+	{
+		//j-i; //starting with 0 to the number of pages.
+		int k = addr-(PageAddresses[j-i]); //starting with address 0
+		int l = k+len-PageList[j-i]->_size();
+
+		if(k >= 0) //our starting address is within the current page.
+		{
+            printf("J:%i, len:%i, L:%i\n",j,len,l);
+		    printf("current page:[%i] \n",(j-i));
+			if(l <= 0) //the offset into the page is equal to or less then the end of the page.
+			{
+				if(write)
+				{
+					PageList[j-i]->writeMem(k,buf,len);
+					break;
+				}
+				else
+				{
+					PageList[j-i]->readMem(k,buf,len);
+					break;
+				}
+			}
+			else //the end extends past the current page.
+			{
+				//because l equals the ammount by which we are over the end of the page,
+				//it can be used to calculate how much memory to write,
+				//and then becomes our new len.
+				if(write)
+				{
+					PageList[j-i]->writeMem(k,buf,len - l); //write up to the end of the page.
+				}
+				else
+				{
+					PageList[j-i]->readMem(k,buf,len - l); //read up to the end of the page.
+				}
+				printf("bytes Written:%i \n",len - l);
+				if(PageList[j-i]->_next != NULL)
                 {
-                    break;
-                    //return;
+                    addr = PageAddresses[(j-i)+1]+(l-len);
+                    len = l;
+                    printf("current address:[%i] \n",addr);
+                    printf("Pointing into next page:%i\n",addr);
                 }
-                _search = _search->_next;
-            }
-        }
-        unsigned long int PageTop = PageAddresses[i]; //top of the memory of the page found
-        unsigned long int offset = startAddress-PageTop;
-        unsigned long int offset_end = endAddress-PageTop;
+                else{break;}
+			}
+		}
 
-        //Beep(400,100);
-        //printf("i:%i\n",(int)i);
-        //printf("PageTop:%i\n",(int)PageTop);
-        //printf("offset:%i\n",(int)offset);
-        //printf("offset_end:%i\n",(int)offset_end);
-        //printf("_search->_size():%i\n",(int)_search->_size());
-        if(offset_end+offset <= _search->_size()) //if our data is all in one page.
-        {
-            //Beep(400,100);
-            _search->readMem(offset,buf,length-totalBytesRead);
-            return totalBytesRead;//_search->_size()-offset;
-            //break;
-        }
-        int bytesWritten=0;
-        bytesWritten = _search->_size()-offset;
-        _search->readMem(offset,buf,bytesWritten);
-        Address -= bytesWritten;
-        totalBytesRead += bytesWritten;
-    }
-    //Beep(400,100);
-    return totalBytesRead;
+		i--;
+	}
 
-    /** Old Buggy Code
-    //printf("Address:%i,length:%i\n",Address,length);
-    unsigned long int lowAddress = Address;
-    unsigned long int highAddress = Address+length;
-    lowAddress -= memoryOffset;  //when we receive addresses from the outside we subtract the virtual offset.
-    highAddress -= memoryOffset; //in other functions that return an address we have to add that offset back.
-                                 //this allows us some memory remapping functionality.
+	return numBytes;
 
-    if(top == NULL) //if we don't have any pages
+}
+*/
+
+
+//I absolutely hate that I have to write every byte individually.
+//But it's the only way I could make it simple for my smol brain to understand.
+//Please someone write maths wizardry to calculate how many bytes have to
+// be read/written to each page so it can be done with less calls to writeMem/readMem.
+unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
+{
+	unsigned long int numBytes = len;
+
+    addr -= memoryOffset;
+
+    if(islooped)
     {
-        //Beep(400,100);
-        return 0; //no bytes can be written if theres no space to write to.
+        addr%=memorySize;
     }
 
-    unsigned long int tmp_PageOffset = 0;
-    addressSpace* tmp_AS;
-    while(lowAddress<=highAddress)
-    {
-        tmp_AS = _getAddressPage(lowAddress, &tmp_PageOffset);
-        if(highAddress-lowAddress < tmp_AS->_size()-tmp_PageOffset) //if the remaining data length is less then the size of the page.
+	vector<addressSpace*> PageList; //indexed list of pointers to pages;
+	addressSpace* _search = top;
+	int i=0;
+	while(1)
+	{
+		PageList.push_back(_search);
+		PageAddresses[i]; //indexed list of addresses of pages;
+		_search = _search->_next;
+		i++;
+		if(_search == NULL)
         {
-            //printf("maybe? \n");
-            //printf("low address:%i\n",(int)lowAddress);
-            //printf("tmp_PageOffset:%i\n",(int)tmp_PageOffset);
-            //printf("bytes remain:%i\n",(int)lowAddress-Address);
-            //printf("highAddress-lowAddress:%i\n",(int)highAddress-lowAddress);
-            tmp_AS->readMem(tmp_PageOffset,buf+lowAddress-Address,highAddress-lowAddress);
-                //lowAddress-Address is the number of bytes read so far.
-                //highAddress-lowAddress is how much data we have left to read.
-                //so this writes whats left from the remaining spot in the buffer.
-            lowAddress += tmp_AS->_size()-tmp_PageOffset;
-            return lowAddress-Address;
+            break;
         }
-        else
-        {
-            //printf("did it work? \n");
-            tmp_AS->readMem(lowAddress,buf+lowAddress-Address,tmp_AS->_size()-tmp_PageOffset); //read what you can till the end of the page
-                //the rest of the page is the size of the page minus the offset within the page that our address is at.
-            lowAddress += tmp_AS->_size()-tmp_PageOffset; //skip this page
-        }
-        //lowAddress += 1; //go to the next byte.
-    }
-    return lowAddress-Address;
-    **/
+	}
+
+	int j=0;
+	int pageEndAddress = PageAddresses[j]+PageList[j]->_size();
+	while(pageEndAddress < addr)
+	{
+		j++;
+		pageEndAddress = PageAddresses[j]+PageList[j]->_size();
+	}
+
+	for(i=0; i<len; i++)
+	{
+		if( ((addr+i)%memorySize) > pageEndAddress)
+		{
+			j++;
+			if(j>pageCount())
+			{
+				j=0;
+			}
+			pageEndAddress = PageAddresses[j]+PageList[j]->_size();
+		}
+		if(write)
+		{
+			PageList[j]->writeMem( ((addr+i)%memorySize) ,buf+i,1);
+		}
+		else
+		{
+			PageList[j]->readMem( ((addr+i)%memorySize) ,buf+i,1);
+		}
+	}
+
+	return numBytes;
+}
+
+unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigned char* buf, unsigned long int length)
+{
+    return RW_Mem(0, Address, buf, length);
 }
 
 unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigned char* buf,unsigned long int length)
 {
-
-    //printf("address:%i\n",(int)Address);
-    //printf("length:%i\n",(int)length);
-    //printf("memoryOffset:%i\n",(int)memoryOffset);
-    Address -= memoryOffset;
-
-    if(islooped)
-    {
-        Address%=memorySize;
-    }
-
-    int totalBytesWritten = 0;
-
-    unsigned long int startAddress = Address;
-    unsigned long int endAddress = Address+length;
-    //printf("startAddress:%i\n",(int)startAddress);
-    //printf("endAddress:%i\n",(int)endAddress);
-
-    while(length>totalBytesWritten)
-    {
-        //Beep(400,100);
-        //PageAddresses;
-
-        addressSpace* _search = top;
-        int i=0;
-        if(startAddress>0)
-        {
-            while(startAddress>=PageAddresses[i])
-            {
-                i++;
-                if(i>PageAddresses.size() || _search->_next == NULL)
-                {
-                    break;
-                    //return;
-                }
-                _search = _search->_next;
-            }
-        }
-        unsigned long int PageTop = PageAddresses[i]; //top of the memory of the page found
-        unsigned long int offset = startAddress-PageTop;
-        unsigned long int offset_end = endAddress-PageTop;
-
-        //Beep(400,100);
-        //printf("i:%i\n",(int)i);
-        //printf("PageTop:%i\n",(int)PageTop);
-        //printf("offset:%i\n",(int)offset);
-        //printf("offset_end:%i\n",(int)offset_end);
-        //printf("_search->_size():%i\n",(int)_search->_size());
-        if(offset_end+offset <= _search->_size()) //if our data is all in one page.
-        {
-            //Beep(400,100);
-            _search->writeMem(offset,buf,length-totalBytesWritten);
-            return totalBytesWritten;//_search->_size()-offset;
-            //break;
-        }
-        int bytesWritten=0;
-        bytesWritten = _search->_size()-offset;
-        _search->writeMem(offset,buf,bytesWritten);
-        Address -= bytesWritten;
-        totalBytesWritten += bytesWritten;
-    }
-    //Beep(400,100);
-    return totalBytesWritten;
-
-    /** Old Buggy Code
-    unsigned long int lowAddress = Address;
-    unsigned long int highAddress = Address+length;
-    lowAddress -= memoryOffset;  //when we receive addresses from the outside we subtract the virtual offset.
-    highAddress -= memoryOffset; //in other functions that return an address we have to add that offset back.
-                                 //this allows us some memory remapping functionality.
-    //printf("maybe? \n");
-    //printf("address:%i\n",(int)Address);
-    //printf("length:%i\n",(int)length);
-
-    if(top == NULL) //if we don't have any pages
-    {
-        return 0; //no bytes can be written if theres no space to write to.
-    }
-
-    unsigned long int tmp_PageOffset = 0;
-    addressSpace* tmp_AS;
-    while(lowAddress<=highAddress)
-    {
-        tmp_AS = _getAddressPage(lowAddress, &tmp_PageOffset);
-        if(highAddress-lowAddress < tmp_AS->_size()-tmp_PageOffset) //if the remaining data length is less then the size of the page.
-        {
-            tmp_AS->writeMem(tmp_PageOffset,buf+lowAddress-Address,highAddress-lowAddress);
-                //lowAddress-Address is the number of bytes written so far.
-                //highAddress-lowAddress is how much data we have left to write.
-                //so this writes whats left from the remaining spot in the buffer.
-            lowAddress += tmp_AS->_size()-tmp_PageOffset;
-            return lowAddress-Address;
-        }
-        else
-        {
-            tmp_AS->writeMem(lowAddress,buf+lowAddress-Address,tmp_AS->_size()-tmp_PageOffset); //write what you can till the end of the page
-                //the rest of the page is the size of the page minus the offset within the page that our address is at.
-            lowAddress += tmp_AS->_size()-tmp_PageOffset; //skip this page
-        }
-        //lowAddress += 1; //go to the next byte.
-    }
-    return lowAddress-Address;
-
-    **/
+    return RW_Mem(1, Address, buf, length);
 }
 
 unsigned int virtualMemorySpace::pageCount()

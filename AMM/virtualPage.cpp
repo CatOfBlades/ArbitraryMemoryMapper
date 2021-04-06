@@ -26,6 +26,7 @@ void virtualPage::readMem(unsigned long int offset,unsigned char* buffer, unsign
 {
     while(len > 0)
     {
+        //printf("offset:%i,len:%i\n",offset,len);
         buffer[len-1] = _pageContent[offset+len-1];
         len -= 1;
     }
@@ -35,6 +36,7 @@ void virtualPage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned 
 {
     while(len > 0)
     {
+        //printf("offset:%i,len:%i\n",offset,len);
         _pageContent[offset+len-1] = Byt[len-1];
         len -= 1;
     }

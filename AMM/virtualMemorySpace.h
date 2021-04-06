@@ -11,6 +11,7 @@ using namespace std;
 
 class virtualMemorySpace
 {
+    unsigned long int RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
     public:
     addressSpace* top;  //The first page of memory in our linked list;
     addressSpace* bottom; //The last page of memory in our linked list;
