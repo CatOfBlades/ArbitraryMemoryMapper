@@ -32,9 +32,12 @@ unsigned char* filePage::_content()
 
 int filePage::RW_file(bool write, unsigned long int offs, unsigned char* dat,unsigned long int len)
 {
+    /*
 	fseek(fp, 0, SEEK_END);
 	lSize = ftell(fp);
 	rewind(fp);
+	*/
+
 	//unsigned long int L = len;
 
 	if(len<=0){return;}
@@ -133,8 +136,16 @@ filePage::filePage()
 	lSize = 0;
 }
 
-filePage::filePage(addressSpace* parent,  unsigned int Size) // so we have to make a file of a specific size...
+filePage::filePage(addressSpace* parent,  unsigned int Size)
 {
 
+}
+
+filePage::filePage(string filename,  unsigned int Size)
+{
+    fp = 0;
+	cl = 0;
+	FMfilename = filename;
+	lSize = Size;
 }
 

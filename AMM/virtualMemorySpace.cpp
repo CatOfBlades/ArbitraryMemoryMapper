@@ -32,6 +32,7 @@ virtualMemorySpace::~virtualMemorySpace()
 void virtualMemorySpace::virtualMemorySpace::recalcSize()//check the linked list to see how much memory we are working with.
 {
     PageAddresses.clear();
+    PageList.clear();
 
     memorySize = 0;
     if(top == NULL){return;};
@@ -39,6 +40,7 @@ void virtualMemorySpace::virtualMemorySpace::recalcSize()//check the linked list
     while(_search != NULL)// loop ends when the pointer to _search is set to zero through the last iterations _search->_next being zero.
     {
         PageAddresses.push_back(memorySize);
+        PageList.push_back(_search);
         memorySize += _search->_size();
         _search = _search->_next;
     }
@@ -212,94 +214,25 @@ void virtualMemorySpace::_getPageListInAddressRange( long unsigned int lowAddres
     return;
 }
 
-/*
-unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
+
+addressHelper virtualMemorySpace::isAddressInPage(unsigned long int addr,int page)
 {
-
-    //printf("write:%i, addr:%i, bufaddr:0x%08x, len:%i\n",write,addr,buf,len);
-    //Beep(400,100);
-    unsigned long int numBytes = len;
-
-    addr -= memoryOffset;
-
-    if(islooped)
-    {
-        addr%=memorySize;
-    }
-
-	vector<addressSpace*> PageList; //indexed list of pointers to pages;
-	addressSpace* _search = top;
-	int i=0;
-	while(1)
-	{
-		PageList.push_back(_search);
-		PageAddresses[i]; //indexed list of addresses of pages;
-		_search = _search->_next;
-		i++;
-		if(_search == NULL)
-        {
-            break;
-        }
-	}
-
-	int j = i;
-	while(i>0) //uses the number of pages counted by the last while loop;
-	{
-		//j-i; //starting with 0 to the number of pages.
-		int k = addr-(PageAddresses[j-i]); //starting with address 0
-		int l = k+len-PageList[j-i]->_size();
-
-		if(k >= 0) //our starting address is within the current page.
-		{
-            printf("J:%i, len:%i, L:%i\n",j,len,l);
-		    printf("current page:[%i] \n",(j-i));
-			if(l <= 0) //the offset into the page is equal to or less then the end of the page.
-			{
-				if(write)
-				{
-					PageList[j-i]->writeMem(k,buf,len);
-					break;
-				}
-				else
-				{
-					PageList[j-i]->readMem(k,buf,len);
-					break;
-				}
-			}
-			else //the end extends past the current page.
-			{
-				//because l equals the ammount by which we are over the end of the page,
-				//it can be used to calculate how much memory to write,
-				//and then becomes our new len.
-				if(write)
-				{
-					PageList[j-i]->writeMem(k,buf,len - l); //write up to the end of the page.
-				}
-				else
-				{
-					PageList[j-i]->readMem(k,buf,len - l); //read up to the end of the page.
-				}
-				printf("bytes Written:%i \n",len - l);
-				if(PageList[j-i]->_next != NULL)
-                {
-                    addr = PageAddresses[(j-i)+1]+(l-len);
-                    len = l;
-                    printf("current address:[%i] \n",addr);
-                    printf("Pointing into next page:%i\n",addr);
-                }
-                else{break;}
-			}
-		}
-
-		i--;
-	}
-
-	return numBytes;
-
+    addressHelper AH;
+    unsigned long int pageSize = PageList[page]->_size();
+    AH.isInPage = (addr > PageAddresses[page])&&(addr < pageSize);
+    AH.offsetFromStartOfPage = addr-PageAddresses[page];
+    AH.lengthTillEndOfPage = pageSize-addr;
 }
-*/
+
+class pageListHelper
+{
+public:
+    vector<unsigned long int> lengthList;
+    int startPage;
+};
 
 
+#ifdef USE_BYTEWISE_RW
 //I absolutely hate that I have to write every byte individually.
 //But it's the only way I could make it simple for my smol brain to understand.
 //Please someone write maths wizardry to calculate how many bytes have to
@@ -361,6 +294,84 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 
 	return numBytes;
 }
+#else
+unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
+{
+
+    //printf("write:%i, addr:%i, bufaddr:0x%08x, len:%i\n",write,addr,buf,len);
+    //Beep(400,100);
+    unsigned long int numBytes = len;
+
+    addr -= memoryOffset;
+
+    if(islooped)
+    {
+        addr%=memorySize;
+    }
+
+    bool firstPage = true;
+
+    int i=0;
+    addressHelper AH;
+    while(1)
+    {
+        AH = isAddressInPage(addr,i);
+        if(AH.isInPage == 1)
+        {
+            break;
+        }
+        if(i>=pageCount())
+        {
+            return 0;
+        }
+        i++;
+    }
+    printf("pagefound:%i\n",i);
+
+    while(len > 0)
+    {
+        unsigned long int _len;
+        if(len < PageList[i]->_size())
+        {
+            _len = len;
+        }
+        else
+        {
+            _len = PageList[i]->_size();
+        }
+        //printf("_len:%i PageSize:%i\n",_len,PageList[i]->_size());
+        if(firstPage)
+        {
+            firstPage = false;
+            if(write)
+            {
+                PageList[i]->writeMem(addr-PageAddresses[i],buf+(numBytes-len),_len);
+            }
+            else
+            {
+                PageList[i]->readMem(addr-PageAddresses[i],buf+(numBytes-len),_len);
+            }
+            len -= _len;
+        }
+        else
+        {
+            if(write)
+            {
+                PageList[i]->writeMem(PageAddresses[i],buf+(numBytes-len),_len);
+            }
+            else
+            {
+                PageList[i]->readMem(PageAddresses[i],buf+(numBytes-len),_len);
+            }
+            len -= _len;
+        }
+        i++;
+    }
+
+	return numBytes-len;
+
+}
+#endif
 
 unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigned char* buf, unsigned long int length)
 {
@@ -369,6 +380,7 @@ unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigne
 
 unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigned char* buf,unsigned long int length)
 {
+    //printf("writing to VMS.\n");
     return RW_Mem(1, Address, buf, length);
 }
 

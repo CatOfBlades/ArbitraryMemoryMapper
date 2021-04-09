@@ -32,6 +32,7 @@ class filePage: public addressSpace
 
 	filePage();
     filePage(addressSpace* parent,  unsigned int Size);
+    filePage(string filename,  unsigned int Size);
 };
 
 

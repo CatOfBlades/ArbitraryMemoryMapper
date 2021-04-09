@@ -9,6 +9,13 @@
 #include <vector>
 using namespace std;
 
+struct addressHelper
+{
+    bool isInPage;
+    unsigned long int offsetFromStartOfPage;
+    unsigned long int lengthTillEndOfPage;
+};
+
 class virtualMemorySpace
 {
     unsigned long int RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
@@ -18,6 +25,8 @@ class virtualMemorySpace
     unsigned long int memoryOffset; //The virtual offset for addresses in our memory space. (unsigned so no negative offsets)
     unsigned long int memorySize; // calculated as more pages are added refers to how much virtual memory we have addressable in bytes;
     vector<unsigned long int> PageAddresses; //calculated when memorySize is updated.
+    vector<addressSpace*> PageList; //calculated when memorySize is updated.
+    addressHelper isAddressInPage(unsigned long int addr,int page);//page is the position in the linked list. first page being 0.
     short islooped;
         //'islooped' mods addresses to start back at the beginning if they are past the end of this memory space.
         //set is looped to zero if you want to use it as a proxy for a fragment of memory instead of a whole virtual system.

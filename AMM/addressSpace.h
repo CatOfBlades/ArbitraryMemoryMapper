@@ -15,6 +15,7 @@ class addressSpace
     addressSpace* _last; //address space before this one.
     addressSpace* _bottom;  //the address space at the end of the list.
 	//unsigned long int start_address; // Set by the memory manager to make memory searching slightly faster;
+
 	virtual unsigned long int _size();
 	virtual bool _is_free(); //returns 0 if this page is reserved/unreadable and unwritable
 	virtual unsigned char* _content(); // returns an array of bytes of the same length as is returned by _size()
