@@ -310,6 +310,88 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 	return numBytes;
 }
 #else
+
+unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Address, unsigned char* buf, unsigned long int length)
+{
+    #ifdef EXTRA_DEBUG_MESSAGES
+    printf("address:%i\n",(int)Address);
+    printf("length:%i\n",(int)length);
+    printf("memoryOffset:%i\n",(int)memoryOffset);
+    #endif
+    Address -= memoryOffset;
+
+    if(islooped)
+    {
+        Address%=memorySize;
+    }
+
+    int totalBytesRead = 0;
+
+    unsigned long int startAddress = Address;
+    unsigned long int endAddress = Address+length;
+	#ifdef EXTRA_DEBUG_MESSAGES
+    printf("startAddress:%i\n",(int)startAddress);
+    printf("endAddress:%i\n",(int)endAddress);
+	#endif
+
+    while(length>totalBytesRead)
+    {
+
+        addressSpace* _search = top;
+        int i=0;
+        if(startAddress>0)
+        {
+            while(startAddress>=PageAddresses[i])
+            {
+                i++;
+                if(i>PageAddresses.size() || _search->_next == NULL)
+                {
+                    break;
+                }
+                _search = _search->_next;
+            }
+        }
+        unsigned long int PageTop = PageAddresses[i]; //top of the memory of the page found
+        unsigned long int offset = startAddress-PageTop;
+        unsigned long int offset_end = endAddress-PageTop;
+
+		#ifdef EXTRA_DEBUG_MESSAGES
+        printf("i:%i\n",(int)i);
+        printf("PageTop:%i\n",(int)PageTop);
+        printf("offset:%i\n",(int)offset);
+        printf("offset_end:%i\n",(int)offset_end);
+        printf("_search->_size():%i\n",(int)_search->_size());
+		#endif
+        if(offset_end+offset <= _search->_size()) //if our data is all in one page.
+        {
+            if(write == 1)
+            {
+                _search->writeMem(offset,buf,length-totalBytesRead);
+            }
+            else
+            {
+                _search->readMem(offset,buf,length-totalBytesRead);
+            }
+            return totalBytesRead;
+        }
+        int bytesWritten=0;
+        bytesWritten = _search->_size()-offset;
+        if(write == 1)
+        {
+            _search->writeMem(offset,buf,bytesWritten);
+        }
+        else
+        {
+            _search->readMem(offset,buf,bytesWritten);
+        }
+        Address -= bytesWritten;
+        totalBytesRead += bytesWritten;
+    }
+    return totalBytesRead;
+
+}
+
+/*
 unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
 {
     #ifdef EXTRA_DEBUG_MESSAGES
@@ -393,6 +475,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 	return numBytes-len;
 
 }
+*/
 #endif
 
 unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigned char* buf, unsigned long int length)
