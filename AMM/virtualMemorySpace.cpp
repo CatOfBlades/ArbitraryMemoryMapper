@@ -225,8 +225,15 @@ void virtualMemorySpace::_getPageListInAddressRange( long unsigned int lowAddres
 addressHelper virtualMemorySpace::isAddressInPage(unsigned long int addr,int page)
 {
     addressHelper AH;
+    if(page+1 > pageCount())
+    {
+        AH.isInPage = 0;
+        AH.offsetFromStartOfPage = 0;
+        AH.lengthTillEndOfPage = 0;
+        return AH;
+    }
     unsigned long int pageSize = PageList[page]->_size();
-    AH.isInPage = (addr > PageAddresses[page])&&(addr < pageSize);
+    AH.isInPage = (addr > PageAddresses[page])&&(addr < PageAddresses[page]+pageSize);
     AH.offsetFromStartOfPage = addr-PageAddresses[page];
     AH.lengthTillEndOfPage = pageSize-addr;
     return AH;
@@ -307,7 +314,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 {
     #ifdef EXTRA_DEBUG_MESSAGES
     printf("write:%i, addr:%i, bufaddr:0x%08x, len:%i\n",write,addr,buf,len);
-    Beep(400,100);
+    //Beep(400,100);
     #endif
     unsigned long int numBytes = len;
 

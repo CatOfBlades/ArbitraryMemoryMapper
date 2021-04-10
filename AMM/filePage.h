@@ -16,7 +16,7 @@ class filePage: public addressSpace
 	long lSize;
 	void FMopenFile();
 	void FMcloseFile();
-	RW_file(bool write, unsigned long int offs, unsigned char* dat, unsigned long int len);
+	unsigned long int RW_file(bool write, unsigned long int offs, unsigned char* dat, unsigned long int len);
 	unsigned long int _size();
 	bool _is_free();
 	unsigned char* _content();

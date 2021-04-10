@@ -30,7 +30,7 @@ unsigned char* filePage::_content()
 	return NULL;
 }
 
-int filePage::RW_file(bool write, unsigned long int offs, unsigned char* dat,unsigned long int len)
+unsigned long int filePage::RW_file(bool write, unsigned long int offs, unsigned char* dat,unsigned long int len)
 {
     /*
 	fseek(fp, 0, SEEK_END);
@@ -130,7 +130,7 @@ void filePage::setParent(addressSpace* addrSp)
 
 filePage::filePage()
 {
-    fp = STDOUT_FILENO; //maybe should be stdin?? Assuming most people who want to construct a blank page are using it for interprocess communication...
+    fp = stdout;//STDOUT_FILENO; //maybe should be stdin?? Assuming most people who want to construct a blank page are using it for interprocess communication...
 	cl = 0;
 	FMfilename = "";
 	lSize = 0;
