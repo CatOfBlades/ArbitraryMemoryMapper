@@ -248,12 +248,22 @@ public:
 
 
 #ifdef USE_BYTEWISE_RW
+#ifdef EXTRA_DEBUG_MESSAGES
+    int printonce = 0;
+#endif //EXTRA_DEBUG_MESSAGES
 //I absolutely hate that I have to write every byte individually.
 //But it's the only way I could make it simple for my smol brain to understand.
 //Please someone write maths wizardry to calculate how many bytes have to
 // be read/written to each page so it can be done with less calls to writeMem/readMem.
 unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
 {
+    #ifdef EXTRA_DEBUG_MESSAGES
+    if(printonce == 0)
+    {
+        printf("Using byte-wise r/w.\n");
+        printonce = 1;
+    }
+    #endif //EXTRA_DEBUG_MESSAGES
 	unsigned long int numBytes = len;
 
     addr -= memoryOffset;

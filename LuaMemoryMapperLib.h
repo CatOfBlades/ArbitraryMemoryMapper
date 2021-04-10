@@ -21,12 +21,14 @@
 #define USING_MULTI_PAGE
 #define USING_LUA_PAGE
 #define USINGPAGELOGGING
+#define USING_FILE_PAGE
 #include "ArbitraryMemMap.h"
 #undef USINGINTERPROCESS
 #undef USING_SELF_REFRENCE
 #undef USING_MULTI_PAGE
 #undef USING_LUA_PAGE
 #undef USINGPAGELOGGING
+#undef USING_FILE_PAGE
 
 using namespace std;
 
@@ -59,17 +61,21 @@ void addMultiPage(string ID, unsigned int pagelistSize, string** pagelist);
 void addMetaPage(string ID, unsigned int PageSize,string SubMemorySpaceName,int address); //SelfRefrence.cpp
 void addLuaPage(string ID, string luafile); //Lua defined memory page.
 void addLoggedPage(string ID, string logfile, string pageID);
+void addFilePage(string ID,string filename,unsigned int length);
 
 int lua_CreateMemoryContext(lua_State* L);
 int lua_DestroyMemoryContext(lua_State* L);
 int lua_Beep(lua_State* L);
 int lua_Sleep(lua_State* L);
+
 int lua_addVirtualPage(lua_State* L);
 int lua_addInterprocessPage(lua_State* L);
 int lua_addMultiPage(lua_State* L);
 int lua_addMetaPage(lua_State* L);
 int lua_addLuaPage(lua_State* L);
 int lua_addLoggedPage(lua_State* L);
+int lua_addFilePage(lua_State* L);
+
 int lua_linkPageToMemorySpace(lua_State* L);
 int lua_destroyPage(lua_State* L);
 int lua_readMemFromContext(lua_State* L);

@@ -38,6 +38,9 @@ And as new regions of memory become avalible, treating them as if they are in th
 #ifdef USING_LUA_PAGE
     #include "AMM/LuaPage.h"
 #endif
+#ifdef USING_FILE_PAGE
+    #include "AMM/filePage.h"
+#endif
 
 
 #endif // ARBITRARYMEMMAP_H_INCLUDED
