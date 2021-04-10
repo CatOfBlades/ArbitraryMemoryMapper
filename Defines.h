@@ -12,5 +12,14 @@
 #define MEMSPACE_LOOP_DEFAULT 1
 #define USE_BYTEWISE_RW
 
+#define DBG_MESSAGES
+#define VERBOSE_DBG
+
+#ifdef DBG_MESSAGES
+#ifdef VERBOSE_DBG
+#define EXTRA_DEBUG_MESSAGES
+#endif
+#endif
+
 
 #endif // DEFINES_H_INCLUDED

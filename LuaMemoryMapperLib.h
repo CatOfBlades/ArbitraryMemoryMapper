@@ -53,10 +53,10 @@ void writeMemToContext(string ContextID,unsigned long int Address,unsigned long 
 void linkPageToMemorySpace(string MemorySpaceName,string PageName);
 void destroyPage(string ID);
 
-void addVirtualPage(string ID, int PageSize);
-void addInterprocessPage(string ID, int PageSize,string windowName,int address);
-void addMultiPage(string ID, int pagelistSize, string** pagelist);
-void addMetaPage(string ID, int PageSize,string SubMemorySpaceName,int address); //SelfRefrence.cpp
+void addVirtualPage(string ID,unsigned int PageSize);
+void addInterprocessPage(string ID,unsigned int PageSize,string windowName,int address);
+void addMultiPage(string ID, unsigned int pagelistSize, string** pagelist);
+void addMetaPage(string ID, unsigned int PageSize,string SubMemorySpaceName,int address); //SelfRefrence.cpp
 void addLuaPage(string ID, string luafile); //Lua defined memory page.
 void addLoggedPage(string ID, string logfile, string pageID);
 

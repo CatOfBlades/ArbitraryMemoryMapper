@@ -131,7 +131,7 @@ void destroyPage(string ID)
     }
 }
 
-void addVirtualPage(string ID,int PageSize)
+void addVirtualPage(string ID,unsigned int PageSize)
 {
     addressSpace* AS = new virtualPage(NULL,(unsigned int)PageSize);
 
@@ -151,12 +151,12 @@ void addVirtualPage(string ID,int PageSize)
 }
 
 #ifdef WINBUILD
-void addInterprocessPage(string ID,int PageSize,string windowName,int address)
+void addInterprocessPage(string ID,unsigned int PageSize,string windowName,int address)
 {
-    DWORD processid = NULL;
-    HWND hw = FindWindow(NULL, windowName.c_str());
+    DWORD processid = 0;
+    HWND hw = FindWindow(0, windowName.c_str());
     GetWindowThreadProcessId(hw, &processid);
-    if(processid == NULL)
+    if(processid == 0)
     {
         //Beep(350,100);
     }
@@ -164,7 +164,7 @@ void addInterprocessPage(string ID,int PageSize,string windowName,int address)
     {
         //Beep(600,100);
     }
-    addressSpace* AS = new applicationMem(NULL, processid, (unsigned int)PageSize,(HANDLE)address);
+    addressSpace* AS = new applicationMem(0, processid, PageSize,(HANDLE)address);
 
     pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
     pair <string,addressSpace*> valu(ID,AS);
@@ -182,7 +182,7 @@ void addInterprocessPage(string ID,int PageSize,string windowName,int address)
 }
 #endif // WINBUILD
 
-void addMultiPage(string ID, int pagelistSize,string** pagelist)
+void addMultiPage(string ID, unsigned int pagelistSize,string** pagelist)
 {
 
     multiPage* AS = new multiPage();
@@ -208,7 +208,7 @@ void addMultiPage(string ID, int pagelistSize,string** pagelist)
     return;
 }
 
-void addMetaPage(string ID,int PageSize,string SubMemorySpaceName,int address)
+void addMetaPage(string ID,unsigned int PageSize,string SubMemorySpaceName,int address)
 {
     addressSpace* AS = new memorySpacePage(memorySpaces.at(SubMemorySpaceName),address, (unsigned int)PageSize);
 
@@ -511,7 +511,7 @@ BOOL SetPrivilege(HANDLE hToken, LPCTSTR lpszPrivilege, BOOL bEnablePrivilege)
         //
         //  Enable the privilege or disable all privileges.
         //
-        if (AdjustTokenPrivileges(hToken, FALSE, &tp, NULL, (PTOKEN_PRIVILEGES)NULL, (PDWORD)NULL))
+        if (AdjustTokenPrivileges(hToken, FALSE, &tp, 0, (PTOKEN_PRIVILEGES)NULL, (PDWORD)NULL))
         {
             //
             //  Check to see if you have proper access.

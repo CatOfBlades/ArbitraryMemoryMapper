@@ -36,7 +36,9 @@ void virtualPage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned 
 {
     while(len > 0)
     {
-        //printf("offset:%i,len:%i\n",offset,len);
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("virtualPage::writeMem  offset:%i,len:%i\n",offset,len);
+        #endif
         _pageContent[offset+len-1] = Byt[len-1];
         len -= 1;
     }

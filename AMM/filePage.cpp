@@ -40,9 +40,9 @@ int filePage::RW_file(bool write, unsigned long int offs, unsigned char* dat,uns
 
 	//unsigned long int L = len;
 
-	if(len<=0){return;}
+	if(len<=0){return 0;}
 
-	if( (offs+len) > lSize ){return;}
+	if( (offs+len) > lSize ){return 0;}
 
 	fseek(fp, offs, SEEK_SET);
 	if(write)
@@ -53,7 +53,7 @@ int filePage::RW_file(bool write, unsigned long int offs, unsigned char* dat,uns
 	{
 		fread((void*)dat, 1, len, fp);
 	}
-
+    return 0;
 }
 
 void filePage::FMopenFile()
@@ -147,5 +147,6 @@ filePage::filePage(string filename,  unsigned int Size)
 	cl = 0;
 	FMfilename = filename;
 	lSize = Size;
+	memoryTypeID = "filePage";
 }
 

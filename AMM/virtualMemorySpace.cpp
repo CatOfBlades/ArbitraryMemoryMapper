@@ -120,7 +120,9 @@ void virtualMemorySpace::removePage()
         }
         else
         {
-            //printf("removing page:n \n");
+            #ifdef DBG_MESSAGES
+            printf("removing page:n \n");
+            #endif
             addressSpace* _tmp = bottom;
             bottom = _tmp->_last;
             bottom->_next = NULL;
@@ -187,9 +189,12 @@ void virtualMemorySpace::_getPageListInAddressRange( long unsigned int lowAddres
     addressSpace* tmp_AS; //placeholder for comparing pointers.
     *pagecount = 0; //the number of pages crossed while scanning.
     unsigned long int tmp_PageOffset = 0; //holds the returned offset within the page that the low address is in.
-    //long long int addressDifference = highAddress - lowAddress; //how many bytes to go through.
 
-    //printf("addressDif:%i\n",(int)addressDifference); //for checking our work so far
+    #ifdef EXTRA_DEBUG_MESSAGES
+    unsigned long int addressDifference = highAddress - lowAddress; //how many bytes to go through.
+    printf("_getPageListInAddressRange\n");
+    printf("  addressDif:%i\n",(int)addressDifference); //for checking our work so far
+    #endif
 
     pagelist[0] = NULL; //has to be something that is not a valid pointer.
 
@@ -197,9 +202,11 @@ void virtualMemorySpace::_getPageListInAddressRange( long unsigned int lowAddres
     {
         tmp_AS = _getAddressPage(lowAddress, &tmp_PageOffset);
 
-        //printf("tmp_AS_Size:%i\n",(int)tmp_AS->_size());
-        //printf("tmpPageOffs:%i\n",(int)tmp_PageOffset);
-        //printf("pageCount:%i\n",(int)*pagecount);
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("  tmp_AS_Size:%i\n",(int)tmp_AS->_size());
+        printf("  tmpPageOffs:%i\n",(int)tmp_PageOffset);
+        printf("  pageCount:%i\n",(int)*pagecount);
+        #endif
 
         if(pagelist[*pagecount] != tmp_AS) //if this page isn't the same as the last page.
         {
@@ -222,6 +229,7 @@ addressHelper virtualMemorySpace::isAddressInPage(unsigned long int addr,int pag
     AH.isInPage = (addr > PageAddresses[page])&&(addr < pageSize);
     AH.offsetFromStartOfPage = addr-PageAddresses[page];
     AH.lengthTillEndOfPage = pageSize-addr;
+    return AH;
 }
 
 class pageListHelper
@@ -297,9 +305,10 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 #else
 unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
 {
-
-    //printf("write:%i, addr:%i, bufaddr:0x%08x, len:%i\n",write,addr,buf,len);
-    //Beep(400,100);
+    #ifdef EXTRA_DEBUG_MESSAGES
+    printf("write:%i, addr:%i, bufaddr:0x%08x, len:%i\n",write,addr,buf,len);
+    Beep(400,100);
+    #endif
     unsigned long int numBytes = len;
 
     addr -= memoryOffset;
@@ -326,7 +335,10 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
         }
         i++;
     }
+
+    #ifdef EXTRA_DEBUG_MESSAGES
     printf("pagefound:%i\n",i);
+    #endif
 
     while(len > 0)
     {
@@ -339,7 +351,10 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
         {
             _len = PageList[i]->_size();
         }
-        //printf("_len:%i PageSize:%i\n",_len,PageList[i]->_size());
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("_len:%i PageSize:%i\n",_len,PageList[i]->_size());
+        #endif
+
         if(firstPage)
         {
             firstPage = false;
@@ -380,7 +395,6 @@ unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigne
 
 unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigned char* buf,unsigned long int length)
 {
-    //printf("writing to VMS.\n");
     return RW_Mem(1, Address, buf, length);
 }
 
