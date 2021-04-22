@@ -9,6 +9,7 @@
 
 virtualMemorySpace::virtualMemorySpace()//if you don't need a memory offset then don't worry about it.
 {
+    memorySize=0;
     memoryOffset=0;
     top=0;
     islooped = MEMSPACE_LOOP_DEFAULT;
@@ -16,6 +17,7 @@ virtualMemorySpace::virtualMemorySpace()//if you don't need a memory offset then
 
 virtualMemorySpace::virtualMemorySpace(int memoffset)
 {
+    memorySize=0;
     memoryOffset = memoffset;
     top=0;
     islooped = MEMSPACE_LOOP_DEFAULT;
