@@ -277,13 +277,16 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 
 	vector<addressSpace*> PageList; //indexed list of pointers to pages;
 	addressSpace* _search = top;
-	int i=0;
+	if(_search == NULL)
+    {
+        return 0;
+    }
 	while(1)
 	{
 		PageList.push_back(_search);
-		PageAddresses[i]; //indexed list of addresses of pages;
+		//PageAddresses[i]; //indexed list of addresses of pages;
 		_search = _search->_next;
-		i++;
+		//i++;
 		if(_search == NULL)
         {
             break;
@@ -297,13 +300,13 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 		j++;
 		pageEndAddress = PageAddresses[j]+PageList[j]->_size();
 	}
-
+    int i=0;
 	for(i=0; i<len; i++)
 	{
 		if( ((addr+i)%memorySize) > pageEndAddress)
 		{
 			j++;
-			if(j>pageCount())
+			if(j>=pageCount())
 			{
 				j=0;
 			}
