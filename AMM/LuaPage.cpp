@@ -26,7 +26,7 @@ unsigned long int luaPage::_size()
         lua_pcall(pageLuaState,0,1,0);
         return (unsigned long int)lua_tonumber(pageLuaState,-1);
     }
-    return 0;
+    return 0; // _size  isn't a function failback to zero.
 }
 
 bool luaPage::_is_free()
@@ -37,7 +37,7 @@ bool luaPage::_is_free()
         lua_pcall(pageLuaState,0,1,0);
         return lua_toboolean(pageLuaState,-1);
     }
-    return 0;
+    return 0; // _is_free  isn't a function failback to zero.
 }
 
 unsigned char* luaPage::_content()
@@ -54,7 +54,7 @@ unsigned char luaPage::readByte(unsigned long int offset)
         lua_pcall(pageLuaState,1,1,0);
         return (unsigned char)lua_tonumber(pageLuaState,-1);
     }
-    return 0;
+    return 0; //readByte isn't a function failback to zero.
 }
 void luaPage::writeByte(unsigned long int offset,unsigned char Byt)
 {
@@ -65,6 +65,7 @@ void luaPage::writeByte(unsigned long int offset,unsigned char Byt)
         lua_pushnumber(pageLuaState,Byt);
         lua_pcall(pageLuaState,2,0,0);
     }
+    return 0; //writeByte isn't a function.
 }
 
 void luaPage::readMem(unsigned long int offset,unsigned char* buffer, unsigned long int len)

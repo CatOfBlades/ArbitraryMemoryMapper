@@ -33,7 +33,7 @@ bool applicationMem::_is_free()
 {
     if(hProcess == NULL)
     {
-        return 0;
+        return 0; // h_process not loaded, no size.
     }
     else
     {
@@ -44,7 +44,7 @@ unsigned char* applicationMem::_content()
 {
     if(hProcess == NULL)
     {
-        return 0;
+        return 0; // h_process not loaded, no content.
     }
     bool success = ReadProcessMemory(hProcess,(void*)hAddress,_pageContent,_pageSize,0);
     if(success)
@@ -63,7 +63,7 @@ unsigned char applicationMem::readByte(unsigned long int offset)
     }
     else
     {
-        return 0;
+        return 0; //couldn't read process memory, failback to reading zeros.
     }
 }
 void applicationMem::writeByte(unsigned long int offset,unsigned char Byt)

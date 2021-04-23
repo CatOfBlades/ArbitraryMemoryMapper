@@ -17,7 +17,7 @@
 --]]
 
 createMemoryContext("mem1")
-addVirtualPage("page1",256)
+addVirtualPage("page1",5)
 addVirtualPage("page2",256)
 addMultiPage("page3",2,{"page1","page2"})
 --linkPageToMemorySpace("mem1","page1")
