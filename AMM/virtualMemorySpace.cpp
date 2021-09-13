@@ -303,7 +303,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 	}
 
 	int j=0;
-	int pageEndAddress = PageAddresses[j]+PageList[j]->_size();
+ 	int pageEndAddress = PageAddresses[j]+PageList[j]->_size();
 	while(pageEndAddress < addr)
 	{
 		j++;
