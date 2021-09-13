@@ -81,6 +81,8 @@
 		<Unit filename="AMM/LoggedPage.h" />
 		<Unit filename="AMM/LuaPage.cpp" />
 		<Unit filename="AMM/LuaPage.h" />
+		<Unit filename="AMM/WindowsPageAccessor.cpp" />
+		<Unit filename="AMM/WindowsPageAccessor.h" />
 		<Unit filename="AMM/addressSpace.cpp" />
 		<Unit filename="AMM/addressSpace.h" />
 		<Unit filename="AMM/filePage.cpp" />
@@ -108,6 +110,7 @@
 		</Unit>
 		<Unit filename="LuaMemoryMapperLib.cpp" />
 		<Unit filename="LuaMemoryMapperLib.h" />
+		<Unit filename="config.h" />
 		<Unit filename="lua-5.4.0/src/lapi.c">
 			<Option compilerVar="CC" />
 		</Unit>

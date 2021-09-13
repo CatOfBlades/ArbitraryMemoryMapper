@@ -30,6 +30,10 @@
 #undef USINGPAGELOGGING
 #undef USING_FILE_PAGE
 
+#ifdef BUILD_WIN_MEMACCESSOR
+#include "AMM/WindowsPageAccessor.h"
+#endif // BUILD_WIN_MEMACCESSOR
+
 using namespace std;
 
 extern "C"
@@ -63,6 +67,10 @@ void addLuaPage(string ID, string luafile); //Lua defined memory page.
 void addLoggedPage(string ID, string logfile, string pageID);
 void addFilePage(string ID,string filename,unsigned int length);
 
+#ifdef BUILD_WIN_MEMACCESSOR
+void addMPA_Page(string ID);
+#endif //BUILD_WIN_MEMACCESSOR
+
 int lua_CreateMemoryContext(lua_State* L);
 int lua_DestroyMemoryContext(lua_State* L);
 int lua_Beep(lua_State* L);
@@ -75,6 +83,9 @@ int lua_addMetaPage(lua_State* L);
 int lua_addLuaPage(lua_State* L);
 int lua_addLoggedPage(lua_State* L);
 int lua_addFilePage(lua_State* L);
+#ifdef BUILD_WIN_MEMACCESSOR
+int lua_addMPA_Page(lua_State* L);
+#endif //BUILD_WIN_MEMACCESSOR
 
 int lua_linkPageToMemorySpace(lua_State* L);
 int lua_destroyPage(lua_State* L);

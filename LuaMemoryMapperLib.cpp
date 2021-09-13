@@ -76,6 +76,9 @@ void lua_RegisterMemoryFunctions(lua_State* L)
     lua_register(L,"addLuaPage",lua_addLuaPage);
     lua_register(L,"addLoggedPage",lua_addLoggedPage);
     lua_register(L,"addFilePage",lua_addFilePage);
+    #ifdef BUILD_WIN_MEMACCESSOR
+    lua_register(L,"addMPA_Page",lua_addMPA_Page);
+    #endif //BUILD_WIN_MEMACCESSOR
 
     lua_register(L,"linkPageToMemorySpace",lua_linkPageToMemorySpace);
     lua_register(L,"destroyPage",lua_destroyPage);
@@ -285,6 +288,27 @@ void addFilePage(string ID,string filename,unsigned int length)
     }
 }
 
+#ifdef BUILD_WIN_MEMACCESSOR
+void addMPA_Page(string ID)
+{
+    MPA_page* AS = new MPA_page();
+
+    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
+    pair <string,addressSpace*> valu(ID,AS);
+    IB = memoryPages.insert(valu);
+    if(IB.second)
+    {
+        return;
+    }
+    else
+    {
+        delete AS; //if theres already a page with the name we don't need the new one.
+        return;
+    }
+}
+#endif //BUILD_WIN_MEMACCESSOR
+
+
 void readMemFromContext(string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf)
 {
     memorySpaces.at(ContextID)->readMem(Address,buf,length);
@@ -429,6 +453,12 @@ int lua_addFilePage(lua_State* L)
     addFilePage(ID,filename,length);
     return 0;
 }
+int lua_addMPA_Page(lua_State* L)
+{
+    string ID  = lua_tostring(L,1);
+    addMPA_Page(ID);
+    return 0;
+}
 int lua_linkPageToMemorySpace(lua_State* L)
 {
     string memorySpace_ID = lua_tostring(L,1);
@@ -456,7 +486,7 @@ unsigned char buf[length];
     //printf("val1:%i,val2:%i,val3:%i\n",buf[0],buf[1],buf[2]);
     //Beep(400,100);
     lua_createtable(L,0,length);
-    for (int i=1; i<=length; i++)
+    for (unsigned long int i=1; i<=length; i++)
     {
         //lua_pushinteger(L,i);
         lua_pushinteger(L, buf[i-1]);
