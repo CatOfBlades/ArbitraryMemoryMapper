@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <source_groups>
+        <source_group_b7b04809-0716-413f-ad1d-e27b5b87c206>
+            <c_standard>gnu17</c_standard>
+            <codeblocks_project_path>../ArbitraryMemMap.cbp</codeblocks_project_path>
+            <compiler_flags>
+                <compiler_flag>-fms-extensions</compiler_flag>
+                <compiler_flag>-fms-compatibility</compiler_flag>
+                <compiler_flag>-fms-compatibility-version=19</compiler_flag>
+            </compiler_flags>
+            <cpp_standard>gnu++17</cpp_standard>
+            <exclude_filters>
+                <exclude_filter>C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/*</exclude_filter>
+            </exclude_filters>
+            <indexed_header_paths>
+                <indexed_header_path>..</indexed_header_path>
+            </indexed_header_paths>
+            <name>C/C++ from Code::Blocks</name>
+            <source_extensions>
+                <source_extension>.c</source_extension>
+                <source_extension>.cpp</source_extension>
+                <source_extension>.cxx</source_extension>
+                <source_extension>.cc</source_extension>
+            </source_extensions>
+            <status>enabled</status>
+            <type>C/C++ from Code::Blocks</type>
+        </source_group_b7b04809-0716-413f-ad1d-e27b5b87c206>
+    </source_groups>
+    <version>8</version>
+</config>

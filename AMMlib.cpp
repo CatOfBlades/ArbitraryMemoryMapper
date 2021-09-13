@@ -27,11 +27,11 @@ extern "C" DLL_EXPORT BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
     return TRUE; // succesful
 }
 
-unordered_map<string,virtualMemorySpace*>* DLL_EXPORT libGetMemorySpaceList()
+DLL_EXPORT unordered_map<string,virtualMemorySpace*>* libGetMemorySpaceList()
 {
     return getMemorySpaceList();
 }
-unordered_map<string,addressSpace*>* DLL_EXPORT libGetMemoryPageList()
+DLL_EXPORT unordered_map<string,addressSpace*>* libGetMemoryPageList()
 {
     return getMemoryPageList();
 }

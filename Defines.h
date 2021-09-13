@@ -14,7 +14,7 @@
 
 // if memory should loop back on it's self by default when created. (if used as a standalone system this will usually be yes(=1))
 #define MEMSPACE_LOOP_DEFAULT 1
-#define USE_BYTEWISE_RW
+//#define USE_BYTEWISE_RW
 
 //#define DBG_MESSAGES
 //#define VERBOSE_DBG

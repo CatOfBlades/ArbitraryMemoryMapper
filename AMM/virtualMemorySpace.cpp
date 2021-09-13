@@ -248,7 +248,16 @@ public:
     int startPage;
 };
 
-
+#ifdef RESTRICT_PAGESIZE
+unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
+{
+    addr -= memoryOffset;
+    if(islooped)
+    {
+        addr%=memorySize;
+    }
+}
+#else
 #ifdef USE_BYTEWISE_RW
 #ifdef EXTRA_DEBUG_MESSAGES
     int printonce = 0;
@@ -351,12 +360,12 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
 
     while(length>totalBytesRead)
     {
-
+        printf("startAddress:%i\n",(int)startAddress);
         addressSpace* _search = top;
         int i=0;
         if(startAddress>0)
         {
-            while(startAddress>=PageAddresses[i])
+            while(startAddress>PageAddresses[i]) //finds the first page that the memory region is in.
             {
                 i++;
                 if(i>PageAddresses.size() || _search->_next == NULL)
@@ -387,7 +396,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
             {
                 _search->readMem(offset,buf,length-totalBytesRead);
             }
-            return totalBytesRead;
+            return totalBytesRead; // then end here.
         }
         int bytesWritten=0;
         bytesWritten = _search->_size()-offset;
@@ -399,7 +408,9 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
         {
             _search->readMem(offset,buf,bytesWritten);
         }
-        Address -= bytesWritten;
+        //Address -= bytesWritten;
+        startAddress += bytesWritten;
+        endAddress = startAddress+(length-totalBytesRead);
         totalBytesRead += bytesWritten;
     }
     return totalBytesRead;
@@ -492,6 +503,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 }
 */
 #endif
+#endif //RESTRICT_PAGESIZE
 
 unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigned char* buf, unsigned long int length)
 {

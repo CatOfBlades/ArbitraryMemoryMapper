@@ -22,8 +22,8 @@ using namespace std;
 #endif
 
 
-unordered_map<string,virtualMemorySpace*>* DLL_EXPORT libGetMemorySpaceList();
-unordered_map<string,addressSpace*>* DLL_EXPORT libGetMemoryPageList();
+DLL_EXPORT unordered_map<string,virtualMemorySpace*>* libGetMemorySpaceList();
+DLL_EXPORT unordered_map<string,addressSpace*>* libGetMemoryPageList();
 
 string DLL_EXPORT libCreateMemoryContext(string ID);
 void DLL_EXPORT libDestroyMemoryContext(string ID);
