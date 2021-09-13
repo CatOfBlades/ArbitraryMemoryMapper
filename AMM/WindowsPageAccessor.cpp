@@ -47,7 +47,7 @@ memoryPageAccessor::memoryPageAccessor(systemDataManager* psdm)
         broken = true;
         lastErr = GetLastError();
         #ifdef DEBUG_BEEP
-        Beep(300,100);
+        Beep(300,400);
         #endif // DEBUG_BEEP
     }
 }
@@ -69,7 +69,7 @@ bool memoryPageAccessor::changeAccess(DWORD flprotect)
         broken = true;
         lastErr = GetLastError();
         #ifdef DEBUG_BEEP
-        Beep(300,100);
+        Beep(300,400);
         #endif // DEBUG_BEEP
     }
     return retval;
@@ -82,7 +82,7 @@ bool memoryPageAccessor::committ()
         broken = true;
         lastErr = GetLastError();
         #ifdef DEBUG_BEEP
-        Beep(300,100);
+        Beep(300,400);
         #endif // DEBUG_BEEP
         return false;
     }
