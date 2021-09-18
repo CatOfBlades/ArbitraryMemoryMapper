@@ -7,7 +7,7 @@
 #include <string>
 #include "AMM/virtualMemorySpace.h"
 #include "AMM/addressSpace.h"
-#include "lua-5.4.0/src/lua.h"
+#include "lua.h"
 
 using namespace std;
 
