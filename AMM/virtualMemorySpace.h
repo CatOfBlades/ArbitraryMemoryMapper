@@ -19,6 +19,7 @@ struct addressHelper
 class virtualMemorySpace
 {
     unsigned long int RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
+    unsigned long int RW_Mem_From_Page_No(unsigned long int pageNum, bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
     public:
     addressSpace* top;  //The first page of memory in our linked list;
     addressSpace* bottom; //The last page of memory in our linked list;
@@ -73,8 +74,12 @@ class virtualMemorySpace
 
 	void addAddressSpace(addressSpace* AS);
 
+	int getLastError();
+
     //void expandTo(unsigned int address, unsigned int Size); //arbitrarily allocate memory from one address to another. Yeah Bad idea.
 };
+
+
 
 
 #endif // VIRTUALMEMORYSPACE_H_INCLUDED

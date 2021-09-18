@@ -75,6 +75,9 @@
 		<Compiler>
 			<Add option="-fpermissive" />
 		</Compiler>
+		<Linker>
+			<Add library="psapi" />
+		</Linker>
 		<Unit filename="AMM/InterprocessMemorySpace.cpp" />
 		<Unit filename="AMM/InterprocessMemorySpace.h" />
 		<Unit filename="AMM/LoggedPage.cpp" />

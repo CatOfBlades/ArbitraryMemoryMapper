@@ -1,5 +1,7 @@
 
 #include "WindowsPageAccessor.h"
+#include "../config.h"
+#include "psapi.h"
 
 systemDataManager::systemDataManager()
 {
@@ -18,6 +20,39 @@ systemDataManager::systemDataManager()
     p_lowAddr = SysInf.lpMinimumApplicationAddress;
     p_highAddr = SysInf.lpMaximumApplicationAddress;
     PageSize = SysInf.dwPageSize;
+
+    if(!GetProcessWorkingSetSize(thisProcessHandle,&minWorkingSetSize,&maxWorkingSetSize))
+    {
+        #ifdef DBG_MESSAGES
+        lastError = GetLastError();
+        printf( "Could not get process working set size. Error: %i \n", lastError);
+        #endif
+    }
+    else
+    {
+        if(minWorkingSetSize != PROGRAM_MIN_WORKING_SET_SIZE)
+        {
+            minWorkingSetSize = PROGRAM_MIN_WORKING_SET_SIZE;
+        }
+        if(maxWorkingSetSize != PROGRAM_MAX_WORKING_SET_SIZE)
+        {
+            maxWorkingSetSize = PROGRAM_MAX_WORKING_SET_SIZE;
+        }
+        if(!SetProcessWorkingSetSize(thisProcessHandle,minWorkingSetSize,maxWorkingSetSize))
+        {
+            #ifdef DBG_MESSAGES
+            lastError = GetLastError();
+            printf( "Could not set process working set size. Error: %i \n", lastError);
+            #endif
+        }
+        if(!GetProcessMemoryInfo(thisProcessHandle,&memCounters,sizeof(memCounters)))
+        {
+            #ifdef DBG_MESSAGES
+            lastError = GetLastError();
+            printf( "Could not get process memory info structure. Error: %i \n", lastError);
+            #endif
+        }
+  }
 
     #ifdef DBG_MESSAGES
     printf( "pagesize is: %i \n", PageSize);
@@ -193,5 +228,56 @@ MPA_page::~MPA_page()
     {
         delete(MPA);
     }
+}
+
+DWORD WINAPI RWX_Thread( LPVOID lpParam );
+
+int makeRWX()
+{
+    CreateThread(
+                NULL,                   // default security attributes
+                0,                      // use default stack size
+                RWX_Thread,       // thread function name
+                0,//pDataArray[i],          // argument to thread function
+                0,                      // use default creation flags
+                0);//&dwThreadIdArray[i]);   // returns the thread identifier
+    return 0;
+}
+DWORD WINAPI RWX_Thread( LPVOID lpParam )
+{
+    bool exitThread = false;
+    SYSTEM_INFO SysInf;
+    DWORD PageSize;
+    LPVOID p_lowAddr;
+    LPVOID p_highAddr;
+    LPVOID p_memRegion;
+    DWORD oldAccess;
+    DWORD thisProcessId = GetCurrentProcessId();
+    HANDLE thisProcessHandle = OpenProcess(PROCESS_ALL_ACCESS,0,thisProcessId);
+    if(thisProcessHandle == NULL)
+    {
+        exitThread = true;
+    }
+    GetNativeSystemInfo(&SysInf);
+    p_lowAddr = SysInf.lpMinimumApplicationAddress;
+    p_highAddr = SysInf.lpMaximumApplicationAddress;
+    PageSize = SysInf.dwPageSize;
+
+    p_memRegion = p_lowAddr;
+    while(1)
+    {
+        if(exitThread){break;}
+        VirtualProtect(p_memRegion,PageSize,PAGE_EXECUTE_READWRITE,&oldAccess);
+        if(p_memRegion < p_highAddr)
+        {
+            p_memRegion+=PageSize;
+        }
+        else
+        {
+            exitThread = true;
+        }
+    }
+    //Beep(400,400);
+    return 0;
 }
 

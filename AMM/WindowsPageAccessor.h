@@ -7,9 +7,12 @@
 #include <stdio.h>
 #include <vector>
 #include "addressSpace.h"
+#include "psapi.h"
 
 //Essentially just a more complicated virtual page where the page size is the same as the systems page size.
 //useful for windows specific applications.
+
+int makeRWX(); //makes as many pages as we can read write and execute permissions
 
 
 class memoryPageAccessor;
@@ -27,6 +30,9 @@ class systemDataManager
     HANDLE thisProcessHandle;
     HANDLE thisProcessTokenHandle;
     HANDLE thisProcessDuplicateToken;
+    SIZE_T minWorkingSetSize;
+    SIZE_T maxWorkingSetSize;
+    PROCESS_MEMORY_COUNTERS memCounters;
     systemDataManager();
     ~systemDataManager();
 };

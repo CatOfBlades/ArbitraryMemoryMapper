@@ -360,7 +360,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
 
     while(length>totalBytesRead)
     {
-        printf("startAddress:%i\n",(int)startAddress);
+        //printf("startAddress:%i\n",(int)startAddress);
         addressSpace* _search = top;
         int i=0;
         if(startAddress>0)
@@ -415,6 +415,31 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
     }
     return totalBytesRead;
 
+}
+
+unsigned long int RW_Mem_From_Page_No(unsigned long int pageNum, bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
+{
+    unsigned long int totalBytesRead = 0;
+
+    addressSpace* _search = top;
+    unsigned long int i=0;
+    while(i < pageNum)
+    {
+        _search = _search._next;
+        i++;
+    }
+
+    if(write)
+    {
+        _search.writeMem(addr,buf,len);
+    }
+    else
+    {
+        _search.readMem(addr,buf,len);
+    }
+    totalBytesRead = len;
+
+    return totalBytesRead;
 }
 
 /*
