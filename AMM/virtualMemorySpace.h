@@ -7,7 +7,6 @@
 #include "addressSpace.h"
 #include "virtualPage.h"
 #include <vector>
-using namespace std;
 
 struct addressHelper
 {
@@ -25,8 +24,8 @@ class virtualMemorySpace
     addressSpace* bottom; //The last page of memory in our linked list;
     unsigned long int memoryOffset; //The virtual offset for addresses in our memory space. (unsigned so no negative offsets)
     unsigned long int memorySize; // calculated as more pages are added refers to how much virtual memory we have addressable in bytes;
-    vector<unsigned long int> PageAddresses; //calculated when memorySize is updated.
-    vector<addressSpace*> PageList; //calculated when memorySize is updated.
+    std::vector<unsigned long int> PageAddresses; //calculated when memorySize is updated.
+    std::vector<addressSpace*> PageList; //calculated when memorySize is updated.
     addressHelper isAddressInPage(unsigned long int addr,int page);//page is the position in the linked list. first page being 0.
     short islooped;
         //'islooped' mods addresses to start back at the beginning if they are past the end of this memory space.

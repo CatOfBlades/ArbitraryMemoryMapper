@@ -141,7 +141,7 @@ filePage::filePage(addressSpace* parent,  unsigned int Size)
 
 }
 
-filePage::filePage(string filename,  unsigned int Size)
+filePage::filePage(std::string filename,  unsigned int Size)
 {
     fp = 0;
 	cl = 0;

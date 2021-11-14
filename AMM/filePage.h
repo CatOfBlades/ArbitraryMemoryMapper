@@ -5,14 +5,13 @@
 #include "addressSpace.h"
 #include<stdio.h>
 #include<string>
-using namespace std;
 
 class filePage: public addressSpace
 {
     public:
 	FILE *fp;
 	int cl;
-	string FMfilename;
+	std::string FMfilename;
 	long lSize;
 	void FMopenFile();
 	void FMcloseFile();
@@ -32,7 +31,7 @@ class filePage: public addressSpace
 
 	filePage();
     filePage(addressSpace* parent,  unsigned int Size);
-    filePage(string filename,  unsigned int Size);
+    filePage(std::string filename,  unsigned int Size);
 };
 
 

@@ -12,7 +12,7 @@ void lua_handle_page_error(lua_State* L,int errcode)
     }
     else
     {
-        string out = lua_tostring(L,-1);
+        std::string out = lua_tostring(L,-1);
         printf("lua page error: %s\n",out.c_str());
     }
 }
@@ -65,7 +65,7 @@ void luaPage::writeByte(unsigned long int offset,unsigned char Byt)
         lua_pushnumber(pageLuaState,Byt);
         lua_pcall(pageLuaState,2,0,0);
     }
-    return 0; //writeByte isn't a function.
+    return; //writeByte isn't a function.
 }
 
 void luaPage::readMem(unsigned long int offset,unsigned char* buffer, unsigned long int len)

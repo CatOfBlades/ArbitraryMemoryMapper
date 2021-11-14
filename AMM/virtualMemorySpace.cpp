@@ -244,7 +244,7 @@ addressHelper virtualMemorySpace::isAddressInPage(unsigned long int addr,int pag
 class pageListHelper
 {
 public:
-    vector<unsigned long int> lengthList;
+    std::vector<unsigned long int> lengthList;
     int startPage;
 };
 
@@ -284,7 +284,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
         addr%=memorySize;
     }
 
-	vector<addressSpace*> PageList; //indexed list of pointers to pages;
+	std::vector<addressSpace*> PageList; //indexed list of pointers to pages;
 	addressSpace* _search = top;
 	if(_search == NULL)
     {

@@ -5,7 +5,6 @@
 #include "addressSpace.h"
 #include <string>
 #include <stdio.h>
-using namespace std;
 
 /** This memory page sits between one memory space and a page and logs all accesses to that page. **/
 
@@ -13,7 +12,7 @@ class loggedPage : public addressSpace
 {
     public:
     FILE* logfile;
-    string logfileName;
+    std::string logfileName;
     addressSpace* LinkedPage;
 	unsigned long int _size();
 	bool _is_free();
@@ -28,8 +27,8 @@ class loggedPage : public addressSpace
 	void cleanupAndUnlink();
 
 	void setParent(addressSpace* addrSp);
-	loggedPage(string logName,addressSpace* page);
-    loggedPage(addressSpace* parent, string logName,addressSpace* page);
+	loggedPage(std::string logName,addressSpace* page);
+    loggedPage(addressSpace* parent, std::string logName,addressSpace* page);
     ~loggedPage();
 };
 

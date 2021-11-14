@@ -44,7 +44,7 @@ public:
     systemDataManager* p_sdm;
     DWORD access;
     DWORD memPageSize;
-    LPVOID p_memRegion;
+    char* p_memRegion;
     bool broken; //if there was an error in construction this will be true. otherwise false.
     bool committed;
     DWORD thisProcId;

@@ -2592,40 +2592,40 @@
 	"lua-5.4.0/src/lauxlib.h"
 	"lua-5.4.0/src/lualib.h"
 
-1617762362 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.cpp
+1617758762 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.cpp
 	"addressSpace.h"
 
-1631942395 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.h
+1636870444 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.h
 	<string>
 
-1631507653 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
+1636871796 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
 	"../Defines.h"
 	"InterprocessMemorySpace.h"
 	<stdio.h>
 
-1631508156 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\defines.h
+1636872343 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\defines.h
 	"config.h"
 
-1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\interprocessmemoryspace.h
+1636871796 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\interprocessmemoryspace.h
 	"addressSpace.h"
 	"../Defines.h"
 	<windows.h>
 
-1617205989 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\loggedpage.cpp
+1636870907 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\loggedpage.cpp
 	"LoggedPage.h"
 	"time.h"
 
-1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\loggedpage.h
+1636870832 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\loggedpage.h
 	"addressSpace.h"
 	<string>
 	<stdio.h>
 
-1631507653 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\luapage.cpp
+1636870577 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\luapage.cpp
 	"LuaPage.h"
 	<string>
 	<stdio.h>
 
-1631944501 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\luapage.h
+1631940901 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\luapage.h
 	"lua.h"
 	"lauxlib.h"
 	"lualib.h"
@@ -2651,45 +2651,45 @@
 1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.0\src\lualib.h
 	"lua.h"
 
-1617205989 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\multipage.cpp
+1617202389 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\multipage.cpp
 	"multiPage.h"
 	"../Defines.h"
 	<windows.h>
 
-1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\multipage.h
+1636870832 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\multipage.h
 	"addressSpace.h"
 	"virtualMemorySpace.h"
 	<vector>
 
-1631943468 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualmemoryspace.h
+1636870832 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualmemoryspace.h
 	"../Defines.h"
 	"addressSpace.h"
 	"virtualPage.h"
 	<vector>
 
-1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualpage.h
+1636870618 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualpage.h
 	"addressSpace.h"
 
-1617205989 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\selfrefrence.cpp
+1636874724 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\selfrefrence.cpp
 	"selfRefrence.h"
 
-1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\selfrefrence.h
+1636874708 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\selfrefrence.h
 	"addressSpace.h"
 	"virtualMemorySpace.h"
 
-1631943620 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualmemoryspace.cpp
+1636871854 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualmemoryspace.cpp
 	"virtualMemorySpace.h"
 	<windows.h>
 	<stdio.h>
 
-1618012544 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualpage.cpp
+1618008944 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualpage.cpp
 	"virtualPage.h"
 	"stdio.h"
 
-1617205989 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\arbitrarymemmap.cpp
+1617202389 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\arbitrarymemmap.cpp
 	"ArbitraryMemMap.h"
 
-1618027857 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\arbitrarymemmap.h
+1618024257 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\arbitrarymemmap.h
 	"Defines.h"
 	"AMM/addressSpace.h"
 	"AMM/virtualPage.h"
@@ -3214,10 +3214,10 @@
 	"lstate.h"
 	"lzio.h"
 
-1617372092 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapper.cpp
+1617368492 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapper.cpp
 	"LuaMemoryMapperLib.h"
 
-1631944519 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapperlib.h
+1636876449 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapperlib.h
 	<iostream>
 	<stdio.h>
 	"Defines.h"
@@ -3232,73 +3232,74 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1617205989 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\remappingvalues.cpp
+1636869838 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\remappingvalues.cpp
 	"remappingValues.h"
 
-1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\remappingvalues.h
+1617202389 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\remappingvalues.h
 
-1618018565 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\filepage.h
+1636870832 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\filepage.h
 	"addressSpace.h"
 	<stdio.h>
 	<string>
 
-1630735395 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\ammlib.cpp
+1636873574 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\ammlib.cpp
 	"AMMlib.h"
 	"LuaMemoryMapperLib.h"
 
-1630735301 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\ammlib.h
+1631940975 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\ammlib.h
 	<windows.h>
 	<unordered_map>
 	<string>
 	"AMM/virtualMemorySpace.h"
 	"AMM/addressSpace.h"
-	"lua-5.4.0/src/lua.h"
+	"lua.h"
 
-1618018565 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\filepage.cpp
+1636870848 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\filepage.cpp
 	"filePage.h"
 
-1631512363 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapperlib.cpp
+1636875798 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapperlib.cpp
 	"LuaMemoryMapperLib.h"
+	<vector>
 
 1623907951 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\test.cpp
 	"LuaMemoryMapperLib.h"
 
-1631942150 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\config.h
+1631938550 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\config.h
 
-1631942998 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\windowspageaccessor.cpp
+1636872456 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\windowspageaccessor.cpp
 	"WindowsPageAccessor.h"
-	"../config.h"
+	"../Defines.h"
 	"psapi.h"
 
-1631942336 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\windowspageaccessor.h
+1636871823 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\windowspageaccessor.h
 	<windows.h>
 	<stdio.h>
 	<vector>
 	"addressSpace.h"
 	"psapi.h"
 
-1615815172 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lua.h
+1615811572 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lua.h
 	<stdarg.h>
 	<stddef.h>
 	"luaconf.h"
 
-1615815172 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\luaconf.h
+1615811572 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\luaconf.h
 	<limits.h>
 	<stddef.h>
 	<stdint.h>
 	<assert.h>
 
-1615815169 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lauxlib.h
+1615811569 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lauxlib.h
 	<stddef.h>
 	<stdio.h>
 	"luaconf.h"
 	"lua.h"
 	<assert.h>
 
-1615815172 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lualib.h
+1615811572 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lualib.h
 	"lua.h"
 
-1615815169 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lapi.c
+1615811569 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lapi.c
 	"lprefix.h"
 	<limits.h>
 	<stdarg.h>
@@ -3318,76 +3319,76 @@
 	"lundump.h"
 	"lvm.h"
 
-1615815171 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lprefix.h
+1615811571 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lprefix.h
 
-1615815169 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lapi.h
+1615811569 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lapi.h
 	"llimits.h"
 	"lstate.h"
 
-1615815170 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\llimits.h
+1615811570 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\llimits.h
 	<limits.h>
 	<stddef.h>
 	"lua.h"
 	<assert.h>
 
-1615815171 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstate.h
+1615811571 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstate.h
 	"lua.h"
 	"lobject.h"
 	"ltm.h"
 	"lzio.h"
 	<signal.h>
 
-1615815171 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lobject.h
+1615811571 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lobject.h
 	<stdarg.h>
 	"llimits.h"
 	"lua.h"
 
-1615815171 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltm.h
+1615811571 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltm.h
 	"lobject.h"
 
-1615815172 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lzio.h
+1615811572 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lzio.h
 	"lua.h"
 	"lmem.h"
 
-1615815170 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lmem.h
+1615811570 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lmem.h
 	<stddef.h>
 	"llimits.h"
 	"lua.h"
 
-1615815170 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldebug.h
+1615811570 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldebug.h
 	"lstate.h"
 
-1615815170 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldo.h
+1615811570 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldo.h
 	"lobject.h"
 	"lstate.h"
 	"lzio.h"
 
-1615815170 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lfunc.h
+1615811570 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lfunc.h
 	"lobject.h"
 
-1615815170 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lgc.h
+1615811570 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lgc.h
 	"lobject.h"
 	"lstate.h"
 
-1615815171 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstring.h
+1615811571 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstring.h
 	"lgc.h"
 	"lobject.h"
 	"lstate.h"
 
-1615815171 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltable.h
+1615811571 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltable.h
 	"lobject.h"
 
-1615815172 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lundump.h
+1615811572 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lundump.h
 	"llimits.h"
 	"lobject.h"
 	"lzio.h"
 
-1615815172 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lvm.h
+1615811572 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lvm.h
 	"ldo.h"
 	"lobject.h"
 	"ltm.h"
 
-1615815169 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lauxlib.c
+1615811569 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lauxlib.c
 	"lprefix.h"
 	<errno.h>
 	<stdarg.h>
@@ -3398,7 +3399,7 @@
 	"lauxlib.h"
 	<sys/wait.h>
 
-1615815169 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lbaselib.c
+1615811569 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lbaselib.c
 	"lprefix.h"
 	<ctype.h>
 	<stdio.h>
@@ -3408,7 +3409,7 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1615815169 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lcode.c
+1615811569 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lcode.c
 	"lprefix.h"
 	<limits.h>
 	<math.h>
@@ -3427,44 +3428,44 @@
 	"ltable.h"
 	"lvm.h"
 
-1615815169 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lcode.h
+1615811569 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lcode.h
 	"llex.h"
 	"lobject.h"
 	"lopcodes.h"
 	"lparser.h"
 
-1615815170 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\llex.h
+1615811570 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\llex.h
 	<limits.h>
 	"lobject.h"
 	"lzio.h"
 
-1615815171 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lopcodes.h
+1615811571 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lopcodes.h
 	"llimits.h"
 
-1615815171 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lparser.h
+1615811571 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lparser.h
 	"llimits.h"
 	"lobject.h"
 	"lzio.h"
 
-1615815169 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lcorolib.c
+1615811569 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lcorolib.c
 	"lprefix.h"
 	<stdlib.h>
 	"lua.h"
 	"lauxlib.h"
 	"lualib.h"
 
-1615815169 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lctype.c
+1615811569 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lctype.c
 	"lprefix.h"
 	"lctype.h"
 	<limits.h>
 
-1615815169 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lctype.h
+1615811569 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lctype.h
 	"lua.h"
 	<limits.h>
 	"llimits.h"
 	<ctype.h>
 
-1615815169 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldblib.c
+1615811569 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldblib.c
 	"lprefix.h"
 	<stdio.h>
 	<stdlib.h>
@@ -3473,7 +3474,7 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1615815169 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldebug.c
+1615811569 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldebug.c
 	"lprefix.h"
 	<stdarg.h>
 	<stddef.h>
@@ -3492,7 +3493,7 @@
 	"ltm.h"
 	"lvm.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldo.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldo.c
 	"lprefix.h"
 	<setjmp.h>
 	<stdlib.h>
@@ -3515,7 +3516,7 @@
 	"lvm.h"
 	"lzio.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldump.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ldump.c
 	"lprefix.h"
 	<stddef.h>
 	"lua.h"
@@ -3523,7 +3524,7 @@
 	"lstate.h"
 	"lundump.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lfunc.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lfunc.c
 	"lprefix.h"
 	<stddef.h>
 	"lua.h"
@@ -3535,7 +3536,7 @@
 	"lobject.h"
 	"lstate.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lgc.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lgc.c
 	"lprefix.h"
 	<stdio.h>
 	<string.h>
@@ -3551,14 +3552,14 @@
 	"ltable.h"
 	"ltm.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\linit.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\linit.c
 	"lprefix.h"
 	<stddef.h>
 	"lua.h"
 	"lualib.h"
 	"lauxlib.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\liolib.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\liolib.c
 	"lprefix.h"
 	<ctype.h>
 	<errno.h>
@@ -3571,7 +3572,7 @@
 	"lualib.h"
 	<sys/types.h>
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\llex.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\llex.c
 	"lprefix.h"
 	<locale.h>
 	<string.h>
@@ -3588,7 +3589,7 @@
 	"ltable.h"
 	"lzio.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lmathlib.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lmathlib.c
 	"lprefix.h"
 	<float.h>
 	<limits.h>
@@ -3599,7 +3600,7 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lmem.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lmem.c
 	"lprefix.h"
 	<stddef.h>
 	"lua.h"
@@ -3610,7 +3611,7 @@
 	"lobject.h"
 	"lstate.h"
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\loadlib.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\loadlib.c
 	"lprefix.h"
 	<stdio.h>
 	<stdlib.h>
@@ -3621,7 +3622,7 @@
 	<dlfcn.h>
 	<windows.h>
 
-1615815170 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lobject.c
+1615811570 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lobject.c
 	"lprefix.h"
 	<locale.h>
 	<math.h>
@@ -3639,11 +3640,11 @@
 	"lstring.h"
 	"lvm.h"
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lopcodes.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lopcodes.c
 	"lprefix.h"
 	"lopcodes.h"
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\loslib.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\loslib.c
 	"lprefix.h"
 	<errno.h>
 	<locale.h>
@@ -3655,7 +3656,7 @@
 	"lualib.h"
 	<unistd.h>
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lparser.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lparser.c
 	"lprefix.h"
 	<limits.h>
 	<string.h>
@@ -3673,7 +3674,7 @@
 	"lstring.h"
 	"ltable.h"
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstate.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstate.c
 	"lprefix.h"
 	<stddef.h>
 	<string.h>
@@ -3691,7 +3692,7 @@
 	"ltm.h"
 	<time.h>
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstring.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstring.c
 	"lprefix.h"
 	<string.h>
 	"lua.h"
@@ -3702,7 +3703,7 @@
 	"lstate.h"
 	"lstring.h"
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstrlib.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lstrlib.c
 	"lprefix.h"
 	<ctype.h>
 	<float.h>
@@ -3717,7 +3718,7 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltable.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltable.c
 	"lprefix.h"
 	<math.h>
 	<limits.h>
@@ -3732,7 +3733,7 @@
 	"ltable.h"
 	"lvm.h"
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltablib.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltablib.c
 	"lprefix.h"
 	<limits.h>
 	<stddef.h>
@@ -3742,7 +3743,7 @@
 	"lualib.h"
 	<time.h>
 
-1615815171 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltm.c
+1615811571 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ltm.c
 	"lprefix.h"
 	<string.h>
 	"lua.h"
@@ -3756,7 +3757,7 @@
 	"ltm.h"
 	"lvm.h"
 
-1615815172 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lundump.c
+1615811572 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lundump.c
 	"lprefix.h"
 	<limits.h>
 	<string.h>
@@ -3770,7 +3771,7 @@
 	"lundump.h"
 	"lzio.h"
 
-1615815172 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lutf8lib.c
+1615811572 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lutf8lib.c
 	"lprefix.h"
 	<assert.h>
 	<limits.h>
@@ -3780,7 +3781,7 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1615815172 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lvm.c
+1615811572 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lvm.c
 	"lprefix.h"
 	<float.h>
 	<limits.h>
@@ -3802,9 +3803,9 @@
 	"lvm.h"
 	"ljumptab.h"
 
-1615815170 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ljumptab.h
+1615811570 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\ljumptab.h
 
-1615815172 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lzio.c
+1615811572 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.3\src\lzio.c
 	"lprefix.h"
 	<string.h>
 	"lua.h"

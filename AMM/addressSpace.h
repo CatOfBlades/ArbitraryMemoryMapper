@@ -3,12 +3,11 @@
 #define ADDRESSSPACE_H_INCLUDED
 
 #include <string>
-using namespace std;
 
 class addressSpace
 {
 	public:
-	string memoryTypeID; //used to check for type, when dynamically loaded and unloaded.
+	std::string memoryTypeID; //used to check for type, when dynamically loaded and unloaded.
     addressSpace* _top;  //the address space at the beginning of the list.
     addressSpace* _this; //this address space.
     addressSpace* _next; //address space after this one.

@@ -80,6 +80,20 @@ memorySpacePage::memorySpacePage(virtualMemorySpace* VM,unsigned long int addres
     _top = NULL;
     _bottom = NULL;
 }
+memorySpacePage::memorySpacePage(virtualMemorySpace* VM,char* address, unsigned int Size)
+{
+    memoryTypeID = "MemSpPag";
+    childVM = VM;
+    _paddress = address;
+    _pageSize = Size;
+    _pageContent = new unsigned char[_pageSize];
+
+    _this = this;
+    _next = NULL;
+    _last = NULL;
+    _top = NULL;
+    _bottom = NULL;
+}
 memorySpacePage::memorySpacePage(addressSpace* parent, unsigned int Size)
 {
     memoryTypeID = "MemSpPag";

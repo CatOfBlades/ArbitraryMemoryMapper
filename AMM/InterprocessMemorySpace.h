@@ -19,7 +19,7 @@ class applicationMem: public addressSpace
 
     DWORD _processID;
     HANDLE hProcess;
-    HANDLE hAddress;
+    char* hAddress;
 
     void attachProcess(DWORD processID);
     void dettachProcess(HANDLE processHandle);
@@ -40,7 +40,7 @@ class applicationMem: public addressSpace
 
 
 	applicationMem();
-	applicationMem(addressSpace* parent, DWORD procID, unsigned int Size,HANDLE addr);
+	applicationMem(addressSpace* parent, DWORD procID, unsigned int Size,char* addr);
 	~applicationMem();
 };
 

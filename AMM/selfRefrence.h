@@ -19,7 +19,12 @@ class memorySpacePage: public addressSpace
     public:
 
 	unsigned long int _pageSize;
-	unsigned long int _address;
+	union
+	{
+	    unsigned long int _address;
+	    char* _paddress;
+	};
+
 	unsigned char* _pageContent;
 	virtualMemorySpace* childVM; //the memory space we are reading or writing to through this class.
 
@@ -38,6 +43,7 @@ class memorySpacePage: public addressSpace
 
 	memorySpacePage();
 	memorySpacePage(virtualMemorySpace* VM,unsigned long int address, unsigned int Size);
+	memorySpacePage(virtualMemorySpace* VM,char* address, unsigned int Size);
             //address is the offset from 0 in the virtual memory space.
 	memorySpacePage(addressSpace* parent, unsigned int Size);
 	~memorySpacePage();

@@ -11,18 +11,19 @@ These contexts being filetypes, videogame memories or any context that defines v
 **/
 
 #include "LuaMemoryMapperLib.h"
+#include <vector>
 
-unordered_map<string,virtualMemorySpace*> memorySpaces; //This is the memory contexts we have opened with createMemoryContext()
-unordered_map<string,addressSpace*> memoryPages;
+std::unordered_map<std::string,virtualMemorySpace*> memorySpaces; //This is the memory contexts we have opened with createMemoryContext()
+std::unordered_map<std::string,addressSpace*> memoryPages;
 
 /**
 for creating interfaces on the C++ side we need a way to expose the memory space and address space pointers
 **/
-unordered_map<string,virtualMemorySpace*>* getMemorySpaceList()
+std::unordered_map<std::string,virtualMemorySpace*>* getMemorySpaceList()
 {
     return &memorySpaces;
 }
-unordered_map<string,addressSpace*>* getMemoryPageList()
+std::unordered_map<std::string,addressSpace*>* getMemoryPageList()
 {
     return &memoryPages;
 }
@@ -87,11 +88,11 @@ void lua_RegisterMemoryFunctions(lua_State* L)
     lua_register(L,"multiPageSwapBanks",lua_multiPageSwapBanks);
 }
 
-string createMemoryContext(string ID)
+std::string createMemoryContext(std::string ID)
 {
-    pair<unordered_map<string,virtualMemorySpace*>::iterator,bool> IB;
+    std::pair<std::unordered_map<std::string,virtualMemorySpace*>::iterator,bool> IB;
     virtualMemorySpace* VM = new virtualMemorySpace();
-    pair <string,virtualMemorySpace*> valu(ID,VM);
+    std::pair <std::string,virtualMemorySpace*> valu(ID,VM);
     IB = memorySpaces.insert(valu);
     if(IB.second)
     {
@@ -103,7 +104,7 @@ string createMemoryContext(string ID)
         return ID;
     }
 }
-void destroyMemoryContext(string ID)
+void destroyMemoryContext(std::string ID)
 {
     if(memorySpaces.find(ID)!=memorySpaces.end())
     {
@@ -116,7 +117,7 @@ void destroyMemoryContext(string ID)
     }
 }
 
-void linkPageToMemorySpace(string MemorySpaceName,string PageName)
+void linkPageToMemorySpace(std::string MemorySpaceName,std::string PageName)
 {
     addressSpace* AS = memoryPages.at(PageName);
     //Sleep(100);
@@ -124,7 +125,7 @@ void linkPageToMemorySpace(string MemorySpaceName,string PageName)
     memorySpaces.at(MemorySpaceName)->addAddressSpace(AS);
 }
 
-void destroyPage(string ID)
+void destroyPage(std::string ID)
 {
     if(memoryPages.find(ID)!=memoryPages.end())
     {
@@ -137,12 +138,12 @@ void destroyPage(string ID)
     }
 }
 
-void addVirtualPage(string ID,unsigned int PageSize)
+void addVirtualPage(std::string ID,unsigned int PageSize)
 {
     addressSpace* AS = new virtualPage(NULL,(unsigned int)PageSize);
 
-    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
-    pair<string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
+    std::pair<std::string,addressSpace*> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -157,7 +158,7 @@ void addVirtualPage(string ID,unsigned int PageSize)
 }
 
 #ifdef WINBUILD
-void addInterprocessPage(string ID,unsigned int PageSize,string windowName,int address)
+void addInterprocessPage(std::string ID,unsigned int PageSize,std::string windowName,char* address)
 {
     DWORD processid = 0;
     HWND hw = FindWindow(0, windowName.c_str());
@@ -170,10 +171,10 @@ void addInterprocessPage(string ID,unsigned int PageSize,string windowName,int a
     {
         //Beep(600,100);
     }
-    addressSpace* AS = new applicationMem(0, processid, PageSize,(HANDLE)address);
+    addressSpace* AS = new applicationMem(0, processid, PageSize,address);
 
-    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
-    pair <string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
+    std::pair <std::string,addressSpace*> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -188,7 +189,7 @@ void addInterprocessPage(string ID,unsigned int PageSize,string windowName,int a
 }
 #endif // WINBUILD
 
-void addMultiPage(string ID, unsigned int pagelistSize,string** pagelist)
+void addMultiPage(std::string ID, unsigned int pagelistSize,std::vector<std::string*> pagelist)
 {
 
     multiPage* AS = new multiPage();
@@ -199,8 +200,8 @@ void addMultiPage(string ID, unsigned int pagelistSize,string** pagelist)
         pagelistSize-=1;
     }
 
-    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
-    pair <string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
+    std::pair <std::string,addressSpace*> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -214,12 +215,12 @@ void addMultiPage(string ID, unsigned int pagelistSize,string** pagelist)
     return;
 }
 
-void addMetaPage(string ID,unsigned int PageSize,string SubMemorySpaceName,int address)
+void addMetaPage(std::string ID,unsigned int PageSize,std::string SubMemorySpaceName,char* address)
 {
     addressSpace* AS = new memorySpacePage(memorySpaces.at(SubMemorySpaceName),address, (unsigned int)PageSize);
 
-    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
-    pair <string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
+    std::pair <std::string,addressSpace*> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -231,7 +232,7 @@ void addMetaPage(string ID,unsigned int PageSize,string SubMemorySpaceName,int a
         return;
     }
 }
-void addLuaPage(string ID, string luafile) //Lua defined memory page.
+void addLuaPage(std::string ID, std::string luafile) //Lua defined memory page.
 {
     lua_State* L = luaL_newstate();
     luaL_openlibs(L);
@@ -239,8 +240,8 @@ void addLuaPage(string ID, string luafile) //Lua defined memory page.
     luaPage* AS = new luaPage(L,NULL,luafile);
     AS->freeLuaOnDestruct = 1;
 
-    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
-    pair <string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
+    std::pair <std::string,addressSpace*> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -252,12 +253,12 @@ void addLuaPage(string ID, string luafile) //Lua defined memory page.
         return;
     }
 }
-void addLoggedPage(string ID, string logfile, string pageID)
+void addLoggedPage(std::string ID, std::string logfile, std::string pageID)
 {
     loggedPage* AS = new loggedPage(logfile,memoryPages.at(pageID));
 
-    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
-    pair <string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
+    std::pair <std::string,addressSpace*> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -270,12 +271,12 @@ void addLoggedPage(string ID, string logfile, string pageID)
     }
 }
 
-void addFilePage(string ID,string filename,unsigned int length)
+void addFilePage(std::string ID,std::string filename,unsigned int length)
 {
     filePage* AS = new filePage(filename,length);
 
-    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
-    pair <string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
+    std::pair <std::string,addressSpace*> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -289,12 +290,12 @@ void addFilePage(string ID,string filename,unsigned int length)
 }
 
 #ifdef BUILD_WIN_MEMACCESSOR
-void addMPA_Page(string ID)
+void addMPA_Page(std::string ID)
 {
     MPA_page* AS = new MPA_page();
 
-    pair<unordered_map<string,addressSpace*>::iterator,bool> IB;
-    pair <string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
+    std::pair <std::string,addressSpace*> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -309,25 +310,25 @@ void addMPA_Page(string ID)
 #endif //BUILD_WIN_MEMACCESSOR
 
 
-void readMemFromContext(string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf)
+void readMemFromContext(std::string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf)
 {
     memorySpaces.at(ContextID)->readMem(Address,buf,length);
 }
-void writeMemToContext(string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf)
+void writeMemToContext(std::string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf)
 {
     memorySpaces.at(ContextID)->writeMem(Address,buf,length);
 }
 
 int lua_CreateMemoryContext(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
+    std::string ID = lua_tostring(L,1);
     ID = createMemoryContext(ID);
     lua_pushstring(L,ID.c_str());
     return 1;
 }
 int lua_DestroyMemoryContext(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
+    std::string ID = lua_tostring(L,1);
     destroyMemoryContext(ID);
     return 0;
 }
@@ -355,7 +356,7 @@ int lua_Sleep(lua_State* L)
 
 int lua_addVirtualPage(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
+    std::string ID = lua_tostring(L,1);
     int pageSize = lua_tointeger(L,2);
     //printf("PageID:%s\npageSize:%i\n",ID.c_str(),pageSize);
     addVirtualPage(ID,pageSize);
@@ -364,20 +365,21 @@ int lua_addVirtualPage(lua_State* L)
 #ifdef WINBUILD
 int lua_addInterprocessPage(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
+    std::string ID = lua_tostring(L,1);
     int pageSize = lua_tointeger(L,2);
-    string WindowName = lua_tostring(L,3);
-    int address = lua_tointeger(L,4);
-    addInterprocessPage(ID,pageSize,WindowName,(unsigned int)address);
+    std::string WindowName = lua_tostring(L,3);
+    char* address = 0;
+    address=address+lua_tointeger(L,4);
+    addInterprocessPage(ID,pageSize,WindowName,address);
     return 0;
 }
 #endif // WINBUILD
 int lua_addMultiPage(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
+    std::string ID = lua_tostring(L,1);
     //int pageSize = lua_tointeger(L,2);
     int pagelistSize = lua_tointeger(L,2);
-    string* namelist[pagelistSize];
+    std::vector<std::string*> namelist;
     if(lua_istable(L,3))
     {
         /*
@@ -395,8 +397,8 @@ int lua_addMultiPage(lua_State* L)
         while (lua_next(L, 3) != 0)
         {
             /* uses 'key' (at index -2) and 'value' (at index -1) */
-            int a = lua_tonumber(L,-2);
-            namelist[a-1] = new string(lua_tostring(L,-1));
+            const std::vector<std::string*>::iterator a = namelist.begin()+(lua_tonumber(L,-2)-1);
+            namelist.emplace(a,new std::string(lua_tostring(L,-1)));
             lua_pop(L, 1);
             PLS++;
             //printf(namelist[a-1]->c_str()); ///   dbg   jjj
@@ -422,64 +424,66 @@ int lua_addMultiPage(lua_State* L)
 }
 int lua_addMetaPage(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
+    std::string ID = lua_tostring(L,1);
     int pageSize = lua_tointeger(L,2);
-    string SubMemorySpaceName = lua_tostring(L,3);
-    int address = lua_tointeger(L,4);
+    std::string SubMemorySpaceName = lua_tostring(L,3);
+    char* address = 0;
+    address=address+lua_tointeger(L,4);
     addMetaPage(ID,pageSize,SubMemorySpaceName,address);
     return 0;
 }
 int lua_addLuaPage(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
-    string fileName = lua_tostring(L,2);
+    std::string ID = lua_tostring(L,1);
+    std::string fileName = lua_tostring(L,2);
     addLuaPage(ID,fileName);
     return 0;
 }
 int lua_addLoggedPage(lua_State* L)
 {
     //(string ID, string logfile, string pageID)
-    string ID = lua_tostring(L,1);
-    string fileName = lua_tostring(L,2);
-    string pageID = lua_tostring(L,3);
+    std::string ID = lua_tostring(L,1);
+    std::string fileName = lua_tostring(L,2);
+    std::string pageID = lua_tostring(L,3);
     addLoggedPage(ID,fileName,pageID);
     return 0;
 }
 int lua_addFilePage(lua_State* L)
 {
-    string ID  = lua_tostring(L,1);
-    string filename = lua_tostring(L,2);
+    std::string ID  = lua_tostring(L,1);
+    std::string filename = lua_tostring(L,2);
     unsigned int length = lua_tointeger(L,3);
     addFilePage(ID,filename,length);
     return 0;
 }
 int lua_addMPA_Page(lua_State* L)
 {
-    string ID  = lua_tostring(L,1);
+    std::string ID  = lua_tostring(L,1);
     addMPA_Page(ID);
     return 0;
 }
 int lua_linkPageToMemorySpace(lua_State* L)
 {
-    string memorySpace_ID = lua_tostring(L,1);
-    string page_ID = lua_tostring(L,2);
+    std::string memorySpace_ID = lua_tostring(L,1);
+    std::string page_ID = lua_tostring(L,2);
     //printf("MemorySpace:%s\n page_ID:%s\n ",memorySpace_ID.c_str(),page_ID.c_str());
     linkPageToMemorySpace(memorySpace_ID,page_ID);
     return 0;
 }
 int lua_destroyPage(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
+    std::string ID = lua_tostring(L,1);
     destroyPage(ID);
     return 0;
 }
 
 int lua_readMemFromContext(lua_State* L)
 {
-string ContextID = lua_tostring(L,1);
-unsigned long int Address = lua_tointeger(L,2);
-unsigned long int length = lua_tointeger(L,3);
-unsigned char buf[length];
+    std::string ContextID = lua_tostring(L,1);
+    unsigned long int Address = lua_tointeger(L,2);
+    unsigned long int length = lua_tointeger(L,3);
+    //unsigned char buf[length];
+    unsigned char buf[MAX_PATH];
 
     //printf("ContextID:%s\n address:%i\n length:%i\n",ContextID.c_str(),Address,length);
     readMemFromContext(ContextID,Address,length,buf);
@@ -498,10 +502,11 @@ unsigned char buf[length];
 
 int lua_writeMemToContext(lua_State* L)
 {
-string ContextID = lua_tostring(L,1);
-unsigned long int Address = lua_tointeger(L,2);
-unsigned long int length = lua_tointeger(L,3);
-unsigned char buf[length];
+    std::string ContextID = lua_tostring(L,1);
+    unsigned long int Address = lua_tointeger(L,2);
+    unsigned long int length = lua_tointeger(L,3);
+    //unsigned char buf[length];
+    unsigned char buf[MAX_PATH];
 
     if(lua_istable(L,4))
     {
@@ -528,7 +533,7 @@ unsigned char buf[length];
 
 int lua_multiPageSwapBanks(lua_State* L)
 {
-    string ID = lua_tostring(L,1);
+    std::string ID = lua_tostring(L,1);
     int bankNum = lua_tonumber(L,2);
     if( memoryPages.at(ID)->memoryTypeID == "multpage" )
     {
@@ -546,7 +551,7 @@ void lua_handle_error(lua_State* L,int errcode)
     }
     else
     {
-        string out = lua_tostring(L,-1);
+        std::string out = lua_tostring(L,-1);
         printf("lua error: %s\n",out.c_str());
     }
 }

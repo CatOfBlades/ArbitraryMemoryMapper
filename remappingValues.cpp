@@ -1,6 +1,12 @@
 
 #include "remappingValues.h"
 
+auto remapvalue(auto x, auto in_min, auto in_max, auto out_min, auto out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+/*
 unsigned char remapvalue_ub(unsigned char x, unsigned char in_min, unsigned char in_max, unsigned char out_min, unsigned char out_max)
 {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -20,3 +26,4 @@ float remapvalue_f(float x, float in_min, float in_max, float out_min, float out
 {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
+*/

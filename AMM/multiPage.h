@@ -5,7 +5,6 @@
 #include "addressSpace.h"
 #include "virtualMemorySpace.h"
 #include <vector>
-using namespace std;
 
 /**
     This interface is built to facilitate "bank swapping" of pages.
@@ -16,7 +15,7 @@ class multiPage: public addressSpace
 {
     public:
 
-    vector<addressSpace*> bankList;
+    std::vector<addressSpace*> bankList;
 	int _bankNum;
 
 	unsigned long int _size();

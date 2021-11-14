@@ -46,7 +46,7 @@ unsigned char* applicationMem::_content()
     {
         return 0; // h_process not loaded, no content.
     }
-    bool success = ReadProcessMemory(hProcess,(void*)hAddress,_pageContent,_pageSize,0);
+    bool success = ReadProcessMemory(hProcess,hAddress,_pageContent,_pageSize,0);
     if(success)
     {
         return _pageContent;
@@ -56,7 +56,8 @@ unsigned char* applicationMem::_content()
 unsigned char applicationMem::readByte(unsigned long int offset)
 {
     char out;
-    bool success = ReadProcessMemory(hProcess,(void*)(hAddress+offset),&out,1,0);
+    char* addr = hAddress+offset;
+    bool success = ReadProcessMemory(hProcess,addr,&out,1,0);
     if(success)
     {
         return out;
@@ -68,23 +69,23 @@ unsigned char applicationMem::readByte(unsigned long int offset)
 }
 void applicationMem::writeByte(unsigned long int offset,unsigned char Byt)
 {
-    WriteProcessMemory(hProcess,(void*)hAddress+offset,&Byt,1,0);
+    WriteProcessMemory(hProcess,hAddress+offset,&Byt,1,0);
 }
 
 void applicationMem::readMem(unsigned long int offset,unsigned char* buffer ,unsigned long int len)
 {
-    ReadProcessMemory(hProcess,(void*)hAddress+offset,buffer,len,0);
+    ReadProcessMemory(hProcess,hAddress+offset,buffer,len,0);
 }
 void applicationMem::writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len)
 {
     //Beep(400,100);
-    //printf("ApplicationMem write\n\taddress:%X\n\toffset:%i\n\thProcess:%x\n\tlength:%i\n",(void*)hAddress,(int)offset,hProcess,(int)len);
+    //printf("ApplicationMem write\n\taddress:%X\n\toffset:%i\n\thProcess:%x\n\tlength:%i\n",hAddress,(int)offset,hProcess,(int)len);
     SIZE_T written = 0;
 
     DWORD oldProtect = 0;
-    VirtualProtectEx( hProcess, (void*)hAddress+offset, 256, PAGE_EXECUTE_READWRITE, &oldProtect );
-    WriteProcessMemory(hProcess,(void*)hAddress+offset,(void*)Byt,(SIZE_T)len,&written);
-    VirtualProtectEx( hProcess, (void*)hAddress+offset, 256, oldProtect, NULL ); //restore the origina
+    VirtualProtectEx( hProcess, hAddress+offset, 256, PAGE_EXECUTE_READWRITE, &oldProtect );
+    WriteProcessMemory(hProcess,hAddress+offset,Byt,(SIZE_T)len,&written);
+    VirtualProtectEx( hProcess, hAddress+offset, 256, oldProtect, NULL ); //restore the origina
     //printf("\tbytes Written:%i\n",written);
     if(written==0)
     {
@@ -108,7 +109,7 @@ applicationMem::applicationMem()
     memoryTypeID = "Appl_Mem";
     _pageSize = 0;
 }
-applicationMem::applicationMem(addressSpace* parent, DWORD procID, unsigned int Size,HANDLE addr)
+applicationMem::applicationMem(addressSpace* parent, DWORD procID, unsigned int Size,char* addr)
 {
     //Beep(400,100);
     memoryTypeID = "Appl_Mem";

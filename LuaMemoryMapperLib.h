@@ -34,8 +34,6 @@
 #include "AMM/WindowsPageAccessor.h"
 #endif // BUILD_WIN_MEMACCESSOR
 
-using namespace std;
-
 extern "C"
 {
     #include "lua.h"
@@ -46,29 +44,29 @@ extern "C"
 /**
 for creating interfaces on the C++ side we need a way to expose the memory space and address space pointers
 **/
-unordered_map<string,virtualMemorySpace*>* getMemorySpaceList();
-unordered_map<string,addressSpace*>* getMemoryPageList();
+std::unordered_map<std::string,virtualMemorySpace*>* getMemorySpaceList();
+std::unordered_map<std::string,addressSpace*>* getMemoryPageList();
 /** **/
 
-string createMemoryContext(string ID);
-void destroyMemoryContext(string ID);
+std::string createMemoryContext(std::string ID);
+void destroyMemoryContext(std::string ID);
 
-void readMemFromContext(string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf);
-void writeMemToContext(string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf);
+void readMemFromContext(std::string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf);
+void writeMemToContext(std::string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf);
 
-void linkPageToMemorySpace(string MemorySpaceName,string PageName);
-void destroyPage(string ID);
+void linkPageToMemorySpace(std::string MemorySpaceName,std::string PageName);
+void destroyPage(std::string ID);
 
-void addVirtualPage(string ID,unsigned int PageSize);
-void addInterprocessPage(string ID,unsigned int PageSize,string windowName,int address);
-void addMultiPage(string ID, unsigned int pagelistSize, string** pagelist);
-void addMetaPage(string ID, unsigned int PageSize,string SubMemorySpaceName,int address); //SelfRefrence.cpp
-void addLuaPage(string ID, string luafile); //Lua defined memory page.
-void addLoggedPage(string ID, string logfile, string pageID);
-void addFilePage(string ID,string filename,unsigned int length);
+void addVirtualPage(std::string ID,unsigned int PageSize);
+void addInterprocessPage(std::string ID,unsigned int PageSize,std::string windowName,char* address);
+void addMultiPage(std::string ID, unsigned int pagelistSize, std::vector<std::string*> pagelist);
+void addMetaPage(std::string ID, unsigned int PageSize,std::string SubMemorySpaceName,char* address); //SelfRefrence.cpp
+void addLuaPage(std::string ID, std::string luafile); //Lua defined memory page.
+void addLoggedPage(std::string ID, std::string logfile, std::string pageID);
+void addFilePage(std::string ID,std::string filename,unsigned int length);
 
 #ifdef BUILD_WIN_MEMACCESSOR
-void addMPA_Page(string ID);
+void addMPA_Page(std::string ID);
 #endif //BUILD_WIN_MEMACCESSOR
 
 int lua_CreateMemoryContext(lua_State* L);

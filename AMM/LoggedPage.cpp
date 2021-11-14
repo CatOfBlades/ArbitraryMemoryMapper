@@ -96,7 +96,7 @@ void loggedPage::setParent(addressSpace* addrSp)
     time_t rawtime = time(0);
     fprintf(logfile,"function:setParent(addressSpace:%X) called, at:%s\n",addrSp,ctime(&rawtime));
 }
-loggedPage::loggedPage(string logName,addressSpace* page)
+loggedPage::loggedPage(std::string logName,addressSpace* page)
 {
     logfile = fopen(logName.c_str(),"a");
     LinkedPage = page;
@@ -116,7 +116,7 @@ loggedPage::loggedPage(string logName,addressSpace* page)
     fprintf(logfile,"Log start at:%s",ctime(&rawtime));
     fprintf(logfile,"constructor: loggedPage(logfile:%s,childPage:%X) called.\n",logName.c_str(),page);
 }
-loggedPage::loggedPage(addressSpace* parent, string logName, addressSpace* page)
+loggedPage::loggedPage(addressSpace* parent, std::string logName, addressSpace* page)
 {
     logfile = fopen(logName.c_str(),"a");
     LinkedPage = page;

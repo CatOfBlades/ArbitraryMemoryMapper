@@ -1,6 +1,6 @@
 
 #include "WindowsPageAccessor.h"
-#include "../config.h"
+#include "../Defines.h"
 #include "psapi.h"
 
 systemDataManager::systemDataManager()
@@ -75,7 +75,7 @@ memoryPageAccessor::memoryPageAccessor(systemDataManager* psdm)
     thisProcHandle = p_sdm->thisProcessHandle;
     memPageSize = p_sdm->PageSize;
     committed=0;
-    p_memRegion = VirtualAlloc(0,memPageSize,MEM_RESERVE,PAGE_NOACCESS);
+    p_memRegion = static_cast<char*>(VirtualAlloc(0,memPageSize,MEM_RESERVE,PAGE_NOACCESS));
     access = PAGE_NOACCESS;
     if(p_memRegion==NULL)
     {
@@ -111,7 +111,7 @@ bool memoryPageAccessor::changeAccess(DWORD flprotect)
 }
 bool memoryPageAccessor::committ()
 {
-    p_memRegion = VirtualAlloc(p_memRegion,memPageSize,MEM_COMMIT,access);
+    p_memRegion = static_cast<char*>(VirtualAlloc(p_memRegion,memPageSize,MEM_COMMIT,access));
     if(p_memRegion==NULL)
     {
         broken = true;
@@ -143,7 +143,7 @@ unsigned char* MPA_page::_content()
 unsigned char MPA_page::readByte(unsigned long int offset)
 {
     unsigned char retval;
-    ReadProcessMemory(MPA->thisProcHandle,MPA->p_memRegion+offset,&retval,1,NULL);
+    ReadProcessMemory(MPA->thisProcHandle,(MPA->p_memRegion+offset),&retval,1,NULL);
     return retval;
 }
 void MPA_page::writeByte(unsigned long int offset,unsigned char Byt)
@@ -248,9 +248,9 @@ DWORD WINAPI RWX_Thread( LPVOID lpParam )
     bool exitThread = false;
     SYSTEM_INFO SysInf;
     DWORD PageSize;
-    LPVOID p_lowAddr;
-    LPVOID p_highAddr;
-    LPVOID p_memRegion;
+    char* p_lowAddr;
+    char* p_highAddr;
+    char* p_memRegion;
     DWORD oldAccess;
     DWORD thisProcessId = GetCurrentProcessId();
     HANDLE thisProcessHandle = OpenProcess(PROCESS_ALL_ACCESS,0,thisProcessId);
@@ -259,8 +259,8 @@ DWORD WINAPI RWX_Thread( LPVOID lpParam )
         exitThread = true;
     }
     GetNativeSystemInfo(&SysInf);
-    p_lowAddr = SysInf.lpMinimumApplicationAddress;
-    p_highAddr = SysInf.lpMaximumApplicationAddress;
+    p_lowAddr = static_cast<char*>(SysInf.lpMinimumApplicationAddress);
+    p_highAddr = static_cast<char*>(SysInf.lpMaximumApplicationAddress);
     PageSize = SysInf.dwPageSize;
 
     p_memRegion = p_lowAddr;
