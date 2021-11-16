@@ -27,6 +27,7 @@ extern "C" DLL_EXPORT BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
     return TRUE; // succesful
 }
 
+
 DLL_EXPORT std::unordered_map<std::string,virtualMemorySpace*>* libGetMemorySpaceList()
 {
     return getMemorySpaceList();
@@ -92,12 +93,57 @@ void DLL_EXPORT libAddFilePage(std::string ID,std::string filename,unsigned int 
 {
     addFilePage(ID,filename,length);
 }
-
+/*
 void DLL_EXPORT libLua_RegisterMemoryFunctions(lua_State* L)
 {
     lua_RegisterMemoryFunctions(L);
 }
+*/
 void DLL_EXPORT libLua_handle_error(lua_State* L,int errcode)
 {
     lua_handle_error(L,errcode);
 }
+
+/*
+    static const struct luaL_Reg ammlib [] = {
+        {"createMemoryContext",lua_CreateMemoryContext},
+        {"destroyMemoryContext",lua_DestroyMemoryContext},
+        {"SysBeep",lua_Beep},
+        {"Sleep",lua_Sleep},
+
+        {"addVirtualPage",lua_addVirtualPage},
+        #ifdef WINBUILD
+        {"addInterprocessPage",lua_addInterprocessPage},
+        #endif // WINBUILD
+
+        {"addMultiPage",lua_addMultiPage},
+        {"addMetaPage",lua_addMetaPage},
+        {"addLuaPage",lua_addLuaPage},
+        {"addLoggedPage",lua_addLoggedPage},
+        {"addFilePage",lua_addFilePage},
+        #ifdef BUILD_WIN_MEMACCESSOR
+        {"addMPA_Page",lua_addMPA_Page},
+        #endif //BUILD_WIN_MEMACCESSOR
+
+        {"linkPageToMemorySpace",lua_linkPageToMemorySpace},
+        {"destroyPage",lua_destroyPage},
+        {"readMemFromContext",lua_readMemFromContext},
+        {"writeMemToContext",lua_writeMemToContext},
+        {"multiPageSwapBanks",lua_multiPageSwapBanks},
+        {NULL, NULL}
+    };
+*/
+
+extern "C" __declspec(dllexport) int luaopen_ammlib(lua_State *L)
+{
+    lua_RegisterMemoryFunctions(L);
+    //lua_register(L,"createMemoryContext",lua_CreateMemoryContext);
+    //Sleep(10);
+    //luaL_newlib(L, ammlib);
+    //lua_pushnumber(L, 3141);
+    //lua_setfield(L, -2, "ammpi");
+
+    return 1;
+}
+
+

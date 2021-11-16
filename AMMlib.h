@@ -1,13 +1,23 @@
 #ifndef AMMLIB_H_INCLUDED
 #define AMMLIB_H_INCLUDED
 
-
-#include <windows.h>
+#include <Windows.h>
 #include <unordered_map>
 #include <string>
 #include "AMM/virtualMemorySpace.h"
 #include "AMM/addressSpace.h"
+
+extern "C"
+{
 #include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
+
+
+//__declspec(dllimport)
+
+}
+
 
 /*  To use this exported function of dll, include this header
  *  in your project.
@@ -43,10 +53,14 @@ void DLL_EXPORT libAddFilePage(std::string ID,std::string filename,unsigned int 
 void DLL_EXPORT libLua_RegisterMemoryFunctions(lua_State* L);
 void DLL_EXPORT libLua_handle_error(lua_State* L,int errcode);
 
+
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
+int DLL_EXPORT luaopen_ammlib(lua_State *L);
 
 //void DLL_EXPORT SomeFunction(const LPCSTR sometext);
 

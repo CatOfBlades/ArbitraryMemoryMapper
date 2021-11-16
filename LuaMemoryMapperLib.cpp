@@ -60,35 +60,57 @@ int main()
 
 \******************************************************************************/
 
-
-void lua_RegisterMemoryFunctions(lua_State* L)
+extern "C"
 {
-    lua_register(L,"createMemoryContext",lua_CreateMemoryContext);
-    lua_register(L,"destroyMemoryContext",lua_DestroyMemoryContext);
-    lua_register(L,"SysBeep",lua_Beep);
-    lua_register(L,"Sleep",lua_Sleep);
 
-    lua_register(L,"addVirtualPage",lua_addVirtualPage);
-    #ifdef WINBUILD
-    lua_register(L,"addInterprocessPage",lua_addInterprocessPage);
-    #endif // WINBUILD
-    lua_register(L,"addMultiPage",lua_addMultiPage);
-    lua_register(L,"addMetaPage",lua_addMetaPage);
-    lua_register(L,"addLuaPage",lua_addLuaPage);
-    lua_register(L,"addLoggedPage",lua_addLoggedPage);
-    lua_register(L,"addFilePage",lua_addFilePage);
-    #ifdef BUILD_WIN_MEMACCESSOR
-    lua_register(L,"addMPA_Page",lua_addMPA_Page);
-    #endif //BUILD_WIN_MEMACCESSOR
+    void lua_RegisterMemoryFunctions(lua_State* L)
+    {
+        lua_register(L,"createMemoryContext",lua_CreateMemoryContext);
+        lua_register(L,"destroyMemoryContext",lua_DestroyMemoryContext);
+        lua_register(L,"SysBeep",lua_Beep);
+        lua_register(L,"Sleep",lua_Sleep);
 
-    lua_register(L,"linkPageToMemorySpace",lua_linkPageToMemorySpace);
-    lua_register(L,"destroyPage",lua_destroyPage);
-    lua_register(L,"readMemFromContext",lua_readMemFromContext);
-    lua_register(L,"writeMemToContext",lua_writeMemToContext);
-    lua_register(L,"multiPageSwapBanks",lua_multiPageSwapBanks);
+        lua_register(L,"addVirtualPage",lua_addVirtualPage);
+        #ifdef WINBUILD
+        lua_register(L,"addInterprocessPage",lua_addInterprocessPage);
+        #endif // WINBUILD
+
+        lua_register(L,"addMultiPage",lua_addMultiPage);
+        lua_register(L,"addMetaPage",lua_addMetaPage);
+        lua_register(L,"addLuaPage",lua_addLuaPage);
+        lua_register(L,"addLoggedPage",lua_addLoggedPage);
+        lua_register(L,"addFilePage",lua_addFilePage);
+        #ifdef BUILD_WIN_MEMACCESSOR
+        lua_register(L,"addMPA_Page",lua_addMPA_Page);
+        #endif //BUILD_WIN_MEMACCESSOR
+
+        lua_register(L,"linkPageToMemorySpace",lua_linkPageToMemorySpace);
+        lua_register(L,"destroyPage",lua_destroyPage);
+        lua_register(L,"readMemFromContext",lua_readMemFromContext);
+        lua_register(L,"writeMemToContext",lua_writeMemToContext);
+        lua_register(L,"multiPageSwapBanks",lua_multiPageSwapBanks);
+
+    }
+
+}
+std::string createMemoryContext(std::string ID)
+{
+    std::pair<std::unordered_map<std::string,virtualMemorySpace*>::iterator,bool> IB;
+    virtualMemorySpace* VM = new virtualMemorySpace();
+    std::pair <std::string,virtualMemorySpace*> valu(ID,VM);
+    IB = memorySpaces.insert(valu);
+    if(IB.second)
+    {
+        return ID;
+    }
+    else
+    {
+        delete VM;
+        return ID;
+    }
 }
 
-std::string createMemoryContext(std::string ID)
+const char* cstr_createMemoryContext(const char* ID)
 {
     std::pair<std::unordered_map<std::string,virtualMemorySpace*>::iterator,bool> IB;
     virtualMemorySpace* VM = new virtualMemorySpace();
@@ -319,61 +341,66 @@ void writeMemToContext(std::string ContextID,unsigned long int Address,unsigned 
     memorySpaces.at(ContextID)->writeMem(Address,buf,length);
 }
 
-int lua_CreateMemoryContext(lua_State* L)
+extern "C"
 {
-    std::string ID = lua_tostring(L,1);
-    ID = createMemoryContext(ID);
-    lua_pushstring(L,ID.c_str());
-    return 1;
-}
-int lua_DestroyMemoryContext(lua_State* L)
-{
-    std::string ID = lua_tostring(L,1);
-    destroyMemoryContext(ID);
-    return 0;
-}
-int lua_Beep(lua_State* L)
-{
-    int a = lua_tointeger(L,1);
-    int b = lua_tointeger(L,2);
-    #ifdef WINBUILD
-    Beep(a,b);
-    #else
-    system("echo $'\a'");
-    #endif //WINBUILD
-    return 0;
-}
-int lua_Sleep(lua_State* L)
-{
-    int a = lua_tointeger(L,1);
-    #ifdef WINBUILD
-    Sleep(a);
-    #else
-    usleep(a*1000);
-    #endif //WINBUILD
-    return 0;
-}
 
-int lua_addVirtualPage(lua_State* L)
-{
-    std::string ID = lua_tostring(L,1);
-    int pageSize = lua_tointeger(L,2);
-    //printf("PageID:%s\npageSize:%i\n",ID.c_str(),pageSize);
-    addVirtualPage(ID,pageSize);
-    return 0;
+    int lua_CreateMemoryContext(lua_State* L)
+    {
+        const char * ID = lua_tostring(L,1);
+        //ID = createMemoryContext(ID);
+        //lua_pushstring(L,ID.c_str());
+        lua_pushstring(L,cstr_createMemoryContext(ID));
+        return 1;
+    }
+    int lua_DestroyMemoryContext(lua_State* L)
+    {
+        const char *  ID = lua_tostring(L,1);
+        destroyMemoryContext(ID);
+        return 0;
+    }
+    int lua_Beep(lua_State* L)
+    {
+        int a = lua_tointeger(L,1);
+        int b = lua_tointeger(L,2);
+        #ifdef WINBUILD
+        Beep(a,b);
+        #else
+        system("echo $'\a'");
+        #endif //WINBUILD
+        return 0;
+    }
+    int lua_Sleep(lua_State* L)
+    {
+        int a = lua_tointeger(L,1);
+        #ifdef WINBUILD
+        Sleep(a);
+        #else
+        usleep(a*1000);
+        #endif //WINBUILD
+        return 0;
+    }
+
+    int lua_addVirtualPage(lua_State* L)
+    {
+        const char *  ID = lua_tostring(L,1);
+        int pageSize = lua_tointeger(L,2);
+        //printf("PageID:%s\npageSize:%i\n",ID.c_str(),pageSize);
+        addVirtualPage(ID,pageSize);
+        return 0;
+    }
+    #ifdef WINBUILD
+    int lua_addInterprocessPage(lua_State* L)
+    {
+        const char *  ID = lua_tostring(L,1);
+        int pageSize = lua_tointeger(L,2);
+        const char *  WindowName = lua_tostring(L,3);
+        char* address = 0;
+        address=address+lua_tointeger(L,4);
+        addInterprocessPage(ID,pageSize,WindowName,address);
+        return 0;
+    }
+    #endif // WINBUILD
 }
-#ifdef WINBUILD
-int lua_addInterprocessPage(lua_State* L)
-{
-    std::string ID = lua_tostring(L,1);
-    int pageSize = lua_tointeger(L,2);
-    std::string WindowName = lua_tostring(L,3);
-    char* address = 0;
-    address=address+lua_tointeger(L,4);
-    addInterprocessPage(ID,pageSize,WindowName,address);
-    return 0;
-}
-#endif // WINBUILD
 int lua_addMultiPage(lua_State* L)
 {
     std::string ID = lua_tostring(L,1);

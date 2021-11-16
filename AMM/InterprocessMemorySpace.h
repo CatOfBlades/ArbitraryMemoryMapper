@@ -6,7 +6,7 @@
 
 #include "../Defines.h"
 #ifdef WINBUILD
-#include <windows.h>
+#include <Windows.h>
 #endif // WINBUILD
 
 /**

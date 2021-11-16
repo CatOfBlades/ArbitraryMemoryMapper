@@ -2,7 +2,7 @@
 #include "virtualMemorySpace.h"
 
 #ifdef WINBUILD
-#include <windows.h>
+#include <Windows.h>
 #endif // WINBUILD
 
 #include <stdio.h>
@@ -11,7 +11,7 @@ virtualMemorySpace::virtualMemorySpace()//if you don't need a memory offset then
 {
     memorySize=0;
     memoryOffset=0;
-    top=0;
+    top=nullptr;
     islooped = MEMSPACE_LOOP_DEFAULT;
 }
 
@@ -19,7 +19,7 @@ virtualMemorySpace::virtualMemorySpace(int memoffset)
 {
     memorySize=0;
     memoryOffset = memoffset;
-    top=0;
+    top=nullptr;
     islooped = MEMSPACE_LOOP_DEFAULT;
 }
 
@@ -37,9 +37,9 @@ void virtualMemorySpace::virtualMemorySpace::recalcSize()//check the linked list
     PageList.clear();
 
     memorySize = 0;
-    if(top == NULL){return;};
+    if(top == nullptr){return;};
     addressSpace* _search = top;
-    while(_search != NULL)// loop ends when the pointer to _search is set to zero through the last iterations _search->_next being zero.
+    while(_search != nullptr)// loop ends when the pointer to _search is set to zero through the last iterations _search->_next being zero.
     {
         PageAddresses.push_back(memorySize);
         PageList.push_back(_search);
@@ -92,7 +92,7 @@ addressSpace* virtualMemorySpace::_getAddressPage(unsigned long int addr,unsigne
 
 //void* getAddressPointer(unsigned long int addr); //in an arbitrary memory model, direct address pointers aren't possible, only ones that refer to the virtual memory model.
 
-void virtualMemorySpace::addPage(unsigned int Size)
+void virtualMemorySpace::addPage(const unsigned int Size)
 {
     if(top == NULL) //if we don't have any pages
     {
@@ -303,11 +303,14 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 	}
 
 	int j=0;
- 	int pageEndAddress = PageAddresses[j]+PageList[j]->_size();
+	while(PageList[j]->_size()==0)
+    {j++;}
+ 	int pageEndAddress = PageAddresses[j]+PageList[j]->_size()-1;
 	while(pageEndAddress < addr)
 	{
 		j++;
-		pageEndAddress = PageAddresses[j]+PageList[j]->_size();
+		if(PageList[j]->_size()==0){continue;}
+		pageEndAddress = PageAddresses[j]+PageList[j]->_size()-1;
 	}
     int i=0;
 	for(i=0; i<len; i++)

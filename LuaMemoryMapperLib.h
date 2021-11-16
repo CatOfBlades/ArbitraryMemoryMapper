@@ -5,7 +5,7 @@
 #include "Defines.h"
 
 #ifdef WINBUILD
-#include <windows.h>
+#include <Windows.h>
 #else
 #include <unistd.h>
 #endif // WINBUILD
@@ -49,6 +49,7 @@ std::unordered_map<std::string,addressSpace*>* getMemoryPageList();
 /** **/
 
 std::string createMemoryContext(std::string ID);
+char* cstr_createMemoryContext(char*);
 void destroyMemoryContext(std::string ID);
 
 void readMemFromContext(std::string ContextID,unsigned long int Address,unsigned long int length,unsigned char* buf);
@@ -69,31 +70,36 @@ void addFilePage(std::string ID,std::string filename,unsigned int length);
 void addMPA_Page(std::string ID);
 #endif //BUILD_WIN_MEMACCESSOR
 
-int lua_CreateMemoryContext(lua_State* L);
-int lua_DestroyMemoryContext(lua_State* L);
-int lua_Beep(lua_State* L);
-int lua_Sleep(lua_State* L);
+extern "C"
+{
+    int lua_CreateMemoryContext(lua_State* L);
+    int lua_DestroyMemoryContext(lua_State* L);
+    int lua_Beep(lua_State* L);
+    int lua_Sleep(lua_State* L);
 
-int lua_addVirtualPage(lua_State* L);
-int lua_addInterprocessPage(lua_State* L);
-int lua_addMultiPage(lua_State* L);
-int lua_addMetaPage(lua_State* L);
-int lua_addLuaPage(lua_State* L);
-int lua_addLoggedPage(lua_State* L);
-int lua_addFilePage(lua_State* L);
-#ifdef BUILD_WIN_MEMACCESSOR
-int lua_addMPA_Page(lua_State* L);
-#endif //BUILD_WIN_MEMACCESSOR
+    int lua_addVirtualPage(lua_State* L);
+    int lua_addInterprocessPage(lua_State* L);
+    int lua_addMultiPage(lua_State* L);
+    int lua_addMetaPage(lua_State* L);
+    int lua_addLuaPage(lua_State* L);
+    int lua_addLoggedPage(lua_State* L);
+    int lua_addFilePage(lua_State* L);
+    #ifdef BUILD_WIN_MEMACCESSOR
+    int lua_addMPA_Page(lua_State* L);
+    #endif //BUILD_WIN_MEMACCESSOR
 
-int lua_linkPageToMemorySpace(lua_State* L);
-int lua_destroyPage(lua_State* L);
-int lua_readMemFromContext(lua_State* L);
-int lua_writeMemToContext(lua_State* L);
-int lua_multiPageSwapBanks(lua_State* L);
+    int lua_linkPageToMemorySpace(lua_State* L);
+    int lua_destroyPage(lua_State* L);
+    int lua_readMemFromContext(lua_State* L);
+    int lua_writeMemToContext(lua_State* L);
+    int lua_multiPageSwapBanks(lua_State* L);
 
-void lua_RegisterMemoryFunctions(lua_State* L);
+    void lua_RegisterMemoryFunctions(lua_State* L);
 
-void lua_handle_error(lua_State* L,int errcode);
+
+    void lua_handle_error(lua_State* L,int errcode);
+
+}
 
 #ifdef WINBUILD
 BOOL SetPrivilege(HANDLE hToken, LPCTSTR lpszPrivilege, BOOL bEnablePrivilege);

@@ -59,7 +59,7 @@ unsigned long int filePage::RW_file(bool write, unsigned long int offs, unsigned
 void filePage::FMopenFile()
 {
 	fp = 0;
-	fp = fopen(FMfilename.c_str(),"rb+"); //open file for reading and writing in binary mode.
+	fopen_s(&fp,FMfilename.c_str(),"rb+"); //open file for reading and writing in binary mode.
 }
 void filePage::FMcloseFile()
 {

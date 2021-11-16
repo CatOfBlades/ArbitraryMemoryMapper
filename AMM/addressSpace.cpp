@@ -27,13 +27,13 @@ void addressSpace::setParent(addressSpace* addrSp)
     if(addrSp)
     {
         _next = addrSp->_next;
-        if(_next == NULL)
+        if(_next == nullptr)
         {
             _bottom = this;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = addrSp->_top;
-            while(_search != NULL)
+            while(_search != nullptr)
             {
                 _search->_bottom = _bottom;
                 _search = _search->_next;
@@ -49,19 +49,19 @@ void addressSpace::setParent(addressSpace* addrSp)
     }
     else
     {
-        _next = NULL;
-        _bottom = NULL;
-        _top = NULL;
+        _next = nullptr;
+        _bottom = nullptr;
+        _top = nullptr;
     }
 }
 addressSpace::addressSpace()
 {
     memoryTypeID = "AddrSpac";
     _this = this;
-    _next = NULL;
-    _last = NULL;
-    _top = NULL;
-    _bottom = NULL;
+    _next = nullptr;
+    _last = nullptr;
+    _top = nullptr;
+    _bottom = nullptr;
 }
 addressSpace::addressSpace(addressSpace* parent,  unsigned int Size)
 {
@@ -71,13 +71,13 @@ addressSpace::addressSpace(addressSpace* parent,  unsigned int Size)
     if(parent)
     {
         _next = parent->_next;
-        if(_next == NULL)
+        if(_next == nullptr)
         {
             _bottom = this;
 
             //pages need to be informed what the new bottom of the list is.
             addressSpace* _search = parent->_top;
-            while(_search != NULL)
+            while(_search != nullptr)
             {
                 _search->_bottom = _bottom;
                 _search = _search->_next;
@@ -93,9 +93,9 @@ addressSpace::addressSpace(addressSpace* parent,  unsigned int Size)
     }
     else
     {
-        _next = NULL;
-        _bottom = NULL;
-        _top = NULL;
+        _next = nullptr;
+        _bottom = nullptr;
+        _top = nullptr;
     }
 }
 
@@ -114,7 +114,7 @@ unsigned char* addressSpace::_content()
     return 0;
 }
 
-unsigned char addressSpace::readByte(unsigned long int offset)
+unsigned char addressSpace::readByte([[maybe_unused]]unsigned long int offset)
 {
     return 0;
 }

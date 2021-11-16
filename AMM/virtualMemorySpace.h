@@ -68,7 +68,7 @@ class virtualMemorySpace
 
     //void* getAddressPointer(unsigned long int addr); //in an arbitrary memory model, direct address pointers aren't possible, only ones that refer to the virtual memory model.
 
-	void addPage(unsigned int Size);
+	void addPage(const unsigned int Size);
 	void removePage();
 
 	void addAddressSpace(addressSpace* AS);
