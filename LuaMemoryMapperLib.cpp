@@ -90,6 +90,12 @@ extern "C"
         lua_register(L,"writeMemToContext",lua_writeMemToContext);
         lua_register(L,"multiPageSwapBanks",lua_multiPageSwapBanks);
 
+        #ifdef SUPPORT_UNUSUAL_MEMORY_ACCESSES
+        lua_register(L,"splitByteRW",lua_splitByteRW);
+        //float splitByteRW(bool write,unsigned long address, char byt);
+        //lua_splitByteRW
+        #endif // SUPPORT_UNUSUAL_MEMORY_ACCESSES
+
     }
 
 }
@@ -582,6 +588,50 @@ void lua_handle_error(lua_State* L,int errcode)
         printf("lua error: %s\n",out.c_str());
     }
 }
+
+#ifdef SUPPORT_UNUSUAL_MEMORY_ACCESSES
+float splitByteRW(std::string ContextID, bool write,unsigned long address1,unsigned long address2, char byt, float rw_ratio)
+{
+    //look I know subverting a cast with a union is a code smell.
+    // I need to access the unsigned byte for reading and writing,
+    // but having the unusual R/W function respect negative numbers is useful.
+    union m{unsigned char a;char b;};
+    m buf;
+    buf.b =byt;
+    m bufpart1, bufpart2;
+    float inverseRatio = (1-rw_ratio);
+    if(write)
+    {
+        memorySpaces.at(ContextID)->readMem(address1,&bufpart1.a,1);
+        memorySpaces.at(ContextID)->readMem(address2,&bufpart2.a,1);
+        float intermediate1 = ((float)bufpart1.b*rw_ratio)+((float)byt*inverseRatio);
+        float intermediate2 = ((float)bufpart2.b*inverseRatio)+((float)byt*rw_ratio);
+        buf.b = intermediate1;
+        memorySpaces.at(ContextID)->writeMem(address1,&buf.a,1);
+        buf.b = intermediate2;
+        memorySpaces.at(ContextID)->writeMem(address2,&buf.a,1);
+    }
+    else
+    {
+        memorySpaces.at(ContextID)->readMem(address1,&bufpart1.a,1);
+        memorySpaces.at(ContextID)->readMem(address2,&bufpart2.a,1);
+        return ((float)bufpart1.b*rw_ratio)+((float)bufpart2.b*inverseRatio);
+    }
+    return 0;
+
+}
+int lua_splitByteRW(lua_State* L)
+{
+    std::string ContextID = lua_tostring(L,1);
+    bool write = lua_toboolean(L,2);
+    unsigned long address1 = lua_tointeger(L,3);
+    unsigned long address2 = lua_tointeger(L,4);
+    char byt = lua_tointeger(L,5);
+    float rw_ratio = lua_tonumber(L,6);
+    lua_pushnumber(L, splitByteRW(ContextID, write,address1,address2, byt, rw_ratio));
+    return 1;
+}
+#endif // SUPPORT_UNUSUAL_MEMORY_ACCESSES
 
 #ifdef WINBUILD
 //

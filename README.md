@@ -1,7 +1,12 @@
 # ArbitraryMemoryMapper
-Basically you write code that impliments a "readMemory" and "writeMemory" function and
+This library allows a unified memory,
+you write code that impliments a "readMemory" and "writeMemory" function and
 this lets you aggrigate those interfaces and access them from a single address space.
 
+The code::blocks target Lib/Lib32 is a dll file and lua extension.
+	This allows other windows projects to setup and manage complex memory configurations.
+	And extension of lua interpreters that allow it for programs like games that 
+	you don't have the source code to.
 
 The code::blocks target LuaMap is a lua script processor.
   You can use it to create and host the memory mappings you define.
@@ -45,3 +50,7 @@ The code::blocks target LuaMap is a lua script processor.
 
 The file "virtualMemoryMapper.lua" is a implimentation of the base classes in lua natively.
 it's features are limited but can be included into lua scripts without needing any extra includes or compilation.
+
+If you have a specific lua that you need to relink the project to,
+ in the project settings change the search directories to point to the new lua/src folder where "lua.h" resides.
+ then in the Lib/Lib32 project, change the linked ".lib" file to the one from your lua51 build.

@@ -66,6 +66,10 @@ void addLuaPage(std::string ID, std::string luafile); //Lua defined memory page.
 void addLoggedPage(std::string ID, std::string logfile, std::string pageID);
 void addFilePage(std::string ID,std::string filename,unsigned int length);
 
+#ifdef SUPPORT_UNUSUAL_MEMORY_ACCESSES
+float splitByteRW(std::string ContextID, bool write,unsigned long address1,unsigned long address2, char byt, float rw_ratio);
+#endif // SUPPORT_UNUSUAL_MEMORY_ACCESSES
+
 #ifdef BUILD_WIN_MEMACCESSOR
 void addMPA_Page(std::string ID);
 #endif //BUILD_WIN_MEMACCESSOR
@@ -98,6 +102,10 @@ extern "C"
 
 
     void lua_handle_error(lua_State* L,int errcode);
+
+    #ifdef SUPPORT_UNUSUAL_MEMORY_ACCESSES
+    int lua_splitByteRW(lua_State* L);
+    #endif // SUPPORT_UNUSUAL_MEMORY_ACCESSES
 
 }
 
