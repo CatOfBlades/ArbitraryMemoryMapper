@@ -1,95 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
-	<ActiveTarget name="Lua51Lib32" />
-	<File name="AMM\virtualMemorySpace.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<ActiveTarget name="Lib32" />
+	<File name="AMM\addressSpace.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="913" topLine="54" />
+			<Cursor1 position="66" topLine="23" />
 		</Cursor>
 	</File>
-	<File name="remappingValues.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="LuaMemoryMapper.cpp" open="0" top="0" tabpos="28" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="34" topLine="0" />
+			<Cursor1 position="2" topLine="32" />
 		</Cursor>
 	</File>
-	<File name="AMM\LuaPage.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Defines.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="210" topLine="0" />
+			<Cursor1 position="462" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="test.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="AMM\virtualPage.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="595" topLine="0" />
+			<Cursor1 position="328" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="lua-5.4.3\src\loadlib.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="81" />
-		</Cursor>
-	</File>
-	<File name="LuaMemoryMapperLib.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="14484" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="ArbitraryMemMap.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="lua-5.4.3\src\lauxlib.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="27410" topLine="922" />
-		</Cursor>
-	</File>
-	<File name="AMM\WindowsPageAccessor.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7150" topLine="253" />
-		</Cursor>
-	</File>
-	<File name="LuaMemoryMapperLib.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3261" topLine="93" />
-		</Cursor>
-	</File>
-	<File name="AMMlib.cpp" open="1" top="0" tabpos="29" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3175" topLine="102" />
-		</Cursor>
-	</File>
-	<File name="Defines.h" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="223" topLine="16" />
-		</Cursor>
-	</File>
-	<File name="AMM\selfRefrence.cpp" open="0" top="0" tabpos="30" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1951" topLine="69" />
-		</Cursor>
-	</File>
-	<File name="lua-5.4.3\src\lua.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="AMM\InterprocessMemorySpace.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1948" topLine="75" />
-		</Cursor>
-	</File>
-	<File name="lua-5.4.3\src\lapi.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="19814" topLine="810" />
-		</Cursor>
-	</File>
-	<File name="lua-5.4.3\src\lua.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lua-5.4.3\src\lua.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="5428" topLine="219" />
-		</Cursor>
-	</File>
-	<File name="AMM\filePage.cpp" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="799" topLine="52" />
 		</Cursor>
 	</File>
 	<File name="AMM\WindowsPageAccessor.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -97,29 +32,9 @@
 			<Cursor1 position="2050" topLine="51" />
 		</Cursor>
 	</File>
-	<File name="AMM\LoggedPage.cpp" open="1" top="1" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="config.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2078" topLine="40" />
-		</Cursor>
-	</File>
-	<File name="lua-5.4.3\src\lfunc.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="ArbitraryMemMap.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1016" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="lua-5.4.3\src\luaconf.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7439" topLine="267" />
-		</Cursor>
-	</File>
-	<File name="AMM\multiPage.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="364" topLine="14" />
+			<Cursor1 position="663" topLine="16" />
 		</Cursor>
 	</File>
 	<File name="AMM\LoggedPage.h" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -127,49 +42,119 @@
 			<Cursor1 position="949" topLine="19" />
 		</Cursor>
 	</File>
-	<File name="lua-5.4.3\src\luac.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lua-5.4.3\src\loadlib.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7789" topLine="710" />
+			<Cursor1 position="0" topLine="81" />
 		</Cursor>
 	</File>
-	<File name="AMM\multiPage.cpp" open="0" top="0" tabpos="31" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="LuaMemoryMapperLib.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="65" topLine="3" />
+			<Cursor1 position="3247" topLine="85" />
 		</Cursor>
 	</File>
-	<File name="lua-5.4.3\src\lauxlib.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="AMM\virtualMemorySpace.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4445" topLine="117" />
+			<Cursor1 position="3994" topLine="14" />
+		</Cursor>
+	</File>
+	<File name="AMM\multiPage.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="65" topLine="33" />
+		</Cursor>
+	</File>
+	<File name="lua-5.4.3\src\lapi.c" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="21515" topLine="911" />
+		</Cursor>
+	</File>
+	<File name="AMM\LoggedPage.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2078" topLine="43" />
+		</Cursor>
+	</File>
+	<File name="AMM\virtualPage.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="262" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="LuaMemoryMapperLib.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="15674" topLine="520" />
+		</Cursor>
+	</File>
+	<File name="test.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="152" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="lua-5.4.3\src\lua.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="AMM\selfRefrence.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="592" topLine="39" />
+		</Cursor>
+	</File>
+	<File name="lua-5.4.3\src\luac.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7789" topLine="706" />
 		</Cursor>
 	</File>
 	<File name="AMMlib.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="277" topLine="5" />
+			<Cursor1 position="2078" topLine="51" />
 		</Cursor>
 	</File>
-	<File name="LuaMemoryMapper.cpp" open="0" top="0" tabpos="28" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="AMM\filePage.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2" topLine="0" />
+			<Cursor1 position="799" topLine="52" />
+		</Cursor>
+	</File>
+	<File name="AMM\InterprocessMemorySpace.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1948" topLine="75" />
+		</Cursor>
+	</File>
+	<File name="AMM\LuaPage.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4814" topLine="237" />
+		</Cursor>
+	</File>
+	<File name="lua-5.4.3\src\luaconf.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7439" topLine="267" />
+		</Cursor>
+	</File>
+	<File name="AMM\LuaPage.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="137" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="AMMlib.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4093" topLine="66" />
+		</Cursor>
+	</File>
+	<File name="lua-5.4.3\src\lauxlib.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="27410" topLine="922" />
 		</Cursor>
 	</File>
 	<File name="AMM\InterprocessMemorySpace.h" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="657" topLine="18" />
+			<Cursor1 position="657" topLine="33" />
 		</Cursor>
 	</File>
-	<File name="lua-5.4.3\src\lmathlib.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lua-5.4.3\src\lfunc.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="18573" topLine="747" />
+			<Cursor1 position="0" topLine="6" />
 		</Cursor>
 	</File>
-	<File name="AMM\virtualMemorySpace.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="AMM\addressSpace.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="160" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="AMM\addressSpace.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="66" topLine="23" />
+			<Cursor1 position="840" topLine="75" />
 		</Cursor>
 	</File>
 	<File name="AMM\filePage.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -177,19 +162,44 @@
 			<Cursor1 position="525" topLine="21" />
 		</Cursor>
 	</File>
-	<File name="AMM\addressSpace.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="ArbitraryMemMap.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="840" topLine="27" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="AMM\LuaPage.h" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="AMM\WindowsPageAccessor.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="137" topLine="0" />
+			<Cursor1 position="3306" topLine="150" />
 		</Cursor>
 	</File>
-	<File name="config.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="AMM\selfRefrence.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="783" topLine="19" />
+			<Cursor1 position="524" topLine="51" />
+		</Cursor>
+	</File>
+	<File name="AMM\multiPage.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="364" topLine="14" />
+		</Cursor>
+	</File>
+	<File name="lua-5.4.3\src\lauxlib.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4445" topLine="117" />
+		</Cursor>
+	</File>
+	<File name="remappingValues.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="582" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="ArbitraryMemMap.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1455" topLine="32" />
+		</Cursor>
+	</File>
+	<File name="AMM\virtualMemorySpace.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8375" topLine="302" />
 		</Cursor>
 	</File>
 	<File name="lua-5.4.3\src\ltm.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -197,14 +207,9 @@
 			<Cursor1 position="71" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="AMM\selfRefrence.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="lua-5.4.3\src\lmathlib.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="592" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="AMM\virtualPage.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="262" topLine="0" />
+			<Cursor1 position="18573" topLine="747" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

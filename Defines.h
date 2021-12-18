@@ -13,6 +13,24 @@
 #endif
 */
 
+
+#ifdef __cplusplus
+namespace alfaFlags
+{
+const static int
+        a = 0b00000000,
+        b = 0b00000001,
+        c = 0b00000010,
+        d = 0b00000100,
+        e = 0b00001000,
+        f = 0b00010000,
+        g = 0b00100000,
+        h = 0b01000000,
+        i = 0b10000000;
+}
+#endif // __cplusplus
+
+
 #ifndef WINBUILD
 #define Sleep(x) usleep(x)
 //WINBASEAPI WINBOOL WINAPI ReadProcessMemory (HANDLE hProcess, char* lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T *lpNumberOfBytesRead);

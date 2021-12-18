@@ -66,6 +66,10 @@ addressSpace::addressSpace()
 addressSpace::addressSpace(addressSpace* parent,  unsigned int Size)
 {
     memoryTypeID = "AddrSpac";
+    initialLink(parent,Size);
+}
+void addressSpace::initialLink(addressSpace* parent,  unsigned int Size)
+{
     _last = parent;
     _this = this;
     if(parent)
@@ -98,6 +102,7 @@ addressSpace::addressSpace(addressSpace* parent,  unsigned int Size)
         _top = nullptr;
     }
 }
+
 
 addressSpace::~addressSpace()
 {

@@ -19,6 +19,12 @@ class virtualMemorySpace
 {
     unsigned long int RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
     unsigned long int RW_Mem_From_Page_No(unsigned long int pageNum, bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
+    protected:
+    typedef union VMS_POINTER
+    {
+        unsigned long int addr;
+        void* _addr;
+    };
     public:
     addressSpace* top;  //The first page of memory in our linked list;
     addressSpace* bottom; //The last page of memory in our linked list;

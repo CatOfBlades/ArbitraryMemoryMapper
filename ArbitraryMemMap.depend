@@ -2592,17 +2592,17 @@
 	"lua-5.4.0/src/lauxlib.h"
 	"lua-5.4.0/src/lualib.h"
 
-1636946965 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.cpp
+1639682279 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.cpp
 	"addressSpace.h"
 
-1636946283 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.h
+1639682279 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.h
 
 1636878468 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
 	"../Defines.h"
 	"InterprocessMemorySpace.h"
 	<stdio.h>
 
-1636889969 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\defines.h
+1637643327 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\defines.h
 	"config.h"
 
 1636883750 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\interprocessmemoryspace.h
@@ -2624,7 +2624,7 @@
 	<string>
 	<stdio.h>
 
-1631944501 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\luapage.h
+1631940901 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\luapage.h
 	"lua.h"
 	"lauxlib.h"
 	"lualib.h"
@@ -2650,7 +2650,7 @@
 1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\lua-5.4.0\src\lualib.h
 	"lua.h"
 
-1617205989 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\multipage.cpp
+1617202389 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\multipage.cpp
 	"multiPage.h"
 	"../Defines.h"
 	<windows.h>
@@ -2660,7 +2660,7 @@
 	"virtualMemorySpace.h"
 	<vector>
 
-1636946239 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualmemoryspace.h
+1639868660 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualmemoryspace.h
 	"../Defines.h"
 	"addressSpace.h"
 	"virtualPage.h"
@@ -2681,14 +2681,14 @@
 	<Windows.h>
 	<stdio.h>
 
-1618012544 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualpage.cpp
+1618008944 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualpage.cpp
 	"virtualPage.h"
 	"stdio.h"
 
-1617205989 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\arbitrarymemmap.cpp
+1617202389 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\arbitrarymemmap.cpp
 	"ArbitraryMemMap.h"
 
-1618027857 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\arbitrarymemmap.h
+1618024257 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\arbitrarymemmap.h
 	"Defines.h"
 	"AMM/addressSpace.h"
 	"AMM/virtualPage.h"
@@ -3234,7 +3234,7 @@
 1636869838 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\remappingvalues.cpp
 	"remappingValues.h"
 
-1617205989 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\remappingvalues.h
+1617202389 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\remappingvalues.h
 
 1636870832 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\filepage.h
 	"addressSpace.h"
@@ -3856,24 +3856,49 @@
 	"lualib.h"
 	"lj_arch.h"
 
-1635043568 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\lua.h
+1635047168 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\lua.h
 	<stdarg.h>
 	<stddef.h>
 	"luaconf.h"
 
-1635043568 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\luaconf.h
+1635047168 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\luaconf.h
 	<limits.h>
 	<stddef.h>
 	<assert.h>
 
-1635043567 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\lauxlib.h
+1635047167 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\lauxlib.h
 	<stddef.h>
 	<stdio.h>
 	"lua.h"
 
-1635043568 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\lualib.h
+1635047168 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\lualib.h
 	"lua.h"
 
 1635043567 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajit\src\lj_arch.h
+	"lua.h"
+
+1639682357 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\callbackonwritepage.cpp
+	"callbackOnWritePage.h"
+
+1639681932 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\callbackonwritepage.h
+	"virtualMemorySpace.h"
+	"addressSpace.h"
+
+1637374738 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajitlove\src\lua.h
+	<stdarg.h>
+	<stddef.h>
+	"luaconf.h"
+
+1637374738 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajitlove\src\luaconf.h
+	<limits.h>
+	<stddef.h>
+	<assert.h>
+
+1637374737 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajitlove\src\lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1637374738 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luajitlove\src\lualib.h
 	"lua.h"
 

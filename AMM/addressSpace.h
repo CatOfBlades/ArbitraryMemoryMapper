@@ -30,6 +30,7 @@ class addressSpace
 	virtual void setParent(addressSpace* addrSp);
 	addressSpace();
     addressSpace(addressSpace* parent,  unsigned int Size);
+    void initialLink(addressSpace* parent,  unsigned int Size);
     virtual ~addressSpace();
     //virtual void operator delete(void * p);
 };
