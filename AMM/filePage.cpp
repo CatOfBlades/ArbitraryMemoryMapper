@@ -96,36 +96,7 @@ void filePage::cleanupAndUnlink()
 
 void filePage::setParent(addressSpace* addrSp)
 {
-    _last = addrSp;
-    if(addrSp)
-    {
-        _next = addrSp->_next;
-        if(_next == NULL)
-        {
-            _bottom = this;
-
-            //pages need to be informed what the new bottom of the list is.
-            addressSpace* _search = addrSp->_top;
-            while(_search != NULL)
-            {
-                _search->_bottom = _bottom;
-                _search = _search->_next;
-            }
-
-        }
-        else
-        {
-            _bottom = addrSp->_bottom;
-        }
-        addrSp->_next = _this;
-        _top = addrSp->_top;
-    }
-    else
-    {
-        _next = NULL;
-        _bottom = NULL;
-        _top = NULL;
-    }
+    initialLink(addrSp,0);
 }
 
 filePage::filePage()

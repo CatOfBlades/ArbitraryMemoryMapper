@@ -100,37 +100,7 @@ memorySpacePage::memorySpacePage(addressSpace* parent, unsigned int Size)
     _pageSize = Size;
     _pageContent = new unsigned char[_pageSize];
 
-    _last = parent;
-    _this = this;
-    if(parent)
-    {
-        _next = parent->_next;
-        if(_next == NULL)
-        {
-            _bottom = this;
-
-            //pages need to be informed what the new bottom of the list is.
-            addressSpace* _search = parent->_top;
-            while(_search != NULL)
-            {
-                _search->_bottom = _bottom;
-                _search = _search->_next;
-            }
-
-        }
-        else
-        {
-            _bottom = parent->_bottom;
-        }
-        parent->_next = _this;
-        _top = parent->_top;
-    }
-    else
-    {
-        _next = NULL;
-        _bottom = NULL;
-        _top = NULL;
-    }
+    initialLink(parent,Size);
 }
 memorySpacePage::~memorySpacePage()
 {

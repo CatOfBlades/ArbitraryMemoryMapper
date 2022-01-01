@@ -6,7 +6,7 @@
 
 typedef void (*pageCallback)(virtualMemorySpace* vm,addressSpace* addrSp,unsigned long int ofss,unsigned char* buffer, unsigned long int len);
 
-class callbackPage: public addressSpace
+class callbackPage : public addressSpace
 {
     pageCallback callback;
     virtualMemorySpace* vm;

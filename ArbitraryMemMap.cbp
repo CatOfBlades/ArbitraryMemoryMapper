@@ -158,7 +158,7 @@
 			<Add library="kernel32" />
 			<Add library="user32" />
 			<Add library="Advapi32" />
-			<Add directory="lua-5.4.3/src" />
+			<Add directory="LuaJITlove/src" />
 		</Linker>
 		<Unit filename="AMM/InterprocessMemorySpace.cpp">
 			<Option target="Debug" />
@@ -232,15 +232,7 @@
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
 		</Unit>
-		<Unit filename="AMM/addressSpace.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-			<Option target="LuaMap" />
-			<Option target="Lib" />
-			<Option target="UnitTest" />
-			<Option target="Lib32" />
-			<Option target="LuaMap32" />
-		</Unit>
+		<Unit filename="AMM/addressSpace.cpp" />
 		<Unit filename="AMM/addressSpace.h">
 			<Option target="Debug" />
 			<Option target="Release" />

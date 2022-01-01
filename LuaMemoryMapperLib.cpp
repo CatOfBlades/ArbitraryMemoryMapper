@@ -150,7 +150,17 @@ void linkPageToMemorySpace(std::string MemorySpaceName,std::string PageName)
     addressSpace* AS = memoryPages.at(PageName);
     //Sleep(100);
     //printf("memorySpaceName:%s\n",MemorySpaceName.c_str());
-    memorySpaces.at(MemorySpaceName)->addAddressSpace(AS);
+    virtualMemorySpace* vm;
+    try
+    {
+        vm = memorySpaces.at(MemorySpaceName);
+    }
+    catch (const std::out_of_range& oor)
+    {
+        printf("memorySpaceName:%s not found in list\n",MemorySpaceName.c_str());
+        return;
+    }
+    vm->addAddressSpace(AS);
 }
 
 void destroyPage(std::string ID)

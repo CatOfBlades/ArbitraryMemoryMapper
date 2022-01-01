@@ -121,37 +121,8 @@ loggedPage::loggedPage(addressSpace* parent, std::string logName, addressSpace* 
     logfile = fopen(logName.c_str(),"a");
     LinkedPage = page;
     memoryTypeID = "LogdPage";
-    _last = parent;
-    _this = this;
-    if(parent)
-    {
-        _next = parent->_next;
-        if(_next == NULL)
-        {
-            _bottom = this;
 
-            //pages need to be informed what the new bottom of the list is.
-            addressSpace* _search = parent->_top;
-            while(_search != NULL)
-            {
-                _search->_bottom = _bottom;
-                _search = _search->_next;
-            }
-
-        }
-        else
-        {
-            _bottom = parent->_bottom;
-        }
-        parent->_next = _this;
-        _top = parent->_top;
-    }
-    else
-    {
-        _next = NULL;
-        _bottom = NULL;
-        _top = NULL;
-    }
+    initialLink(parent,0);
     LinkedPage->_this = LinkedPage;
     LinkedPage->_next = _next;
     LinkedPage->_last = _last;
