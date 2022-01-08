@@ -158,6 +158,9 @@
 			<Add library="kernel32" />
 			<Add library="user32" />
 			<Add library="Advapi32" />
+			<Add library="opengl32" />
+			<Add library="glu32" />
+			<Add library="gdi32" />
 			<Add directory="LuaJITlove/src" />
 		</Linker>
 		<Unit filename="AMM/InterprocessMemorySpace.cpp">
@@ -264,6 +267,10 @@
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
 		</Unit>
+		<Unit filename="AMM/math/hsv2rgb.cpp" />
+		<Unit filename="AMM/math/hsv2rgb.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="AMM/multiPage.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -282,6 +289,8 @@
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
 		</Unit>
+		<Unit filename="AMM/pageVisualizer.cpp" />
+		<Unit filename="AMM/pageVisualizer.h" />
 		<Unit filename="AMM/selfRefrence.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />

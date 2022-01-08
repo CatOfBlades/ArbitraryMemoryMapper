@@ -72,6 +72,10 @@ virtualPage::virtualPage(addressSpace* parent,  unsigned int Size)
 
     initialLink(parent,Size);
 
+#ifdef BUILT_IN_VISUALIZER
+    VisWM = visualizePage(this);
+#endif // BUILT_IN_VISUALIZER
+
 }
 //#include <windows.h>
 virtualPage::~virtualPage()

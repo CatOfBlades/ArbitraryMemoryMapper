@@ -33,4 +33,6 @@
 //if you want to build in the split byte reader that returns a weighted floating point value between two addresses.
 #define SUPPORT_UNUSUAL_MEMORY_ACCESSES
 
+#define BUILT_IN_VISUALIZER
+
 #endif // CONFIG_H_INCLUDED
