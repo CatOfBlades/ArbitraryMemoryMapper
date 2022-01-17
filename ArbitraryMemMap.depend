@@ -3925,3 +3925,201 @@
 	"../config.h"
 	"pageVisualizer.h"
 
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\callbackonwritepage.cpp
+	"callbackOnWritePage.h"
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\callbackonwritepage.h
+	"virtualMemorySpace.h"
+	"addressSpace.h"
+
+1642436008 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\virtualmemoryspace.h
+	"../Defines.h"
+	"addressSpace.h"
+	"virtualPage.h"
+	<vector>
+
+1642436008 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\defines.h
+	"config.h"
+
+1642436009 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\config.h
+
+1642440899 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\addressspace.h
+	"../config.h"
+
+1642444965 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\pagevisualizer.h
+	<windows.h>
+	<gl/gl.h>
+	<list>
+	<vector>
+	<string>
+	<memory>
+	"math/hsv2rgb.h"
+	"addressSpace.h"
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\math\hsv2rgb.h
+	<math.h>
+	<cstdint>
+
+1642436463 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\virtualpage.h
+	"addressSpace.h"
+
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\filepage.cpp
+	"filePage.h"
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\filepage.h
+	"addressSpace.h"
+	<stdio.h>
+	<string>
+
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\interprocessmemoryspace.cpp
+	"../Defines.h"
+	"InterprocessMemorySpace.h"
+	<stdio.h>
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\interprocessmemoryspace.h
+	"addressSpace.h"
+	"../Defines.h"
+	<Windows.h>
+
+1642440899 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\addressspace.cpp
+	"addressSpace.h"
+
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\loggedpage.cpp
+	"LoggedPage.h"
+	"time.h"
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\loggedpage.h
+	"addressSpace.h"
+	<string>
+	<stdio.h>
+
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\luapage.cpp
+	"LuaPage.h"
+	<string>
+	<stdio.h>
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\luapage.h
+	"lua.h"
+	"lauxlib.h"
+	"lualib.h"
+	"addressSpace.h"
+	<string>
+
+1642436009 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\luajitlove\src\lua.h
+	<stdarg.h>
+	<stddef.h>
+	"luaconf.h"
+
+1642436009 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\luajitlove\src\luaconf.h
+	<limits.h>
+	<stddef.h>
+	<assert.h>
+
+1642436008 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\luajitlove\src\lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1642436009 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\luajitlove\src\lualib.h
+	"lua.h"
+
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\math\hsv2rgb.cpp
+	"hsv2rgb.h"
+
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\multipage.cpp
+	"multiPage.h"
+	"../Defines.h"
+	<windows.h>
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\multipage.h
+	"addressSpace.h"
+	"virtualMemorySpace.h"
+	<vector>
+
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\selfrefrence.cpp
+	"selfRefrence.h"
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\selfrefrence.h
+	"addressSpace.h"
+	"virtualMemorySpace.h"
+
+1642436008 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\virtualmemoryspace.cpp
+	"virtualMemorySpace.h"
+	<Windows.h>
+	<stdio.h>
+
+1642436007 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\windowspageaccessor.cpp
+	"WindowsPageAccessor.h"
+	"../Defines.h"
+	"psapi.h"
+
+1642436007 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\windowspageaccessor.h
+	<windows.h>
+	<stdio.h>
+	<vector>
+	"addressSpace.h"
+	"psapi.h"
+
+1642436008 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\ammlib.cpp
+	"AMMlib.h"
+	"LuaMemoryMapperLib.h"
+
+1642436008 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\ammlib.h
+	<Windows.h>
+	<unordered_map>
+	<string>
+	"AMM/virtualMemorySpace.h"
+	"AMM/addressSpace.h"
+	"lua.h"
+	"lauxlib.h"
+	"lualib.h"
+
+1642436009 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\luamemorymapperlib.h
+	<iostream>
+	<stdio.h>
+	"Defines.h"
+	<Windows.h>
+	<unistd.h>
+	<string>
+	<vector>
+	<unordered_map>
+	"ArbitraryMemMap.h"
+	"AMM/WindowsPageAccessor.h"
+	"lua.h"
+	"lauxlib.h"
+	"lualib.h"
+
+1642436008 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\arbitrarymemmap.h
+	"Defines.h"
+	"AMM/addressSpace.h"
+	"AMM/virtualPage.h"
+	"AMM/virtualMemorySpace.h"
+	"AMM/LoggedPage.h"
+	"AMM/InterprocessMemorySpace.h"
+	"AMM/selfRefrence.h"
+	"AMM/multiPage.h"
+	"AMM/LuaPage.h"
+	"AMM/filePage.h"
+
+1642437839 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\virtualpage.cpp
+	"virtualPage.h"
+	"stdio.h"
+
+1642436008 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\arbitrarymemmap.cpp
+	"ArbitraryMemMap.h"
+
+1642445289 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\luamemorymapperlib.cpp
+	"LuaMemoryMapperLib.h"
+	<vector>
+	"AMM\pageVisualizer.h"
+
+1642436009 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\remappingvalues.cpp
+	"remappingValues.h"
+
+1642436009 c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\remappingvalues.h
+
+1642444918 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\amm\pagevisualizer.cpp
+	"../config.h"
+	"pageVisualizer.h"
+	"addressSpace.h"
+

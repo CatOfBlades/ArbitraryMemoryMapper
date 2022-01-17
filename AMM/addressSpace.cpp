@@ -54,6 +54,7 @@ void addressSpace::setParent(addressSpace* addrSp)
         _top = nullptr;
     }
 }
+
 addressSpace::addressSpace()
 {
     memoryTypeID = "AddrSpac";

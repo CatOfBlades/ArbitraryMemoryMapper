@@ -3,18 +3,42 @@
 #ifdef BUILT_IN_VISUALIZER
 
 #include "pageVisualizer.h"
+#include "addressSpace.h"
 
-VisualizerWindowManager::VisualizerWindowManager(addressSpace* VP)
+void VisualizerWindowManager::addVisualizer(std::shared_ptr<addressSpace> as)
 {
-    visualizedPage = VP;
+    visList.emplace_back( std::make_unique<pageVisualizer>(as) );
+    cleanList();
+}
+
+bool IsMarkedToDelete(std::unique_ptr<pageVisualizer>& pv)
+{
+    return pv->windowClosed==1;
+}
+
+void VisualizerWindowManager::cleanList()
+{
+    visList.erase(std::remove_if(visList.begin(), visList.end(), IsMarkedToDelete),visList.end());
+}
+
+void pageVisualizer::Visualize()
+{
     childWindow = CreateThread(0,0,PageDisplayWindowWorkerThread,this,0,0);
 }
-VisualizerWindowManager::~VisualizerWindowManager()
+
+pageVisualizer::pageVisualizer(std::shared_ptr<addressSpace> as)
+{
+    visualizedPage = as;
+    windowClosed = 0;
+    Visualize();
+}
+
+pageVisualizer::~pageVisualizer()
 {
     Beep(600,100);
 }
 
-void VisualizerWindowManager::InitPointlist()
+void pageVisualizer::InitPointlist()
 {
 
     pointlist.clear();
@@ -35,7 +59,7 @@ void VisualizerWindowManager::InitPointlist()
     }
 }
 
-LRESULT CALLBACK VisualizerWindowManager::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK pageVisualizer::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg)
     {
@@ -64,7 +88,7 @@ LRESULT CALLBACK VisualizerWindowManager::WindowProc(HWND hwnd, UINT uMsg, WPARA
     return 0;
 }
 
-void VisualizerWindowManager::DisableOpenGL()
+void pageVisualizer::DisableOpenGL()
 {
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(hRC);
@@ -73,7 +97,7 @@ void VisualizerWindowManager::DisableOpenGL()
 
 DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter)
 {
-    VisualizerWindowManager* VWM = (VisualizerWindowManager*)lpParameter;
+    pageVisualizer* VWM = (pageVisualizer*)lpParameter;
     WNDCLASSEX wcex;
     HWND* hwnd = &VWM->hwnd;
     HDC* hDC = &VWM->hDC;
@@ -86,7 +110,7 @@ DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter)
 
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_OWNDC;
-    wcex.lpfnWndProc = VisualizerWindowManager::WindowProc;
+    wcex.lpfnWndProc = pageVisualizer::WindowProc;
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
@@ -201,7 +225,7 @@ DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter)
     return EXIT_SUCCESS;
 }
 
-void VisualizerWindowManager::EnableOpenGL(HDC* hdc, HGLRC* hglrc)
+void pageVisualizer::EnableOpenGL(HDC* hdc, HGLRC* hglrc)
 {
     PIXELFORMATDESCRIPTOR pfd;
 
@@ -232,9 +256,13 @@ void VisualizerWindowManager::EnableOpenGL(HDC* hdc, HGLRC* hglrc)
     wglMakeCurrent(*hdc, *hglrc);
 }
 
-std::unique_ptr<VisualizerWindowManager> visualizePage(addressSpace* page)
-{
-    return std::unique_ptr<VisualizerWindowManager>( new VisualizerWindowManager(page));
-}
+	VisualizerWindowManager::VisualizerWindowManager()
+	{
+
+	}
+	VisualizerWindowManager::~VisualizerWindowManager()
+	{
+
+	}
 
 #endif // BUILT_IN_VISUALIZER

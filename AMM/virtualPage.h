@@ -3,17 +3,8 @@
 
 #include "addressSpace.h"
 
-#include "../config.h"
-#ifdef BUILT_IN_VISUALIZER
-    #include <memory>
-    #include "pageVisualizer.h"
-#endif // BUILT_IN_VISUALIZER
-
 class virtualPage: public addressSpace
 {
-    #ifdef BUILT_IN_VISUALIZER
-    std::unique_ptr<VisualizerWindowManager> VisWM;
-    #endif // BUILT_IN_VISUALIZER
     public:
 	unsigned long int _pageSize;
 	bool _pageFree;

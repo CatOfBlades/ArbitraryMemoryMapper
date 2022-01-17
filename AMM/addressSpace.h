@@ -2,6 +2,8 @@
 #ifndef ADDRESSSPACE_H_INCLUDED
 #define ADDRESSSPACE_H_INCLUDED
 
+#include "../config.h"
+
 class addressSpace
 {
 	public:

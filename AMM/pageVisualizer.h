@@ -3,6 +3,7 @@
 
 #include <windows.h>
 #include <gl/gl.h>
+#include <list>
 #include <vector>
 #include <string>
 #include <memory>
@@ -19,33 +20,47 @@ struct quadcord
 
 DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter);
 
-class VisualizerWindowManager
+class pageVisualizer
 {
-public:
-	addressSpace* visualizedPage;
+    public:
+
+    int windowClosed;
+
+	std::shared_ptr<addressSpace> visualizedPage;
 	std::vector<quadcord> pointlist;
 	LRESULT CALLBACK  static WindowProc(HWND, UINT, WPARAM, LPARAM);
 	void EnableOpenGL( HDC*, HGLRC*);
 	void DisableOpenGL();
 	void InitPointlist();
 
+	void Visualize();
+
     HWND hwnd;
     HDC hDC;
     HGLRC hRC;
     HANDLE childWindow;
-    /*
-	{
-		return EXIT_SUCCESS;
-	}
-	*/
 
-	VisualizerWindowManager(addressSpace* visualizedPage);
+    pageVisualizer(std::shared_ptr<addressSpace> as);
+    ~pageVisualizer();
+};
+
+class VisualizerWindowManager
+{
+
+    void cleanList();
+public:
+
+    std::list< std::unique_ptr<pageVisualizer> > visList;
+
+    void addVisualizer(std::shared_ptr<addressSpace> as);
+
+	VisualizerWindowManager();
 	~VisualizerWindowManager();
 
 };
 
 
-std::unique_ptr<VisualizerWindowManager> visualizePage(addressSpace* page);
+//std::unique_ptr<VisualizerWindowManager> visualizePage(void* page);
 
 
 #endif // PAGEVISUALIZER_H_INCLUDED

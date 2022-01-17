@@ -15,7 +15,10 @@ These contexts being filetypes, videogame memories or any context that defines v
 
 std::unordered_map<std::string,virtualMemorySpace*> memorySpaces; //This is the memory contexts we have opened with createMemoryContext()
 std::unordered_map<std::string,addressSpace*> memoryPages;
-
+#ifdef BUILT_IN_VISUALIZER
+#include "AMM\pageVisualizer.h"
+VisualizerWindowManager VWM;
+#endif // BUILT_IN_VISUALIZER
 /**
 for creating interfaces on the C++ side we need a way to expose the memory space and address space pointers
 **/
@@ -161,6 +164,9 @@ void linkPageToMemorySpace(std::string MemorySpaceName,std::string PageName)
         return;
     }
     vm->addAddressSpace(AS);
+    #ifdef BUILT_IN_VISUALIZER
+        VWM.addVisualizer(std::make_shared<addressSpace>(*AS));
+    #endif // BUILT_IN_VISUALIZER
 }
 
 void destroyPage(std::string ID)
