@@ -1,6 +1,5 @@
 
 
-
 /**
 So what I want to do with this is make an application that takes a .lua file and produces an active memory setup.
 This way I can craft memory mappings without having to recompile.

@@ -25,7 +25,7 @@ systemDataManager::systemDataManager()
     {
         #ifdef DBG_MESSAGES
         lastError = GetLastError();
-        printf( "Could not get process working set size. Error: %i \n", lastError);
+        //printf( "Could not get process working set size. Error: %i \n", lastError);
         #endif
     }
     else
@@ -42,14 +42,14 @@ systemDataManager::systemDataManager()
         {
             #ifdef DBG_MESSAGES
             lastError = GetLastError();
-            printf( "Could not set process working set size. Error: %i \n", lastError);
+            //printf( "Could not set process working set size. Error: %i \n", lastError);
             #endif
         }
         if(!GetProcessMemoryInfo(thisProcessHandle,&memCounters,sizeof(memCounters)))
         {
             #ifdef DBG_MESSAGES
             lastError = GetLastError();
-            printf( "Could not get process memory info structure. Error: %i \n", lastError);
+            //printf( "Could not get process memory info structure. Error: %i \n", lastError);
             #endif
         }
   }

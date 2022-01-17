@@ -22,6 +22,7 @@ int main()
 {
 
 #ifdef WINBUILD
+/*
     HANDLE hProcess=GetCurrentProcess();
     HANDLE hToken;
 
@@ -34,12 +35,20 @@ int main()
         }
         CloseHandle(hToken);
     }
+    */
 #endif // WINBUILD
 
     //Beep(600,100);
     lua_State* L = luaL_newstate();
+    if(!L)
+    {
+        Beep(600,100);
+        return -1;
+    }
     luaL_openlibs(L);
+
     lua_RegisterMemoryFunctions(L);
+
     int r = luaL_dofile(L, "MemoryMap.lua");
     lua_handle_error(L, r);
     return 0;

@@ -110,6 +110,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-m32" />
+					<Add library="LuaJIT/src/lua51.lib" />
 				</Linker>
 			</Target>
 			<Target title="Lua51Lib">
@@ -418,7 +419,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -437,7 +437,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -456,7 +455,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -466,7 +464,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -485,7 +482,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -495,7 +491,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -514,7 +509,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -524,7 +518,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -543,7 +536,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -562,7 +554,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -572,7 +563,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -591,7 +581,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -610,7 +599,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -620,7 +608,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -639,7 +626,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -667,7 +653,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -677,7 +662,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -696,7 +680,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -706,7 +689,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -725,7 +707,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -753,7 +734,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -763,7 +743,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -791,7 +770,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -810,7 +788,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -829,7 +806,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -839,7 +815,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -858,7 +833,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -868,7 +842,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -932,7 +905,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -951,7 +923,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -961,7 +932,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
@@ -980,7 +950,6 @@
 			<Option target="Release" />
 			<Option target="LuaMap" />
 			<Option target="UnitTest" />
-			<Option target="LuaMap32" />
 			<Option target="Lua51Lib" />
 			<Option target="Lua51Lib32" />
 		</Unit>
