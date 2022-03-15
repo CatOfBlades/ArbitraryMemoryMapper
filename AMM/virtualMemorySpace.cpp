@@ -420,7 +420,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
 
 }
 
-unsigned long int RW_Mem_From_Page_No(unsigned long int pageNum, bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
+unsigned long int virtualMemorySpace::RW_Mem_From_Page_No(unsigned long int pageNum, bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
 {
     unsigned long int totalBytesRead = 0;
 
@@ -428,17 +428,17 @@ unsigned long int RW_Mem_From_Page_No(unsigned long int pageNum, bool write, uns
     unsigned long int i=0;
     while(i < pageNum)
     {
-        _search = _search._next;
+        _search = _search->_next;
         i++;
     }
 
     if(write)
     {
-        _search.writeMem(addr,buf,len);
+        _search->writeMem(addr,buf,len);
     }
     else
     {
-        _search.readMem(addr,buf,len);
+        _search->readMem(addr,buf,len);
     }
     totalBytesRead = len;
 

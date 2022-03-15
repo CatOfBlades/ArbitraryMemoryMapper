@@ -10,7 +10,7 @@
 #define MEMSPACE_LOOP_DEFAULT 1
 
 //if memory should be accessed byte by byte or in chunks.
-#define USE_BYTEWISE_RW
+//#define USE_BYTEWISE_RW
 
 //if you want a lot of debug messages in your console.
 //#define DBG_MESSAGES
