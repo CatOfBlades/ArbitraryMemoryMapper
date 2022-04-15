@@ -13,7 +13,7 @@ These contexts being filetypes, videogame memories or any context that defines v
 #include <vector>
 
 std::unordered_map<std::string,virtualMemorySpace*> memorySpaces; //This is the memory contexts we have opened with createMemoryContext()
-std::unordered_map<std::string,addressSpace*> memoryPages;
+std::unordered_map<std::string,std::shared_ptr<addressSpace>> memoryPages;
 #ifdef BUILT_IN_VISUALIZER
 #include "AMM\pageVisualizer.h"
 VisualizerWindowManager VWM;
@@ -25,7 +25,7 @@ std::unordered_map<std::string,virtualMemorySpace*>* getMemorySpaceList()
 {
     return &memorySpaces;
 }
-std::unordered_map<std::string,addressSpace*>* getMemoryPageList()
+std::unordered_map<std::string,std::shared_ptr<addressSpace>>* getMemoryPageList()
 {
     return &memoryPages;
 }
@@ -149,7 +149,7 @@ void destroyMemoryContext(std::string ID)
 
 void linkPageToMemorySpace(std::string MemorySpaceName,std::string PageName)
 {
-    addressSpace* AS = memoryPages.at(PageName);
+    std::shared_ptr<addressSpace> AS = memoryPages.at(PageName);
     //Sleep(100);
     //printf("memorySpaceName:%s\n",MemorySpaceName.c_str());
     virtualMemorySpace* vm;
@@ -164,7 +164,7 @@ void linkPageToMemorySpace(std::string MemorySpaceName,std::string PageName)
     }
     vm->addAddressSpace(AS);
     #ifdef BUILT_IN_VISUALIZER
-        VWM.addVisualizer(std::make_shared<addressSpace>(*AS));
+        //VWM.addVisualizer(std::make_shared<addressSpace>(*AS));
     #endif // BUILT_IN_VISUALIZER
 }
 
@@ -172,7 +172,6 @@ void destroyPage(std::string ID)
 {
     if(memoryPages.find(ID)!=memoryPages.end())
     {
-        memoryPages.at(ID)->cleanupAndUnlink();
         memoryPages.erase(ID);
     }
     else
@@ -183,10 +182,10 @@ void destroyPage(std::string ID)
 
 void addVirtualPage(std::string ID,unsigned int PageSize)
 {
-    addressSpace* AS = new virtualPage(NULL,(unsigned int)PageSize);
+    std::shared_ptr<addressSpace> AS = std::make_shared<virtualPage>((unsigned int)PageSize);
 
-    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
-    std::pair<std::string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
+    std::pair<std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -194,7 +193,6 @@ void addVirtualPage(std::string ID,unsigned int PageSize)
     }
     else
     {
-        delete AS; //if theres already a page with the name we don't need the new one.
         return;
     }
     return;
@@ -214,10 +212,10 @@ void addInterprocessPage(std::string ID,unsigned int PageSize,std::string window
     {
         //Beep(600,100);
     }
-    addressSpace* AS = new applicationMem(0, processid, PageSize,address);
+    std::shared_ptr<addressSpace> AS = std::make_shared<applicationMem>( processid, PageSize,address);
 
-    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
-    std::pair <std::string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
+    std::pair <std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -225,7 +223,6 @@ void addInterprocessPage(std::string ID,unsigned int PageSize,std::string window
     }
     else
     {
-        delete AS; //if theres already a page with the name we don't need the new one.
         return;
     }
     return;
@@ -235,7 +232,7 @@ void addInterprocessPage(std::string ID,unsigned int PageSize,std::string window
 void addMultiPage(std::string ID, unsigned int pagelistSize,std::vector<std::string*> pagelist)
 {
 
-    multiPage* AS = new multiPage();
+    auto AS = std::make_shared<multiPage>();
 
     while(pagelistSize>0)
     {
@@ -243,8 +240,8 @@ void addMultiPage(std::string ID, unsigned int pagelistSize,std::vector<std::str
         pagelistSize-=1;
     }
 
-    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
-    std::pair <std::string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
+    std::pair <std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -252,7 +249,6 @@ void addMultiPage(std::string ID, unsigned int pagelistSize,std::vector<std::str
     }
     else
     {
-        delete AS; //if theres already a page with the name we don't need the new one.
         return;
     }
     return;
@@ -260,10 +256,10 @@ void addMultiPage(std::string ID, unsigned int pagelistSize,std::vector<std::str
 
 void addMetaPage(std::string ID,unsigned int PageSize,std::string SubMemorySpaceName,char* address)
 {
-    addressSpace* AS = new memorySpacePage(memorySpaces.at(SubMemorySpaceName),address, (unsigned int)PageSize);
+    std::shared_ptr<addressSpace> AS = std::make_shared<memorySpacePage>(memorySpaces.at(SubMemorySpaceName),address, (unsigned int)PageSize);
 
-    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
-    std::pair <std::string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
+    std::pair <std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -271,7 +267,6 @@ void addMetaPage(std::string ID,unsigned int PageSize,std::string SubMemorySpace
     }
     else
     {
-        delete AS; //if theres already a page with the name we don't need the new one.
         return;
     }
 }
@@ -280,11 +275,11 @@ void addLuaPage(std::string ID, std::string luafile) //Lua defined memory page.
     lua_State* L = luaL_newstate();
     luaL_openlibs(L);
     lua_RegisterMemoryFunctions(L);
-    luaPage* AS = new luaPage(L,NULL,luafile);
+    std::shared_ptr<luaPage> AS = std::make_shared<luaPage>(L,luafile);
     AS->freeLuaOnDestruct = 1;
 
-    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
-    std::pair <std::string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
+    std::pair<std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -292,16 +287,15 @@ void addLuaPage(std::string ID, std::string luafile) //Lua defined memory page.
     }
     else
     {
-        delete AS; //if theres already a page with the name we don't need the new one.
         return;
     }
 }
 void addLoggedPage(std::string ID, std::string logfile, std::string pageID)
 {
-    loggedPage* AS = new loggedPage(logfile,memoryPages.at(pageID));
+    std::shared_ptr<loggedPage> AS = std::make_shared<loggedPage>(logfile,memoryPages.at(pageID));
 
-    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
-    std::pair <std::string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
+    std::pair <std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -309,17 +303,16 @@ void addLoggedPage(std::string ID, std::string logfile, std::string pageID)
     }
     else
     {
-        delete AS; //if theres already a page with the name we don't need the new one.
         return;
     }
 }
 
 void addFilePage(std::string ID,std::string filename,unsigned int length)
 {
-    filePage* AS = new filePage(filename,length);
+    std::shared_ptr<filePage> AS = std::make_shared<filePage>(filename,length);
 
-    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
-    std::pair <std::string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
+    std::pair <std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -327,7 +320,6 @@ void addFilePage(std::string ID,std::string filename,unsigned int length)
     }
     else
     {
-        delete AS; //if theres already a page with the name we don't need the new one.
         return;
     }
 }
@@ -335,10 +327,10 @@ void addFilePage(std::string ID,std::string filename,unsigned int length)
 #ifdef BUILD_WIN_MEMACCESSOR
 void addMPA_Page(std::string ID)
 {
-    MPA_page* AS = new MPA_page();
+    std::shared_ptr<MPA_page> AS = std::make_shared<MPA_page>();
 
-    std::pair<std::unordered_map<std::string,addressSpace*>::iterator,bool> IB;
-    std::pair <std::string,addressSpace*> valu(ID,AS);
+    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
+    std::pair <std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
     IB = memoryPages.insert(valu);
     if(IB.second)
     {
@@ -346,7 +338,6 @@ void addMPA_Page(std::string ID)
     }
     else
     {
-        delete AS; //if theres already a page with the name we don't need the new one.
         return;
     }
 }
@@ -586,7 +577,8 @@ int lua_multiPageSwapBanks(lua_State* L)
     if( memoryPages.at(ID)->memoryTypeID == "multpage" )
     {
         //printf("banknum:%i\n",bankNum);
-        ((multiPage*)memoryPages.at(ID))->switchBank(bankNum);
+        std::shared_ptr<multiPage> derived = std::dynamic_pointer_cast<multiPage>(memoryPages.at(ID));
+        derived->switchBank(bankNum);
     }
     return 0;
 }

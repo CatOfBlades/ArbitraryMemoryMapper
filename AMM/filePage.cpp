@@ -89,16 +89,6 @@ void filePage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned lon
 	return;
 }
 
-void filePage::cleanupAndUnlink()
-{
-	return;
-}
-
-void filePage::setParent(addressSpace* addrSp)
-{
-    initialLink(addrSp,0);
-}
-
 filePage::filePage()
 {
     fp = stdout;//STDOUT_FILENO; //maybe should be stdin?? Assuming most people who want to construct a blank page are using it for interprocess communication...

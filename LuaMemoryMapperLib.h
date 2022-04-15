@@ -45,7 +45,7 @@ extern "C"
 for creating interfaces on the C++ side we need a way to expose the memory space and address space pointers
 **/
 std::unordered_map<std::string,virtualMemorySpace*>* getMemorySpaceList();
-std::unordered_map<std::string,addressSpace*>* getMemoryPageList();
+std::unordered_map<std::string,std::shared_ptr<addressSpace>>* getMemoryPageList();
 /** **/
 
 std::string createMemoryContext(std::string ID);

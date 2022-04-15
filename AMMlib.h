@@ -31,7 +31,7 @@ extern "C"
 
 
 DLL_EXPORT std::unordered_map<std::string,virtualMemorySpace*>* libGetMemorySpaceList();
-DLL_EXPORT std::unordered_map<std::string,addressSpace*>* libGetMemoryPageList();
+DLL_EXPORT std::unordered_map<std::string,std::shared_ptr<addressSpace>>* libGetMemoryPageList();
 
 std::string DLL_EXPORT libCreateMemoryContext(std::string ID);
 void DLL_EXPORT libDestroyMemoryContext(std::string ID);

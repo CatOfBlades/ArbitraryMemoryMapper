@@ -32,7 +32,7 @@ DLL_EXPORT std::unordered_map<std::string,virtualMemorySpace*>* libGetMemorySpac
 {
     return getMemorySpaceList();
 }
-DLL_EXPORT std::unordered_map<std::string,addressSpace*>* libGetMemoryPageList()
+DLL_EXPORT std::unordered_map<std::string,std::shared_ptr<addressSpace>>* libGetMemoryPageList()
 {
     return getMemoryPageList();
 }

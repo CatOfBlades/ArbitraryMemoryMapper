@@ -13,7 +13,7 @@ class loggedPage : public addressSpace
     public:
     FILE* logfile;
     std::string logfileName;
-    addressSpace* LinkedPage;
+    std::shared_ptr<addressSpace> LinkedPage;
 	unsigned long int _size();
 	bool _is_free();
 	unsigned char* _content();
@@ -27,8 +27,8 @@ class loggedPage : public addressSpace
 	void cleanupAndUnlink();
 
 	void setParent(addressSpace* addrSp);
-	loggedPage(std::string logName,addressSpace* page);
-    loggedPage(addressSpace* parent, std::string logName,addressSpace* page);
+	loggedPage(std::string logName,std::shared_ptr<addressSpace> page);
+    //loggedPage( std::string logName,addressSpace* page);
     ~loggedPage();
 };
 

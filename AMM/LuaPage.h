@@ -32,8 +32,7 @@ class luaPage: public addressSpace
 
 	void setParent(addressSpace* addrSp);
 	luaPage(lua_State* L);
-    luaPage(lua_State* L,addressSpace* parent,std::string pageDef);
-    luaPage(lua_State* L,addressSpace* parent);
+    luaPage(lua_State* L,std::string pageDef);
     ~luaPage();
 };
 

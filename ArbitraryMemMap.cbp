@@ -14,23 +14,9 @@
 				<Option compiler="clang" />
 				<Option createDefFile="1" />
 				<Compiler>
-					<Add option="-fms-extensions" />
-					<Add option="-fsanitize=address" />
-					<Add option="-ftrapv" />
-					<Add option="-fsanitize=undefined-trap -fsanitize-undefined-trap-on-error" />
-					<Add option="-Wnon-virtual-dtor" />
-					<Add option="-Wbind-to-temporary-copy" />
-					<Add option="-Wambiguous-member-template" />
-					<Add option="-Wextra-tokens" />
-					<Add option="-pedantic-errors" />
-					<Add option="-pedantic" />
-					<Add option="-Weverything" />
 					<Add option="-Wall" />
 					<Add option="-g" />
 				</Compiler>
-				<Linker>
-					<Add option="-fsanitize=address" />
-				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/ArbitraryMemMap" prefix_auto="1" extension_auto="1" />
@@ -146,12 +132,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wnon-virtual-dtor" />
-			<Add option="-Wbind-to-temporary-copy" />
-			<Add option="-Wambiguous-member-template" />
-			<Add option="-Wextra-tokens" />
 			<Add option="-Wall" />
-			<Add option="-std=c++20" />
-			<Add option="-fpermissive" />
 			<Add directory="LuaJITlove/src" />
 		</Compiler>
 		<Linker>

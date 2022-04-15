@@ -127,47 +127,6 @@ void luaPage::cleanupAndUnlink()
     delete this;
 }
 
-void luaPage::setParent(addressSpace* addrSp)
-{
-
-    lua_getglobal(pageLuaState,"setParent");
-    if(lua_isfunction(pageLuaState,-1))
-    {
-        lua_pushnumber(pageLuaState,(unsigned long int)addrSp);
-        lua_pcall(pageLuaState,1,0,0);
-    }
-
-    _last = addrSp;
-    if(addrSp)
-    {
-        _next = addrSp->_next;
-        if(_next == NULL)
-        {
-            _bottom = this;
-
-            //pages need to be informed what the new bottom of the list is.
-            addressSpace* _search = addrSp->_top;
-            while(_search != NULL)
-            {
-                _search->_bottom = _bottom;
-                _search = _search->_next;
-            }
-
-        }
-        else
-        {
-            _bottom = addrSp->_bottom;
-        }
-        addrSp->_next = _this;
-        _top = addrSp->_top;
-    }
-    else
-    {
-        _next = NULL;
-        _bottom = NULL;
-        _top = NULL;
-    }
-}
 luaPage::luaPage(lua_State* L)
 {
     memoryTypeID = "Lua_Page";
@@ -182,13 +141,8 @@ luaPage::luaPage(lua_State* L)
         pageLuaState = luaL_newstate();
         luaL_openlibs(pageLuaState);
     }
-    _this = this;
-    _next = NULL;
-    _last = NULL;
-    _top = NULL;
-    _bottom = NULL;
 }
-luaPage::luaPage(lua_State* L,addressSpace* parent,std::string pageDef)
+luaPage::luaPage(lua_State* L,std::string pageDef)
 {
     memoryTypeID = "Lua_Page";
     int r = 0;
@@ -206,26 +160,6 @@ luaPage::luaPage(lua_State* L,addressSpace* parent,std::string pageDef)
         r = luaL_dofile(pageLuaState, pageDef.c_str());
     }
     lua_handle_page_error(L, r);
-    initialLink(parent, 0);
-}
-luaPage::luaPage(lua_State* L,addressSpace* parent)
-{
-    memoryTypeID = "Lua_Page";
-    //int r = 0;
-    if(L!=NULL)
-    {
-        freeLuaOnDestruct = 0;
-        pageLuaState = L;
-        //r = luaL_dofile(pageLuaState, pageDef.c_str());
-    }
-    else
-    {
-        freeLuaOnDestruct = 1;
-        pageLuaState = luaL_newstate();
-        luaL_openlibs(pageLuaState);
-        //r = luaL_dofile(pageLuaState, pageDef.c_str());
-    }
-    initialLink(parent, 0);
 }
 luaPage::~luaPage()
 {

@@ -15,7 +15,7 @@ class multiPage: public addressSpace
 {
     public:
 
-    std::vector<addressSpace*> bankList;
+    std::vector<std::shared_ptr<addressSpace>> bankList;
 	int _bankNum;
 
 	unsigned long int _size();
@@ -28,7 +28,7 @@ class multiPage: public addressSpace
 	void writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len);
 
 	void cleanupAndUnlink();
-	void addBank(addressSpace* AS);
+	void addBank(std::shared_ptr<addressSpace> AS);
 	void switchBank(int bankNum);
 	void removeBank(int bankNum); //Use this if the page at 'bankNum' is referenced elsewhere.
 	void removeAndUnlinkBank(int bankNum); //dangerous, only do this if it's not referenced elsewhere.

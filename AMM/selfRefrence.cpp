@@ -73,12 +73,6 @@ memorySpacePage::memorySpacePage(virtualMemorySpace* VM,unsigned long int addres
     _address = address;
     _pageSize = Size;
     _pageContent = new unsigned char[_pageSize];
-
-    _this = this;
-    _next = NULL;
-    _last = NULL;
-    _top = NULL;
-    _bottom = NULL;
 }
 memorySpacePage::memorySpacePage(virtualMemorySpace* VM,char* address, unsigned int Size)
 {
@@ -87,12 +81,6 @@ memorySpacePage::memorySpacePage(virtualMemorySpace* VM,char* address, unsigned 
     _paddress = address;
     _pageSize = Size;
     _pageContent = new unsigned char[_pageSize];
-
-    _this = this;
-    _next = NULL;
-    _last = NULL;
-    _top = NULL;
-    _bottom = NULL;
 }
 memorySpacePage::memorySpacePage(addressSpace* parent, unsigned int Size)
 {
@@ -100,7 +88,6 @@ memorySpacePage::memorySpacePage(addressSpace* parent, unsigned int Size)
     _pageSize = Size;
     _pageContent = new unsigned char[_pageSize];
 
-    initialLink(parent,Size);
 }
 memorySpacePage::~memorySpacePage()
 {

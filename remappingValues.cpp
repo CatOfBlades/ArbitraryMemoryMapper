@@ -1,7 +1,8 @@
 
 #include "remappingValues.h"
 
-auto remapvalue(auto x, auto in_min, auto in_max, auto out_min, auto out_max)
+template <typename T>
+T remapvalue(T x, T in_min, T in_max, T out_min, T out_max)
 {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }

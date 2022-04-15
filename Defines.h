@@ -13,7 +13,7 @@
 #endif
 */
 
-
+/*
 #ifdef __cplusplus
 namespace alfaFlags
 {
@@ -29,6 +29,7 @@ const static int
         i = 0b10000000;
 }
 #endif // __cplusplus
+*/
 
 
 #ifndef WINBUILD

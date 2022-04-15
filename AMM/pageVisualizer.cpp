@@ -18,7 +18,17 @@ bool IsMarkedToDelete(std::unique_ptr<pageVisualizer>& pv)
 
 void VisualizerWindowManager::cleanList()
 {
-    visList.erase(std::remove_if(visList.begin(), visList.end(), IsMarkedToDelete),visList.end());
+
+    int i = 0;
+    while(visList.size()>i)
+    {
+        i++;
+        if(IsMarkedToDelete(visList.at(i)))
+        {
+            visList.erase(visList.begin()+i);
+        }
+    }
+    //visList.erase(std::remove_if(visList.begin(), visList.end(), IsMarkedToDelete),visList.end());
 }
 
 void pageVisualizer::Visualize()
@@ -118,13 +128,13 @@ DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter)
     wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
     wcex.lpszMenuName = NULL;
-    wcex.lpszClassName = VWM->visualizedPage->memoryTypeID;
+    wcex.lpszClassName = VWM->visualizedPage->memoryTypeID.c_str();
     wcex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
     if (!RegisterClassEx(&wcex)){return 0;}
 
     *hwnd = CreateWindowEx(0,
-                          VWM->visualizedPage->memoryTypeID,
+                          VWM->visualizedPage->memoryTypeID.c_str(),
                           (std::string(VWM->visualizedPage->memoryTypeID)+"0").c_str(),
                           WS_OVERLAPPEDWINDOW,
                           CW_USEDEFAULT,

@@ -11,7 +11,7 @@ unsigned long int loggedPage::_size()
 }
 bool loggedPage::_is_free()
 {
-    bool pagefree = LinkedPage->_is_free();
+    bool pagefree = !LinkedPage->reserved;
     time_t rawtime = time(0);
     fprintf(logfile,"function _is_free() called got value %i, at%s\n",(int)pagefree,ctime(&rawtime));
     return pagefree;
@@ -52,85 +52,16 @@ void loggedPage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned l
     time_t rawtime = time(0);
     fprintf(logfile,"function writeMem(offset:%i,bufferAddress:0x%X,length:%i) called, at%s\n",offset,Byt,len,ctime(&rawtime));
 }
-void loggedPage::cleanupAndUnlink()
-{
-    //fprintf(logfile,"","");
-    time_t rawtime = time(0);
-    fprintf(logfile,"%s","function: cleanupAndUnlink() called, at%s\n",ctime(&rawtime));
-    LinkedPage->cleanupAndUnlink();
-    delete this;
-}
 
-void loggedPage::setParent(addressSpace* addrSp)
-{
-    _last = addrSp;
-    if(addrSp)
-    {
-        _next = addrSp->_next;
-        if(_next == NULL)
-        {
-            _bottom = this;
-
-            //pages need to be informed what the new bottom of the list is.
-            addressSpace* _search = addrSp->_top;
-            while(_search != NULL)
-            {
-                _search->_bottom = _bottom;
-                _search = _search->_next;
-            }
-
-        }
-        else
-        {
-            _bottom = addrSp->_bottom;
-        }
-        addrSp->_next = _this;
-        _top = addrSp->_top;
-    }
-    else
-    {
-        _next = NULL;
-        _bottom = NULL;
-        _top = NULL;
-    }
-    time_t rawtime = time(0);
-    fprintf(logfile,"function:setParent(addressSpace:%X) called, at:%s\n",addrSp,ctime(&rawtime));
-}
-loggedPage::loggedPage(std::string logName,addressSpace* page)
-{
-    logfile = fopen(logName.c_str(),"a");
-    LinkedPage = page;
-    memoryTypeID = "LogdPage";
-    _this = this;
-    _next = NULL;
-    _last = NULL;
-    _top = NULL;
-    _bottom = NULL;
-
-    LinkedPage->_this = LinkedPage;
-    LinkedPage->_next = _next;
-    LinkedPage->_last = _last;
-    LinkedPage->_top = _top;
-    LinkedPage->_bottom = _bottom;
-    time_t rawtime = time(0);
-    fprintf(logfile,"Log start at:%s",ctime(&rawtime));
-    fprintf(logfile,"constructor: loggedPage(logfile:%s,childPage:%X) called.\n",logName.c_str(),page);
-}
-loggedPage::loggedPage(addressSpace* parent, std::string logName, addressSpace* page)
+loggedPage::loggedPage(std::string logName,std::shared_ptr<addressSpace> page)
 {
     logfile = fopen(logName.c_str(),"a");
     LinkedPage = page;
     memoryTypeID = "LogdPage";
 
-    initialLink(parent,0);
-    LinkedPage->_this = LinkedPage;
-    LinkedPage->_next = _next;
-    LinkedPage->_last = _last;
-    LinkedPage->_top = _top;
-    LinkedPage->_bottom = _bottom;
     time_t rawtime = time(0);
     fprintf(logfile,"Log start at:%s",ctime(&rawtime));
-    fprintf(logfile,"constructor: loggedPage(parent:%,logfile:%s,childPage:%X) called.\n",parent,logName.c_str(),page);
+    fprintf(logfile,"constructor: loggedPage(logfile:%s) called.\n",logName.c_str());
 }
 loggedPage::~loggedPage()
 {

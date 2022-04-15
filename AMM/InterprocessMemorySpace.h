@@ -40,7 +40,7 @@ class applicationMem: public addressSpace
 
 
 	applicationMem();
-	applicationMem(addressSpace* parent, DWORD procID, unsigned int Size,char* addr);
+	applicationMem( DWORD procID, unsigned int Size,char* addr);
 	~applicationMem();
 };
 

@@ -63,14 +63,12 @@ void virtualPage::setParent(addressSpace* addrSp)
 
 
 #include "stdio.h"
-virtualPage::virtualPage(addressSpace* parent,  unsigned int Size)
+virtualPage::virtualPage( unsigned int Size)
 {
     memoryTypeID = "Vrt_Page";
     _pageSize = Size;
     _pageFree = 1;
     _pageContent = new unsigned char[_pageSize];
-
-    initialLink(parent,Size);
 
 }
 //#include <windows.h>
@@ -80,12 +78,5 @@ virtualPage::~virtualPage()
     {
         delete [] _pageContent;
     }
-    return;
-}
-void virtualPage::cleanupAndUnlink()
-{
-    delete this; // only used because the 'virtualMemorySpace' object calls 'new' to create these objects
-            //so don't call 'cleanupAndUnlink()' if created in another way.
-            //may update to allow for multiple memory spaces to reference the same page.
     return;
 }

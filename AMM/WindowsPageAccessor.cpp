@@ -160,44 +160,6 @@ void MPA_page::writeMem(unsigned long int offset,unsigned char* Byt,unsigned lon
     WriteProcessMemory(MPA->thisProcHandle,MPA->p_memRegion+offset,Byt,len,NULL);
 }
 
-void MPA_page::cleanupAndUnlink()
-{
-    return;
-}
-void MPA_page::setParent(addressSpace* addrSp)
-{
-    _last = addrSp;
-    if(addrSp)
-    {
-        _next = addrSp->_next;
-        if(_next == NULL)
-        {
-            _bottom = this;
-
-            //pages need to be informed what the new bottom of the list is.
-            addressSpace* _search = addrSp->_top;
-            while(_search != NULL)
-            {
-                _search->_bottom = _bottom;
-                _search = _search->_next;
-            }
-
-        }
-        else
-        {
-            _bottom = addrSp->_bottom;
-        }
-        addrSp->_next = _this;
-        _top = addrSp->_top;
-    }
-    else
-    {
-        _next = NULL;
-        _bottom = NULL;
-        _top = NULL;
-    }
-}
-
 MPA_page::MPA_page(memoryPageAccessor* _mpa)
 {
     MPA = _mpa;

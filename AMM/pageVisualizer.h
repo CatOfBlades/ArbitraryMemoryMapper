@@ -3,7 +3,7 @@
 
 #include <windows.h>
 #include <gl/gl.h>
-#include <list>
+//#include <list>
 #include <vector>
 #include <string>
 #include <memory>
@@ -50,7 +50,7 @@ class VisualizerWindowManager
     void cleanList();
 public:
 
-    std::list< std::unique_ptr<pageVisualizer> > visList;
+    std::vector< std::unique_ptr<pageVisualizer> > visList;
 
     void addVisualizer(std::shared_ptr<addressSpace> as);
 

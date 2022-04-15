@@ -1,10 +1,6 @@
 #include "callbackOnWritePage.h"
 
 
-	void callbackPage::setParent(addressSpace* addrSp)
-	{
-	    addressSpace::setParent(addrSp);
-	}
 	void callbackPage::cleanupAndUnlink()
 	{
 	    return;
@@ -56,7 +52,6 @@
 	    vm = vmsp;
 	    addrSp = adrSp;
 	    pagesize = sz;
-	    initialLink(parent,sz);
 	}
 
 	//callbackPage::callbackPage(unsigned int sz,pageCallback callbackfunc);

@@ -14,7 +14,7 @@ unsigned long int multiPage::_size()
 bool multiPage::_is_free()
 {
     if(!bankList.size()){return 0;}
-    return bankList[_bankNum]->_is_free();
+    return !bankList[_bankNum]->reserved;
 }
 unsigned char* multiPage::_content()
 {
@@ -56,7 +56,7 @@ void multiPage::cleanupAndUnlink()
     }
     return;
 }
-void multiPage::addBank(addressSpace* AS)
+void multiPage::addBank(std::shared_ptr<addressSpace> AS)
 {
     bankList.push_back(AS);
 }
@@ -72,9 +72,8 @@ void multiPage::removeBank(int bankNum)
 }
 void multiPage::removeAndUnlinkBank(int bankNum)
 {
-    addressSpace* bank = bankList[bankNum];
+    std::shared_ptr<addressSpace> bank = bankList[bankNum];
     bankList.erase(bankList.begin()+bankNum);
-    bank->cleanupAndUnlink();
 }
 
 multiPage::multiPage():addressSpace()

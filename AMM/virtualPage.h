@@ -23,7 +23,7 @@ class virtualPage: public addressSpace
 	//void setParent(addressSpace* addrSp);
 
 	virtualPage();
-	virtualPage(addressSpace* parent,  unsigned int Size);
+	virtualPage(unsigned int Size);
 	~virtualPage();
 };
 

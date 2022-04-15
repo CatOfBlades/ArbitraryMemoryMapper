@@ -109,7 +109,7 @@ applicationMem::applicationMem()
     memoryTypeID = "Appl_Mem";
     _pageSize = 0;
 }
-applicationMem::applicationMem(addressSpace* parent, DWORD procID, unsigned int Size,char* addr)
+applicationMem::applicationMem( DWORD procID, unsigned int Size,char* addr)
 {
     //Beep(400,100);
     memoryTypeID = "Appl_Mem";
@@ -118,7 +118,6 @@ applicationMem::applicationMem(addressSpace* parent, DWORD procID, unsigned int 
     _pageContent = new unsigned char[_pageSize];
     hAddress = addr;
 
-    initialLink(parent, Size);
 }
 applicationMem::~applicationMem()
 {
