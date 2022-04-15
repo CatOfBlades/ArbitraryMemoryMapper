@@ -164,7 +164,7 @@ void linkPageToMemorySpace(std::string MemorySpaceName,std::string PageName)
     }
     vm->addAddressSpace(AS);
     #ifdef BUILT_IN_VISUALIZER
-        //VWM.addVisualizer(std::make_shared<addressSpace>(*AS));
+        VWM.addVisualizer(AS);
     #endif // BUILT_IN_VISUALIZER
 }
 

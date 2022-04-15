@@ -7,7 +7,7 @@
 
 void VisualizerWindowManager::addVisualizer(std::shared_ptr<addressSpace> as)
 {
-    visList.emplace_back( std::make_unique<pageVisualizer>(as) );
+    visList.push_back( std::make_unique<pageVisualizer>(as) );
     cleanList();
 }
 
@@ -22,11 +22,11 @@ void VisualizerWindowManager::cleanList()
     int i = 0;
     while(visList.size()>i)
     {
-        i++;
-        if(IsMarkedToDelete(visList.at(i)))
+        if(visList.at(i)->windowClosed)
         {
             visList.erase(visList.begin()+i);
         }
+        i++;
     }
     //visList.erase(std::remove_if(visList.begin(), visList.end(), IsMarkedToDelete),visList.end());
 }
@@ -45,7 +45,7 @@ pageVisualizer::pageVisualizer(std::shared_ptr<addressSpace> as)
 
 pageVisualizer::~pageVisualizer()
 {
-    Beep(600,100);
+    //Beep(600,100);
 }
 
 void pageVisualizer::InitPointlist()

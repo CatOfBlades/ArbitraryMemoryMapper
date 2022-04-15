@@ -2023,10 +2023,10 @@
 	<vector>
 	<memory>
 
-1649991843 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualpage.h
+1649998568 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualpage.h
 	"addressSpace.h"
 
-1649991857 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualpage.cpp
+1649998566 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualpage.cpp
 	"virtualPage.h"
 	"stdio.h"
 
@@ -2576,7 +2576,7 @@
 	<Windows.h>
 	<stdio.h>
 
-1649982971 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\multipage.cpp
+1649998831 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\multipage.cpp
 	"multiPage.h"
 	"../Defines.h"
 	<windows.h>
@@ -4727,7 +4727,7 @@
 	"pageVisualizer.h"
 	"addressSpace.h"
 
-1649991242 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.h
+1649999548 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.h
 	<windows.h>
 	<gl/gl.h>
 	<vector>
@@ -5272,7 +5272,7 @@
 	"lstate.h"
 	"lzio.h"
 
-1649992668 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.cpp
+1649999582 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.cpp
 	"LuaMemoryMapperLib.h"
 	<vector>
 	"AMM\pageVisualizer.h"
@@ -5288,6 +5288,20 @@
 	<unordered_map>
 	"ArbitraryMemMap.h"
 	"AMM/WindowsPageAccessor.h"
+	"lua.h"
+	"lauxlib.h"
+	"lualib.h"
+
+1649993704 source:c:\users\jarem\documents\github\arbitrarymemorymapper\ammlib.cpp
+	"AMMlib.h"
+	"LuaMemoryMapperLib.h"
+
+1649993731 c:\users\jarem\documents\github\arbitrarymemorymapper\ammlib.h
+	<Windows.h>
+	<unordered_map>
+	<string>
+	"AMM/virtualMemorySpace.h"
+	"AMM/addressSpace.h"
 	"lua.h"
 	"lauxlib.h"
 	"lualib.h"

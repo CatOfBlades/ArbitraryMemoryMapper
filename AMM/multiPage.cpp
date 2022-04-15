@@ -9,40 +9,40 @@
 unsigned long int multiPage::_size()
 {
     if(!bankList.size()){return 0;}
-    return bankList[_bankNum]->_size();
+    return bankList.at(_bankNum)->_size();
 }
 bool multiPage::_is_free()
 {
     if(!bankList.size()){return 0;}
-    return !bankList[_bankNum]->reserved;
+    return !bankList.at(_bankNum)->reserved;
 }
 unsigned char* multiPage::_content()
 {
     if(!bankList.size()){return 0;}
-    return bankList[_bankNum]->_content();
+    return bankList.at(_bankNum)->_content();
 }
 unsigned char multiPage::readByte(unsigned long int offset)
 {
     if(!bankList.size()){return 0;}
-    return bankList[_bankNum]->readByte(offset);
+    return bankList.at(_bankNum)->readByte(offset);
 }
 void multiPage::writeByte(unsigned long int offset,unsigned char Byt)
 {
     if(!bankList.size()){return;}
-    bankList[_bankNum]->writeByte(offset, Byt);
+    bankList.at(_bankNum)->writeByte(offset, Byt);
     return;
 }
 
 void multiPage::readMem(unsigned long int offset,unsigned char* buffer ,unsigned long int len)
 {
     if(!bankList.size()){return;}
-    bankList[_bankNum]->readMem(offset, buffer, len);
+    bankList.at(_bankNum)->readMem(offset, buffer, len);
     return;
 }
 void multiPage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len)
 {
     if(!bankList.size()){return;}
-    bankList[_bankNum]->writeMem(offset, Byt, len);
+    bankList.at(_bankNum)->writeMem(offset, Byt, len);
     return;
 }
 
@@ -72,7 +72,7 @@ void multiPage::removeBank(int bankNum)
 }
 void multiPage::removeAndUnlinkBank(int bankNum)
 {
-    std::shared_ptr<addressSpace> bank = bankList[bankNum];
+    //std::shared_ptr<addressSpace> bank = bankList.at(_bankNum);
     bankList.erase(bankList.begin()+bankNum);
 }
 

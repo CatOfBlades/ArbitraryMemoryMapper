@@ -5,10 +5,6 @@ unsigned long int virtualPage::_size()
 {
     return _pageSize;
 }
-bool virtualPage::_is_free()
-{
-    return _pageFree;
-}
 unsigned char* virtualPage::_content()
 {
     return _pageContent;
@@ -49,17 +45,7 @@ virtualPage::virtualPage():addressSpace()
 {
     memoryTypeID = "Vrt_Page";
     _pageSize = 0;
-    _pageFree = 1;
 }
-
-/*
-void virtualPage::setParent(addressSpace* addrSp)
-{
-    _last = addrSp;
-    _top = addrSp->_top;
-    addrSp->_next = _this;
-}
-*/
 
 
 #include "stdio.h"
@@ -67,7 +53,6 @@ virtualPage::virtualPage( unsigned int Size)
 {
     memoryTypeID = "Vrt_Page";
     _pageSize = Size;
-    _pageFree = 1;
     _pageContent = new unsigned char[_pageSize];
 
 }
