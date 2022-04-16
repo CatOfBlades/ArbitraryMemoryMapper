@@ -13,7 +13,7 @@
 //#define USE_BYTEWISE_RW
 
 //if you want a lot of debug messages in your console.
-//#define DBG_MESSAGES
+#define DBG_MESSAGES
 //#define VERBOSE_DBG
 
 /** Begin WinMem Specific Settings **/

@@ -18,9 +18,15 @@ BOOL SetPrivilege(HANDLE hToken, LPCTSTR lpszPrivilege, BOOL bEnablePrivilege);
                                 int main()
  \******************************************************************************/
 
+#ifdef DBG_MESSAGES
+#include "revinfo.h"
+#endif
+
 int main()
 {
-
+#ifdef DBG_MESSAGES
+    printf("%s\n", BuildInfo.c_str());
+#endif
 #ifdef WINBUILD
 /*
     HANDLE hProcess=GetCurrentProcess();

@@ -2030,7 +2030,7 @@
 	"virtualPage.h"
 	"stdio.h"
 
-1639872990 source:c:\users\jarem\documents\github\arbitrarymemorymapper\arbitrarymemmap.cpp
+1650146828 source:c:\users\jarem\documents\github\arbitrarymemorymapper\arbitrarymemmap.cpp
 	"ArbitraryMemMap.h"
 
 1639872990 c:\users\jarem\documents\github\arbitrarymemorymapper\arbitrarymemmap.h
@@ -2583,19 +2583,9 @@
 
 1609136600 /home/debian/ArbitraryMemoryMapper/Defines.h
 
-1609138668 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapper.cpp
-	<iostream>
-	<stdio.h>
-	"Defines.h"
-	<windows.h>
-	<unistd.h>
-	<string>
-	<vector>
-	<unordered_map>
-	"ArbitraryMemMap.h"
-	"lua-5.4.0/src/lua.h"
-	"lua-5.4.0/src/lauxlib.h"
-	"lua-5.4.0/src/lualib.h"
+1650147278 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapper.cpp
+	"LuaMemoryMapperLib.h"
+	"revinfo.h"
 
 1642729806 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.cpp
 	"addressSpace.h"
@@ -4668,7 +4658,7 @@
 1642448754 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\luamemorymapper.cpp
 	"LuaMemoryMapperLib.h"
 
-1647381744 c:\users\jarem\documents\github\arbitrarymemorymapper\config.h
+1650147298 c:\users\jarem\documents\github\arbitrarymemorymapper\config.h
 
 1642733392 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\math\hsv2rgb.cpp
 	"hsv2rgb.h"
@@ -4722,7 +4712,7 @@
 1639872990 c:\users\jarem\documents\github\arbitrarymemorymapper\luajitlove\src\lualib.h
 	"lua.h"
 
-1649991756 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.cpp
+1650000989 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.cpp
 	"../config.h"
 	"pageVisualizer.h"
 	"addressSpace.h"
@@ -5305,4 +5295,7 @@
 	"lua.h"
 	"lauxlib.h"
 	"lualib.h"
+
+1650147298 c:\users\jarem\documents\github\arbitrarymemorymapper\revinfo.h
+	<string>
 

@@ -54,3 +54,12 @@ it's features are limited but can be included into lua scripts without needing a
 If you have a specific lua that you need to relink the project to,
  in the project settings change the search directories to point to the new lua/src folder where "lua.h" resides.
  then in the Lib/Lib32 project, change the linked ".lib" file to the one from your lua51 build.
+ 
+I added a powershell script that pulls the revision info and adds the build time to an automatically generated "revinfo.h"
+ the powershell script is thus:
+ 
+	powershell " Remove-Item .\revinfo.txt; git show | Out-File -Encoding ascii -FilePath .\tmprevinfo.txt; '// file automatically generated on build, do not edit.' | Out-File -Encoding ascii -FilePath .\revinfo.h; '#include <string>' | Out-File -Encoding ascii -Append -FilePath .\revinfo.h ; 'std::string BuildInfo = \"' + (Get-Content .\tmprevinfo.txt | Select -First 3) + 'build at: $(NOW_L) \";' | Out-File -Encoding ascii -Append -FilePath .\revinfo.h; Remove-Item .\tmprevinfo.txt"
+
+ this script is in the codeblocks "pre-build step" section of the build options.
+ I made it project global. this will break all builds besids windows ones.
+ But I plan on seperating out the different operating systems into their own projects soonish. 
