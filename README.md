@@ -58,7 +58,7 @@ If you have a specific lua that you need to relink the project to,
 I added a powershell script that pulls the revision info and adds the build time to an automatically generated "revinfo.h"
  the powershell script is thus:
  
-	powershell " Remove-Item .\revinfo.txt; git show | Out-File -Encoding ascii -FilePath .\tmprevinfo.txt; '// file automatically generated on build, do not edit.' | Out-File -Encoding ascii -FilePath .\revinfo.h; '#include <string>' | Out-File -Encoding ascii -Append -FilePath .\revinfo.h ; 'std::string BuildInfo = \"' + (Get-Content .\tmprevinfo.txt | Select -First 3) + 'build at: $(NOW_L) \";' | Out-File -Encoding ascii -Append -FilePath .\revinfo.h; Remove-Item .\tmprevinfo.txt"
+	powershell " Remove-Item .\revinfo.h; git show | Out-File -Encoding ascii -FilePath .\tmprevinfo.txt; '// file automatically generated on build, do not edit.' | Out-File -Encoding ascii -FilePath .\revinfo.h; '#include <string>' | Out-File -Encoding ascii -Append -FilePath .\revinfo.h ; 'std::string BuildInfo = \"' + (Get-Content .\tmprevinfo.txt | Select -First 3) + 'build at: $(NOW_L) \";' | Out-File -Encoding ascii -Append -FilePath .\revinfo.h; Remove-Item .\tmprevinfo.txt"
 
  this script is in the codeblocks "pre-build step" section of the build options.
  I made it project global. this will break all builds besids windows ones.

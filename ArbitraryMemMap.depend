@@ -5296,6 +5296,27 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1650147298 c:\users\jarem\documents\github\arbitrarymemorymapper\revinfo.h
+1650149612 c:\users\jarem\documents\github\arbitrarymemorymapper\revinfo.h
 	<string>
+
+1642076683 c:\users\jarem\documents\github\arbitrarymemorymapper\lua-5.4.4\src\lua.h
+	<stdarg.h>
+	<stddef.h>
+	"luaconf.h"
+
+1642076683 c:\users\jarem\documents\github\arbitrarymemorymapper\lua-5.4.4\src\luaconf.h
+	<limits.h>
+	<stddef.h>
+	<stdint.h>
+	<assert.h>
+
+1642076680 c:\users\jarem\documents\github\arbitrarymemorymapper\lua-5.4.4\src\lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"luaconf.h"
+	"lua.h"
+	<assert.h>
+
+1642076683 c:\users\jarem\documents\github\arbitrarymemorymapper\lua-5.4.4\src\lualib.h
+	"lua.h"
 
