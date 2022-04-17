@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AMMwin32" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="LuaMap32(debug)">
+				<Option output="bin/Debug/LuaMap32" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-m32" />
+					<Add option="-g" />
+					<Add directory="../../lua-5.4.4/src" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add option="-m32" />
+					<Add library="psapi" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="Advapi32" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="gdi32" />
+					<Add library="liblua54win32.a" />
+					<Add directory="../AMMwin32/" />
+				</Linker>
+				<ExtraCommands>
+					<Add before='powershell &quot; Remove-Item .\revinfo.h; git show | Out-File -Encoding ascii -FilePath .\tmprevinfo.txt; &apos;// file automatically generated on build, do not edit.&apos; | Out-File -Encoding ascii -FilePath .\revinfo.h; &apos;#include &lt;string&gt;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h ; &apos;std::string BuildInfo = \&quot;&apos; + (Get-Content .\tmprevinfo.txt | Select -First 3) + &apos;build at: $(NOW_L) \&quot;;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h; Remove-Item .\tmprevinfo.txt&quot;' />
+				</ExtraCommands>
+			</Target>
+			<Target title="LuaMap32">
+				<Option output="bin/Release/LuaMap32" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-m32" />
+					<Add directory="../../lua-5.4.4/src" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add option="-m32" />
+					<Add library="liblua54win32.a" />
+					<Add library="psapi" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="Advapi32" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="gdi32" />
+					<Add directory="../AMMwin32/" />
+				</Linker>
+				<ExtraCommands>
+					<Add before='powershell &quot; Remove-Item .\revinfo.h; git show | Out-File -Encoding ascii -FilePath .\tmprevinfo.txt; &apos;// file automatically generated on build, do not edit.&apos; | Out-File -Encoding ascii -FilePath .\revinfo.h; &apos;#include &lt;string&gt;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h ; &apos;std::string BuildInfo = \&quot;&apos; + (Get-Content .\tmprevinfo.txt | Select -First 3) + &apos;build at: $(NOW_L) \&quot;;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h; Remove-Item .\tmprevinfo.txt&quot;' />
+				</ExtraCommands>
+			</Target>
+			<Target title="lua54">
+				<Option output="lua54win32" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-m32" />
+				</Compiler>
+				<Linker>
+					<Add option="-m32" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-m32" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Linker>
+			<Add option="-m32" />
+		</Linker>
+		<Unit filename="../../AMM/InterprocessMemorySpace.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/InterprocessMemorySpace.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/LoggedPage.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/LoggedPage.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/LuaPage.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/LuaPage.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/WindowsPageAccessor.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/WindowsPageAccessor.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/addressSpace.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/addressSpace.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/callbackOnWritePage.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/callbackOnWritePage.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/filePage.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/filePage.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/math/hsv2rgb.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/math/hsv2rgb.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/multiPage.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/multiPage.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/pageVisualizer.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/pageVisualizer.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/selfRefrence.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/selfRefrence.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/virtualMemorySpace.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/virtualMemorySpace.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/virtualPage.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMM/virtualPage.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../AMMlib.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../ArbitraryMemMap.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../../ArbitraryMemMap.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../Defines.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../LuaMemoryMapper.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../LuaMemoryMapperLib.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../LuaMemoryMapperLib.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../config.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lapi.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lapi.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lauxlib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lauxlib.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lbaselib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lcode.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lcode.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lcorolib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lctype.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lctype.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldblib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldebug.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldebug.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldo.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldo.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldump.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lfunc.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lfunc.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lgc.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lgc.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/linit.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/liolib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ljumptab.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/llex.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/llex.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/llimits.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lmathlib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lmem.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lmem.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/loadlib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lobject.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lobject.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lopcodes.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lopcodes.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lopnames.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/loslib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lparser.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lparser.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lprefix.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstate.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstate.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstring.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstring.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstrlib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltable.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltable.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltablib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltm.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltm.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lua.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lua.hpp">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/luaconf.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lualib.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lundump.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lundump.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lutf8lib.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lvm.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lvm.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lzio.c">
+			<Option compilerVar="CC" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lzio.h">
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../remappingValues.cpp">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Unit filename="../../remappingValues.h">
+			<Option target="LuaMap32(debug)" />
+			<Option target="LuaMap32" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
