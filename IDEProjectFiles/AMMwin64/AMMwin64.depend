@@ -7,7 +7,7 @@
 	<string>
 	<memory>
 
-1650147298 c:\users\jarem\documents\github\arbitrarymemorymapper\config.h
+1650163695 c:\users\jarem\documents\github\arbitrarymemorymapper\config.h
 
 1649979328 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\callbackonwritepage.cpp
 	"callbackOnWritePage.h"
@@ -23,16 +23,16 @@
 	<vector>
 	<memory>
 
-1649979704 c:\users\jarem\documents\github\arbitrarymemorymapper\defines.h
+1650163694 c:\users\jarem\documents\github\arbitrarymemorymapper\defines.h
 	"config.h"
 
 1649998568 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualpage.h
 	"addressSpace.h"
 
-1649979244 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\filepage.cpp
+1650163694 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\filepage.cpp
 	"filePage.h"
 
-1639872990 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\filepage.h
+1650163694 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\filepage.h
 	"addressSpace.h"
 	<stdio.h>
 	<string>
@@ -56,8 +56,9 @@
 	<string>
 	<stdio.h>
 
-1642733392 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\math\hsv2rgb.cpp
+1650163949 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\math\hsv2rgb.cpp
 	"hsv2rgb.h"
+	<cmath>
 
 1642733392 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\math\hsv2rgb.h
 	<math.h>
@@ -78,7 +79,7 @@
 	"pageVisualizer.h"
 	"addressSpace.h"
 
-1649999548 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.h
+1650163848 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.h
 	<windows.h>
 	<gl/gl.h>
 	<vector>
@@ -148,7 +149,7 @@
 	"addressSpace.h"
 	"psapi.h"
 
-1650147278 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapper.cpp
+1650163695 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapper.cpp
 	"LuaMemoryMapperLib.h"
 	"revinfo.h"
 
@@ -182,7 +183,7 @@
 1650151282 c:\users\jarem\documents\github\arbitrarymemorymapper\revinfo.h
 	<string>
 
-1649999582 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.cpp
+1650163695 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.cpp
 	"LuaMemoryMapperLib.h"
 	<vector>
 	"AMM\pageVisualizer.h"
@@ -707,4 +708,7 @@
 	"lmem.h"
 	"lstate.h"
 	"lzio.h"
+
+1650164257 c:\users\jarem\documents\github\arbitrarymemorymapper\ideprojectfiles\ammwin64\\revinfo.h
+	<string>
 

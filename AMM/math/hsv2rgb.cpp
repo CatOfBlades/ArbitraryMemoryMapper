@@ -1,5 +1,6 @@
 
 #include "hsv2rgb.h"
+#include <cmath>
 using namespace std;
 
 void HSVtoRGB(hsv_t in,rgb_t* out)

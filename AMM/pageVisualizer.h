@@ -1,7 +1,7 @@
 #ifndef PAGEVISUALIZER_H_INCLUDED
 #define PAGEVISUALIZER_H_INCLUDED
 
-#ifdef INBUILD
+#ifdef WINBUILD
 #include <windows.h>
 #endif
 #include <gl/gl.h>

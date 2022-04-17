@@ -59,7 +59,7 @@ unsigned long int filePage::RW_file(bool write, unsigned long int offs, unsigned
 void filePage::FMopenFile()
 {
 	fp = 0;
-#ifdef __STDC_WANT_LIB_EXT1__
+#ifndef __GNUC__ //using "safe" function if we aren't compiling with GCC which doesn't support it.
 	fopen_s(&fp,FMfilename.c_str(),"rb+"); //open file for reading and writing in binary mode.
 #else
     fp = fopen(FMfilename.c_str(),"rb+");

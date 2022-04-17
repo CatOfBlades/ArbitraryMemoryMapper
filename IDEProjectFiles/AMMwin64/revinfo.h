@@ -1,3 +1,3 @@
 // file automatically generated on build, do not edit.
 #include <string>
-std::string BuildInfo = "commit 11db09c7a402c66e7ddbde5c1c2a2d7e8e6a3a93 Author: CatOfBlades <Fergley@yahoo.com> Date:   Sat Apr 16 19:01:37 2022 -0400build at: 2022-04-16-20.16.57 ";
+std::string BuildInfo = "commit bee1931fb3c4242566de4e9a59d6f26db18090e2 Merge: 9ee5c40 5479b1b Author: CatOfBlades <Fergley@yahoo.com>build at: 2022-04-16-22.57.58 ";
