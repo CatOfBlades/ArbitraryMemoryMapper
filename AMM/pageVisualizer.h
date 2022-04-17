@@ -1,7 +1,9 @@
 #ifndef PAGEVISUALIZER_H_INCLUDED
 #define PAGEVISUALIZER_H_INCLUDED
 
+#ifdef INBUILD
 #include <windows.h>
+#endif
 #include <gl/gl.h>
 //#include <list>
 #include <vector>

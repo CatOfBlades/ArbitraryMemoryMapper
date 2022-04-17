@@ -34,6 +34,8 @@ const static int
 
 #ifndef WINBUILD
 #define Sleep(x) usleep(x)
+void Beep(int freq, int dur);
+#define MAX_PATH 1024
 //WINBASEAPI WINBOOL WINAPI ReadProcessMemory (HANDLE hProcess, char* lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T *lpNumberOfBytesRead);
 //WINBASEAPI char* WINAPI VirtualAlloc (LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 #endif

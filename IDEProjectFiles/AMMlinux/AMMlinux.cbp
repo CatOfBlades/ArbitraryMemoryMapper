@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AMMlinux" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/AMMlinux" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="libAMMlinuxLua.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/AMMlinux" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add library="libAMMlinuxLua.a" />
+				</Linker>
+			</Target>
+			<Target title="linuxLua">
+				<Option output="AMMlinuxLua" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add option="-DLINUX_BUILD" />
+			<Add directory="../../lua-5.4.4/src" />
+			<Add directory="../AMMlinux" />
+			<Add directory="../../../ArbitraryMemoryMapper" />
+		</Compiler>
+		<Linker>
+			<Add directory="../AMMlinux" />
+		</Linker>
+		<Unit filename="../../AMM/InterprocessMemorySpace.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/InterprocessMemorySpace.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/LoggedPage.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/LoggedPage.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/LuaPage.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/LuaPage.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/WindowsPageAccessor.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/addressSpace.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/addressSpace.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/callbackOnWritePage.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/callbackOnWritePage.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/filePage.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/filePage.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/math/hsv2rgb.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/math/hsv2rgb.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/multiPage.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/multiPage.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/pageVisualizer.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/pageVisualizer.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/selfRefrence.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/selfRefrence.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/virtualMemorySpace.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/virtualMemorySpace.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/virtualPage.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMM/virtualPage.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../AMMlib.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../../AMMlib.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../ArbitraryMemMap.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../ArbitraryMemMap.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../Defines.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../LuaMemoryMapper.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../LuaMemoryMapperLib.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../LuaMemoryMapperLib.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../config.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lapi.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lapi.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lauxlib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lauxlib.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lbaselib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lcode.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lcode.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lcorolib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lctype.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lctype.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldblib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldebug.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldebug.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldo.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldo.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ldump.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lfunc.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lfunc.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lgc.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lgc.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/linit.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/liolib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ljumptab.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/llex.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/llex.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/llimits.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lmathlib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lmem.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lmem.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/loadlib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lobject.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lobject.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lopcodes.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lopcodes.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lopnames.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/loslib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lparser.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lparser.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lprefix.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstate.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstate.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstring.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstring.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lstrlib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltable.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltable.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltablib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltm.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/ltm.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lua.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lua.hpp">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/luaconf.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lualib.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lundump.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lundump.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lutf8lib.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lvm.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lvm.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lzio.c">
+			<Option compilerVar="CC" />
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lzio.h">
+			<Option target="linuxLua" />
+		</Unit>
+		<Unit filename="../../remappingValues.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../remappingValues.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="../../test.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="linuxSpecific.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

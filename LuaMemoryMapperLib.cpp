@@ -374,11 +374,8 @@ extern "C"
     {
         int a = lua_tointeger(L,1);
         int b = lua_tointeger(L,2);
-        #ifdef WINBUILD
         Beep(a,b);
-        #else
         system("echo $'\a'");
-        #endif //WINBUILD
         return 0;
     }
     int lua_Sleep(lua_State* L)
@@ -495,12 +492,14 @@ int lua_addFilePage(lua_State* L)
     addFilePage(ID,filename,length);
     return 0;
 }
+#ifdef WINBUILD
 int lua_addMPA_Page(lua_State* L)
 {
     std::string ID  = lua_tostring(L,1);
     addMPA_Page(ID);
     return 0;
 }
+#endif
 int lua_linkPageToMemorySpace(lua_State* L)
 {
     std::string memorySpace_ID = lua_tostring(L,1);
