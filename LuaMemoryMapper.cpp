@@ -19,7 +19,11 @@ BOOL SetPrivilege(HANDLE hToken, LPCTSTR lpszPrivilege, BOOL bEnablePrivilege);
  \******************************************************************************/
 
 #ifdef DBG_MESSAGES
+#ifdef LINUX_BUILD
+std::string BuildInfo = "hello world";
+#else
 #include "revinfo.h"
+#endif // LINUX_BUILD
 #endif
 
 int main()
@@ -48,7 +52,11 @@ int main()
     lua_State* L = luaL_newstate();
     if(!L)
     {
+    #ifdef WINBUILD
         Beep(600,100);
+    #else
+
+    #endif // WINBUILD
         return -1;
     }
     luaL_openlibs(L);

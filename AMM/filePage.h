@@ -3,8 +3,8 @@
 
 
 #include "addressSpace.h"
-#include<stdio.h>
-#include<string>
+#include <stdio.h>
+#include <string>
 
 class filePage: public addressSpace
 {
