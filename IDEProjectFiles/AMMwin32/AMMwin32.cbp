@@ -14,7 +14,6 @@
 				<Compiler>
 					<Add option="-m32" />
 					<Add option="-g" />
-					<Add directory="../../lua-5.4.4/src" />
 				</Compiler>
 				<Linker>
 					<Add option="-static-libstdc++" />
@@ -29,7 +28,6 @@
 					<Add library="glu32" />
 					<Add library="gdi32" />
 					<Add library="liblua54win32.a" />
-					<Add directory="../AMMwin32/" />
 				</Linker>
 				<ExtraCommands>
 					<Add before='powershell &quot; Remove-Item .\revinfo.h; git show | Out-File -Encoding ascii -FilePath .\tmprevinfo.txt; &apos;// file automatically generated on build, do not edit.&apos; | Out-File -Encoding ascii -FilePath .\revinfo.h; &apos;#include &lt;string&gt;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h ; &apos;std::string BuildInfo = \&quot;&apos; + (Get-Content .\tmprevinfo.txt | Select -First 3) + &apos;build at: $(NOW_L) \&quot;;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h; Remove-Item .\tmprevinfo.txt&quot;' />
@@ -43,7 +41,6 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-m32" />
-					<Add directory="../../lua-5.4.4/src" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -59,7 +56,6 @@
 					<Add library="opengl32" />
 					<Add library="glu32" />
 					<Add library="gdi32" />
-					<Add directory="../AMMwin32/" />
 				</Linker>
 				<ExtraCommands>
 					<Add before='powershell &quot; Remove-Item .\revinfo.h; git show | Out-File -Encoding ascii -FilePath .\tmprevinfo.txt; &apos;// file automatically generated on build, do not edit.&apos; | Out-File -Encoding ascii -FilePath .\revinfo.h; &apos;#include &lt;string&gt;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h ; &apos;std::string BuildInfo = \&quot;&apos; + (Get-Content .\tmprevinfo.txt | Select -First 3) + &apos;build at: $(NOW_L) \&quot;;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h; Remove-Item .\tmprevinfo.txt&quot;' />
@@ -78,122 +74,177 @@
 					<Add option="-m32" />
 				</Linker>
 			</Target>
+			<Target title="lib32">
+				<Option output="AMMwin32" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-m32" />
+					<Add option="-DBUILD_DLL" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add option="-m32" />
+					<Add library="psapi" />
+					<Add library="kernel32" />
+					<Add library="user32" />
+					<Add library="Advapi32" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="gdi32" />
+					<Add library="liblua54win32.a" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-m32" />
 			<Add option="-fexceptions" />
+			<Add directory="../AMMwin32/" />
+			<Add directory="../../lua-5.4.4/src" />
 		</Compiler>
 		<Linker>
 			<Add option="-m32" />
+			<Add directory="../AMMwin32/" />
 		</Linker>
 		<Unit filename="../../AMM/InterprocessMemorySpace.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/InterprocessMemorySpace.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/LoggedPage.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/LoggedPage.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/LuaPage.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/LuaPage.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/WindowsPageAccessor.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/WindowsPageAccessor.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/addressSpace.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/addressSpace.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/callbackOnWritePage.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/callbackOnWritePage.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/filePage.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/filePage.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/math/hsv2rgb.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/math/hsv2rgb.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/multiPage.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/multiPage.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/pageVisualizer.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/pageVisualizer.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/selfRefrence.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/selfRefrence.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/virtualMemorySpace.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/virtualMemorySpace.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/virtualPage.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMM/virtualPage.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../AMMlib.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../ArbitraryMemMap.cpp">
 			<Option target="&lt;{~None~}&gt;" />
@@ -201,10 +252,12 @@
 		<Unit filename="../../ArbitraryMemMap.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../Defines.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../LuaMemoryMapper.cpp">
 			<Option target="LuaMap32(debug)" />
@@ -213,14 +266,17 @@
 		<Unit filename="../../LuaMemoryMapperLib.cpp">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../LuaMemoryMapperLib.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../config.h">
 			<Option target="LuaMap32(debug)" />
 			<Option target="LuaMap32" />
+			<Option target="lib32" />
 		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lapi.c">
 			<Option compilerVar="CC" />

@@ -59,6 +59,27 @@
 				<Option compiler="clang" />
 				<Option createDefFile="1" />
 			</Target>
+			<Target title="lib">
+				<Option output="AMMwin64" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
+				<Option type="3" />
+				<Option compiler="clang" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-m64" />
+					<Add option="-DBUILD_DLL" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+					<Add library="advapi32" />
+					<Add library="user32" />
+					<Add library="kernel32" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="gdi32" />
+					<Add library="../AMMwin64/libLua54win64.a" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-m64" />
@@ -73,113 +94,140 @@
 		<Unit filename="../../AMM/InterprocessMemorySpace.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/InterprocessMemorySpace.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/LoggedPage.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/LoggedPage.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/LuaPage.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/LuaPage.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/WindowsPageAccessor.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/WindowsPageAccessor.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/addressSpace.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/addressSpace.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/callbackOnWritePage.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/callbackOnWritePage.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/filePage.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/filePage.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/math/hsv2rgb.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/math/hsv2rgb.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/multiPage.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/multiPage.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/pageVisualizer.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/pageVisualizer.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/selfRefrence.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/selfRefrence.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/virtualMemorySpace.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/virtualMemorySpace.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/virtualPage.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMM/virtualPage.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMMlib.cpp">
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../AMMlib.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../ArbitraryMemMap.cpp">
 			<Option target="&lt;{~None~}&gt;" />
@@ -187,10 +235,12 @@
 		<Unit filename="../../ArbitraryMemMap.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../Defines.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../LuaJIT/dynasm/dasm_arm.h">
 			<Option target="Debug" />
@@ -847,25 +897,36 @@
 		<Unit filename="../../LuaMemoryMapperLib.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../LuaMemoryMapperLib.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../config.h">
 			<Option target="Debug" />
 			<Option target="Release" />
+			<Option target="lib" />
 		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lapi.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lapi.h" />
+		<Unit filename="../../lua-5.4.4/src/lapi.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lauxlib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lauxlib.h" />
+		<Unit filename="../../lua-5.4.4/src/lauxlib.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lbaselib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -874,7 +935,11 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lcode.h" />
+		<Unit filename="../../lua-5.4.4/src/lcode.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lcorolib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -883,7 +948,11 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lctype.h" />
+		<Unit filename="../../lua-5.4.4/src/lctype.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/ldblib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -892,12 +961,20 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/ldebug.h" />
+		<Unit filename="../../lua-5.4.4/src/ldebug.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/ldo.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/ldo.h" />
+		<Unit filename="../../lua-5.4.4/src/ldo.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/ldump.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -906,12 +983,20 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lfunc.h" />
+		<Unit filename="../../lua-5.4.4/src/lfunc.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lgc.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lgc.h" />
+		<Unit filename="../../lua-5.4.4/src/lgc.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/linit.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -920,13 +1005,25 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/ljumptab.h" />
+		<Unit filename="../../lua-5.4.4/src/ljumptab.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/llex.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/llex.h" />
-		<Unit filename="../../lua-5.4.4/src/llimits.h" />
+		<Unit filename="../../lua-5.4.4/src/llex.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/llimits.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lmathlib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -935,7 +1032,11 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lmem.h" />
+		<Unit filename="../../lua-5.4.4/src/lmem.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/loadlib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -944,13 +1045,25 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lobject.h" />
+		<Unit filename="../../lua-5.4.4/src/lobject.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lopcodes.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lopcodes.h" />
-		<Unit filename="../../lua-5.4.4/src/lopnames.h" />
+		<Unit filename="../../lua-5.4.4/src/lopcodes.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lopnames.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/loslib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -959,18 +1072,34 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lparser.h" />
-		<Unit filename="../../lua-5.4.4/src/lprefix.h" />
+		<Unit filename="../../lua-5.4.4/src/lparser.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lprefix.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lstate.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lstate.h" />
+		<Unit filename="../../lua-5.4.4/src/lstate.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lstring.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lstring.h" />
+		<Unit filename="../../lua-5.4.4/src/lstring.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lstrlib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -979,7 +1108,11 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/ltable.h" />
+		<Unit filename="../../lua-5.4.4/src/ltable.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/ltablib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -988,16 +1121,40 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/ltm.h" />
-		<Unit filename="../../lua-5.4.4/src/lua.h" />
-		<Unit filename="../../lua-5.4.4/src/lua.hpp" />
-		<Unit filename="../../lua-5.4.4/src/luaconf.h" />
-		<Unit filename="../../lua-5.4.4/src/lualib.h" />
+		<Unit filename="../../lua-5.4.4/src/ltm.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lua.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lua.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/luaconf.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
+		<Unit filename="../../lua-5.4.4/src/lualib.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lundump.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lundump.h" />
+		<Unit filename="../../lua-5.4.4/src/lundump.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lutf8lib.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
@@ -1006,12 +1163,20 @@
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lvm.h" />
+		<Unit filename="../../lua-5.4.4/src/lvm.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../lua-5.4.4/src/lzio.c">
 			<Option compilerVar="CC" />
 			<Option target="lua54" />
 		</Unit>
-		<Unit filename="../../lua-5.4.4/src/lzio.h" />
+		<Unit filename="../../lua-5.4.4/src/lzio.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="lua54" />
+		</Unit>
 		<Unit filename="../../remappingValues.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
