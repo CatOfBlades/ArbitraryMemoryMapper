@@ -372,10 +372,13 @@ extern "C"
     }
     int lua_Beep(lua_State* L)
     {
-        int a = lua_tointeger(L,1);
-        int b = lua_tointeger(L,2);
+        [[maybe_unused]] int a = lua_tointeger(L,1);
+        [[maybe_unused]] int b = lua_tointeger(L,2);
+        #ifdef WINBUILD
         Beep(a,b);
+        #else
         system("echo $'\a'");
+        #endif
         return 0;
     }
     int lua_Sleep(lua_State* L)

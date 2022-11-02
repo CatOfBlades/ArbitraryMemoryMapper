@@ -7,6 +7,8 @@
 #define WINBUILD
 #endif
 
+#define LUA_USE_POSIX
+
 // if memory should loop back on it's self by default when created. (if used as a standalone system this will usually be yes(=1))
 #define MEMSPACE_LOOP_DEFAULT 1
 
@@ -14,7 +16,7 @@
 //#define USE_BYTEWISE_RW
 
 //if you want a lot of debug messages in your console.
-#define DBG_MESSAGES
+//#define DBG_MESSAGES
 //#define VERBOSE_DBG
 
 /** Begin WinMem Specific Settings **/
@@ -31,10 +33,10 @@
 /** End WinMem Specific Settings **/
 
 //if you want the program to beep on errors.
-#define DEBUG_BEEP
+//#define DEBUG_BEEP
 
 //if you want to build in the split byte reader that returns a weighted floating point value between two addresses.
-#define SUPPORT_UNUSUAL_MEMORY_ACCESSES
+//#define SUPPORT_UNUSUAL_MEMORY_ACCESSES
 
 #ifndef LINUX_BUILD
 #define BUILT_IN_VISUALIZER

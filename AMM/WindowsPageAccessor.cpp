@@ -1,4 +1,6 @@
 
+#ifdef WINBUILD
+
 #include "WindowsPageAccessor.h"
 #include "../Defines.h"
 #include "psapi.h"
@@ -243,3 +245,4 @@ DWORD WINAPI RWX_Thread( LPVOID lpParam )
     return 0;
 }
 
+#endif

@@ -4,14 +4,14 @@
 	<Project>
 		<Option title="ArbitraryMemMap" />
 		<Option pch_mode="2" />
-		<Option compiler="clang" />
+		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/ArbitraryMemMap" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="obj/Debug/" />
 				<Option type="2" />
-				<Option compiler="clang" />
+				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-Wall" />
@@ -23,7 +23,7 @@
 				<Option working_dir="" />
 				<Option object_output="obj/Release/" />
 				<Option type="2" />
-				<Option compiler="clang" />
+				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-O2" />
@@ -36,19 +36,16 @@
 				<Option output="bin/LuaMap/LuaMap" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/LuaMap/" />
 				<Option type="1" />
-				<Option compiler="clang" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add directory="lua-5.4.4/src" />
 				</Compiler>
-				<Linker>
-					<Add library="bin/Lua54Lib/lua54.lib" />
-				</Linker>
 			</Target>
 			<Target title="Lib">
 				<Option output="bin/AMMlib/AMMlib" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/AMMlib/" />
 				<Option type="3" />
-				<Option compiler="clang" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-m64" />
 					<Add option="-O2" />
@@ -63,7 +60,7 @@
 			<Target title="UnitTest">
 				<Option output="Test" prefix_auto="1" extension_auto="1" />
 				<Option type="0" />
-				<Option compiler="clang" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-m64" />
 				</Compiler>
@@ -75,7 +72,7 @@
 				<Option output="bin/AMMlib32/AMMlib" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/AMMlib32/" />
 				<Option type="3" />
-				<Option compiler="clang" />
+				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-fms-extensions" />
 					<Add option="-ftls-model=global-dynamic" />
@@ -108,7 +105,7 @@
 				<Option output="bin/Lua54Lib/lua54" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="0" extension_auto="1" />
 				<Option object_output="obj/Lua54Lib/" />
 				<Option type="3" />
-				<Option compiler="clang" />
+				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
@@ -145,19 +142,8 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Linker>
-			<Add library="psapi" />
-			<Add library="kernel32" />
-			<Add library="user32" />
-			<Add library="Advapi32" />
-			<Add library="opengl32" />
-			<Add library="glu32" />
-			<Add library="gdi32" />
 			<Add directory="LuaJITlove/src" />
 		</Linker>
-		<ExtraCommands>
-			<Add before='powershell &quot; Remove-Item .\revinfo.h; git show | Out-File -Encoding ascii -FilePath .\tmprevinfo.txt; &apos;// file automatically generated on build, do not edit.&apos; | Out-File -Encoding ascii -FilePath .\revinfo.h; &apos;#include &lt;string&gt;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h ; &apos;std::string BuildInfo = \&quot;&apos; + (Get-Content .\tmprevinfo.txt | Select -First 3) + &apos;build at: $(NOW_L) \&quot;;&apos; | Out-File -Encoding ascii -Append -FilePath .\revinfo.h; Remove-Item .\tmprevinfo.txt&quot;' />
-			<Mode after="always" />
-		</ExtraCommands>
 		<Unit filename="AMM/InterprocessMemorySpace.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -676,6 +662,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lapi.h">
 			<Option target="Lua54Lib" />
@@ -685,6 +672,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lauxlib.h">
 			<Option target="Lua54Lib" />
@@ -694,11 +682,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lcode.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lcode.h">
 			<Option target="Lua54Lib" />
@@ -708,11 +698,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lctype.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lctype.h">
 			<Option target="Lua54Lib" />
@@ -722,11 +714,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ldebug.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ldebug.h">
 			<Option target="Lua54Lib" />
@@ -736,20 +730,24 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ldo.h">
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ldump.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lfunc.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lfunc.h">
 			<Option target="Lua54Lib" />
@@ -759,6 +757,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lgc.h">
 			<Option target="Lua54Lib" />
@@ -768,11 +767,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/liolib.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ljumptab.h">
 			<Option target="Lua54Lib" />
@@ -782,6 +783,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/llex.h">
 			<Option target="Lua54Lib" />
@@ -795,11 +797,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lmem.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lmem.h">
 			<Option target="Lua54Lib" />
@@ -809,11 +813,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lobject.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lobject.h">
 			<Option target="Lua54Lib" />
@@ -823,6 +829,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lopcodes.h">
 			<Option target="Lua54Lib" />
@@ -836,11 +843,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lparser.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lparser.h">
 			<Option target="Lua54Lib" />
@@ -854,6 +863,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lstate.h">
 			<Option target="Lua54Lib" />
@@ -863,6 +873,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lstring.h">
 			<Option target="Lua54Lib" />
@@ -872,11 +883,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ltable.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ltable.h">
 			<Option target="Lua54Lib" />
@@ -886,11 +899,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ltm.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ltm.h">
 			<Option target="Lua54Lib" />
@@ -924,6 +939,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lundump.h">
 			<Option target="Lua54Lib" />
@@ -933,11 +949,13 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lvm.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lvm.h">
 			<Option target="Lua54Lib" />
@@ -947,6 +965,7 @@
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
+			<Option target="LuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lzio.h">
 			<Option target="Lua54Lib" />
