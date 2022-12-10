@@ -136,6 +136,25 @@
 					<Add option="-m32" />
 				</Linker>
 			</Target>
+			<Target title="WinLuaMap">
+				<Option output="bin/WinLuaMap/LuaMap" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/WinLuaMap/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWINBUILD" />
+					<Add directory="lua-5.4.4/src" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="glut32" />
+					<Add library="gdi32" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wnon-virtual-dtor" />
@@ -152,6 +171,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/InterprocessMemorySpace.h">
 			<Option target="Debug" />
@@ -161,6 +181,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/LoggedPage.cpp">
 			<Option target="Debug" />
@@ -170,6 +191,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/LoggedPage.h">
 			<Option target="Debug" />
@@ -179,6 +201,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/LuaPage.cpp">
 			<Option target="Debug" />
@@ -188,6 +211,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/LuaPage.h">
 			<Option target="Debug" />
@@ -197,6 +221,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/WindowsPageAccessor.cpp">
 			<Option target="Debug" />
@@ -206,6 +231,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/WindowsPageAccessor.h">
 			<Option target="Debug" />
@@ -215,6 +241,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/addressSpace.cpp">
 			<Option target="Debug" />
@@ -225,6 +252,7 @@
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/addressSpace.h">
 			<Option target="Debug" />
@@ -234,6 +262,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/callbackOnWritePage.cpp">
 			<Option target="Debug" />
@@ -243,6 +272,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/callbackOnWritePage.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -255,6 +285,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/filePage.h">
 			<Option target="Debug" />
@@ -264,6 +295,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/math/hsv2rgb.cpp">
 			<Option target="Debug" />
@@ -273,6 +305,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/math/hsv2rgb.h">
 			<Option target="&lt;{~None~}&gt;" />
@@ -285,6 +318,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/multiPage.h">
 			<Option target="Debug" />
@@ -294,6 +328,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/pageVisualizer.cpp">
 			<Option target="Debug" />
@@ -303,6 +338,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/pageVisualizer.h">
 			<Option target="Debug" />
@@ -312,6 +348,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/selfRefrence.cpp">
 			<Option target="Debug" />
@@ -321,6 +358,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/selfRefrence.h">
 			<Option target="Debug" />
@@ -330,6 +368,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/virtualMemorySpace.cpp">
 			<Option target="Debug" />
@@ -339,6 +378,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/virtualMemorySpace.h">
 			<Option target="Debug" />
@@ -348,6 +388,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/virtualPage.cpp">
 			<Option target="Debug" />
@@ -357,6 +398,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMM/virtualPage.h">
 			<Option target="Debug" />
@@ -366,6 +408,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="AMMlib.cpp">
 			<Option target="Lib" />
@@ -384,6 +427,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="ArbitraryMemMap.h">
 			<Option target="Debug" />
@@ -393,6 +437,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="Defines.h">
 			<Option target="Debug" />
@@ -402,10 +447,12 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="LuaMemoryMapper.cpp">
 			<Option target="LuaMap" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="LuaMemoryMapperLib.cpp">
 			<Option target="Debug" />
@@ -415,6 +462,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="LuaMemoryMapperLib.h">
 			<Option target="Debug" />
@@ -424,6 +472,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="config.h">
 			<Option target="Debug" />
@@ -433,6 +482,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lapi.h">
 			<Option target="Debug" />
@@ -441,6 +491,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lauxlib.h">
 			<Option target="Debug" />
@@ -449,6 +500,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lcode.h">
 			<Option target="Debug" />
@@ -457,6 +509,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lctype.h">
 			<Option target="Debug" />
@@ -465,6 +518,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/ldebug.h">
 			<Option target="Debug" />
@@ -473,6 +527,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/ldo.h">
 			<Option target="Debug" />
@@ -481,6 +536,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lfunc.h">
 			<Option target="Debug" />
@@ -489,6 +545,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lgc.h">
 			<Option target="Debug" />
@@ -497,6 +554,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/ljumptab.h">
 			<Option target="Debug" />
@@ -505,6 +563,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/llex.h">
 			<Option target="Debug" />
@@ -513,6 +572,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/llimits.h">
 			<Option target="Debug" />
@@ -521,6 +581,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lmem.h">
 			<Option target="Debug" />
@@ -529,6 +590,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lobject.h">
 			<Option target="Debug" />
@@ -537,6 +599,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lopcodes.h">
 			<Option target="Debug" />
@@ -545,6 +608,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lopnames.h">
 			<Option target="Debug" />
@@ -553,6 +617,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lparser.h">
 			<Option target="Debug" />
@@ -561,6 +626,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lprefix.h">
 			<Option target="Debug" />
@@ -569,6 +635,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lstate.h">
 			<Option target="Debug" />
@@ -577,6 +644,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lstring.h">
 			<Option target="Debug" />
@@ -585,6 +653,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/ltable.h">
 			<Option target="Debug" />
@@ -593,6 +662,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/ltm.h">
 			<Option target="Debug" />
@@ -601,6 +671,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lua.h">
 			<Option target="Debug" />
@@ -609,6 +680,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lua.hpp">
 			<Option target="Debug" />
@@ -617,6 +689,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/luaconf.h">
 			<Option target="Debug" />
@@ -625,6 +698,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lualib.h">
 			<Option target="Debug" />
@@ -633,6 +707,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lundump.h">
 			<Option target="Debug" />
@@ -641,6 +716,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lvm.h">
 			<Option target="Debug" />
@@ -649,6 +725,7 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.3/src/lzio.h">
 			<Option target="Debug" />
@@ -657,12 +734,14 @@
 			<Option target="UnitTest" />
 			<Option target="LuaMap32" />
 			<Option target="Lua54Lib" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lapi.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lapi.h">
 			<Option target="Lua54Lib" />
@@ -673,6 +752,7 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lauxlib.h">
 			<Option target="Lua54Lib" />
@@ -683,12 +763,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lcode.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lcode.h">
 			<Option target="Lua54Lib" />
@@ -699,12 +781,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lctype.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lctype.h">
 			<Option target="Lua54Lib" />
@@ -715,12 +799,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ldebug.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ldebug.h">
 			<Option target="Lua54Lib" />
@@ -731,23 +817,27 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ldo.h">
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ldump.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lfunc.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lfunc.h">
 			<Option target="Lua54Lib" />
@@ -758,6 +848,7 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lgc.h">
 			<Option target="Lua54Lib" />
@@ -768,12 +859,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/liolib.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ljumptab.h">
 			<Option target="Lua54Lib" />
@@ -784,6 +877,7 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/llex.h">
 			<Option target="Lua54Lib" />
@@ -798,12 +892,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lmem.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lmem.h">
 			<Option target="Lua54Lib" />
@@ -814,12 +910,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lobject.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lobject.h">
 			<Option target="Lua54Lib" />
@@ -830,6 +928,7 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lopcodes.h">
 			<Option target="Lua54Lib" />
@@ -844,12 +943,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lparser.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lparser.h">
 			<Option target="Lua54Lib" />
@@ -864,6 +965,7 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lstate.h">
 			<Option target="Lua54Lib" />
@@ -874,6 +976,7 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lstring.h">
 			<Option target="Lua54Lib" />
@@ -884,12 +987,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ltable.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ltable.h">
 			<Option target="Lua54Lib" />
@@ -900,12 +1005,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ltm.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/ltm.h">
 			<Option target="Lua54Lib" />
@@ -940,6 +1047,7 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lundump.h">
 			<Option target="Lua54Lib" />
@@ -950,12 +1058,14 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lvm.c">
 			<Option compilerVar="CC" />
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lvm.h">
 			<Option target="Lua54Lib" />
@@ -966,6 +1076,7 @@
 			<Option target="Lua54Lib" />
 			<Option target="Lua54Lib32" />
 			<Option target="LuaMap" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="lua-5.4.4/src/lzio.h">
 			<Option target="Lua54Lib" />
@@ -979,6 +1090,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="remappingValues.h">
 			<Option target="Debug" />
@@ -988,6 +1100,7 @@
 			<Option target="UnitTest" />
 			<Option target="Lib32" />
 			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
 		</Unit>
 		<Unit filename="test.cpp">
 			<Option target="UnitTest" />

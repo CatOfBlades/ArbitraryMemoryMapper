@@ -2,7 +2,7 @@
 
 CPP      = g++
 CC		= gcc
-CFLAGS  = -c -DLINUX_BUILD
+CFLAGS  = -c -DLINUX_BUILD -static -static-libgcc -static-libstdc++
 INCLUDES = -I ./lua-5.4.4/src/#,/AMM/
 RM      = rm -f
 
@@ -55,7 +55,6 @@ LuaMap: LuaMemoryMapper.cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/loadlib.o $(LUADIR)/loadlib.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lobject.o $(LUADIR)/lobject.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lopcodes.o $(LUADIR)/lopcodes.c
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lopnames.o $(LUADIR)/lopnames.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/loslib.o $(LUADIR)/loslib.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lparser.o $(LUADIR)/lparser.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lstate.o $(LUADIR)/lstate.c
@@ -98,7 +97,6 @@ clean LuaMapclean:
 	$(RM) $(LUADIR)/loadlib.o
 	$(RM) $(LUADIR)/lobject.o
 	$(RM) $(LUADIR)/lopcodes.o
-	$(RM) $(LUADIR)/lopnames.o
 	$(RM) $(LUADIR)/loslib.o
 	$(RM) $(LUADIR)/lparser.o
 	$(RM) $(LUADIR)/lstate.o

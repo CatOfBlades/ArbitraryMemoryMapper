@@ -5,7 +5,6 @@
 #include "addressSpace.h"
 #include <string>
 #include <stdio.h>
-#include <memory>
 
 /** This memory page sits between one memory space and a page and logs all accesses to that page. **/
 
