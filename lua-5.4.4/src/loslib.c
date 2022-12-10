@@ -14,6 +14,7 @@
 #include <locale.h>
 #include <stdlib.h>
 #include <string.h>
+#define _POSIX_C_SOURCE 200112L
 #include <time.h>
 
 #include "lua.h"
