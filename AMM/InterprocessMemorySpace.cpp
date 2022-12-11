@@ -9,7 +9,7 @@
 const int word_size = sizeof(void*);
 
 // Read the memory of the given process
-bool read_process_memory(unsigned int pid, uint64_t address, void* buffer, size_t datalen, bool isRead) {
+bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datalen, bool isRead) {
     // Attach to the target process
     #ifdef __linux__
     if (ptrace(PTRACE_ATTACH, pid, NULL, NULL) == -1) {
@@ -61,7 +61,7 @@ bool read_process_memory(unsigned int pid, uint64_t address, void* buffer, size_
     #endif
 
 
-    uint8_t _buffer[max_variable_size];
+    //uint8_t _buffer[max_variable_size];
 
     if(isRead)
     {
@@ -162,56 +162,28 @@ using namespace std;
 The purpose of this file is to show how one might implement an address space that is in another process
 **/
 
-void setProcessID(DWORD processID)
+void applicationMem::setProcessID(DWORD processID)
 {
     _processID = processID;
 }
 
-void applicationMem::attachProcess(DWORD processID)
-{
-    hProcess = NULL;
-    hProcess = OpenProcess(PROCESS_ALL_ACCESS,0,processID);
-    _processID = processID;
-}
-void applicationMem::dettachProcess(HANDLE processHandle)
-{
-    CloseHandle(hProcess);
-    hProcess = NULL;
-    _processID = 0;
-}
 unsigned long int applicationMem::_size()
 {
     return _pageSize;
 }
 bool applicationMem::_is_free()
 {
-    if(hProcess == NULL)
-    {
-        return 0; // h_process not loaded, no size.
-    }
-    else
-    {
-        return 1;
-    }
+    return 1;
 }
 unsigned char* applicationMem::_content()
 {
-    if(hProcess == NULL)
-    {
-        return 0; // h_process not loaded, no content.
-    }
-    bool success = ReadProcessMemory(hProcess,hAddress,_pageContent,_pageSize,0);
-    if(success)
-    {
-        return _pageContent;
-    }
     return NULL;
 }
 unsigned char applicationMem::readByte(unsigned long int offset)
 {
     char out;
     char* addr = hAddress+offset;
-    bool success = ReadProcessMemory(hProcess,addr,&out,1,0);
+    bool success = accessMemory(_processID, (uint64_t)addr, &out, 1, 1);
     if(success)
     {
         return out;
@@ -223,12 +195,12 @@ unsigned char applicationMem::readByte(unsigned long int offset)
 }
 void applicationMem::writeByte(unsigned long int offset,unsigned char Byt)
 {
-    WriteProcessMemory(hProcess,hAddress+offset,&Byt,1,0);
+    accessMemory(_processID, (uint64_t)hAddress+offset, &Byt, 1, 0);
 }
 
 void applicationMem::readMem(unsigned long int offset,unsigned char* buffer ,unsigned long int len)
 {
-    ReadProcessMemory(hProcess,hAddress+offset,buffer,len,0);
+    accessMemory(_processID, (uint64_t)hAddress+offset, buffer, 1, 1);
 }
 void applicationMem::writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len)
 {
@@ -236,10 +208,13 @@ void applicationMem::writeMem(unsigned long int offset,unsigned char* Byt,unsign
     //printf("ApplicationMem write\n\taddress:%X\n\toffset:%i\n\thProcess:%x\n\tlength:%i\n",hAddress,(int)offset,hProcess,(int)len);
     SIZE_T written = 0;
 
+    #ifdef _WIN32
     DWORD oldProtect = 0;
-    VirtualProtectEx( hProcess, hAddress+offset, 256, PAGE_EXECUTE_READWRITE, &oldProtect );
-    WriteProcessMemory(hProcess,hAddress+offset,Byt,(SIZE_T)len,&written);
-    VirtualProtectEx( hProcess, hAddress+offset, 256, oldProtect, NULL ); //restore the origina
+    //VirtualProtectEx( hProcess, hAddress+offset, 256, PAGE_EXECUTE_READWRITE, &oldProtect );
+    //WriteProcessMemory(hProcess,hAddress+offset,Byt,(SIZE_T)len,&written);
+    accessMemory(_processID, (uint64_t)hAddress+offset, Byt,(SIZE_T)len, 0);
+    //VirtualProtectEx( hProcess, hAddress+offset, 256, oldProtect, NULL ); //restore the origina
+    #endif //_WIN32
     //printf("\tbytes Written:%i\n",written);
     if(written==0)
     {
@@ -268,18 +243,16 @@ applicationMem::applicationMem( DWORD procID, unsigned int Size,char* addr)
     //Beep(400,100);
     memoryTypeID = "Appl_Mem";
     _pageSize = Size;
-    attachProcess(procID);
+    _processID = procID;
     _pageContent = new unsigned char[_pageSize];
     hAddress = addr;
 
 }
 applicationMem::~applicationMem()
 {
-    dettachProcess(hProcess);
+    //dettachProcess(hProcess);
     if(_pageSize > 0)
     {
         delete [] _pageContent;
     }
 }
-
-#endif //WINBUILD

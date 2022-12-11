@@ -159,6 +159,9 @@
 		<Compiler>
 			<Add option="-Wnon-virtual-dtor" />
 			<Add option="-Wall" />
+			<Add directory="./" />
+			<Add directory="lua-5.4.4" />
+			<Add directory="lua-5.4.4/src" />
 		</Compiler>
 		<Linker>
 			<Add directory="LuaJITlove/src" />

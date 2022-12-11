@@ -25,7 +25,7 @@ addMultiPage("page3",2,{"page1","page2"})
 --linkPageToMemorySpace("mem1","page2")
 linkPageToMemorySpace("mem1","page3") --linking the multipage as the first page to show off memory swapping potential
 
---SysBeep(600,200)
+SysBeep(600,200)
 length = 10
 i = 1
 j = {}

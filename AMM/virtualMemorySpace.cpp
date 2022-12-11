@@ -29,6 +29,7 @@ virtualMemorySpace::~virtualMemorySpace()
     }
 }
 
+/*
 unsigned int virtualMemorySpace::virtualMemorySpace::pageCountAndRecalcSize()
 {
     PageAddresses.clear();
@@ -44,6 +45,7 @@ unsigned int virtualMemorySpace::virtualMemorySpace::pageCountAndRecalcSize()
     }
     return _count;
 }
+*/
 
 void virtualMemorySpace::removeAddressSpace(int AS)
 {
@@ -58,13 +60,13 @@ void virtualMemorySpace::removeAddressSpace(int AS)
 		#endif
 		pageList.erase(pageList.begin()+AS);
     }
-	pageCountAndRecalcSize();
+	//pageCountAndRecalcSize();
 }
 
 void virtualMemorySpace::addAddressSpace(IN std::shared_ptr<addressSpace> AS)
 {
 	pageList.push_back(AS);
-    pageCountAndRecalcSize();
+    //pageCountAndRecalcSize();
 }
 
 
