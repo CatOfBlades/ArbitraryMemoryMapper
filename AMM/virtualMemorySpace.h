@@ -37,17 +37,10 @@ class virtualMemorySpace //MainPageRegistry
 
 	~virtualMemorySpace();
 
-    std::shared_ptr<addressSpace> _getAddressPage(unsigned long int addr,unsigned long int offset); //returns NULL if the address is out of scope of this memory space.
-    unsigned int pageCountAndRecalcSize();
-		//returns the current number of pages in the linked list.
-		//and recalculates the number of avalible bytes in the memory space and assigns it to the 'memorySize' variable
-		//also updates the 'PageAddresses' vector.
-
     //  \/ these functions return the number of bytes successfully written/read.
     unsigned long int readMem(unsigned long int Address,OUT unsigned char* buf,unsigned long int length);
     unsigned long int writeMem(unsigned long int Address,IN unsigned char* buf,unsigned long int length);
     unsigned long int RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
-    unsigned long int RW_Mem_From_Page_No(unsigned long int pageNum, bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
 
 	void addAddressSpace(IN std::shared_ptr<addressSpace> AS);
 	void removeAddressSpace(int AS);

@@ -6048,7 +6048,7 @@
 	"virtualMemorySpace.h"
 	"addressSpace.h"
 
-1670709159 c:\users\micah\documents\github\jell\arbitrarymemorymapper\amm\virtualmemoryspace.h
+1670714476 c:\users\micah\documents\github\jell\arbitrarymemorymapper\amm\virtualmemoryspace.h
 	"../Defines.h"
 	"addressSpace.h"
 	"virtualPage.h"
@@ -6074,20 +6074,24 @@
 	"InterprocessMemorySpace.h"
 	<stdio.h>
 
-1670709159 c:\users\micah\documents\github\jell\arbitrarymemorymapper\amm\interprocessmemoryspace.h
+1670715035 c:\users\micah\documents\github\jell\arbitrarymemorymapper\amm\interprocessmemoryspace.h
 	"addressSpace.h"
 	"../Defines.h"
+	<sys/ptrace.h>
+	<sys/types.h>
+	<sys/wait.h>
+	<unistd.h>
+	<sys/user.h>
 	<Windows.h>
 
 1670709159 source:c:\users\micah\documents\github\jell\arbitrarymemorymapper\amm\loggedpage.cpp
 	"LoggedPage.h"
 	"time.h"
 
-1670711363 c:\users\micah\documents\github\jell\arbitrarymemorymapper\amm\loggedpage.h
+1670714029 c:\users\micah\documents\github\jell\arbitrarymemorymapper\amm\loggedpage.h
 	"addressSpace.h"
 	<string>
 	<stdio.h>
-	<memory>
 
 1670709159 source:c:\users\micah\documents\github\jell\arbitrarymemorymapper\amm\luapage.cpp
 	"LuaPage.h"

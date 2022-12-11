@@ -45,16 +45,6 @@ unsigned int virtualMemorySpace::virtualMemorySpace::pageCountAndRecalcSize()
     return _count;
 }
 
-std::shared_ptr<addressSpace> virtualMemorySpace::_getAddressPage(unsigned long int addr,unsigned long int offset) //returns NULL if the address is out of scope of this memory space.
-{
-    /**
-    returns a pointer to the page that the address is in.
-    and the offset is how many bytes from the start of the page that the address is at.
-    **/
-
-	// will probbably iterate over the 'PageAddresses' vector to solve this one.
-}
-
 void virtualMemorySpace::removeAddressSpace(int AS)
 {
     if(!pageList.size()) //if we don't have any pages
@@ -78,13 +68,6 @@ void virtualMemorySpace::addAddressSpace(IN std::shared_ptr<addressSpace> AS)
 }
 
 
-bool virtualMemorySpace::isAddressInPage(unsigned long int addr,int page)
-{
-	//not yet implimented.
-    return false;
-}
-
-
 #ifdef RESTRICT_PAGESIZE
 unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
 {
@@ -93,78 +76,6 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
     {
         addr%=memorySize;
     }
-}
-#else
-#ifdef USE_BYTEWISE_RW
-#ifdef EXTRA_DEBUG_MESSAGES
-    int printonce = 0;
-#endif //EXTRA_DEBUG_MESSAGES
-//I absolutely hate that I have to write every byte individually.
-//But it's the only way I could make it simple for my smol brain to understand.
-//Please someone write maths wizardry to calculate how many bytes have to
-// be read/written to each page so it can be done with less calls to writeMem/readMem.
-unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
-{
-
-
-    #ifdef EXTRA_DEBUG_MESSAGES
-    if(printonce == 0)
-    {
-        printf("Using byte-wise r/w.\n");
-        printonce = 1;
-    }
-    #endif //EXTRA_DEBUG_MESSAGES
-	unsigned long int numBytes = len;
-
-    addr -= memoryOffset;
-
-    if(islooped)
-    {
-        addr%=memorySize;
-    }
-
-	if(!pageList.size())
-    {
-        return 0;
-    }
-
-
-	int j=0;
-	while(pageList.at(j)->_size()==0){j++;} //skip empty pages
-
- 	int pageEndAddress = PageAddresses.at(j)+PageList.at(j)->_size()-1;
-
-	while(pageEndAddress < addr)
-	{
-		j++;
-		if(PageList.at(j)->_size()==0){continue;}
-		pageEndAddress = PageAddresses.at(j)+PageList.at(j)->_size()-1;
-	}
-    int i=0;
-	for(i=0; i<len; i++)
-	{
-		if( addr+i > memorySize ) return 0;
-		if( addr+i > pageEndAddress )
-		{
-			j++;
-			if(j>=pageList.size())
-			{
-				j=0;
-				return 0;
-			}
-			pageEndAddress = PageAddresses.at(j)+PageList.at(j)->_size();
-		}
-		if(write)
-		{
-			PageList.at(j)->writeMem( (addr+i) ,buf+i,1);
-		}
-		else
-		{
-			PageList.at(j)->readMem( (addr+i) ,buf+i,1);
-		}
-	}
-
-	return numBytes;
 }
 #else
 
@@ -248,24 +159,6 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
 
 }
 
-unsigned long int virtualMemorySpace::RW_Mem_From_Page_No(unsigned long int pageNum, bool write, unsigned long int addr, unsigned char* buf, unsigned long int len)
-{
-    unsigned long int totalBytesRead = 0;
-
-    if(write)
-    {
-        pageList.at(pageNum)->writeMem(addr,buf,len);
-    }
-    else
-    {
-        pageList.at(pageNum)->readMem(addr,buf,len);
-    }
-    totalBytesRead = len;
-
-    return totalBytesRead;
-}
-
-#endif
 #endif //RESTRICT_PAGESIZE
 
 unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigned char* buf, unsigned long int length)

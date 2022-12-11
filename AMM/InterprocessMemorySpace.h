@@ -5,9 +5,21 @@
 #include "addressSpace.h"
 
 #include "../Defines.h"
+#ifdef __linux__
+#include <sys/ptrace.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include <sys/user.h>
+#endif
+
 #ifdef WINBUILD
+#define _WIN32
+#endif //WINBUILD
+#ifdef _WIN32
 #include <Windows.h>
-#endif // WINBUILD
+#endif //WIN32
+
 
 /**
 The purpose of this file is to show how one might implement an address space that is in another process
@@ -16,13 +28,7 @@ The purpose of this file is to show how one might implement an address space tha
 class applicationMem: public addressSpace
 {
     public:
-
-    DWORD _processID;
-    HANDLE hProcess;
-    char* hAddress;
-
-    void attachProcess(DWORD processID);
-    void dettachProcess(HANDLE processHandle);
+    void setProcessID(DWORD processID);
 
 	unsigned long int _pageSize;
 	unsigned char* _pageContent;
@@ -42,6 +48,9 @@ class applicationMem: public addressSpace
 	applicationMem();
 	applicationMem( DWORD procID, unsigned int Size,char* addr);
 	~applicationMem();
+	private:
+    DWORD _processID;
+    char* hAddress;
 };
 
 
