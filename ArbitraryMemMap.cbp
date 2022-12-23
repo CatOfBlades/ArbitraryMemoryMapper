@@ -151,8 +151,10 @@
 					<Add option="-static" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add library="glut32" />
 					<Add library="gdi32" />
+					<Add library="user32" />
+					<Add library="kernel32" />
+					<Add library="psapi" />
 				</Linker>
 			</Target>
 		</Build>

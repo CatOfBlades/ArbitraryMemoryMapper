@@ -26,8 +26,11 @@ std::string BuildInfo = "hello world";
 #endif // LINUX_BUILD
 #endif
 
-int main()
+int main(int argc,char* argv[])
 {
+
+    if( (argc != 1)&&(argc != 2) ){}; //!TODO: make the OpenGL window only appear when a flag is set. Maybe -R for render?
+
 #ifdef DBG_MESSAGES
     printf("%s\n", BuildInfo.c_str());
 #endif
