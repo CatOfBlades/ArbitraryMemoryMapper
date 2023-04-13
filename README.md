@@ -64,6 +64,7 @@ There is a powershell script that pulls the revision info and adds the build tim
 There is a known issue where a page may be destroyed by the first "memoryContext" object that references it. Please be cautious when managing memory contexts and pages to avoid unexpected behavior.
 
 
+## summary
 
 With ArbitraryMemoryMapper, you have a powerful tool at your disposal for managing memory access in your applications. Its flexible and intuitive API, along with the LuaMap application and OpenGL visualizer, make it a valuable asset for game development, embedded systems, and other memory-intensive applications. Try it out and experience the convenience and efficiency of unified memory access with ArbitraryMemoryMapper.
 
