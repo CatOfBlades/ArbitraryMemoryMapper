@@ -47,6 +47,7 @@ List of Pages: These are memory interfaces, which can be files, script-defined m
 ## OpenGL Visualizer
 
 (Placeholder for OpenGL visualizer screenshot)
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
 ArbitraryMemoryMapper also includes an OpenGL visualizer that provides a graphical representation of memory mappings, making it easy to visualize and debug complex memory configurations.
 
