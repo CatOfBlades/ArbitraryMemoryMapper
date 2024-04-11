@@ -13,11 +13,11 @@
 #define MEMSPACE_LOOP_DEFAULT 0
 
 //if memory should be accessed byte by byte or in chunks.
-#define USE_BYTEWISE_RW
+//#define USE_BYTEWISE_RW
 
 //if you want a lot of debug messages in your console.
-#define DBG_MESSAGES
-#define VERBOSE_DBG
+//#define DBG_MESSAGES
+//#define VERBOSE_DBG
 
 /** Begin WinMem Specific Settings **/
 //if you want to build the windows specific memory accessor construct page.

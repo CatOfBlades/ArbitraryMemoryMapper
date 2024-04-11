@@ -66,7 +66,7 @@ void virtualMemorySpace::removeAddressSpace(int AS)
 void virtualMemorySpace::addAddressSpace(IN std::shared_ptr<addressSpace> AS)
 {
 	pageList.push_back(AS);
-    //pageCountAndRecalcSize();
+	updatePageAddresses();
 }
 
 
@@ -119,7 +119,16 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
                 }
             }
         }
-        unsigned long int PageTop = PageAddresses[i]; //top of the memory of the page found
+        unsigned long int PageTop = 0;
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("page list size:%i\n",pageList.size());
+        printf("page address list size:%i\n",PageAddresses.size());
+        #endif // EXTRA_DEBUG_MESSAGES
+        if(i!=0) //indexing PageAddresses with 0 seems to cause an access violation.
+        {
+            PageTop = PageAddresses[i]; //top of the memory of the page found
+        }
+
         unsigned long int offset = startAddress-PageTop;
         unsigned long int offset_end = endAddress-PageTop;
 
@@ -171,6 +180,23 @@ unsigned long int virtualMemorySpace::readMem(unsigned long int Address, unsigne
 unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigned char* buf,unsigned long int length)
 {
     return RW_Mem(1, Address, buf, length);
+}
+
+void virtualMemorySpace::updatePageAddresses()
+{
+    PageAddresses.clear(); // Clear the existing PageAddresses
+
+    unsigned long int address = 0; // Start address for the first page
+
+    // Iterate over each page in pageList
+    for (const auto& page : pageList)
+    {
+        // Add the address of the current page to PageAddresses
+        PageAddresses.push_back(address);
+
+        // Increment the address by the size of the current page
+        address += page->_size();
+    }
 }
 
 

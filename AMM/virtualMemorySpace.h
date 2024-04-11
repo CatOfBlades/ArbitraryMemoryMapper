@@ -30,6 +30,8 @@ class virtualMemorySpace //MainPageRegistry
 	std::vector<unsigned long int> PageAddresses; //calculated when memorySize is updated.
     bool isAddressInPage(unsigned long int addr,int page);
 
+    void updatePageAddresses();
+
 
 	virtualMemorySpace();//if you don't need a memory offset then don't worry about it.
 

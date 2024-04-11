@@ -67,7 +67,9 @@ extern "C"
 
     void lua_RegisterMemoryFunctions(lua_State* L)
     {
+        #ifdef EXTRA_DEBUG_MESSAGES
         printf("lua_RegisterMemoryFunctions:%p\n",lua_RegisterMemoryFunctions);
+        #endif //EXTRA_DEBUG_MESSAGES
         lua_register(L,"createMemoryContext",lua_CreateMemoryContext);
         lua_register(L,"destroyMemoryContext",lua_DestroyMemoryContext);
         lua_register(L,"SysBeep",lua_Beep);
@@ -184,6 +186,9 @@ void destroyPage(std::string ID)
 void addVirtualPage(std::string ID,unsigned int PageSize)
 {
     std::shared_ptr<addressSpace> AS = std::make_shared<virtualPage>((unsigned int)PageSize);
+    #ifdef EXTRA_DEBUG_MESSAGES
+    printf("new virtual page:%p\n",&AS);
+    #endif // EXTRA_DEBUG_MESSAGES
 
     std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
     std::pair<std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
