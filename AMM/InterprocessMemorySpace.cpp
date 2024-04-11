@@ -78,7 +78,7 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
         i=0;
         while(i < datalen)
         {
-            ((uint8_t*)buffer)[i] = buffer[i+addressdif];
+            ((uint8_t*)buffer)[i] = ((uint8_t*)buffer)[i+addressdif];
             i++;
         }
         #endif
