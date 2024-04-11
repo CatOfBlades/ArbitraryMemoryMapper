@@ -17,6 +17,8 @@
     multiPageSwapBanks(string ID, int bankNum)
 --]]
 
+print("test memory functions")
+
 createMemoryContext("mem1")
 addVirtualPage("page1",256)
 addVirtualPage("page2",256)
@@ -25,6 +27,7 @@ addMultiPage("page3",2,{"page1","page2"})
 --linkPageToMemorySpace("mem1","page2")
 linkPageToMemorySpace("mem1","page3") --linking the multipage as the first page to show off memory swapping potential
 
+print("memory space initialized for testing")
 SysBeep(600,200)
 length = 10
 i = 1
