@@ -2,7 +2,7 @@
 
 CPP      = g++
 CC		= gcc
-CFLAGS  = -c -DLINUX_BUILD -static -static-libgcc -static-libstdc++
+CFLAGS  = -c -g -DLINUX_BUILD -static -static-libgcc -static-libstdc++
 INCLUDES = -I ./lua-5.4.4/src/#,/AMM/
 RM      = rm -f
 
