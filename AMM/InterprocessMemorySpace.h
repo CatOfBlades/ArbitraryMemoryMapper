@@ -11,6 +11,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <sys/user.h>
+#define DWORD long
 #endif
 
 #ifdef WINBUILD
