@@ -11,6 +11,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <sys/user.h>
+#include <iostream>
 #define DWORD long
 #endif
 
