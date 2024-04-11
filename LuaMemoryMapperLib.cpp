@@ -67,6 +67,7 @@ extern "C"
 
     void lua_RegisterMemoryFunctions(lua_State* L)
     {
+        printf("lua_RegisterMemoryFunctions:%p\n",lua_RegisterMemoryFunctions);
         lua_register(L,"createMemoryContext",lua_CreateMemoryContext);
         lua_register(L,"destroyMemoryContext",lua_DestroyMemoryContext);
         lua_register(L,"SysBeep",lua_Beep);
