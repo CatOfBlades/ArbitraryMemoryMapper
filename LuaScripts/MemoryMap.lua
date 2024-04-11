@@ -45,6 +45,7 @@ while i>0 do
 	i=i-1
 end
 writeMemToContext("mem1",0,length,j)
+print("multibank pages ready")
 
 multiPageSwapBanks("page3", 0) --swapping back to bank 0 (page1)
 k = readMemFromContext("mem1",0,length) --note that we are reading from address '0' this is the "top" of our memory space.
