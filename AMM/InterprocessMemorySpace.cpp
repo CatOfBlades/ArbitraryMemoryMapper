@@ -78,7 +78,7 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
         i=0;
         while(i < datalen)
         {
-            ((uint8_t*)buffer)[i] = _buffer[i+addressdif];
+            ((uint8_t*)buffer)[i] = buffer[i+addressdif];
             i++;
         }
         #endif
@@ -114,7 +114,7 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
         */
             unsigned int i = 0;
             while(i < newdatalen) { //newdatalen is larger then the buffer. this may well end up as a crash.
-                ptrace(PTRACE_POKEDATA, pid,address+i,buffer[i]);
+                ptrace(PTRACE_POKEDATA, pid,address+i,((uint8_t*)buffer)[i]);
                 i++;
             }
         //}
@@ -206,7 +206,8 @@ void applicationMem::writeMem(unsigned long int offset,unsigned char* Byt,unsign
 {
     //Beep(400,100);
     //printf("ApplicationMem write\n\taddress:%X\n\toffset:%i\n\thProcess:%x\n\tlength:%i\n",hAddress,(int)offset,hProcess,(int)len);
-    SIZE_T written = 0;
+    //SIZE_T written = 0;
+	int written = 0;
 
     #ifdef _WIN32
     DWORD oldProtect = 0;
