@@ -54,7 +54,7 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
     }
     else
     {
-        newaddress = adress;
+        newaddress = address;
         newdatalen = datalen;
         addressdif = 0;
     }
@@ -69,13 +69,13 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
         // Read the value of the memory at the address
         unsigned int i = 0;
         while(i < newdatalen) {
-            if (ptrace(PTRACE_PEEKDATA, pid, newaddress+i, _buffer+i) == -1) {
+            if (ptrace(PTRACE_PEEKDATA, pid, newaddress+i, buffer+i) == -1) {
                 std::cerr << "Error: Failed to read memory for process " << pid << std::endl;
                 return false;
             }
             i+=word_size;
         }
-        i=0
+        i=0;
         while(i < datalen)
         {
             ((uint8_t*)buffer)[i] = _buffer[i+addressdif];
