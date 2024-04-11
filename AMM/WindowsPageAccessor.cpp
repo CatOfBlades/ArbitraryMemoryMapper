@@ -1,8 +1,9 @@
 
+#include "../Defines.h"
+
 #ifdef WINBUILD
 
 #include "WindowsPageAccessor.h"
-#include "../Defines.h"
 #include "psapi.h"
 
 systemDataManager::systemDataManager()

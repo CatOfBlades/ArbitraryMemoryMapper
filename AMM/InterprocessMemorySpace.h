@@ -16,7 +16,7 @@
 #endif
 
 #ifdef WINBUILD
-#define _WIN32
+//#define _WIN32
 #endif //WINBUILD
 #ifdef _WIN32
 #include <Windows.h>
