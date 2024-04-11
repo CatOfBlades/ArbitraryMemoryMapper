@@ -113,7 +113,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
             while(startAddress>PageAddresses[i]) //finds the first page that the memory region is in.
             {
                 i++;
-                if(i>PageAddresses.size())
+                if(i>=PageAddresses.size())
                 {
                     break;
                 }
