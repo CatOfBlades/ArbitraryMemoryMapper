@@ -5,8 +5,8 @@ CC		= gcc
 CFLAGS  = -c -DLINUX_BUILD -static -static-libgcc -static-libstdc++
 INCLUDES = -I ./lua-5.4.4/src/#,/AMM/
 RM      = rm -f
-BINDIR = ./bin
 
+BINDIR = ./bin
 AMMDIR = ./AMM
 LUADIR = ./lua-5.4.4/src
 
@@ -61,7 +61,7 @@ LuaMap: LuaMemoryMapper.cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lstate.o $(LUADIR)/lstate.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lstring.o $(LUADIR)/lstring.c
 	
-	$(CPP) -o $(BINDIR)/LuaMap/LuaMap ArbitraryMemMap.o LuaMemoryMapper.o $(AMMDIR)/addressSpace.o $(AMMDIR)/LoggedPage.o $(AMMDIR)/LuaPage.o $(AMMDIR)/virtualPage.o $(AMMDIR)/WindowsPageAccessor.o $(AMMDIR)/callbackOnWritePage.o $(AMMDIR)/InterprocessMemorySpace.o $(AMMDIR)/filePage.o $(AMMDIR)/math/hsv2rgb.o $(AMMDIR)/multiPage.o $(AMMDIR)/pageVisualizer.o $(AMMDIR)/selfRefrence.o $(AMMDIR)/virtualMemorySpace.o $(LUADIR)/lstring.o $(LUADIR)/lstate.o $(LUADIR)/lparser.o $(LUADIR)/loslib.o $(LUADIR)/lopcodes.o $(LUADIR)/lobject.o $(LUADIR)/loadlib.o $(LUADIR)/lmem.o $(LUADIR)/lmathlib.o $(LUADIR)/llex.o $(LUADIR)/liolib.o $(LUADIR)/linit.o $(LUADIR)/lgc.o $(LUADIR)/lfunc.o $(LUADIR)/ldump.o $(LUADIR)/ldo.o $(LUADIR)/ldebug.o $(LUADIR)/ldblib.o $(LUADIR)/lctype.o $(LUADIR)/lcorolib.o $(LUADIR)/lcode.o $(LUADIR)/lbaselib.o $(LUADIR)/lauxlib.o $(LUADIR)/lapi.o 
+	$(CPP) -o $(BINDIR)/LuaMap/LuaMap $(LUADIR)/lapi.o $(LUADIR)/lauxlib.o $(LUADIR)/lbaselib.o $(LUADIR)/lcode.o $(LUADIR)/lcorolib.o $(LUADIR)/lctype.o $(LUADIR)/ldblib.o $(LUADIR)/ldebug.o $(LUADIR)/ldo.o $(LUADIR)/ldump.o $(LUADIR)/lfunc.o $(LUADIR)/lgc.o $(LUADIR)/linit.o $(LUADIR)/liolib.o $(LUADIR)/llex.o $(LUADIR)/lmathlib.o $(LUADIR)/lmem.o $(LUADIR)/loadlib.o $(LUADIR)/lobject.o $(LUADIR)/lopcodes.o $(LUADIR)/loslib.o $(LUADIR)/lparser.o $(LUADIR)/lstate.o $(LUADIR)/lstring.o $(AMMDIR)/InterprocessMemorySpace.o $(AMMDIR)/LoggedPage.o $(AMMDIR)/LuaPage.o $(AMMDIR)/WindowsPageAccessor.o $(AMMDIR)/addressSpace.o $(AMMDIR)/callbackOnWritePage.o $(AMMDIR)/filePage.o $(AMMDIR)/math/hsv2rgb.o $(AMMDIR)/multiPage.o $(AMMDIR)/pageVisualizer.o $(AMMDIR)/selfRefrence.o $(AMMDIR)/virtualMemorySpace.o $(AMMDIR)/virtualPage.o LuaMemoryMapper.o
 	
 clean LuaMapclean:
 	$(RM) $(BINDIR)/LuaMap/LuaMap
