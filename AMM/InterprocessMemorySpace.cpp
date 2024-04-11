@@ -219,9 +219,11 @@ void applicationMem::writeMem(unsigned long int offset,unsigned char* Byt,unsign
     //printf("\tbytes Written:%i\n",written);
     if(written==0)
     {
+		#ifndef __linux__
         int errcode = GetLastError();
         //printf("\tzero Written, last error code:%i\n",errcode);
         printf("InterprocessPage->writeProcessMemory encountered error code:%i\n",errcode);
+		#endif
         printf("\tNo bytes actually written, but continuing as if they were.\n");
     }
 }
