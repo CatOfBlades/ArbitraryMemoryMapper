@@ -105,8 +105,8 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
     printf("endAddress:%i\n",(int)endAddress);
 	#endif
 
-    while(length>totalBytesRead)
-    {
+    //while(length>totalBytesRead)
+    //{
         auto i= 0;
         if(startAddress>0)
         {
@@ -151,21 +151,30 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Addres
             }
             return totalBytesRead; // then end here.
         }
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("page overflow on read/write.\n");
+		#endif
         int bytesWritten=0;
         bytesWritten = pageList.at(i)->_size()-offset;
         if(write == 1)
         {
-            pageList.at(i)->writeMem(offset,buf,bytesWritten);
+            pageList.at(i)->writeMem(offset,buf,bytesWritten); //write what fits
+            if(i+1 <= PageAddresses.size())
+            {
+                pageList.at(i+1)->writeMem(0,buf+bytesWritten,length-bytesWritten); //recurse to next page
+            }
         }
         else
         {
-            pageList.at(i)->readMem(offset,buf,bytesWritten);
+            pageList.at(i)->readMem(offset,buf,bytesWritten); //write what fits
+            if(i+1 <= PageAddresses.size())
+            {
+                pageList.at(i+1)->readMem(0,buf+bytesWritten,length-bytesWritten); //recurse to next page
+            }
         }
-        //Address -= bytesWritten;
         startAddress += bytesWritten;
         endAddress = startAddress+(length-totalBytesRead);
         totalBytesRead += bytesWritten;
-    }
     return totalBytesRead;
 
 }

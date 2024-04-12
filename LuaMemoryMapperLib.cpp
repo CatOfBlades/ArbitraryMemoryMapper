@@ -187,7 +187,7 @@ void addVirtualPage(std::string ID,unsigned int PageSize)
 {
     std::shared_ptr<addressSpace> AS = std::make_shared<virtualPage>((unsigned int)PageSize);
     #ifdef EXTRA_DEBUG_MESSAGES
-    printf("new virtual page:%p\n",&AS);
+    printf("new virtual page:%p\n",AS.get());
     #endif // EXTRA_DEBUG_MESSAGES
 
     std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
@@ -413,7 +413,7 @@ extern "C"
         int pageSize = lua_tointeger(L,2);
         const char *  WindowName = lua_tostring(L,3);
         char* address = 0;
-        address=address+lua_tointeger(L,4);
+        address=(char*)lua_tointeger(L,4);
         addInterprocessPage(ID,pageSize,WindowName,address);
         return 0;
     }
@@ -473,7 +473,8 @@ int lua_addMetaPage(lua_State* L)
     int pageSize = lua_tointeger(L,2);
     std::string SubMemorySpaceName = lua_tostring(L,3);
     char* address = 0;
-    address=address+lua_tointeger(L,4);
+    //address=address+lua_tointeger(L,4);
+    address=(char*)lua_tointeger(L,4);
     addMetaPage(ID,pageSize,SubMemorySpaceName,address);
     return 0;
 }
@@ -529,6 +530,10 @@ int lua_readMemFromContext(lua_State* L)
     std::string ContextID = lua_tostring(L,1);
     unsigned long int Address = lua_tointeger(L,2);
     unsigned long int length = lua_tointeger(L,3);
+    if(length > MAX_PATH)
+    {
+        printf("Error size of read to large!\n");
+    }
     //unsigned char buf[length];
     unsigned char buf[MAX_PATH];
 
@@ -552,6 +557,10 @@ int lua_writeMemToContext(lua_State* L)
     std::string ContextID = lua_tostring(L,1);
     unsigned long int Address = lua_tointeger(L,2);
     unsigned long int length = lua_tointeger(L,3);
+    if(length > MAX_PATH)
+    {
+        printf("Error size of read to large!\n");
+    }
     //unsigned char buf[length];
     unsigned char buf[MAX_PATH];
 

@@ -720,7 +720,7 @@
 	<string>
 	<memory>
 
-1712867039 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\config.h
+1712899359 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\config.h
 
 1712828583 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\callbackonwritepage.cpp
 	"callbackOnWritePage.h"
@@ -847,7 +847,7 @@
 	"addressSpace.h"
 	"virtualMemorySpace.h"
 
-1712865194 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualmemoryspace.cpp
+1712898787 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\virtualmemoryspace.cpp
 	"virtualMemorySpace.h"
 	<Windows.h>
 	<stdio.h>
@@ -860,7 +860,7 @@
 	"LuaMemoryMapperLib.h"
 	"revinfo.h"
 
-1712828591 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapperlib.h
+1712895265 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapperlib.h
 	<iostream>
 	<stdio.h>
 	"Defines.h"
@@ -887,17 +887,17 @@
 	"AMM/LuaPage.h"
 	"AMM/filePage.h"
 
-1712828583 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\windowspageaccessor.h
+1712895265 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\windowspageaccessor.h
 	<windows.h>
 	<stdio.h>
 	<vector>
 	"addressSpace.h"
-	"psapi.h"
+	"Psapi.h"
 
-1712867039 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\ideprojectfiles\ammwin64\\revinfo.h
+1712899360 c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\ideprojectfiles\ammwin64\\revinfo.h
 	<string>
 
-1712866098 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapperlib.cpp
+1712897945 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\luamemorymapperlib.cpp
 	"LuaMemoryMapperLib.h"
 	<vector>
 	"AMM\pageVisualizer.h"

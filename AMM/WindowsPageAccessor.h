@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <vector>
 #include "addressSpace.h"
-#include "psapi.h"
+#include "Psapi.h"
 
 //Essentially just a more complicated virtual page where the page size is the same as the systems page size.
 //useful for windows specific applications.
