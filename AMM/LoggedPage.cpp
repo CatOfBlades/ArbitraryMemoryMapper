@@ -42,15 +42,15 @@ void loggedPage::writeByte(unsigned long int offset,unsigned char Byt)
 
 void loggedPage::readMem(unsigned long int offset,unsigned char* buffer, unsigned long int len)
 {
-    LinkedPage->readMem(offset,buffer,len);
     time_t rawtime = time(0);
     fprintf(logfile,"function readMem(offset:%i,bufferAddress:0x%X,length:%i) called, at%s\n",offset,buffer,len,ctime(&rawtime));
+    LinkedPage->readMem(offset,buffer,len);
 }
 void loggedPage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len)
 {
-    LinkedPage->writeMem(offset,Byt,len);
     time_t rawtime = time(0);
     fprintf(logfile,"function writeMem(offset:%i,bufferAddress:0x%X,length:%i) called, at%s\n",offset,Byt,len,ctime(&rawtime));
+    LinkedPage->writeMem(offset,Byt,len);
 }
 
 loggedPage::loggedPage(std::string logName,std::shared_ptr<addressSpace> page)
