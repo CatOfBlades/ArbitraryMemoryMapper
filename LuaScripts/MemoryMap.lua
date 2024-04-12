@@ -81,5 +81,48 @@ local function testWriteAcrossConsecutivePages()
     destroyMemoryContext(memID)
 end
 
+-- Test function for addLoggedPage
+local function testAddLoggedPage()
+
+    local memID = "mem2"
+    local pageID = "log_page"
+	local pageID2 = "page1"
+    local logfile = "test_log.txt"
+	local data = "This is a test log message."
+    
+    print("Testing addLoggedPage function")
+
+    -- Create memory context
+    createMemoryContext(memID)
+
+	-- Add virtual memory for logged page to refrence
+	addVirtualPage(pageID2, #data)
+    -- Add a logged page
+    addLoggedPage(pageID, logfile, pageID2)
+
+    -- Link to memory space
+    linkPageToMemorySpace(memID, pageID)
+
+    -- Write some data to the logged page
+	print("writing")
+    writeMemToContext(memID, 0, 27, data)
+
+    -- Data read test
+    print("reading")
+    local k = readMemFromContext(memID, 0, 27)
+    for i = 1, #data do
+        print(k[i])
+    end
+
+    -- Clean up resources
+	destroyPage(pageID2)
+    destroyPage(pageID)
+    destroyMemoryContext(memID)
+
+    print("addLoggedPage function test completed")
+end
+
+-- Run tests
 testMemoryFunctions()
 testWriteAcrossConsecutivePages()
+testAddLoggedPage()
