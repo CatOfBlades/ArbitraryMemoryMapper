@@ -18,28 +18,28 @@ void virtualPage::writeByte(unsigned long int offset,unsigned char Byt)
     _pageContent[offset] = Byt;
 }
 
-void virtualPage::readMem(unsigned long int offset,unsigned char* buffer, unsigned long int len)
+void virtualPage::readMem(unsigned long int offset, unsigned char* buffer, unsigned long int len)
 {
-    while(len > 0)
+    #ifdef EXTRA_DEBUG_MESSAGES
+    printf("virtualPage::readMem  offset:%lu,len:%lu\n", offset, len);
+    #endif
+    for (unsigned long int i = 0; i < len; ++i)
     {
-        //printf("offset:%i,len:%i\n",offset,len);
-        buffer[len-1] = _pageContent[offset+len-1];
-        len -= 1;
+        buffer[i] = _pageContent[offset + i];
     }
-    return;
 }
-void virtualPage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len)
+
+void virtualPage::writeMem(unsigned long int offset, unsigned char* Byt, unsigned long int len)
 {
-    while(len > 0)
+    #ifdef EXTRA_DEBUG_MESSAGES
+    printf("virtualPage::writeMem  offset:%lu,len:%lu\n", offset, len);
+    #endif
+    for (unsigned long int i = 0; i < len; ++i)
     {
-        #ifdef EXTRA_DEBUG_MESSAGES
-        printf("virtualPage::writeMem  offset:%i,len:%i\n",offset,len);
-        #endif
-        _pageContent[offset+len-1] = Byt[len-1];
-        len -= 1;
+        _pageContent[offset + i] = Byt[i];
     }
-    return;
 }
+
 
 virtualPage::virtualPage():addressSpace()
 {
