@@ -1,5 +1,6 @@
 
 #include "virtualPage.h"
+#include <cstring>
 
 unsigned long int virtualPage::_size()
 {
@@ -23,21 +24,16 @@ void virtualPage::readMem(unsigned long int offset, unsigned char* buffer, unsig
     #ifdef EXTRA_DEBUG_MESSAGES
     printf("virtualPage::readMem  offset:%lu,len:%lu\n", offset, len);
     #endif
-    for (unsigned long int i = 0; i < len; ++i)
-    {
-        buffer[i] = _pageContent[offset + i];
-    }
+    memcpy( (void*)buffer, (void*)&_pageContent[offset], (std::size_t)len );
+
 }
 
-void virtualPage::writeMem(unsigned long int offset, unsigned char* Byt, unsigned long int len)
+void virtualPage::writeMem(unsigned long int offset, unsigned char* buffer, unsigned long int len)
 {
     #ifdef EXTRA_DEBUG_MESSAGES
     printf("virtualPage::writeMem  offset:%lu,len:%lu\n", offset, len);
     #endif
-    for (unsigned long int i = 0; i < len; ++i)
-    {
-        _pageContent[offset + i] = Byt[i];
-    }
+    memcpy( (void*)&_pageContent[offset], (void*)buffer, (std::size_t)len );
 }
 
 

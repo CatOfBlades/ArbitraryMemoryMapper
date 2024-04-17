@@ -7,7 +7,7 @@
 	<string>
 	<memory>
 
-1650163695 c:\users\jarem\documents\github\arbitrarymemorymapper\config.h
+1713324027 c:\users\jarem\documents\github\arbitrarymemorymapper\config.h
 
 1649979328 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\callbackonwritepage.cpp
 	"callbackOnWritePage.h"
@@ -16,7 +16,7 @@
 	"virtualMemorySpace.h"
 	"addressSpace.h"
 
-1649987336 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualmemoryspace.h
+1713322263 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualmemoryspace.h
 	"../Defines.h"
 	"addressSpace.h"
 	"virtualPage.h"
@@ -29,7 +29,7 @@
 1649998568 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualpage.h
 	"addressSpace.h"
 
-1650163694 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\filepage.cpp
+1650164344 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\filepage.cpp
 	"filePage.h"
 
 1650163694 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\filepage.h
@@ -37,17 +37,23 @@
 	<stdio.h>
 	<string>
 
-1649991878 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
+1712827976 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
 	"../Defines.h"
 	"InterprocessMemorySpace.h"
-	<stdio.h>
 
-1649991870 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.h
+1712827976 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.h
 	"addressSpace.h"
 	"../Defines.h"
+	<sys/ptrace.h>
+	<sys/types.h>
+	<sys/wait.h>
+	<unistd.h>
+	<sys/user.h>
+	<iostream>
 	<Windows.h>
+	<iostream>
 
-1649993011 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\loggedpage.cpp
+1713323550 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\loggedpage.cpp
 	"LoggedPage.h"
 	"time.h"
 
@@ -128,32 +134,33 @@
 	"addressSpace.h"
 	"virtualMemorySpace.h"
 
-1649980625 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualmemoryspace.cpp
+1713322263 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualmemoryspace.cpp
 	"virtualMemorySpace.h"
 	<Windows.h>
 	<stdio.h>
 
-1649998566 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualpage.cpp
+1713325298 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\virtualpage.cpp
 	"virtualPage.h"
+	<cstring>
 	"stdio.h"
 
-1649979552 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\windowspageaccessor.cpp
-	"WindowsPageAccessor.h"
+1712827976 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\windowspageaccessor.cpp
 	"../Defines.h"
+	"WindowsPageAccessor.h"
 	"psapi.h"
 
-1639872990 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\windowspageaccessor.h
+1713322263 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\windowspageaccessor.h
 	<windows.h>
 	<stdio.h>
 	<vector>
 	"addressSpace.h"
-	"psapi.h"
+	"Psapi.h"
 
-1650163695 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapper.cpp
+1712827976 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapper.cpp
 	"LuaMemoryMapperLib.h"
 	"revinfo.h"
 
-1649981165 c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.h
+1713323995 c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.h
 	<iostream>
 	<stdio.h>
 	"Defines.h"
@@ -183,7 +190,7 @@
 1650151282 c:\users\jarem\documents\github\arbitrarymemorymapper\revinfo.h
 	<string>
 
-1650163695 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.cpp
+1713326559 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.cpp
 	"LuaMemoryMapperLib.h"
 	<vector>
 	"AMM\pageVisualizer.h"
@@ -539,7 +546,7 @@
 	"lprefix.h"
 	"lopcodes.h"
 
-1642076682 source:c:\users\jarem\documents\github\arbitrarymemorymapper\lua-5.4.4\src\loslib.c
+1712827977 source:c:\users\jarem\documents\github\arbitrarymemorymapper\lua-5.4.4\src\loslib.c
 	"lprefix.h"
 	<errno.h>
 	<locale.h>
@@ -549,6 +556,7 @@
 	"lua.h"
 	"lauxlib.h"
 	"lualib.h"
+	"../../config.h"
 	<unistd.h>
 
 1642076682 source:c:\users\jarem\documents\github\arbitrarymemorymapper\lua-5.4.4\src\lparser.c
@@ -709,7 +717,7 @@
 	"lstate.h"
 	"lzio.h"
 
-1650164257 c:\users\jarem\documents\github\arbitrarymemorymapper\ideprojectfiles\ammwin64\\revinfo.h
+1713326614 c:\users\jarem\documents\github\arbitrarymemorymapper\ideprojectfiles\ammwin64\\revinfo.h
 	<string>
 
 1712828583 source:c:\users\jarem\documents\github\virtuamash\arbitrarymemorymapper\amm\addressspace.cpp

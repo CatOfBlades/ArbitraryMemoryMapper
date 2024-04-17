@@ -88,7 +88,7 @@ local function testAddLoggedPage()
     local pageID = "log_page"
 	local pageID2 = "page1"
     local logfile = "test_log.txt"
-	local data = "This is a test log message."
+	local data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
     
     print("Testing addLoggedPage function")
 
@@ -105,11 +105,11 @@ local function testAddLoggedPage()
 
     -- Write some data to the logged page
 	print("writing")
-    writeMemToContext(memID, 0, 27, data)
+    writeMemToContext(memID, 0, #data, data )
 
     -- Data read test
     print("reading")
-    local k = readMemFromContext(memID, 0, 27)
+    local k = readMemFromContext(memID, 0, #data)
     for i = 1, #data do
         print(k[i])
     end

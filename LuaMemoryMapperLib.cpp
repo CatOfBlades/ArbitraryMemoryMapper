@@ -150,26 +150,43 @@ void destroyMemoryContext(std::string ID)
     }
 }
 
-void linkPageToMemorySpace(std::string MemorySpaceName,std::string PageName)
+void linkPageToMemorySpace(std::string MemorySpaceName, std::string PageName)
 {
-    std::shared_ptr<addressSpace> AS = memoryPages.at(PageName);
-    //Sleep(100);
-    //printf("memorySpaceName:%s\n",MemorySpaceName.c_str());
-    virtualMemorySpace* vm;
+    // Check if PageName exists in memoryPages
+    auto pageIter = memoryPages.find(PageName);
+    if (pageIter == memoryPages.end()) {
+        printf("PageName: %s not found in memoryPages\n", PageName.c_str());
+        return;
+    }
+
+    std::shared_ptr<addressSpace> AS = pageIter->second;
+
+    #ifdef EXTRA_DEBUG_MESSAGES
+    printf("linkPage: %s  To MemorySpace: %s\n", PageName.c_str(), MemorySpaceName.c_str());
+    #endif //EXTRA_DEBUG_MESSAGES
+
+    // Initialize vm pointer to nullptr
+    virtualMemorySpace* vm = nullptr;
+
     try
     {
+        // Try to find MemorySpaceName in memorySpaces
         vm = memorySpaces.at(MemorySpaceName);
     }
     catch (const std::out_of_range& oor)
     {
-        printf("memorySpaceName:%s not found in list\n",MemorySpaceName.c_str());
+        printf("MemorySpaceName: %s not found in list\n", MemorySpaceName.c_str());
         return;
     }
+
+    // Add AS to vm
     vm->addAddressSpace(AS);
+
     #ifdef BUILT_IN_VISUALIZER
         VWM.addVisualizer(AS);
     #endif // BUILT_IN_VISUALIZER
 }
+
 
 void destroyPage(std::string ID)
 {
@@ -296,20 +313,20 @@ void addLuaPage(std::string ID, std::string luafile) //Lua defined memory page.
         return;
     }
 }
-void addLoggedPage(std::string ID, std::string logfile, std::string pageID)
-{
-    std::shared_ptr<loggedPage> AS = std::make_shared<loggedPage>(logfile,memoryPages.at(pageID));
 
-    std::pair<std::unordered_map<std::string,std::shared_ptr<addressSpace>>::iterator,bool> IB;
-    std::pair <std::string,std::shared_ptr<addressSpace>> valu(ID,AS);
-    IB = memoryPages.insert(valu);
-    if(IB.second)
-    {
-        return;
-    }
-    else
-    {
-        return;
+bool addLoggedPage(std::string ID, std::string logfile, std::string pageID)
+{
+    auto pageIter = memoryPages.find(pageID);
+    if (pageIter != memoryPages.end()) {
+        std::shared_ptr<loggedPage> AS = std::make_shared<loggedPage>(logfile, pageIter->second);
+        auto insertResult = memoryPages.insert({ID, AS});
+        return insertResult.second; // Return true if insertion was successful, false otherwise
+    } else {
+        // Page with pageID doesn't exist in memoryPages
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("Page with pageID\"%s\" doesn't exist in memoryPages",pageID.c_str());
+        #endif
+        return false;
     }
 }
 
@@ -585,6 +602,7 @@ int lua_writeMemToContext(lua_State* L)
     {
         return 0;
     }
+    return 1;
 }
 
 int lua_multiPageSwapBanks(lua_State* L)

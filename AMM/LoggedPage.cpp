@@ -30,39 +30,54 @@ unsigned char loggedPage::readByte(unsigned long int offset)
 {
     unsigned char pagebyte = LinkedPage->readByte(offset);
     time_t rawtime = time(0);
-    fprintf(logfile,"function readByte() called got value 0x%X, at%s\n",pagebyte,ctime(&rawtime));
+    if (logfile != NULL)
+        fprintf(logfile, "readByte() called, offset: %lu, value: 0x%02X, time: %s\n", offset, pagebyte, ctime(&rawtime));
     return pagebyte;
 }
-void loggedPage::writeByte(unsigned long int offset,unsigned char Byt)
+
+void loggedPage::writeByte(unsigned long int offset, unsigned char Byt)
 {
     time_t rawtime = time(0);
-    fprintf(logfile,"function writeByte(offset:%i,byte:0x%X) called, at%s\n",offset,Byt,ctime(&rawtime));
-    LinkedPage->writeByte(offset,Byt);
+    if (logfile != NULL)
+        fprintf(logfile, "writeByte() called, offset: %lu, value: 0x%02X, time: %s\n", offset, Byt, ctime(&rawtime));
+    LinkedPage->writeByte(offset, Byt);
 }
 
-void loggedPage::readMem(unsigned long int offset,unsigned char* buffer, unsigned long int len)
+void loggedPage::readMem(unsigned long int offset, unsigned char* buffer, unsigned long int len)
 {
     time_t rawtime = time(0);
-    fprintf(logfile,"function readMem(offset:%i,bufferAddress:0x%X,length:%i) called, at%s\n",offset,buffer,len,ctime(&rawtime));
-    LinkedPage->readMem(offset,buffer,len);
-}
-void loggedPage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len)
-{
-    time_t rawtime = time(0);
-    fprintf(logfile,"function writeMem(offset:%i,bufferAddress:0x%X,length:%i) called, at%s\n",offset,Byt,len,ctime(&rawtime));
-    LinkedPage->writeMem(offset,Byt,len);
+    if (logfile != NULL)
+        fprintf(logfile, "readMem() called, offset: %lu, buffer address: %p, length: %lu, time: %s\n", offset, (void*)buffer, len, ctime(&rawtime));
+    LinkedPage->readMem(offset, buffer, len);
 }
 
-loggedPage::loggedPage(std::string logName,std::shared_ptr<addressSpace> page)
+void loggedPage::writeMem(unsigned long int offset, unsigned char* Byt, unsigned long int len)
 {
-    logfile = fopen(logName.c_str(),"a");
-    LinkedPage = page;
+    time_t rawtime = time(0);
+    if (logfile != NULL)
+        fprintf(logfile, "writeMem() called, offset: %lu, buffer address: %p, length: %lu, time: %s\n", offset, (void*)Byt, len, ctime(&rawtime));
+    LinkedPage->writeMem(offset, Byt, len);
+}
+
+
+loggedPage::loggedPage(std::string logName, std::shared_ptr<addressSpace> page)
+    : LinkedPage(page)
+{
+    // Open the logfile
+    logfile = fopen(logName.c_str(), "a");
+    if (logfile == nullptr) {
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("Failed to open logfile: " + logName);
+        #endif
+    }
+
     memoryTypeID = "LogdPage";
 
     time_t rawtime = time(0);
-    fprintf(logfile,"Log start at:%s",ctime(&rawtime));
-    fprintf(logfile,"constructor: loggedPage(logfile:%s) called.\n",logName.c_str());
+    fprintf(logfile, "Log start at: %s", ctime(&rawtime));
+    fprintf(logfile, "constructor: loggedPage(logfile: %s) called.\n", logName.c_str());
 }
+
 loggedPage::~loggedPage()
 {
     time_t rawtime = time(0);

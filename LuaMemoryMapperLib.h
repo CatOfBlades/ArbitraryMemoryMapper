@@ -63,7 +63,7 @@ void addInterprocessPage(std::string ID,unsigned int PageSize,std::string window
 void addMultiPage(std::string ID, unsigned int pagelistSize, std::vector<std::string*> pagelist);
 void addMetaPage(std::string ID, unsigned int PageSize,std::string SubMemorySpaceName,char* address); //SelfRefrence.cpp
 void addLuaPage(std::string ID, std::string luafile); //Lua defined memory page.
-void addLoggedPage(std::string ID, std::string logfile, std::string pageID);
+bool addLoggedPage(std::string ID, std::string logfile, std::string pageID);
 void addFilePage(std::string ID,std::string filename,unsigned int length);
 
 #ifdef SUPPORT_UNUSUAL_MEMORY_ACCESSES
