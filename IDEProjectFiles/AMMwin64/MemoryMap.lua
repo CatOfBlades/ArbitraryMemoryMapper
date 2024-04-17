@@ -223,7 +223,7 @@ local function testMetaPage()
 end
 
 -- Run tests
---testMemoryFunctions()
---testWriteAcrossConsecutivePages()
---testAddLoggedPage()
+testMemoryFunctions()
+testWriteAcrossConsecutivePages()
+testAddLoggedPage()
 testMetaPage()

@@ -63916,4 +63916,88 @@ readByte() called, offset: 3, value: 0x04, time: Wed Apr 17 15:30:38 2024
 
 readByte() called, offset: 4, value: 0x05, time: Wed Apr 17 15:30:38 2024
 
-readByte() called, offset: 5, va
+readByte() called, offset: 5, vaLog start at: Wed Apr 17 16:51:14 2024
+constructor: loggedPage(logfile: test_log.txt) called.
+function _size() called got value 13, atWed Apr 17 16:51:14 2024
+
+function _size() called got value 13, atWed Apr 17 16:51:14 2024
+
+function _size() called got value 13, atWed Apr 17 16:51:14 2024
+
+writeMem() called, offset: 0, buffer address: 00000083C191EB50, length: 13, time: Wed Apr 17 16:51:14 2024
+
+function _size() called got value 13, atWed Apr 17 16:51:14 2024
+
+function _size() called got value 13, atWed Apr 17 16:51:14 2024
+
+readMem() called, offset: 0, buffer address: 00000083C191EB60, length: 13, time: Wed Apr 17 16:51:14 2024
+
+function _size() called got value 13, atWed Apr 17 16:51:14 2024
+
+readByte() called, offset: 0, value: 0x01, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 1, value: 0x02, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 2, value: 0x03, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 3, value: 0x04, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 4, value: 0x05, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 5, value: 0x06, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 6, value: 0x07, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 7, value: 0x08, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 8, value: 0x09, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 9, value: 0x0A, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 10, value: 0x0B, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 11, value: 0x0C, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 12, value: 0x0D, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 13, value: 0x01, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 14, value: 0x00, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 15, value: 0x00, time: Wed Apr 17 16:51:14 2024
+
+function _size() called got value 13, atWed Apr 17 16:51:14 2024
+
+readByte() called, offset: 0, value: 0x01, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 1, value: 0x02, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 2, value: 0x03, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 3, value: 0x04, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 4, value: 0x05, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 5, value: 0x06, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 6, value: 0x07, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 7, value: 0x08, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 8, value: 0x09, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 9, value: 0x0A, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 10, value: 0x0B, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 11, value: 0x0C, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 12, value: 0x0D, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 13, value: 0x01, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 14, value: 0x00, time: Wed Apr 17 16:51:14 2024
+
+readByte() called, offset: 15, value: 0x00, time: Wed Apr 17 16:51:14 2024
+
+Log end at:Wed Apr 17 16:51:14 2024
