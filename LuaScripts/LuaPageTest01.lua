@@ -11,7 +11,6 @@ writeByte
 readMem
 writeMem
 cleanupAndUnlink
-setParent
 ]]--
 
 function _size()
