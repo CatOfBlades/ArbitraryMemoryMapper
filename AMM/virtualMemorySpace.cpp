@@ -7,6 +7,8 @@
 
 #include <stdio.h>
 
+using std::min;
+
 virtualMemorySpace::virtualMemorySpace()//if you don't need a memory offset then don't worry about it.
 {
     memorySize=0;
