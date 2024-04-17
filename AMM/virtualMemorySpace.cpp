@@ -81,102 +81,55 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int addr,
 }
 #else
 
-unsigned long int virtualMemorySpace::RW_Mem(bool write,unsigned long int Address, unsigned char* buf, unsigned long int length)
+unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int Address, unsigned char* buf, unsigned long int length)
 {
 
     #ifdef EXTRA_DEBUG_MESSAGES
     printf("address:%i\n",(int)Address);
     printf("length:%i\n",(int)length);
     printf("memoryOffset:%i\n",(int)memoryOffset);
-    #endif
+    printf("buf:%p\n",buf);
+    #endif //EXTRA_DEBUG_MESSAGES
+
     Address -= memoryOffset;
 
-    if(islooped)
-    {
-        Address%=memorySize;
+    if (islooped) {
+        Address %= memorySize;
     }
 
-    int totalBytesRead = 0;
+    unsigned long int totalBytesProcessed = 0;
 
-    unsigned long int startAddress = Address;
-    unsigned long int endAddress = Address+length;
-	#ifdef EXTRA_DEBUG_MESSAGES
-    printf("startAddress:%i\n",(int)startAddress);
-    printf("endAddress:%i\n",(int)endAddress);
-	#endif
+    while (totalBytesProcessed < length) {
+        unsigned long int pageIndex = findPageIndex(Address);
 
-    //while(length>totalBytesRead)
-    //{
-        auto i= 0;
-        if(startAddress>0)
-        {
-            while(startAddress>PageAddresses[i]) //finds the first page that the memory region is in.
-            {
-                i++;
-                if(i>=PageAddresses.size())
-                {
-                    break;
-                }
-            }
-        }
-        unsigned long int PageTop = 0;
-        #ifdef EXTRA_DEBUG_MESSAGES
-        printf("page list size:%i\n",pageList.size());
-        printf("page address list size:%i\n",PageAddresses.size());
-        #endif // EXTRA_DEBUG_MESSAGES
-        if(i!=0) //indexing PageAddresses with 0 seems to cause an access violation.
-        {
-            PageTop = PageAddresses[i]; //top of the memory of the page found
-        }
+        if (pageIndex < pageList.size()) {
+            unsigned long int pageOffset = Address - PageAddresses[pageIndex];
 
-        unsigned long int offset = startAddress-PageTop;
-        unsigned long int offset_end = endAddress-PageTop;
+            unsigned long int remainingLength = length - totalBytesProcessed;
+            unsigned long int bytesToProcess = min(remainingLength, pageList[pageIndex]->_size() - pageOffset);
 
-		#ifdef EXTRA_DEBUG_MESSAGES
-        printf("i:%i\n",(int)i);
-        printf("PageTop:%i\n",(int)PageTop);
-        printf("offset:%i\n",(int)offset);
-        printf("offset_end:%i\n",(int)offset_end);
-        printf("_search->_size():%i\n",pageList.at(i)->_size());
-		#endif
-        if(offset_end+offset <= pageList.at(i)->_size()) //if our data is all in one page.
-        {
-            if(write == 1)
-            {
-                pageList.at(i)->writeMem(offset,buf,length-totalBytesRead);
+            #ifdef EXTRA_DEBUG_MESSAGES
+            if (bytesToProcess) {
+                printf("page overflow on read/write.\n");
             }
-            else
-            {
-                pageList.at(i)->readMem(offset,buf,length-totalBytesRead);
+            #endif
+            if (write) {
+                pageList[pageIndex]->writeMem(pageOffset, buf + totalBytesProcessed, bytesToProcess);
+            } else {
+                pageList[pageIndex]->readMem(pageOffset, buf + totalBytesProcessed, bytesToProcess);
             }
-            return totalBytesRead; // then end here.
-        }
-        #ifdef EXTRA_DEBUG_MESSAGES
-        printf("page overflow on read/write.\n");
-		#endif
-        int bytesWritten=0;
-        bytesWritten = pageList.at(i)->_size()-offset;
-        if(write == 1)
-        {
-            pageList.at(i)->writeMem(offset,buf,bytesWritten); //write what fits
-            if(i+1 <= PageAddresses.size())
-            {
-                pageList.at(i+1)->writeMem(0,buf+bytesWritten,length-bytesWritten); //recurse to next page
-            }
-        }
-        else
-        {
-            pageList.at(i)->readMem(offset,buf,bytesWritten); //write what fits
-            if(i+1 <= PageAddresses.size())
-            {
-                pageList.at(i+1)->readMem(0,buf+bytesWritten,length-bytesWritten); //recurse to next page
-            }
-        }
-        startAddress += bytesWritten;
-        endAddress = startAddress+(length-totalBytesRead);
-        totalBytesRead += bytesWritten;
-    return totalBytesRead;
 
+            totalBytesProcessed += bytesToProcess;
+            Address += bytesToProcess;
+        } else {
+            #ifdef EXTRA_DEBUG_MESSAGES
+            printf("Page not found\n");
+            #endif
+            break; // Page not found, exit loop
+        }
+    }
+
+    return totalBytesProcessed;
 }
 
 #endif //RESTRICT_PAGESIZE
@@ -207,6 +160,32 @@ void virtualMemorySpace::updatePageAddresses()
         address += page->_size();
     }
 }
+
+unsigned long int virtualMemorySpace::findPageIndex(unsigned long int address)
+{
+    // Binary search through PageAddresses to find the index of the page containing the given address
+    unsigned long int left = 0;
+    unsigned long int right = PageAddresses.size() - 1;
+
+    while (left <= right) {
+        unsigned long int mid = left + (right - left) / 2;
+
+        if (PageAddresses[mid] <= address && (mid == PageAddresses.size() - 1 || PageAddresses[mid + 1] > address)) {
+            // Found the page containing the address
+            return mid;
+        } else if (PageAddresses[mid] > address) {
+            // Search in the left half
+            right = mid - 1;
+        } else {
+            // Search in the right half
+            left = mid + 1;
+        }
+    }
+
+    // If the address is beyond the last page, return the index of the last page
+    return PageAddresses.size() - 1;
+}
+
 
 
 

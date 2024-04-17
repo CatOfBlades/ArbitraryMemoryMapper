@@ -25,6 +25,7 @@ class virtualMemorySpace //MainPageRegistry
 
     unsigned long int memoryOffset; //The virtual offset for addresses in our memory space. (unsigned so no negative offsets)
     unsigned long int memorySize; // calculated as more pages are added refers to how much virtual memory we have addressable in bytes;
+    unsigned long int totalBytesRead; //keep track of page overflow (when memory is accessed across multiple pages)
     short islooped;
 
 	std::vector<unsigned long int> PageAddresses; //calculated when memorySize is updated.
@@ -43,6 +44,8 @@ class virtualMemorySpace //MainPageRegistry
     unsigned long int readMem(unsigned long int Address,OUT unsigned char* buf,unsigned long int length);
     unsigned long int writeMem(unsigned long int Address,IN unsigned char* buf,unsigned long int length);
     unsigned long int RW_Mem(bool write, unsigned long int addr, unsigned char* buf, unsigned long int len);
+
+    unsigned long int findPageIndex(unsigned long int address);
 
 	void addAddressSpace(IN std::shared_ptr<addressSpace> AS);
 	void removeAddressSpace(int AS);

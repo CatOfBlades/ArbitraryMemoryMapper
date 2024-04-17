@@ -22,7 +22,7 @@ void virtualPage::writeByte(unsigned long int offset,unsigned char Byt)
 void virtualPage::readMem(unsigned long int offset, unsigned char* buffer, unsigned long int len)
 {
     #ifdef EXTRA_DEBUG_MESSAGES
-    printf("virtualPage::readMem  offset:%lu,len:%lu\n", offset, len);
+    printf("readMem virtualPage:%p offset:%lu,len:%lu\n", this, offset, len);
     #endif
     memcpy( (void*)buffer, (void*)&_pageContent[offset], (std::size_t)len );
 
@@ -31,7 +31,7 @@ void virtualPage::readMem(unsigned long int offset, unsigned char* buffer, unsig
 void virtualPage::writeMem(unsigned long int offset, unsigned char* buffer, unsigned long int len)
 {
     #ifdef EXTRA_DEBUG_MESSAGES
-    printf("virtualPage::writeMem  offset:%lu,len:%lu\n", offset, len);
+    printf("writeMem virtualPage:%p  offset:%lu,len:%lu\n", this, offset, len);
     #endif
     memcpy( (void*)&_pageContent[offset], (void*)buffer, (std::size_t)len );
 }

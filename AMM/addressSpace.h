@@ -3,6 +3,7 @@
 #define ADDRESSSPACE_H_INCLUDED
 
 #include "../config.h"
+#include "../Defines.h"
 
 #include <string>
 #include <memory>

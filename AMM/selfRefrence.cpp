@@ -42,9 +42,9 @@ void memorySpacePage::readMem(unsigned long int offset,unsigned char* buffer ,un
     childVM->readMem(_address+offset,buffer,len);
     return;
 }
-void memorySpacePage::writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len)
+void memorySpacePage::writeMem(unsigned long int offset,unsigned char* buffer,unsigned long int len)
 {
-    childVM->writeMem(_address+offset,Byt,len);
+    childVM->writeMem(_address+offset,buffer,len);
     return;
 }
 

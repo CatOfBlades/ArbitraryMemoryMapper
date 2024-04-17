@@ -1,5 +1,5 @@
 
-#include"fuzzy_aob.h"
+#include "fuzzy_aob.h"
 
 //note a "kernel" is an array of "fuzzybytes" which is just an array of bytes where each byte can be at most "range" away from the "byte" value.
 

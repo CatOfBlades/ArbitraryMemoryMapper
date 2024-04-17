@@ -67,7 +67,7 @@ loggedPage::loggedPage(std::string logName, std::shared_ptr<addressSpace> page)
     logfile = fopen(logName.c_str(), "a");
     if (logfile == nullptr) {
         #ifdef EXTRA_DEBUG_MESSAGES
-        printf("Failed to open logfile: " + logName);
+        printf("Failed to open logfile: %s\n", logName.c_str());
         #endif
     }
 
