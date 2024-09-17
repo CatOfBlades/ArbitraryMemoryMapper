@@ -547,12 +547,20 @@ int lua_readMemFromContext(lua_State* L)
     std::string ContextID = lua_tostring(L,1);
     unsigned long int Address = lua_tointeger(L,2);
     unsigned long int length = lua_tointeger(L,3);
+    /*
     if(length > MAX_PATH)
     {
         printf("Error size of read to large!\n");
     }
+    */
     //unsigned char buf[length];
-    unsigned char buf[MAX_PATH];
+    //unsigned char buf[MAX_PATH];
+    unsigned char *buf = new (std::nothrow) unsigned char[length];
+    if(buf == nullptr)
+    {
+        printf("Error in allocating %i bytes\n",length);
+        return -1;
+    }
 
     //printf("ContextID:%s\n address:%i\n length:%i\n",ContextID.c_str(),Address,length);
     readMemFromContext(ContextID,Address,length,buf);
@@ -566,6 +574,7 @@ int lua_readMemFromContext(lua_State* L)
         lua_rawseti(L, -2,i);
         //lua_settable(L, -3);
     }
+    delete[] (buf);
     return 1;
 }
 
@@ -574,12 +583,19 @@ int lua_writeMemToContext(lua_State* L)
     std::string ContextID = lua_tostring(L,1);
     unsigned long int Address = lua_tointeger(L,2);
     unsigned long int length = lua_tointeger(L,3);
-    if(length > MAX_PATH)
-    {
-        printf("Error size of read to large!\n");
-    }
+
+    //if(length > MAX_PATH)
+    //{
+    //    printf("Error size of read to large!\n");
+    //}
     //unsigned char buf[length];
-    unsigned char buf[MAX_PATH];
+    //unsigned char buf[MAX_PATH];
+    unsigned char *buf = new (std::nothrow) unsigned char[length];
+    if(buf == nullptr)
+    {
+        printf("Error in allocating %i bytes\n",length);
+        return -1;
+    }
 
     if(lua_istable(L,4))
     {
@@ -596,12 +612,15 @@ int lua_writeMemToContext(lua_State* L)
         }
 
         writeMemToContext(ContextID,Address,length,buf);
+        delete[] (buf);
         return 0;
     }
     else
     {
+        delete[] (buf);
         return 0;
     }
+    delete[] (buf);
     return 1;
 }
 

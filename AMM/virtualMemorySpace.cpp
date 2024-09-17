@@ -62,7 +62,7 @@ void virtualMemorySpace::removeAddressSpace(int AS)
 		#endif
 		pageList.erase(pageList.begin()+AS);
     }
-	//pageCountAndRecalcSize();
+	updatePageAddresses();
 }
 
 void virtualMemorySpace::addAddressSpace(IN std::shared_ptr<addressSpace> AS)
@@ -91,12 +91,14 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int Addre
     printf("length:%i\n",(int)length);
     printf("memoryOffset:%i\n",(int)memoryOffset);
     printf("buf:%p\n",buf);
+    printf("memorysize:%i\n",memorySize);
     #endif //EXTRA_DEBUG_MESSAGES
 
     Address -= memoryOffset;
 
-    if (islooped) {
-        Address %= memorySize;
+    if (islooped && (Address < 0 || Address >= memorySize))
+    {
+        Address = (Address % memorySize + memorySize) % memorySize;
     }
 
     unsigned long int totalBytesProcessed = 0;
@@ -149,6 +151,7 @@ unsigned long int virtualMemorySpace::writeMem(unsigned long int Address,unsigne
 void virtualMemorySpace::updatePageAddresses()
 {
     PageAddresses.clear(); // Clear the existing PageAddresses
+    memorySize=0;
 
     unsigned long int address = 0; // Start address for the first page
 
@@ -161,6 +164,7 @@ void virtualMemorySpace::updatePageAddresses()
         // Increment the address by the size of the current page
         address += page->_size();
     }
+    memorySize=address;
 }
 
 unsigned long int virtualMemorySpace::findPageIndex(unsigned long int address)

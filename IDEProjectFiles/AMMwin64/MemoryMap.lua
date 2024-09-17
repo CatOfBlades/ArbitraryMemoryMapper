@@ -64,6 +64,7 @@ local function testMemoryFunctions()
     -- Clean up resources
     destroyPage("page1")
     destroyPage("page2")
+	destroyPage("page3")
     destroyMemoryContext(memID)
 end
 
@@ -205,7 +206,7 @@ local function testMetaPage()
 	print("writing 0, 1, 3, 5, 7, 9, 12, 15, 32, 47, 8, 76, 44, 7 to metaspace")
 	data = {0, 1, 3, 5, 7, 9, 12, 15, 32, 47, 8, 76, 44, 7}
 	writeMemToContext(memID2, 0, #data, data )
-    print("reading memorySpace1 (47, 8, 76, 44, 7, 3, 9, 12, 15, 32, 47, 8, 76, 44)")
+    print("reading memorySpace1 (47, 8, 76, 44, 7, 7, 9, 12, 15, 32, 47, 8, 76, 44)")
     local k = readMemFromContext(memID, 0, #data)
     for i = 1, #data do
         print(k[i])
@@ -222,8 +223,73 @@ local function testMetaPage()
     print("addMetaPage function test completed")
 end
 
+local function memoryPerformanceBenchmark()
+    local memID = "mem_performance"
+	local memID2 = "mem_performance_mirror"
+    local datasetSize = 16384 -- Number of data elements in the dataset
+    local dataSize = 4 -- Size of each data element in bytes
+    local pageSize = 2048
+    local numPages = 32
+	local metapageSize = pageSize*numPages
+	local metaID = "meta_1"
+
+    print("Starting memory performance benchmark")
+	print("datasetSize:",datasetSize,"\nsize per element:",dataSize,"\npageSize:",pageSize,"\nnumPages:",numPages);
+
+    -- Create memory context
+    createMemoryContext(memID)
+	createMemoryContext(memID2)
+	
+	addMetaPage(metaID, metapageSize,memID,0)
+	linkPageToMemorySpace(memID2, metaID)
+
+    -- Add virtual pages to the memory space
+    for i = 1, numPages do
+        local pageID = "page_" .. i
+        addVirtualPage(pageID, pageSize)
+        linkPageToMemorySpace(memID, pageID)
+    end
+
+    -- Generate test dataset
+    local dataset = {}
+    for i = 1, datasetSize do
+        dataset[i] = i
+    end
+
+    -- Benchmark data write operation
+    local startTimeWrite = os.clock()
+    writeMemToContext(memID2, 0, datasetSize * dataSize, dataset)
+    local endTimeWrite = os.clock()
+    local writeTime = endTimeWrite - startTimeWrite
+
+    print("Data write benchmark completed. Time taken:", writeTime, "seconds")
+
+    -- Benchmark data read operation
+    local startTimeRead = os.clock()
+    local readData = readMemFromContext(memID2, 0, datasetSize * dataSize)
+    local endTimeRead = os.clock()
+    local readTime = endTimeRead - startTimeRead
+
+    print("Data read benchmark completed. Time taken:", readTime, "seconds")
+
+
+    -- Cleanup resources
+
+    for i = 1, numPages do
+        local pageID = "page_" .. i
+		destroyPage(pageID)
+    end
+	destroyPage(metaID)
+    destroyMemoryContext(memID)
+	destroyMemoryContext(memID2)
+
+    print("Memory performance benchmark completed")
+end
+
+
 -- Run tests
 testMemoryFunctions()
 testWriteAcrossConsecutivePages()
 testAddLoggedPage()
 testMetaPage()
+memoryPerformanceBenchmark()
