@@ -15,7 +15,7 @@ COMPILE_AND_LINK_LUA =1
 
 default: all
 
-all: LuaMap luamapd
+all: LuaMap luamapd ammsvc
     
 LuaMap: LuaMemoryMapper.cpp
 	make clean
