@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 # Specify the source directory
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")  # Adjust as needed
 
-add_library(LuaLib 
+add_library(LuaLib OBJECT
 lapi.c
 lauxlib.c
 lbaselib.c
