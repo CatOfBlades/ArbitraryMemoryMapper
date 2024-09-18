@@ -37,6 +37,7 @@ lundump.c
 lutf8lib.c
 lvm.c
 lzio.c
+LANGUAGE C
 )
 
 target_include_directories(LuaLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
