@@ -116,7 +116,6 @@ clean LuaMapclean:
 	$(RM) $(LUADIR)/lstring.o
 
 ammsvc: daemon/ammsvc.cpp
-	make clean
 	$(CPP) $(CFLAGS) $(INCLUDES) -o daemon/ammsvc.o daemon/ammsvc.cpp
 	
 	$(CPP) -o $(BINDIR)/LuaMap/ammsvc daemon/ammsvc.o
@@ -126,7 +125,6 @@ clean ammsvcclean:
 	$(RM) $(BINDIR)/LuaMap/ammsvc
 
 luamapd: daemon/luamapd.cpp
-	make clean
 	$(CPP) $(CFLAGS) $(INCLUDES) -o $(AMMDIR)/InterprocessMemorySpace.o $(AMMDIR)/InterprocessMemorySpace.cpp
 	$(CPP) $(CFLAGS) $(INCLUDES) -o $(AMMDIR)/LoggedPage.o $(AMMDIR)/LoggedPage.cpp
 	$(CPP) $(CFLAGS) $(INCLUDES) -o $(AMMDIR)/LuaPage.o $(AMMDIR)/LuaPage.cpp
