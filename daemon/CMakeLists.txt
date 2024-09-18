@@ -10,7 +10,7 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/..)
 include_directories(${CMAKE_SOURCE_DIR}/../lua-5.4.4/src)
-add_subdirectory(${CMAKE_SOURCE_DIR}/../lua-5.4.4/src)
+add_subdirectory( ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src build)
 add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
 add_executable(ammsvc ammsvc.cpp
 	lapi.c
