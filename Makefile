@@ -2,8 +2,8 @@
 
 CPP      = g++
 CC		= gcc
-CFLAGS  = -c -g -DLINUX_BUILD -static -static-libgcc -static-libstdc++
-INCLUDES = -I/daemon/include/#;./lua-5.4.4/src/#;/AMM/# 
+CFLAGS  = -c -g -DLINUX_BUILD -static -static-libgcc -static-libstdc++ -I./lua-5.4.4/src/#
+INCLUDES = -I/daemon/include/# -I/AMM/# 
 RM      = rm -f
 
 BINDIR = ./bin
