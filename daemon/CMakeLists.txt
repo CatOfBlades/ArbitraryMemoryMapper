@@ -11,7 +11,40 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/..)
 include_directories(${CMAKE_SOURCE_DIR}/lua-5.4.4/src)
 add_subdirectory( ${CMAKE_SOURCE_DIR}/lua-5.4.4/src )
-add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp LuaLib.o)
+add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp 
+lapi.c
+lauxlib.c
+lbaselib.c
+lcode.c
+lcorolib.c
+lctype.c
+ldblib.c
+ldebug.c
+ldo.c
+ldump.c
+lfunc.c
+lgc.c
+linit.c
+liolib.c
+llex.c
+lmathlib.c
+lmem.c
+loadlib.c
+lobject.c
+lopcodes.c
+loslib.c
+lparser.c
+lstate.c
+lstring.c
+lstrlib.c
+ltable.c
+ltablib.c
+ltm.c
+lundump.c
+lutf8lib.c
+lvm.c
+lzio.c
+)
 add_executable(ammsvc ammsvc.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11) # update your C++ version here if you like
 
