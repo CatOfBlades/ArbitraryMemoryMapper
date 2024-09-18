@@ -4,7 +4,8 @@
 
 
 struct MyArgs : public argparse::Args {
-	std::string &scriptfile = kwarg("f", "A keyworded integer value");
+	std::string &scriptfile = kwarg("f", "A lua filename to run");
+	std::string &scriptstring = kwarg("s", "A lua string to run","MemoryMap.lua");
 	bool &verbose = flag("v,verbose", "A flag to toggle verbose");
 };
 
@@ -20,10 +21,9 @@ struct mesg_buffer {
     char mesg_text[100];
 } message;
 
-int main()
+int main(int argc, char* argv[])
 {
-	
-	
+	auto args = argparse::parse<MyArgs>(argc, argv);
 	
     key_t key;
     int msgid;
@@ -34,16 +34,27 @@ int main()
     // msgget creates a message queue
     // and returns identifier
     msgid = msgget(key, 0666 | IPC_CREAT);
-    message.mesg_type = 1;
-
-    printf("Write Data : ");
-    fgets(message.mesg_text,MAX,stdin);
+	
+	if (args.scriptfile.is_valid)
+	{
+		message.mesg_type = msgtype.dofile;
+		message.mesg_text = args.scriptfile;
+	}
+	else if (args.scriptstring.is_valid)
+	{
+		message.mesg_type = msgtype.luastring;
+		message.mesg_text = args.scriptstring;
+	}
+	else
+	{
+	}
+    //printf("Write Data : ");
+    //fgets(message.mesg_text,MAX,stdin);
 
     // msgsnd to send message
     msgsnd(msgid, &message, sizeof(message), 0);
 
-    // display the message
-    printf("Data send is : %s \n", message.mesg_text);
+	printf("Sent \n");
 
     return 0;
 }

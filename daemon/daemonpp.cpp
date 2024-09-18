@@ -1,3 +1,4 @@
+
 #include "daemon.hpp"
 using namespace daemonpp;
 using namespace std::chrono_literals;
@@ -7,6 +8,18 @@ using namespace std::chrono_literals;
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
+#include "LuaMemoryMapperLib.h"
+
+#ifdef DBG_MESSAGES
+#ifdef LINUX_BUILD
+std::string BuildInfo = "hello world";
+#else
+#include "revinfo.h"
+#endif // LINUX_BUILD
+#endif
+
+#include "ammsvc.h"
+
 // structure for message queue
 struct mesg_buffer {
     long mesg_type;
@@ -15,6 +28,7 @@ struct mesg_buffer {
 
 key_t msgkey;
 int msgid;
+lua_State* L;
 
 class luamapd : public daemon
 {
@@ -27,6 +41,12 @@ public:
 	  // msgget creates a message queue
       // and returns identifier
 	  msgid = msgget(msgkey, 0666 | IPC_CREAT);
+	  
+	  //create a new lua state
+	  L = luaL_newstate();
+	  
+	  luaL_openlibs(L);
+	  lua_RegisterMemoryFunctions(L);
 
       dlog::info("luamapd::on_start(): luamapd version: " + cfg.get("version") + " started successfully!");
     }
@@ -36,9 +56,23 @@ public:
       /// Update your code here...
 	  
 	  // msgrcv to receive message
-	  msgrcv(msgid, &message, sizeof(message), 1, 0);
-	  // display the message
-      dlog::info("Data Received is : " + message.mesg_text + "\n");
+	  if(msgrcv(msgid, &message, sizeof(message), msgtype.luastring, IPC_NOWAIT) != -1)
+	  {
+		  // display the message
+		  dlog::info("Data Received is : " + message.mesg_text + "\n");
+		  
+		  if(luaL_dostring(L,message.mesg_text))
+		  {
+			  dlog::info("lua error: %s\n" + lua_tostring(L,-1));
+		  }
+		  
+	  }
+	  
+	  if(msgrcv(msgid, &message, sizeof(message), msgtype.dofile, IPC_NOWAIT) != -1)
+	  {
+		int r = luaL_dofile(L, message.mesg_text);
+		if(r != LUA_OK) dlog::info("lua error: %s\n" + lua_tostring(L,-1));
+	  }
 
       dlog::info("luamapd::on_update()");
     }
@@ -46,6 +80,8 @@ public:
     void on_stop() override {
       /// Called once before daemon is about to exit with system shutdown or when you manually call `$ systemctl stop luamapd`
       /// Cleanup your code here...
+	  
+	  lua_close(L);
 	  
 	  // to destroy the message queue
       msgctl(msgid, IPC_RMID, NULL);
@@ -56,6 +92,10 @@ public:
     void on_reload(const dconfig& cfg) override {
       /// Called once after your daemon's config fil is updated then reloaded with `$ systemctl reload luamapd`
       /// Handle your config updates here...
+	  
+	  //restart the lua instance
+	  lua_close(L);
+	  L = luaL_newstate();
 	  
 	  // to destroy the message queue
       msgctl(msgid, IPC_RMID, NULL);
