@@ -8,6 +8,8 @@ using namespace std::chrono_literals;
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
+#define LINUX_BUILD
+
 #include "LuaMemoryMapperLib.h"
 
 #ifdef DBG_MESSAGES
