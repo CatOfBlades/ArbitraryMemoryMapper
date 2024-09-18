@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")  # Adjust as needed
 
 
-add_library(LuaLib STATIC
+add_library(LuaLib OBJECT
 lapi.c
 lauxlib.c
 lbaselib.c
@@ -38,7 +38,5 @@ lutf8lib.c
 lvm.c
 lzio.c
 )
-
-set_target_properties(LuaLib PROPERTIES LINKER_LANGUAGE C)
 
 target_include_directories(LuaLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
