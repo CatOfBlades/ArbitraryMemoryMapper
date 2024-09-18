@@ -8,6 +8,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
 endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/..)
 add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
 add_executable(ammsvc ammsvc.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11) # update your C++ version here if you like
