@@ -117,7 +117,7 @@ clean LuaMapclean:
 
 ammsvc: daemon/ammsvc.cpp
 	make clean
-	$(CC) $(CFLAGS) $(INCLUDES) -o daemon/ammsvc.o daemon/ammsvc.c
+	$(CPP) $(CFLAGS) $(INCLUDES) -o daemon/ammsvc.o daemon/ammsvc.cpp
 	
 	$(CPP) -o $(BINDIR)/LuaMap/ammsvc daemon/ammsvc.o
 
@@ -125,7 +125,7 @@ clean ammsvcclean:
 	$(RM) ammsvc.o
 	$(RM) $(BINDIR)/LuaMap/ammsvc
 
-luamapd: daemon/luamapd.c
+luamapd: daemon/luamapd.cpp
 	make clean
 	$(CPP) $(CFLAGS) $(INCLUDES) -o $(AMMDIR)/InterprocessMemorySpace.o $(AMMDIR)/InterprocessMemorySpace.cpp
 	$(CPP) $(CFLAGS) $(INCLUDES) -o $(AMMDIR)/LoggedPage.o $(AMMDIR)/LoggedPage.cpp
@@ -143,7 +143,7 @@ luamapd: daemon/luamapd.c
 	$(CPP) $(CFLAGS) $(INCLUDES) -o ArbitraryMemMap.o ArbitraryMemMap.cpp
 	$(CPP) $(CFLAGS) $(INCLUDES) -o LuaMemoryMapperLib.o LuaMemoryMapperLib.cpp
 
-	$(CC) $(CFLAGS) $(INCLUDES) -o daemon/luamapd.o daemon/luamapd.c
+	$(CPP) $(CFLAGS) $(INCLUDES) -o daemon/luamapd.o daemon/luamapd.cpp
 
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lapi.o $(LUADIR)/lapi.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lauxlib.o $(LUADIR)/lauxlib.c
