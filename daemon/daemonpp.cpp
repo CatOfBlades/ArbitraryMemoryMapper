@@ -113,7 +113,7 @@ public:
 int main(int argc, const char* argv[]) {
   luamapd dmn;                         // create a daemon instance
   dmn.set_name("luamapd"); // set daemon name to identify logs in syslog
-  dmn.set_update_duration(1s);   // set duration to sleep before triggering the on_update callback 3 seconds
+  dmn.set_update_duration(1s);   // set duration to sleep before triggering the on_update callback 1 seconds
   dmn.set_cwd("/");      // set daemon's current working directory to root /
   dmn.run(argc, argv);                   // run your daemon
   return EXIT_SUCCESS;

@@ -13,12 +13,11 @@ struct MyArgs : public argparse::Args {
 #include <stdio.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
-#define MAX 10
 
 // structure for message queue
 struct mesg_buffer {
     long mesg_type;
-    char mesg_text[100];
+    char mesg_text[512];
 } message;
 
 int main(int argc, char* argv[])
@@ -48,8 +47,6 @@ int main(int argc, char* argv[])
 	else
 	{
 	}
-    //printf("Write Data : ");
-    //fgets(message.mesg_text,MAX,stdin);
 
     // msgsnd to send message
     msgsnd(msgid, &message, sizeof(message), 0);
