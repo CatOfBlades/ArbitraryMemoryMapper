@@ -57,8 +57,10 @@ public:
       /// Called every DURATION set in set_update_duration()...
       /// Update your code here...
 	  
+	  enum msgtype messageType = luastring;
+	  
 	  // msgrcv to receive message
-	  if(msgrcv(msgid, &message, sizeof(message), msgtype.luastring, IPC_NOWAIT) != -1)
+	  if(msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1)
 	  {
 		  // display the message
 		  dlog::info("Data Received is : " + message.mesg_text + "\n");
@@ -70,7 +72,9 @@ public:
 		  
 	  }
 	  
-	  if(msgrcv(msgid, &message, sizeof(message), msgtype.dofile, IPC_NOWAIT) != -1)
+	  messageType = dofile;
+	  
+	  if(msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1)
 	  {
 		int r = luaL_dofile(L, message.mesg_text);
 		if(r != LUA_OK) dlog::info("lua error: %s\n" + lua_tostring(L,-1));

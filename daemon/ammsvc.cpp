@@ -34,14 +34,17 @@ int main(int argc, char* argv[])
     // and returns identifier
     msgid = msgget(key, 0666 | IPC_CREAT);
 	
+	enum msgtype messageType = dofile;
+	
 	if (args.scriptfile.is_valid)
 	{
-		message.mesg_type = msgtype.dofile;
+		message.mesg_type = messageType;
 		message.mesg_text = args.scriptfile;
 	}
 	else if (args.scriptstring.is_valid)
 	{
-		message.mesg_type = msgtype.luastring;
+		messageType = luastring;
+		message.mesg_type = messageType;
 		message.mesg_text = args.scriptstring;
 	}
 	else
