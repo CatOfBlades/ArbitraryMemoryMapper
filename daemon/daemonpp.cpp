@@ -63,11 +63,13 @@ public:
 	  if(msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1)
 	  {
 		  // display the message
-		  dlog::info("Data Received is : " + message.mesg_text + "\n");
+		  std::string s1 ("Data Received is : ");
+		  dlog::info( s1 + message.mesg_text);
 		  
 		  if(luaL_dostring(L,message.mesg_text))
 		  {
-			  dlog::info("lua error: %s\n" + lua_tostring(L,-1));
+			  std::string s2 ("lua error: %s\n");
+			  dlog::info( s2 + lua_tostring(L,-1));
 		  }
 		  
 	  }
@@ -77,7 +79,8 @@ public:
 	  if(msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1)
 	  {
 		int r = luaL_dofile(L, message.mesg_text);
-		if(r != LUA_OK) dlog::info("lua error: %s\n" + lua_tostring(L,-1));
+		std::string s1 ("lua error: %s\n");
+		if(r != LUA_OK) dlog::info( s1 + lua_tostring(L,-1));
 	  }
 
       dlog::info("luamapd::on_update()");
