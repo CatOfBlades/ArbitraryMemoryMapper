@@ -12,58 +12,59 @@ include_directories(${CMAKE_SOURCE_DIR}/..)
 include_directories(${CMAKE_SOURCE_DIR}/../lua-5.4.4/src)
 include_directories(${CMAKE_SOURCE_DIR}/../AMM)
 include_directories(${CMAKE_SOURCE_DIR}/../AMM/math)
-add_subdirectory( ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src )
-add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM ${CMAKE_SOURCE_DIR}/../AMM )
-add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM/math ${CMAKE_SOURCE_DIR}/../AMM/math )
-add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp
-	InterprocessMemorySpace.cpp
-	LoggedPage.cpp
-	LuaPage.cpp
-	WindowsPageAccessor.cpp
-	addressSpace.cpp
-	callbackOnWritePage.cpp
-	filePage.cpp
-	hsv2rgb.cpp
-	multiPage.cpp
-	pageVisualizer.cpp
-	selfRefrence.cpp
-	virtualMemorySpace.cpp
-	virtualPage.cpp
-	ArbitraryMemMap.cpp
-	LuaMemoryMapperLib.cpp
-	lapi.c
-	lauxlib.c
-	lbaselib.c
-	lcode.c
-	lcorolib.c
-	lctype.c
-	ldblib.c
-	ldebug.c
-	ldo.c
-	ldump.c
-	lfunc.c
-	lgc.c
-	linit.c
-	liolib.c
-	llex.c
-	lmathlib.c
-	lmem.c
-	loadlib.c
-	lobject.c
-	lopcodes.c
-	loslib.c
-	lparser.c
-	lstate.c
-	lstring.c
-	lstrlib.c
-	ltable.c
-	ltablib.c
-	ltm.c
-	lundump.c
-	lutf8lib.c
-	lvm.c
-	lzio.c
-	)
+#add_subdirectory( ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src )
+#add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM ${CMAKE_SOURCE_DIR}/../AMM )
+#add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM/math ${CMAKE_SOURCE_DIR}/../AMM/math )
+add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
+target_sources( ${PROJECT_NAME} PRIVATE
+	${CMAKE_SOURCE_DIR}/../AMM/InterprocessMemorySpace.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/LoggedPage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/LuaPage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/WindowsPageAccessor.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/addressSpace.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/callbackOnWritePage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/filePage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/math/hsv2rgb.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/multiPage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/pageVisualizer.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/selfRefrence.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/virtualMemorySpace.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/virtualPage.cpp
+	${CMAKE_SOURCE_DIR}/../ArbitraryMemMap.cpp
+	${CMAKE_SOURCE_DIR}/../LuaMemoryMapperLib.cpp
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lapi.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lauxlib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lbaselib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lcode.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lcorolib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lctype.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/ldblib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/ldebug.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/ldo.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/ldump.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lfunc.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lgc.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/linit.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/liolib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/llex.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lmathlib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lmem.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/loadlib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lobject.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lopcodes.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/loslib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lparser.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lstate.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lstring.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lstrlib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/ltable.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/ltablib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/ltm.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lundump.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lutf8lib.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lvm.c
+	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lzio.c
+)
 add_executable(ammsvc ammsvc.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11) # update your C++ version here if you like
 
