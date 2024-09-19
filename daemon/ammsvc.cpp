@@ -41,14 +41,14 @@ int main(int argc, char* argv[])
 		message.mesg_type = messageType;
 		if(args.scriptfile <= DAEMON_MSG_MAX_LEN)
 		{
-			for(int i = 0; i <= args.scriptfile.length; i++)
+			for(int i = 0; i <= args.scriptfile.length(); i++)
 			{
 				message.mesg_text[i] = args.scriptfile.c_str()[i];
 			}
-			else
-			{
-				printf("Error filename too long. \n");
-			}
+		}
+		else
+		{
+			printf("Error filename too long. \n");
 		}
 	}
 	else if (args.scriptstring != "*")
@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
 		message.mesg_type = messageType;
 		if(args.scriptstring.len <= DAEMON_MSG_MAX_LEN)
 		{
-			for(int i = 0; i <= args.scriptstring.len; i++)
+			for(int i = 0; i <= args.scriptstring.length(); i++)
 			{
 				message.mesg_text[i] = args.scriptstring.c_str()[i];
 			}
