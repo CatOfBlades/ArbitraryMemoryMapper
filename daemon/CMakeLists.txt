@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
 project(luamapd VERSION "0.0.1" DESCRIPTION "A wrapper for the arbitrary memory mapper as a unix daemon." LANGUAGES CXX)
 
+add_compile_definitions(LINUX_BUILD)
+
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(CMAKE_CXX_FLAGS "-ggdb -Wall -O0 -static -static-libgcc -static-libstdc++ -DLINUX_BUILD")
+    set(CMAKE_CXX_FLAGS "-ggdb -Wall -O0 -static -static-libgcc -static-libstdc++")
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(CMAKE_CXX_FLAGS "-DNDEBUG -Wall -O3 -static -static-libgcc -static-libstdc++ -DLINUX_BUILD")
+    set(CMAKE_CXX_FLAGS "-DNDEBUG -Wall -O3 -static -static-libgcc -static-libstdc++")
 endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
