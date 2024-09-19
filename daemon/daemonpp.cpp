@@ -23,7 +23,7 @@ std::string BuildInfo = "hello world";
 // structure for message queue
 struct mesg_buffer {
     long mesg_type;
-    char mesg_text[512];
+    char mesg_text[DAEMON_MSG_MAX_LEN+1];
 } message;
 
 key_t msgkey;

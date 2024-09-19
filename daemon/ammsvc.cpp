@@ -17,7 +17,7 @@ struct MyArgs : public argparse::Args {
 // structure for message queue
 struct mesg_buffer {
     long mesg_type;
-    char mesg_text[512];
+    char mesg_text[DAEMON_MSG_MAX_LEN+1];
 } message;
 
 int main(int argc, char* argv[])
@@ -39,13 +39,33 @@ int main(int argc, char* argv[])
 	if (args.scriptfile != "*")
 	{
 		message.mesg_type = messageType;
-		message.mesg_text = args.scriptfile.c_str();
+		if(args.scriptfile <= DAEMON_MSG_MAX_LEN)
+		{
+			for(int i = 0; i <= args.scriptfile.length; i++)
+			{
+				message.mesg_text[i] = args.scriptfile.c_str()[i];
+			}
+			else
+			{
+				printf("Error filename too long. \n");
+			}
+		}
 	}
 	else if (args.scriptstring != "*")
 	{
 		messageType = luastring;
 		message.mesg_type = messageType;
-		message.mesg_text = args.scriptstring.c_str();
+		if(args.scriptstring.len <= DAEMON_MSG_MAX_LEN)
+		{
+			for(int i = 0; i <= args.scriptstring.len; i++)
+			{
+				message.mesg_text[i] = args.scriptstring.c_str()[i];
+			}
+		}
+		else
+		{
+			printf("Error script string too long. \n");
+		}
 	}
 	else
 	{
