@@ -81,7 +81,7 @@ public:
 		if(r != LUA_OK) dlog::info( s1 + lua_tostring(L,-1));
 	  }
 
-      dlog::info("luamapd::on_update()");
+      //dlog::info("luamapd::on_update()");
     }
 
     void on_stop() override {
