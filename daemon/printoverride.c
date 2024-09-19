@@ -1,6 +1,5 @@
 
 #include "printoverride.h"
-#include "daemon.hpp"
 using namespace daemonpp;
 
 static int l_my_print(lua_State* L) {

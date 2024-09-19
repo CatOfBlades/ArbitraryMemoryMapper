@@ -47,7 +47,7 @@ public:
 	  
 	  luaL_openlibs(L);
 	  lua_RegisterMemoryFunctions(L);
-	  luaopen_luamylib(L);
+	  //luaopen_luamylib(L);
 
       dlog::info("luamapd::on_start(): luamapd version: " + cfg.get("version") + " started successfully!");
     }
