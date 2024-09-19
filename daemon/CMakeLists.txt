@@ -19,21 +19,6 @@ include_directories(${CMAKE_SOURCE_DIR}/../AMM/math)
 #add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM/math ${CMAKE_SOURCE_DIR}/../AMM/math )
 add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
 target_sources( ${PROJECT_NAME} PUBLIC
-	${CMAKE_SOURCE_DIR}/../AMM/InterprocessMemorySpace.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/LoggedPage.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/LuaPage.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/WindowsPageAccessor.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/addressSpace.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/callbackOnWritePage.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/filePage.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/math/hsv2rgb.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/multiPage.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/pageVisualizer.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/selfRefrence.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/virtualMemorySpace.cpp
-	${CMAKE_SOURCE_DIR}/../AMM/virtualPage.cpp
-	${CMAKE_SOURCE_DIR}/../ArbitraryMemMap.cpp
-	${CMAKE_SOURCE_DIR}/../LuaMemoryMapperLib.cpp
 	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lapi.c
 	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lauxlib.c
 	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lbaselib.c
@@ -66,6 +51,23 @@ target_sources( ${PROJECT_NAME} PUBLIC
 	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lutf8lib.c
 	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lvm.c
 	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lzio.c
+)
+target_sources( ${PROJECT_NAME} PRIVATE
+	${CMAKE_SOURCE_DIR}/../AMM/InterprocessMemorySpace.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/LoggedPage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/LuaPage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/WindowsPageAccessor.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/addressSpace.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/callbackOnWritePage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/filePage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/math/hsv2rgb.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/multiPage.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/pageVisualizer.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/selfRefrence.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/virtualMemorySpace.cpp
+	${CMAKE_SOURCE_DIR}/../AMM/virtualPage.cpp
+	${CMAKE_SOURCE_DIR}/../ArbitraryMemMap.cpp
+	${CMAKE_SOURCE_DIR}/../LuaMemoryMapperLib.cpp
 )
 add_executable(ammsvc ammsvc.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11) # update your C++ version here if you like
