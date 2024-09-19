@@ -39,13 +39,13 @@ int main(int argc, char* argv[])
 	if (args.scriptfile != "*")
 	{
 		message.mesg_type = messageType;
-		message.mesg_text = args.scriptfile;
+		message.mesg_text = args.scriptfile.c_str();
 	}
 	else if (args.scriptstring != "*")
 	{
 		messageType = luastring;
 		message.mesg_type = messageType;
-		message.mesg_text = args.scriptstring;
+		message.mesg_text = args.scriptstring.c_str();
 	}
 	else
 	{
