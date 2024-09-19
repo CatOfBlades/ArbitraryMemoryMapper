@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	if (args.scriptfile != "*")
 	{
 		message.mesg_type = messageType;
-		if(args.scriptfile <= DAEMON_MSG_MAX_LEN)
+		if(args.scriptfile.length() <= DAEMON_MSG_MAX_LEN)
 		{
 			for(int i = 0; i <= args.scriptfile.length(); i++)
 			{
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 	{
 		messageType = luastring;
 		message.mesg_type = messageType;
-		if(args.scriptstring.len <= DAEMON_MSG_MAX_LEN)
+		if(args.scriptstring.length() <= DAEMON_MSG_MAX_LEN)
 		{
 			for(int i = 0; i <= args.scriptstring.length(); i++)
 			{
