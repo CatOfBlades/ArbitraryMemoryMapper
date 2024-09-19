@@ -107,7 +107,7 @@ public:
 	  
 	  luaL_openlibs(L);
 	  lua_RegisterMemoryFunctions(L);
-	  luaopen_luamylib(L);
+	  //luaopen_luamylib(L);
 	  
 	  // to destroy the message queue
       msgctl(msgid, IPC_RMID, NULL);
