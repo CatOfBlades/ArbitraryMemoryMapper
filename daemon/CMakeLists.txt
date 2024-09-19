@@ -70,9 +70,6 @@ target_sources( ${PROJECT_NAME} PRIVATE
 add_executable(ammsvc ammsvc.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11) # update your C++ version here if you like
 
-# Link the library to your executable
-target_link_libraries(${PROJECT_NAME} PRIVATE LuaLib)
-
 # Configure .service file
 if(NOT EXISTS ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}.service)
 configure_file(${CMAKE_SOURCE_DIR}/systemd/daemonpp.service.in ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}.service)
