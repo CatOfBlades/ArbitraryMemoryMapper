@@ -4,8 +4,8 @@
 
 
 struct MyArgs : public argparse::Args {
-	std::string &scriptfile = kwarg("f", "A lua filename to run");
-	std::string &scriptstring = kwarg("s", "A lua string to run","MemoryMap.lua");
+	std::string &scriptfile = kwarg("f", "A lua filename to run").set_default("*");;
+	std::string &scriptstring = kwarg("s", "A lua string to run","MemoryMap.lua").set_default("*");
 	bool &verbose = flag("v,verbose", "A flag to toggle verbose");
 };
 
@@ -36,12 +36,12 @@ int main(int argc, char* argv[])
 	
 	enum msgtype messageType = dofile;
 	
-	if (args.scriptfile.is_valid)
+	if (args.scriptfile != "*")
 	{
 		message.mesg_type = messageType;
 		message.mesg_text = args.scriptfile;
 	}
-	else if (args.scriptstring.is_valid)
+	else if (args.scriptstring != "*")
 	{
 		messageType = luastring;
 		message.mesg_type = messageType;

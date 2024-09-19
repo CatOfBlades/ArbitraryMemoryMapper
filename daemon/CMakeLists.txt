@@ -2,16 +2,68 @@ cmake_minimum_required(VERSION 3.10)
 project(luamapd VERSION "0.0.1" DESCRIPTION "A wrapper for the arbitrary memory mapper as a unix daemon." LANGUAGES CXX)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(CMAKE_CXX_FLAGS "-ggdb -Wall -Wextra -pedantic -O0")
+    set(CMAKE_CXX_FLAGS "-ggdb -Wall -O0 -static -static-libgcc -static-libstdc++ -DLINUX_BUILD")
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(CMAKE_CXX_FLAGS "-DNDEBUG -Wall -Wextra -pedantic -O3")
+    set(CMAKE_CXX_FLAGS "-DNDEBUG -Wall -O3 -static -static-libgcc -static-libstdc++ -DLINUX_BUILD")
 endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/..)
-include_directories(${CMAKE_SOURCE_DIR}/lua-5.4.4/src)
-add_subdirectory( ${CMAKE_SOURCE_DIR}/lua-5.4.4/src )
-add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
+include_directories(${CMAKE_SOURCE_DIR}/../lua-5.4.4/src)
+include_directories(${CMAKE_SOURCE_DIR}/../AMM)
+include_directories(${CMAKE_SOURCE_DIR}/../AMM/math)
+add_subdirectory( ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src )
+add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM ${CMAKE_SOURCE_DIR}/../AMM )
+add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM/math ${CMAKE_SOURCE_DIR}/../AMM/math )
+add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp
+	InterprocessMemorySpace.cpp
+	LoggedPage.cpp
+	LuaPage.cpp
+	WindowsPageAccessor.cpp
+	addressSpace.cpp
+	callbackOnWritePage.cpp
+	filePage.cpp
+	hsv2rgb.cpp
+	multiPage.cpp
+	pageVisualizer.cpp
+	selfRefrence.cpp
+	virtualMemorySpace.cpp
+	virtualPage.cpp
+	ArbitraryMemMap.cpp
+	LuaMemoryMapperLib.cpp
+	lapi.c
+	lauxlib.c
+	lbaselib.c
+	lcode.c
+	lcorolib.c
+	lctype.c
+	ldblib.c
+	ldebug.c
+	ldo.c
+	ldump.c
+	lfunc.c
+	lgc.c
+	linit.c
+	liolib.c
+	llex.c
+	lmathlib.c
+	lmem.c
+	loadlib.c
+	lobject.c
+	lopcodes.c
+	loslib.c
+	lparser.c
+	lstate.c
+	lstring.c
+	lstrlib.c
+	ltable.c
+	ltablib.c
+	ltm.c
+	lundump.c
+	lutf8lib.c
+	lvm.c
+	lzio.c
+	)
 add_executable(ammsvc ammsvc.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11) # update your C++ version here if you like
 
