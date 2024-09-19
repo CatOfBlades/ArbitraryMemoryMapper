@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(luamapd VERSION "0.0.1" DESCRIPTION "A wrapper for the arbitrary memory mapper as a unix daemon." LANGUAGES CXX)
+project(luamapd VERSION "0.0.1" DESCRIPTION "A wrapper for the arbitrary memory mapper as a unix daemon." LANGUAGES CXX C)
 
 add_compile_definitions(LINUX_BUILD)
 
@@ -14,9 +14,7 @@ include_directories(${CMAKE_SOURCE_DIR}/..)
 include_directories(${CMAKE_SOURCE_DIR}/../lua-5.4.4/src)
 include_directories(${CMAKE_SOURCE_DIR}/../AMM)
 include_directories(${CMAKE_SOURCE_DIR}/../AMM/math)
-#add_subdirectory( ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src ${CMAKE_SOURCE_DIR}/../lua-5.4.4/src )
-#add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM ${CMAKE_SOURCE_DIR}/../AMM )
-#add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM/math ${CMAKE_SOURCE_DIR}/../AMM/math )
+
 add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
 target_sources( ${PROJECT_NAME} PUBLIC
 	${CMAKE_SOURCE_DIR}/../lua-5.4.4/src/lapi.c
