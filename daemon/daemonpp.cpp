@@ -47,6 +47,7 @@ public:
 	  
 	  luaL_openlibs(L);
 	  lua_RegisterMemoryFunctions(L);
+	  luaopen_luamylib(L);
 
       dlog::info("luamapd::on_start(): luamapd version: " + cfg.get("version") + " started successfully!");
     }
@@ -103,6 +104,10 @@ public:
 	  //restart the lua instance
 	  lua_close(L);
 	  L = luaL_newstate();
+	  
+	  luaL_openlibs(L);
+	  lua_RegisterMemoryFunctions(L);
+	  luaopen_luamylib(L);
 	  
 	  // to destroy the message queue
       msgctl(msgid, IPC_RMID, NULL);
