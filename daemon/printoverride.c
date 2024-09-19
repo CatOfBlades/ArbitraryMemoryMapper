@@ -8,7 +8,7 @@ static int l_my_print(lua_State* L) {
     for (int i=1; i <= nargs; i++) {
         if (lua_isstring(L, i)) {
 			std::string s1 ("");
-			dlog::info( s1 + lua_tostring(L,i));
+			//dlog::info( s1 + lua_tostring(L,i));
         }
         else {
         /* Do something with non-strings if you like */
