@@ -18,7 +18,7 @@ include_directories(${CMAKE_SOURCE_DIR}/../AMM/math)
 #add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM ${CMAKE_SOURCE_DIR}/../AMM )
 #add_subdirectory( ${CMAKE_SOURCE_DIR}/../AMM/math ${CMAKE_SOURCE_DIR}/../AMM/math )
 add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
-target_sources( ${PROJECT_NAME} PRIVATE
+target_sources( ${PROJECT_NAME} PUBLIC
 	${CMAKE_SOURCE_DIR}/../AMM/InterprocessMemorySpace.cpp
 	${CMAKE_SOURCE_DIR}/../AMM/LoggedPage.cpp
 	${CMAKE_SOURCE_DIR}/../AMM/LuaPage.cpp
