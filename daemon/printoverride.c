@@ -1,5 +1,6 @@
 
 #include "printoverride.h"
+#include <stdio.h>
 
 static int l_my_print(lua_State* L) {
     int nargs = lua_gettop(L);
@@ -7,7 +8,7 @@ static int l_my_print(lua_State* L) {
     for (int i=1; i <= nargs; i++) {
         if (lua_isstring(L, i)) {
 			size_t len = 0;
-			char* txt = lua_tolstring(L,i,&len);
+			const char* txt = lua_tolstring(L,i,&len);
 			
 			printf("%s",txt);
 			FILE * log = fopen("/var/log/luamapd","w+");
