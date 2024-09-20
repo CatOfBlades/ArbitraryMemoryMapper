@@ -8,8 +8,9 @@ using namespace std::chrono_literals;
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-extern "C"{
+
 #include "LuaMemoryMapperLib.h"
+extern "C"{
 #include "printoverride.h"
 };
 
