@@ -123,7 +123,7 @@ public:
       msgctl(msgid, IPC_RMID, NULL);
 	  
 	  // ftok to generate unique key
-	  msgkey = ftok("ammsvc", 65);
+	  msgkey = ftok("/usr/bin/ammsvc", 65);
 	  // msgget creates a message queue
       // and returns identifier
 	  msgid = msgget(msgkey, 0666 | IPC_CREAT);
