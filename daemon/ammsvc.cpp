@@ -4,8 +4,8 @@
 
 
 struct MyArgs : public argparse::Args {
-	std::string &scriptfile = kwarg("f", "A lua filename to run").set_default("*");;
-	std::string &scriptstring = kwarg("s", "A lua string to run","MemoryMap.lua").set_default("*");
+	std::string &scriptfile = kwarg("f", "A lua filename to run","MemoryMap.lua").set_default("*");
+	std::string &scriptstring = kwarg("s", "A lua string to run").set_default("*");
 	bool &verbose = flag("v,verbose", "A flag to toggle verbose");
 };
 
