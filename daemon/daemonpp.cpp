@@ -9,6 +9,7 @@ using namespace std::chrono_literals;
 #include <sys/msg.h>
 
 #include "LuaMemoryMapperLib.h"
+#include "printoverride.h"
 
 #ifdef DBG_MESSAGES
 #ifdef LINUX_BUILD
@@ -47,7 +48,7 @@ public:
 	  
 	  luaL_openlibs(L);
 	  lua_RegisterMemoryFunctions(L);
-	  //luaopen_luamylib(L);
+	  luaopen_luamylib(L);
 
       dlog::info("luamapd::on_start(): luamapd version: " + cfg.get("version") + " started successfully!");
     }
@@ -107,7 +108,7 @@ public:
 	  
 	  luaL_openlibs(L);
 	  lua_RegisterMemoryFunctions(L);
-	  //luaopen_luamylib(L);
+	  luaopen_luamylib(L);
 	  
 	  // to destroy the message queue
       msgctl(msgid, IPC_RMID, NULL);

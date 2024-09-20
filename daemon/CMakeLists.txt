@@ -66,6 +66,7 @@ target_sources( ${PROJECT_NAME} PRIVATE
 	${CMAKE_SOURCE_DIR}/../AMM/virtualPage.cpp
 	${CMAKE_SOURCE_DIR}/../ArbitraryMemMap.cpp
 	${CMAKE_SOURCE_DIR}/../LuaMemoryMapperLib.cpp
+	${CMAKE_SOURCE_DIR}/printoverride.c
 )
 add_executable(ammsvc ammsvc.cpp)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11) # update your C++ version here if you like

@@ -7,6 +7,8 @@ This is the header for the functions that register that print statement to the l
 #ifndef PRINTOVERRIDE_H
 #define PRINTOVERRIDE_H
 
+#include "../lua-5.4.4/src/lua.h"
+
 
 static int l_my_print(lua_State* L);
 int luaopen_luamylib(lua_State *L);

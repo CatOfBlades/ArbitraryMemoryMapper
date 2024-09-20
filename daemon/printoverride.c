@@ -1,14 +1,18 @@
 
 #include "printoverride.h"
-using namespace daemonpp;
 
 static int l_my_print(lua_State* L) {
     int nargs = lua_gettop(L);
 
     for (int i=1; i <= nargs; i++) {
         if (lua_isstring(L, i)) {
-			std::string s1 ("");
-			//dlog::info( s1 + lua_tostring(L,i));
+			size_t len = 0;
+			char* txt = lua_tolstring(L,i,&len);
+			
+			printf("%s",txt);
+			FILE * log = fopen("/var/log/luamapd","w+");
+			fwrite(txt, len, 1, log);
+			fclose(log);
         }
         else {
         /* Do something with non-strings if you like */
