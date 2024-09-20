@@ -42,15 +42,6 @@ public:
       /// Initialize your code here...
 	  // ftok to generate unique key
 	  msgkey = ftok("/usr/bin/ammsvc", 65);
-	  // msgget creates a message queue
-      // and returns identifier
-	  msgid = msgget(msgkey, 0666 | IPC_CREAT);
-	  if (msgid == -1)
-	  {
-		dlog::info("msgget failed");
-		printf("Error could not create message queue. \n");
-		exit(EXIT_FAILURE);
-	  }
 	  
 	  //create a new lua state
 	  L = luaL_newstate();
@@ -64,6 +55,17 @@ public:
 
 	void on_update() override
 	{
+		// msgget creates a message queue
+		// and returns identifier
+		msgid = msgget(msgkey, 0666 | IPC_CREAT);
+		if (msgid == -1)
+		{
+			//dlog::info("msgget failed");
+			printf("Error could not create message queue. \n");
+			dlog::info("Error could not create message queue.");
+			exit(EXIT_FAILURE);
+		}
+		
 		enum msgtype messageType = luastring;
 
 		// Try to receive a message of type luastring
@@ -124,21 +126,6 @@ public:
 	  luaL_openlibs(L);
 	  lua_RegisterMemoryFunctions(L);
 	  luaopen_luamylib(L);
-	  
-	  // to destroy the message queue
-      msgctl(msgid, IPC_RMID, NULL);
-	  
-	  // ftok to generate unique key
-	  msgkey = ftok("/usr/bin/ammsvc", 65);
-	  // msgget creates a message queue
-      // and returns identifier
-	  msgid = msgget(msgkey, 0666 | IPC_CREAT);
-	  if (msgid == -1)
-	  {
-	  	dlog::info("msgget failed");
-	  	printf("Error could not create message queue. \n");
-	  	exit(EXIT_FAILURE);
-	  }
 
       dlog::info("luamapd::on_reload(): new daemon version from updated config: " + cfg.get("version"));
     }
