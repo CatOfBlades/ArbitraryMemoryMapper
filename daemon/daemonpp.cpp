@@ -82,10 +82,12 @@ public:
 			
 			// Execute the Lua string
 			luaBusy = true;
+			/*
 			if (luaL_dostring(L, message.mesg_text)) {
 				std::string luaError("Lua error: ");
 				dlog::info(luaError + lua_tostring(L, -1));
 			}
+			*/
 			luaBusy = false;
 		} else {
 			// Handle case where no message is received or an error occurred
