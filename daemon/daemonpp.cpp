@@ -100,6 +100,8 @@ public:
 				//dlog::info("msgrcv file failed");
 			}
 		}
+		// to destroy the message queue
+		msgctl(msgid, IPC_RMID, NULL);
 	}
 
 
