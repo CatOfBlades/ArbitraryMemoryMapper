@@ -41,10 +41,16 @@ public:
       /// Called once after daemon starts automatically with system startup or when you manually call `$ systemctl start luamapd`
       /// Initialize your code here...
 	  // ftok to generate unique key
-	  msgkey = ftok("ammsvc", 65);
+	  msgkey = ftok("/usr/bin/ammsvc", 65);
 	  // msgget creates a message queue
       // and returns identifier
 	  msgid = msgget(msgkey, 0666 | IPC_CREAT);
+	  if (msgid == -1)
+	  {
+		dlog::info("msgget failed");
+		printf("Error could not create message queue. \n");
+		exit(EXIT_FAILURE);
+	  }
 	  
 	  //create a new lua state
 	  L = luaL_newstate();
@@ -121,6 +127,12 @@ public:
 	  // msgget creates a message queue
       // and returns identifier
 	  msgid = msgget(msgkey, 0666 | IPC_CREAT);
+	  if (msgid == -1)
+	  {
+	  	dlog::info("msgget failed");
+	  	printf("Error could not create message queue. \n");
+	  	exit(EXIT_FAILURE);
+	  }
 
       dlog::info("luamapd::on_reload(): new daemon version from updated config: " + cfg.get("version"));
     }

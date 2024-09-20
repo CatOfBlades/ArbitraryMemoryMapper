@@ -28,11 +28,17 @@ int main(int argc, char* argv[])
     int msgid;
 
     // ftok to generate unique key
-    key = ftok("ammsvc", 65);
+    key = ftok("/usr/bin/ammsvc", 65);
 
     // msgget creates a message queue
     // and returns identifier
     msgid = msgget(key, 0666 | IPC_CREAT);
+	if (msgid == -1)
+	{
+		perror("msgget failed");
+		printf("Error could not create message queue. \n");
+		exit(EXIT_FAILURE);
+	}
 	
 	enum msgtype messageType = dofile;
 	
@@ -73,6 +79,11 @@ int main(int argc, char* argv[])
 
     // msgsnd to send message
     msgsnd(msgid, &message, sizeof(message), 0);
+	if (msgsnd(msgid, &message, sizeof(message), 0) == -1)
+	{
+		perror("msgsnd failed");
+		printf("Error failed to send message.\n");
+	}
 
 	printf("Sent \n");
 
