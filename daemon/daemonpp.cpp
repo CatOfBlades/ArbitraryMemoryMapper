@@ -33,28 +33,17 @@ struct mesg_buffer {
 key_t msgkey;
 int msgid;
 lua_State* L;
+bool luaBusy = false;
 
 class luamapd : public daemon
 {
 public:
     void on_start(const dconfig& cfg) override {
-      /// Called once after daemon starts automatically with system startup or when you manually call `$ systemctl start luamapd`
-      /// Initialize your code here...
-	  // ftok to generate unique key
-	  msgkey = ftok("/usr/bin/ammsvc", 65);
-	  
-	  //create a new lua state
-	  L = luaL_newstate();
-	  
-	  luaL_openlibs(L);
-	  lua_RegisterMemoryFunctions(L);
-	  luaopen_luamylib(L);
-
-      dlog::info("luamapd::on_start(): luamapd version: " + cfg.get("version") + " started successfully!");
-    }
-
-	void on_update() override
-	{
+		/// Called once after daemon starts automatically with system startup or when you manually call `$ systemctl start luamapd`
+		/// Initialize your code here...
+		// ftok to generate unique key
+		msgkey = ftok("/usr/bin/ammsvc", 65);
+		
 		// msgget creates a message queue
 		// and returns identifier
 		msgid = msgget(msgkey, 0666 | IPC_CREAT);
@@ -64,6 +53,23 @@ public:
 			printf("Error could not create message queue. \n");
 			dlog::info("Error could not create message queue.");
 			exit(EXIT_FAILURE);
+		}
+
+		//create a new lua state
+		L = luaL_newstate();
+
+		luaL_openlibs(L);
+		lua_RegisterMemoryFunctions(L);
+		luaopen_luamylib(L);
+
+		dlog::info("luamapd::on_start(): luamapd version: " + cfg.get("version") + " started successfully!");
+    }
+
+	void on_update() override
+	{
+		if(luaBusy == true)
+		{
+			dlog::info("Error called when lua is already running.");
 		}
 		
 		enum msgtype messageType = luastring;
@@ -75,10 +81,12 @@ public:
 			dlog::info(receivedData + message.mesg_text);
 			
 			// Execute the Lua string
+			luaBusy = true;
 			if (luaL_dostring(L, message.mesg_text)) {
 				std::string luaError("Lua error: ");
 				dlog::info(luaError + lua_tostring(L, -1));
 			}
+			luaBusy = false;
 		} else {
 			// Handle case where no message is received or an error occurred
 			if (errno != ENOMSG) {
@@ -89,19 +97,19 @@ public:
 		// Check for dofile messages similarly
 		messageType = dofile;
 		if (msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1) {
+			luaBusy = true;
 			// Process the dofile message
 			int r = luaL_dofile(L, message.mesg_text);
 			if (r != LUA_OK) {
 				std::string luaError("Lua error: ");
 				dlog::info(luaError + lua_tostring(L, -1));
 			}
+			luaBusy = false;
 		} else {
 			if (errno != ENOMSG) {
 				//dlog::info("msgrcv file failed");
 			}
 		}
-		// to destroy the message queue
-		msgctl(msgid, IPC_RMID, NULL);
 	}
 
 
@@ -118,18 +126,32 @@ public:
     }
 
     void on_reload(const dconfig& cfg) override {
-      /// Called once after your daemon's config fil is updated then reloaded with `$ systemctl reload luamapd`
-      /// Handle your config updates here...
-	  
-	  //restart the lua instance
-	  lua_close(L);
-	  L = luaL_newstate();
-	  
-	  luaL_openlibs(L);
-	  lua_RegisterMemoryFunctions(L);
-	  luaopen_luamylib(L);
+		/// Called once after your daemon's config fil is updated then reloaded with `$ systemctl reload luamapd`
+		/// Handle your config updates here...
 
-      dlog::info("luamapd::on_reload(): new daemon version from updated config: " + cfg.get("version"));
+		//restart the lua instance
+		lua_close(L);
+		L = luaL_newstate();
+
+		luaL_openlibs(L);
+		lua_RegisterMemoryFunctions(L);
+		luaopen_luamylib(L);
+
+		// to destroy the message queue
+		msgctl(msgid, IPC_RMID, NULL);
+
+		// msgget creates a message queue
+		// and returns identifier
+		msgid = msgget(msgkey, 0666 | IPC_CREAT);
+		if (msgid == -1)
+		{
+			//dlog::info("msgget failed");
+			printf("Error could not create message queue. \n");
+			dlog::info("Error could not create message queue.");
+			exit(EXIT_FAILURE);
+		}
+
+		dlog::info("luamapd::on_reload(): new daemon version from updated config: " + cfg.get("version"));
     }
 };
 
