@@ -62,38 +62,46 @@ public:
       dlog::info("luamapd::on_start(): luamapd version: " + cfg.get("version") + " started successfully!");
     }
 
-    void on_update() override {
-      /// Called every DURATION set in set_update_duration()...
-      /// Update your code here...
-	  
-	  enum msgtype messageType = luastring;
-	  
-	  // msgrcv to receive message
-	  if(msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1)
-	  {
-		  // display the message
-		  std::string s1 ("Data Received is : ");
-		  dlog::info( s1 + message.mesg_text);
-		  
-		  if(luaL_dostring(L,message.mesg_text))
-		  {
-			  std::string s2 ("lua error: %s\n");
-			  dlog::info( s2 + lua_tostring(L,-1));
-		  }
-		  
-	  }
-	  
-	  messageType = dofile;
-	  
-	  if(msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1)
-	  {
-		int r = luaL_dofile(L, message.mesg_text);
-		std::string s1 ("lua error: %s\n");
-		if(r != LUA_OK) dlog::info( s1 + lua_tostring(L,-1));
-	  }
+	void on_update() override
+	{
+		enum msgtype messageType = luastring;
 
-      //dlog::info("luamapd::on_update()");
-    }
+		// Try to receive a message of type luastring
+		if (msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1) {
+			// Process the message
+			std::string receivedData("Data Received is: ");
+			dlog::info(receivedData + message.mesg_text);
+			
+			// Execute the Lua string
+			if (luaL_dostring(L, message.mesg_text)) {
+				std::string luaError("Lua error: ");
+				dlog::info(luaError + lua_tostring(L, -1));
+			}
+		} else {
+			// Handle case where no message is received or an error occurred
+			if (errno != ENOMSG) {
+				perror("msgrcv failed");
+				dlog::info("msgrcv failed");
+			}
+		}
+
+		// Check for dofile messages similarly
+		messageType = dofile;
+		if (msgrcv(msgid, &message, sizeof(message), messageType, IPC_NOWAIT) != -1) {
+			// Process the dofile message
+			int r = luaL_dofile(L, message.mesg_text);
+			if (r != LUA_OK) {
+				std::string luaError("Lua error: ");
+				dlog::info(luaError + lua_tostring(L, -1));
+			}
+		} else {
+			if (errno != ENOMSG) {
+				perror("msgrcv failed");
+				dlog::info("msgrcv failed");
+			}
+		}
+	}
+
 
     void on_stop() override {
       /// Called once before daemon is about to exit with system shutdown or when you manually call `$ systemctl stop luamapd`
