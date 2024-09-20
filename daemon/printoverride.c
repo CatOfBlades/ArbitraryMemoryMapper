@@ -11,7 +11,7 @@ static int l_my_print(lua_State* L) {
 			const char* txt = lua_tolstring(L,i,&len);
 			
 			printf("%s",txt);
-			FILE * log = fopen("/var/log/luamapd","w+");
+			FILE * log = fopen("/var/log/luamapd","a");
 			fwrite(txt, len, 1, log);
 			fclose(log);
         }
