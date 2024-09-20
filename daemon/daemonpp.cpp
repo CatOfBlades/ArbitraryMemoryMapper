@@ -80,7 +80,7 @@ public:
 		} else {
 			// Handle case where no message is received or an error occurred
 			if (errno != ENOMSG) {
-				perror("msgrcv failed");
+				perror("msgrcv failed-");
 				dlog::info("msgrcv failed");
 			}
 		}
@@ -96,8 +96,8 @@ public:
 			}
 		} else {
 			if (errno != ENOMSG) {
-				perror("msgrcv failed");
-				dlog::info("msgrcv failed");
+				perror("msgrcv file failed-");
+				dlog::info("msgrcv file failed");
 			}
 		}
 	}
