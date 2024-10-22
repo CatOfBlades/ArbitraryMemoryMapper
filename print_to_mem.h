@@ -7,7 +7,7 @@
 #ifndef PRINT_TO_MEM_H_INCLUDED
 #define PRINT_TO_MEM_H_INCLUDED
 
-#include "virtualMemorySpace.h"
+#include "AMM/virtualMemorySpace.h"
 #include <string>
 
 /*
