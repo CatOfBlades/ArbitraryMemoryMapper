@@ -21,6 +21,12 @@
 void VisualizerWindowManager::addVisualizer(std::shared_ptr<addressSpace> as) {
     visList.push_back(std::make_unique<pageVisualizer>(as));
     cleanList();
+=======
+void VisualizerWindowManager::addVisualizer(std::shared_ptr<addressSpace> as, std::string pagename)
+{
+    visList.push_back( std::make_unique<pageVisualizer>(as,pagename) );
+    //cleanList();
+>>>>>>> Stashed changes
 }
 
 // Removes visualizers for closed windows from the list.
@@ -48,6 +54,19 @@ pageVisualizer::pageVisualizer(std::shared_ptr<addressSpace> as)
 
 pageVisualizer::~pageVisualizer() {
     // Optional: Add cleanup logic here if needed.
+=======
+pageVisualizer::pageVisualizer(std::shared_ptr<addressSpace> as, std::string name)
+{
+    visualizedPage = as;
+    windowClosed = 0;
+    pagename = name;
+    Visualize();
+}
+
+pageVisualizer::~pageVisualizer()
+{
+    //Beep(600,100);
+>>>>>>> Stashed changes
 }
 
 // Initializes the list of 3D points to be visualized.
@@ -102,6 +121,25 @@ DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter) {
     HWND* hwnd = &VWM->hwnd;
 
     WNDCLASSEX wcex = {sizeof(WNDCLASSEX)};
+=======
+DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter)
+{
+    pageVisualizer* VWM = (pageVisualizer*)lpParameter;
+    WNDCLASSEX wcex;
+    HWND* hwnd = &VWM->hwnd;
+    HDC* hDC = &VWM->hDC;
+    HGLRC* hRC = &VWM->hRC;
+    std::string pagename = *&VWM->pagename;
+    std::vector<quadcord>* pointlist = &VWM->pointlist;
+    MSG msg;
+    BOOL bQuit = false;
+    float theta = 0;
+    /*** This is very much the wrong way to do it, but using "GetModuleHandleA(0)" for hInstance was returning error "1410:class exists".
+    I don't know how to fix this ***/
+    HINSTANCE hInstance = (HINSTANCE)&wcex; //GetModuleHandleA(0);
+    //HINSTANCE hInstance = GetModuleHandleA(0);
+    wcex.cbSize = sizeof(WNDCLASSEX);
+>>>>>>> Stashed changes
     wcex.style = CS_OWNDC;
     wcex.lpfnWndProc = pageVisualizer::WindowProc;
     wcex.hInstance = GetModuleHandleA(0);
@@ -125,6 +163,40 @@ DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter) {
 
     ShowWindow(*hwnd, SW_NORMAL);
     VWM->EnableOpenGL(&VWM->hDC, &VWM->hRC);
+=======
+    wcex.lpszMenuName = NULL;
+    wcex.lpszClassName = VWM->visualizedPage->memoryTypeID.c_str();//"test";//VWM->pagename.c_str();
+    wcex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+
+    if (!RegisterClassEx(&wcex))
+    {
+        printf("PageName: %s could not register window class. error#: %i\n",pagename.c_str(),GetLastError());
+        return 0;
+    }
+
+    *hwnd = CreateWindowEx(0,
+                          VWM->visualizedPage->memoryTypeID.c_str(),
+                          pagename.c_str(),//(std::string(VWM->visualizedPage->memoryTypeID)+"0").c_str(),
+                          WS_OVERLAPPEDWINDOW,
+                          CW_USEDEFAULT,
+                          CW_USEDEFAULT,
+                          256,
+                          256,
+                          NULL,
+                          NULL,
+                          hInstance,
+                          NULL);
+    if(!hwnd)
+    {
+        printf("PageName: %s could not create window. error#: %i\n",pagename.c_str(),GetLastError());
+    }
+    if(ShowWindow(*hwnd, SW_NORMAL))
+    {
+        printf("PageName: %s not shown. error#: %i\n",pagename.c_str(),GetLastError());
+    };
+
+    VWM->EnableOpenGL( hDC, hRC);
+>>>>>>> Stashed changes
     VWM->InitPointlist();
 
     while (!bQuit) {
@@ -157,6 +229,33 @@ DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter) {
                 hsv.H = (p.y / 255.0f) * 360;
                 hsv.S = ((p.x / 255.0f) + (p.w / 255.0f)) * 50;
                 hsv.V = (p.z / 255.0f) * 100;
+=======
+                if(pointlist->size())
+                {
+                    //int i = 0;
+                    for(quadcord p : *pointlist)
+                    {
+                        int rx = rand();
+                        float f_rx = (rx/RAND_MAX*100)-0.01f;
+                        int ry = rand();
+                        float f_ry = (ry/RAND_MAX*100)-0.01f;
+                        int rz = rand();
+                        float f_rz = (rz/RAND_MAX*100)-0.01f;
+
+                        hsv_t hsv;
+                        hsv.H = (p.y/255.0f)*360;
+                        hsv.S = ((p.x/255.0f)+(p.w/255.0f))*50;
+                        hsv.V = ((p.z)/255.0f)*100;
+                        rgb_t rgb;
+                        HSVtoRGB(hsv,&rgb);
+                        glColor3f(rgb.R/255.0f,rgb.G/255.0f,rgb.B/255.0f);
+                        glVertex3f( (f_rz+p.w)/255.0f, (f_rx+p.x)/255.0f , (f_ry+p.y)/255.0f );
+                        //glColor3f( (p.z)/255.0f , (p.x)/255.0f, (p.y)/255.0f );
+                        //glVertex3f( (p.z)/255.0f, (p.x)/255.0f , (p.y)/255.0f );
+                        //i+=1;
+                    }
+                }
+>>>>>>> Stashed changes
 
                 rgb_t rgb;
                 HSVtoRGB(hsv, &rgb);
