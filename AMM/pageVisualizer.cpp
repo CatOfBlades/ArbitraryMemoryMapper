@@ -17,13 +17,13 @@
 #include "pageVisualizer.h"
 #include "addressSpace.h"
 
-// Function to spawn a visualizer window for a given address space.
+// Function to spawn a visualizer window for a given address space. called only in the main thread.
 void VisualizerWindowManager::addVisualizer(std::shared_ptr<addressSpace> as) {
     visList.push_back(std::make_unique<pageVisualizer>(as));
     cleanList();
 }
 
-// Removes visualizers for closed windows from the list.
+// Removes visualizers for closed windows from the list. called only in the main thread.
 void VisualizerWindowManager::cleanList() {
     int i = 0;
     while(visList.size()>i)
@@ -108,7 +108,7 @@ DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter) {
     wcex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
     wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-    wcex.lpszClassName = VWM->visualizedPage->memoryTypeID.c_str();
+    wcex.lpszClassName = (VWM->visualizedPage->memoryTypeID.c_str());// + std::to_string(GetCurrentThreadId())).c_str();
     wcex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
     if (!RegisterClassEx(&wcex)) return 0;
@@ -169,7 +169,7 @@ DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter) {
             glPopMatrix();
             SwapBuffers(VWM->hDC);
 
-            theta += 0.125f;
+            theta += GL_ROTATION_SPEED;
             Sleep(1);
         }
     }

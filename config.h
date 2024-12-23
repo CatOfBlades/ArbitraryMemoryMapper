@@ -4,8 +4,10 @@
 #define CONFIG_H_INCLUDED
 
 #ifndef LINUX_BUILD
+#undef WINBUILD
 #define WINBUILD
 #endif
+
 
 //#define LUA_USE_POSIX
 
@@ -36,10 +38,11 @@
 //#define DEBUG_BEEP
 
 //if you want to build in the split byte reader that returns a weighted floating point value between two addresses.
-//#define SUPPORT_UNUSUAL_MEMORY_ACCESSES
+#define SUPPORT_UNUSUAL_MEMORY_ACCESSES
 
 #ifndef LINUX_BUILD
 #define BUILT_IN_VISUALIZER
+#define GL_ROTATION_SPEED 0.0626f//0.125f
 #endif
 
 #ifdef __STDC_LIB_EXT1__ //checks to see if lib stdc extended functions are avalible.

@@ -31,6 +31,10 @@ const static int
 #endif // __cplusplus
 */
 
+#ifdef LUA51
+#define lua_getglobal(x,y) lua_pushstring(x, y); lua_gettable(x, LUA_REGISTRYINDEX);
+#define lua_setglobal(x,y) lua_pushstring(x, y); lua_settable(x, LUA_REGISTRYINDEX);
+#endif
 
 #ifndef WINBUILD
 #define Sleep(x) usleep(x)
