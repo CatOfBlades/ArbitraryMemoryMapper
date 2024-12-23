@@ -42,7 +42,10 @@ void Beep(int freq, int dur);
 #define MAX_PATH 1024
 //WINBASEAPI WINBOOL WINAPI ReadProcessMemory (HANDLE hProcess, char* lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T *lpNumberOfBytesRead);
 //WINBASEAPI char* WINAPI VirtualAlloc (LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
-#endif
+#include <windows.h>
+// global Hinstance for the DLL
+extern HINSTANCE g_hInstance;
+#endif // WINBUILD
 
 #ifdef DBG_MESSAGES
 #ifdef VERBOSE_DBG

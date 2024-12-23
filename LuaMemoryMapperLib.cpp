@@ -16,7 +16,7 @@ std::unordered_map<std::string,virtualMemorySpace*> memorySpaces; //This is the 
 std::unordered_map<std::string,std::shared_ptr<addressSpace>> memoryPages;
 #ifdef BUILT_IN_VISUALIZER
 #include "AMM\pageVisualizer.h"
-VisualizerWindowManager VWM;
+//VisualizerWindowManager VWM;
 #endif // BUILT_IN_VISUALIZER
 /**
 for creating interfaces on the C++ side we need a way to expose the memory space and address space pointers
@@ -183,7 +183,7 @@ void linkPageToMemorySpace(std::string MemorySpaceName, std::string PageName)
     vm->addAddressSpace(AS);
 
     #ifdef BUILT_IN_VISUALIZER
-        VWM.addVisualizer(AS);
+        addVisualizer(AS);
     #endif // BUILT_IN_VISUALIZER
 }
 

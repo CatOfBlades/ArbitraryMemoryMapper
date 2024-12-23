@@ -12,6 +12,7 @@
 #include "math/hsv2rgb.h"
 #include "addressSpace.h"
 
+
 struct quadcord
 {
     uint8_t w;
@@ -19,50 +20,21 @@ struct quadcord
     uint8_t y;
     uint8_t z;
 };
-
-DWORD WINAPI PageDisplayWindowWorkerThread(LPVOID lpParameter);
+void cleanList();
+void EnableOpenGL(HWND* hwnd, HDC* hdc, HGLRC* hglrc);
+void addVisualizer(std::shared_ptr<addressSpace> as);
 
 class pageVisualizer
 {
     public:
-
-    int windowClosed;
-
-	std::shared_ptr<addressSpace> visualizedPage;
-	std::vector<quadcord> pointlist;
-	LRESULT CALLBACK  static WindowProc(HWND, UINT, WPARAM, LPARAM);
-	void EnableOpenGL( HDC*, HGLRC*);
-	void DisableOpenGL();
-	void InitPointlist();
-
-	void Visualize();
-
-    HWND hwnd;
-    HDC hDC;
-    HGLRC hRC;
-    HANDLE childWindow;
-
-    pageVisualizer(std::shared_ptr<addressSpace> as);
-    ~pageVisualizer();
+        std::shared_ptr<addressSpace> visualizedPage;
+        std::vector<quadcord> pointlist;
+        bool windowClosed;
+        HWND hwnd;
+        HDC hDC;
+        HGLRC hRC;
+        pageVisualizer(std::shared_ptr<addressSpace> as);
+        HANDLE childWindow;
 };
-
-class VisualizerWindowManager
-{
-
-    void cleanList();
-public:
-
-    std::vector< std::unique_ptr<pageVisualizer> > visList;
-
-    void addVisualizer(std::shared_ptr<addressSpace> as);
-
-	VisualizerWindowManager();
-	~VisualizerWindowManager();
-
-};
-
-
-//std::unique_ptr<VisualizerWindowManager> visualizePage(void* page);
-
 
 #endif // PAGEVISUALIZER_H_INCLUDED

@@ -1954,7 +1954,7 @@
 1649985230 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\addressspace.cpp
 	"addressSpace.h"
 
-1728921924 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\addressspace.h
+1734936799 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\addressspace.h
 	"../config.h"
 	"../Defines.h"
 	<string>
@@ -2053,8 +2053,9 @@
 	"AMM/LuaPage.h"
 	"AMM/filePage.h"
 
-1729574316 c:\users\jarem\documents\github\arbitrarymemorymapper\defines.h
+1734931951 c:\users\jarem\documents\github\arbitrarymemorymapper\defines.h
 	"config.h"
+	<windows.h>
 
 1649979345 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\multipage.h
 	"addressSpace.h"
@@ -4666,7 +4667,7 @@
 1642448754 source:c:\users\micah.dragontech\onedrive - dragontech it services inc\desktop\github\amm\luamemorymapper.cpp
 	"LuaMemoryMapperLib.h"
 
-1734894270 c:\users\jarem\documents\github\arbitrarymemorymapper\config.h
+1734926854 c:\users\jarem\documents\github\arbitrarymemorymapper\config.h
 
 1650160349 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\math\hsv2rgb.cpp
 	"hsv2rgb.h"
@@ -4721,12 +4722,13 @@
 1639869390 c:\users\jarem\documents\github\arbitrarymemorymapper\luajitlove\src\lualib.h
 	"lua.h"
 
-1729571161 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.cpp
+1734937214 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.cpp
 	"../config.h"
+	<thread>
 	"pageVisualizer.h"
 	"addressSpace.h"
 
-1650160248 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.h
+1734937892 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\pagevisualizer.h
 	<windows.h>
 	<gl/gl.h>
 	<vector>
@@ -5271,7 +5273,7 @@
 	"lstate.h"
 	"lzio.h"
 
-1728921924 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.cpp
+1734937366 source:c:\users\jarem\documents\github\arbitrarymemorymapper\luamemorymapperlib.cpp
 	"LuaMemoryMapperLib.h"
 	<vector>
 	"AMM\pageVisualizer.h"
@@ -5291,9 +5293,10 @@
 	"lauxlib.h"
 	"lualib.h"
 
-1649990104 source:c:\users\jarem\documents\github\arbitrarymemorymapper\ammlib.cpp
+1734931495 source:c:\users\jarem\documents\github\arbitrarymemorymapper\ammlib.cpp
 	"AMMlib.h"
 	"LuaMemoryMapperLib.h"
+	"Defines.h"
 
 1649990131 c:\users\jarem\documents\github\arbitrarymemorymapper\ammlib.h
 	<Windows.h>

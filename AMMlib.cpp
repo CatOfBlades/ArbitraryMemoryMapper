@@ -2,6 +2,8 @@
 #include "AMMlib.h"
 #include "LuaMemoryMapperLib.h"
 
+#include "Defines.h"
+HINSTANCE g_hInstance = nullptr;
 
 extern "C" DLL_EXPORT BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
@@ -10,6 +12,7 @@ extern "C" DLL_EXPORT BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
         case DLL_PROCESS_ATTACH:
             // attach to process
             // return FALSE to fail DLL load
+            g_hInstance = hinstDLL;
             break;
 
         case DLL_PROCESS_DETACH:
