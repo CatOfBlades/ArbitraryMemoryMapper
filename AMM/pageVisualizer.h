@@ -41,8 +41,11 @@ class pageVisualizer
     HDC hDC;
     HGLRC hRC;
     HANDLE childWindow;
+    std::string pagename;
+    size_t pagenamelen;
 
     pageVisualizer(std::shared_ptr<addressSpace> as);
+    pageVisualizer(std::shared_ptr<addressSpace> as, std::string name);
     ~pageVisualizer();
 };
 
@@ -54,7 +57,7 @@ public:
 
     std::vector< std::unique_ptr<pageVisualizer> > visList;
 
-    void addVisualizer(std::shared_ptr<addressSpace> as);
+    void addVisualizer(std::shared_ptr<addressSpace> as, std::string pagename);
 
 	VisualizerWindowManager();
 	~VisualizerWindowManager();
