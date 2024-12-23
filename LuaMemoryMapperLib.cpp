@@ -160,11 +160,6 @@ void linkPageToMemorySpace(std::string MemorySpaceName, std::string PageName)
     }
 
     std::shared_ptr<addressSpace> AS = pageIter->second;
-    if(!AS)
-    {
-        printf("unknown error");
-        return;
-    }
 
     #ifdef EXTRA_DEBUG_MESSAGES
     printf("linkPage: %s  To MemorySpace: %s\n", PageName.c_str(), MemorySpaceName.c_str());
@@ -188,7 +183,7 @@ void linkPageToMemorySpace(std::string MemorySpaceName, std::string PageName)
     vm->addAddressSpace(AS);
 
     #ifdef BUILT_IN_VISUALIZER
-        VWM.addVisualizer(AS,PageName.c_str());
+        VWM.addVisualizer(AS);
     #endif // BUILT_IN_VISUALIZER
 }
 
