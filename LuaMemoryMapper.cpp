@@ -29,6 +29,8 @@ std::string BuildInfo = "hello world";
 int main(int argc,char* argv[])
 {
 
+    AMM_Magic_Header _AMMMagicHeader;
+
     if( (argc != 1)&&(argc != 2) ){}; //!TODO: make the OpenGL window only appear when a flag is set. Maybe -R for render?
 
 #ifdef DBG_MESSAGES

@@ -8,6 +8,8 @@
 #define WINBUILD
 #endif
 
+//Really bad at updating version numbers so this is unlikely to change very often.
+#define AMM_VERSION "0.01a" //zero-terminated C style ascii string.
 
 //#define LUA_USE_POSIX
 
