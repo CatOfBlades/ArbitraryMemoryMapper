@@ -205,7 +205,7 @@ local function testMetaPage()
 	print("writing 0, 1, 3, 5, 7, 9, 12, 15, 32, 47, 8, 76, 44, 7 to metaspace")
 	data = {0, 1, 3, 5, 7, 9, 12, 15, 32, 47, 8, 76, 44, 7}
 	writeMemToContext(memID2, 0, #data, data )
-    print("reading memorySpace1 (47, 8, 76, 44, 7, 3, 9, 12, 15, 32, 47, 8, 76, 44)")
+    print("reading memorySpace1 (47, 8, 76, 44, 7, 7, 9, 12, 15, 32, 47, 8, 76, 44)")
     local k = readMemFromContext(memID, 0, #data)
     for i = 1, #data do
         print(k[i])
