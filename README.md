@@ -69,3 +69,11 @@ There is a known issue where a page may be destroyed by the first "memoryContext
 
 With ArbitraryMemoryMapper, you have a powerful tool at your disposal for managing memory access in your applications. Its flexible and intuitive API, along with the LuaMap application and OpenGL visualizer, make it a valuable asset for game development, embedded systems, and other memory-intensive applications. Try it out and experience the convenience and efficiency of unified memory access with ArbitraryMemoryMapper.
 
+##
+Map of project folders:
+	AMM: Core files defining the memory map structures and hardcoded page types.
+	daemon: A work in progress attempt of defining a kernel daemon for managing a system wide memoryspace stack.
+	IDEProjectFiles: currently different OS have different build systems. Windows uses "Code::Blocks" who's project files are stored in this directory, linux uses makefiles scattered throughout the project folders as makefiles tend to be.
+	lua-\*.\*.\*: These are the different versions of lua the project gets linked with when built as a lua library allowing it's functions to be automated by other projects that use lua.
+	LuaScripts: A frankly speaking, poorly managed folder of examples of how lua interacts with the project.
+	
