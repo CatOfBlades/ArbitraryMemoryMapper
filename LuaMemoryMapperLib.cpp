@@ -224,8 +224,10 @@ void addVirtualPage(std::string ID,unsigned int PageSize)
 #ifdef WINBUILD
 void addInterprocessPage(std::string ID,unsigned int PageSize,std::string windowName,char* address)
 {
+    //Beep(350,100);
     DWORD processid = 0;
     HWND hw = FindWindow(0, windowName.c_str());
+    if(!hw){Beep(350,100);}
     GetWindowThreadProcessId(hw, &processid);
     if(processid == 0)
     {

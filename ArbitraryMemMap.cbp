@@ -46,6 +46,9 @@
 					<Add directory="lua-5.4.4" />
 				</Compiler>
 				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
 					<Add library="gdi32" />
@@ -100,6 +103,7 @@
 					<Add option="-fms-extensions" />
 					<Add option="-ftls-model=global-dynamic" />
 					<Add option="-DBUILD_DLL" />
+					<Add option="-DDBG_MESSAGES" />
 					<Add directory="LuaJIT/src" />
 					<Add directory="LuaJIT" />
 				</Compiler>

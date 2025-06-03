@@ -49,10 +49,13 @@ extern HINSTANCE g_hInstance;
 #endif // WINBUILD
 
 #ifdef DBG_MESSAGES
-#ifdef VERBOSE_DBG
-#define EXTRA_DEBUG_MESSAGES
-#endif
-#endif
+    #ifdef WINBUILD
+        //#include <Wdm.h>
+    #endif //WINBUILD
+    #ifdef VERBOSE_DBG
+    #define EXTRA_DEBUG_MESSAGES
+    #endif
+#endif //DBG_MESSAGES
 
 struct AMM_Magic_Header
 {

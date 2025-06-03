@@ -13,6 +13,9 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
     // Attach to the target process
     #ifdef __linux__
     if (ptrace(PTRACE_ATTACH, pid, NULL, NULL) == -1) {
+        #ifdef WINBUILD
+        OutputDebugStringA("Error: Failed to attach to process \n");
+        #endif // WINBUILD
         std::cerr << "Error: Failed to attach to process " << pid << std::endl;
         return false;
     }
@@ -20,12 +23,19 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
     // Wait for the process to stop
     int status;
     if (waitpid(pid, &status, 0) == -1) {
+        #ifdef WINBUILD
+        OutputDebugStringA("Error: Failed to wait for process \n");
+        #endif // WINBUILD
         std::cerr << "Error: Failed to wait for process " << pid << std::endl;
         return false;
     }
 
     // Check if the process terminated
     if (WIFEXITED(status)) {
+
+        #ifdef WINBUILD
+        OutputDebugStringA("Error: Process has terminated\n");
+        #endif // WINBUILD
         std::cerr << "Error: Process " << pid << " has terminated" << std::endl;
         return false;
     }
@@ -33,8 +43,11 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
 
     #ifdef _WIN32
     // Open the target process
-    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
+    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ | PROCESS_VM_WRITE, FALSE, pid);
     if (hProcess == NULL) {
+        #ifdef WINBUILD
+        OutputDebugStringA("Error: Failed to open process \n");
+        #endif // WINBUILD
         std::cerr << "Error: Failed to open process " << pid << std::endl;
         return false;
     }
@@ -70,6 +83,9 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
         unsigned int i = 0;
         while(i < newdatalen) {
             if (ptrace(PTRACE_PEEKDATA, pid, newaddress+i, buffer+i) == -1) {
+                #ifdef WINBUILD
+                OutputDebugStringA("Error: Failed to read memory for process \n");
+                #endif // WINBUILD
                 std::cerr << "Error: Failed to read memory for process " << pid << std::endl;
                 return false;
             }
@@ -86,12 +102,21 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
         #ifdef _WIN32
         SIZE_T bytesRead;
         if (!ReadProcessMemory(hProcess, (void*)address, buffer, datalen, &bytesRead)) {
+            #ifdef WINBUILD
+            OutputDebugStringA("Error: Failed to read memory for process \n");
+            char errorcode[255];
+            sprintf(errorcode,"Last Error: %i\n",(int)GetLastError());
+            OutputDebugStringA(errorcode);
+            #endif // WINBUILD
             std::cerr << "Error: Failed to read memory for process " << pid << std::endl;
             return false;
         }
 
         // Check if the read was partial
         if (bytesRead < datalen) {
+            #ifdef WINBUILD
+            OutputDebugStringA("Error: Partial read from process \n");
+            #endif // WINBUILD
             std::cerr << "Error: Partial read from process " << pid << std::endl;
             return false;
         }
@@ -127,9 +152,18 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
         SIZE_T bytesWritten;
         if (!WriteProcessMemory(hProcess,(void*)address,buffer,datalen,&bytesWritten))
         {
+            #ifdef WINBUILD
+            OutputDebugStringA("Error: Failed to write memory to process \n");
+            char errorcode[255];
+            sprintf(errorcode,"Last Error: %i\n",(int)GetLastError());
+            OutputDebugStringA(errorcode);
+            #endif // WINBUILD
             std::cerr << "Error: Failed to write memory to process " << pid << std::endl;
         }
         if (bytesWritten < datalen) {
+            #ifdef WINBUILD
+            OutputDebugStringA("Error: Partial write to process \n");
+            #endif // WINBUILD
             std::cerr << "Error: Partial write to process " << pid << std::endl;
             return false;
         }
@@ -140,6 +174,9 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
     // Detach from the process
     #ifdef __linux__
     if (ptrace(PTRACE_DETACH, pid, NULL, NULL) == -1) {
+        #ifdef WINBUILD
+        OutputDebugStringA("Error: Failed to detach from process \n");
+        #endif // WINBUILD
         std::cerr << "Error: Failed to detach from process " << pid << std::endl;
         return false;
     }
@@ -147,6 +184,9 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
 
     #ifdef _WIN32
     if(!CloseHandle(hProcess)) {
+        #ifdef WINBUILD
+        OutputDebugStringA("Error: Failed to detach from process \n");
+        #endif // WINBUILD
         std::cerr << "Error: Failed to detach from process " << pid << std::endl;
         return false;
     }
@@ -205,6 +245,9 @@ void applicationMem::readMem(unsigned long int offset,unsigned char* buffer ,uns
 void applicationMem::writeMem(unsigned long int offset,unsigned char* Byt,unsigned long int len)
 {
     //Beep(400,100);
+    #ifdef EXTRA_DEBUG_MESSAGES
+    OutputDebugStringA("applicationmem writemem function called.");// offset:%i length:%i\n",offset,len);
+    #endif //EXTRA_DEBUG_MESSAGES
     //printf("ApplicationMem write\n\taddress:%X\n\toffset:%i\n\thProcess:%x\n\tlength:%i\n",hAddress,(int)offset,hProcess,(int)len);
     //SIZE_T written = 0;
 	int written = 0;
@@ -244,6 +287,9 @@ applicationMem::applicationMem()
 applicationMem::applicationMem( DWORD procID, unsigned int Size,char* addr)
 {
     //Beep(400,100);
+    #ifdef EXTRA_DEBUG_MESSAGES
+    OutputDebugStringA("applicationmem constructer called\n");
+    #endif //EXTRA_DEBUG_MESSAGES
     memoryTypeID = "Appl_Mem";
     _pageSize = Size;
     _processID = procID;

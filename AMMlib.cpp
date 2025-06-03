@@ -7,11 +7,19 @@ HINSTANCE g_hInstance = nullptr;
 
 extern "C" DLL_EXPORT BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
+    HANDLE hProcess=GetCurrentProcess();
+    HANDLE hToken;
     switch (fdwReason)
     {
         case DLL_PROCESS_ATTACH:
             // attach to process
             // return FALSE to fail DLL load
+            if (OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES, &hToken))
+            {
+                SetPrivilege(hToken, SE_DEBUG_NAME, TRUE);
+                CloseHandle(hToken);
+            }
+
             g_hInstance = hinstDLL;
             break;
 
