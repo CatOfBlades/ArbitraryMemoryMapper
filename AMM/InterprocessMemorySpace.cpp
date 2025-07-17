@@ -19,6 +19,19 @@
 #define SIZE_T size_t
 #endif // SIZE_T
 
+#ifndef PROCESS_QUERY_INFORMATION
+#define PROCESS_QUERY_INFORMATION 0
+#endif // PROCESS_QUERY_INFORMATION
+#ifndef PROCESS_VM_READ
+#define PROCESS_VM_READ 0
+#endif // PROCESS_VM_READ
+#ifndef PROCESS_VM_WRITE
+#define PROCESS_VM_WRITE 0
+#endif // PROCESS_VM_WRITE
+#ifndef FALSE
+#define FALSE 0
+#endif // FALSE
+
 HANDLE OpenProcess (DWORD dwDesiredAccess, WINBOOL bInheritHandle, DWORD dwProcessId)
 {
     LinuxProc_t ProcessHandle;
