@@ -3,6 +3,32 @@
 
 #include "InterprocessMemorySpace.h"
 
+//doing some hacky stuff to make memory access look like windows accesses in the code base.
+#ifdef __linux__
+#include "../LinuxMemory/src/LinuxMemoryAPI/LinuxMemory.h"
+#define HANDLE LinuxProc_t
+#ifndef WINBOOL
+#define WINBOOL uint
+#endif // WINBOOL
+#ifndef DWORD
+#define DWORD uint
+#endif // DWORD
+#ifndef SIZE_T
+#define SIZE_T size_t
+#endif // SIZE_T
+
+HANDLE OpenProcess (DWORD dwDesiredAccess, WINBOOL bInheritHandle, DWORD dwProcessId)
+{
+    LinuxProc_t ProcessHandle;
+    ProcessHandle.ProcessName = "";
+    ProcessHandle.ProcessID = (pid_t)dwProcessId;
+    ProcessHandle.ProcessBaseAddress = 0;
+
+    return ProcessHandle;
+}
+
+#endif // __linux__
+
 #define processRead 1
 #define processWrite 0
 
@@ -10,38 +36,7 @@ const int word_size = sizeof(void*);
 
 // Read the memory of the given process
 bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datalen, bool isRead) {
-    // Attach to the target process
-    #ifdef __linux__
-    if (ptrace(PTRACE_ATTACH, pid, NULL, NULL) == -1) {
-        #ifdef WINBUILD
-        OutputDebugStringA("Error: Failed to attach to process \n");
-        #endif // WINBUILD
-        std::cerr << "Error: Failed to attach to process " << pid << std::endl;
-        return false;
-    }
 
-    // Wait for the process to stop
-    int status;
-    if (waitpid(pid, &status, 0) == -1) {
-        #ifdef WINBUILD
-        OutputDebugStringA("Error: Failed to wait for process \n");
-        #endif // WINBUILD
-        std::cerr << "Error: Failed to wait for process " << pid << std::endl;
-        return false;
-    }
-
-    // Check if the process terminated
-    if (WIFEXITED(status)) {
-
-        #ifdef WINBUILD
-        OutputDebugStringA("Error: Process has terminated\n");
-        #endif // WINBUILD
-        std::cerr << "Error: Process " << pid << " has terminated" << std::endl;
-        return false;
-    }
-    #endif
-
-    #ifdef _WIN32
     // Open the target process
     HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ | PROCESS_VM_WRITE, FALSE, pid);
     if (hProcess == NULL) {
@@ -51,7 +46,6 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
         std::cerr << "Error: Failed to open process " << pid << std::endl;
         return false;
     }
-    #endif
 
     #ifdef __linux__
     // Check if the address and datalen are aligned to a word boundary
@@ -78,28 +72,7 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
 
     if(isRead)
     {
-        #ifdef __linux__
-        // Read the value of the memory at the address
-        unsigned int i = 0;
-        while(i < newdatalen) {
-            if (ptrace(PTRACE_PEEKDATA, pid, newaddress+i, buffer+i) == -1) {
-                #ifdef WINBUILD
-                OutputDebugStringA("Error: Failed to read memory for process \n");
-                #endif // WINBUILD
-                std::cerr << "Error: Failed to read memory for process " << pid << std::endl;
-                return false;
-            }
-            i+=word_size;
-        }
-        i=0;
-        while(i < datalen)
-        {
-            ((uint8_t*)buffer)[i] = ((uint8_t*)buffer)[i+addressdif];
-            i++;
-        }
-        #endif
 
-        #ifdef _WIN32
         SIZE_T bytesRead;
         if (!ReadProcessMemory(hProcess, (void*)address, buffer, datalen, &bytesRead)) {
             #ifdef WINBUILD
@@ -120,34 +93,9 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
             std::cerr << "Error: Partial read from process " << pid << std::endl;
             return false;
         }
-        #endif //_WIN32
     }
     else //isRead == 0 AKA write
     {
-        #ifdef __linux__
-        // Write the value of the memory to the address
-
-        /* //worrying about this another day (ptrace only deals in words, this function is designed for bytes. conversion needs to happen if its not aligned)
-        if( (address%word_size)!= 0 ) //if its not word aligned
-        {
-            //read a word from the address but aligned
-            char bufMask[word_size];
-            ptrace(PTRACE_PEEKDATA, pid,address + address%word_size,bufMask);
-        }
-        else
-        {
-        */
-            unsigned int i = 0;
-            while(i < newdatalen) { //newdatalen is larger then the buffer. this may well end up as a crash.
-                ptrace(PTRACE_POKEDATA, pid,address+i,((uint8_t*)buffer)[i]);
-                i++;
-            }
-        //}
-
-
-
-        #endif
-        #ifdef _WIN32
         // Write the value of the memory to the address
         SIZE_T bytesWritten;
         if (!WriteProcessMemory(hProcess,(void*)address,buffer,datalen,&bytesWritten))
@@ -167,21 +115,10 @@ bool accessMemory(unsigned int pid, uint64_t address, void* buffer, size_t datal
             std::cerr << "Error: Partial write to process " << pid << std::endl;
             return false;
         }
-        #endif
     }
 
 
     // Detach from the process
-    #ifdef __linux__
-    if (ptrace(PTRACE_DETACH, pid, NULL, NULL) == -1) {
-        #ifdef WINBUILD
-        OutputDebugStringA("Error: Failed to detach from process \n");
-        #endif // WINBUILD
-        std::cerr << "Error: Failed to detach from process " << pid << std::endl;
-        return false;
-    }
-    #endif //__linux__
-
     #ifdef _WIN32
     if(!CloseHandle(hProcess)) {
         #ifdef WINBUILD

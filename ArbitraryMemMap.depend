@@ -1990,7 +1990,7 @@
 	<string>
 	<stdio.h>
 
-1649992134 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\luapage.h
+1752722323 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\luapage.h
 	"lua.h"
 	"lauxlib.h"
 	"lualib.h"
@@ -8133,4 +8133,12 @@
 
 1639869390 c:\users\jarem\documents\github\arbitrarymemorymapper\luajit\src\lualib.h
 	"lua.h"
+
+1748967108 source:c:\users\jarem\documents\github\arbitrarymemorymapper\memoryhandle.cpp
+	"MemoryHandle.h"
+
+1748967108 c:\users\jarem\documents\github\arbitrarymemorymapper\memoryhandle.h
+	<cstdint>
+	<optional>
+	<vector>
 

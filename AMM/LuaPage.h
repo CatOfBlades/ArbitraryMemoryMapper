@@ -34,6 +34,7 @@ class luaPage: public addressSpace
 	luaPage(lua_State* L);
     luaPage(lua_State* L,std::string pageDef);
     ~luaPage();
+
 };
 
 

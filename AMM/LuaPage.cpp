@@ -3,7 +3,6 @@
 #include <string>
 #include <stdio.h>
 
-
 void lua_handle_page_error(lua_State* L,int errcode)
 {
     if(errcode==LUA_OK)
@@ -144,6 +143,7 @@ luaPage::luaPage(lua_State* L)
 }
 luaPage::luaPage(lua_State* L,std::string pageDef)
 {
+    // start the lua state for this page
     memoryTypeID = "Lua_Page";
     int r = 0;
     if(L!=NULL)
@@ -159,13 +159,27 @@ luaPage::luaPage(lua_State* L,std::string pageDef)
         luaL_openlibs(pageLuaState);
         r = luaL_dofile(pageLuaState, pageDef.c_str());
     }
+
     lua_handle_page_error(L, r);
+
+    // handle lua create callback
+    lua_getglobal(pageLuaState,"on_create");
+    if(lua_isfunction(pageLuaState,-1))
+    {
+        lua_pcall(pageLuaState,0,0,0);
+    }
 }
+
 luaPage::~luaPage()
 {
     if(freeLuaOnDestruct)
     {
         lua_close(pageLuaState);
+    }
+    lua_getglobal(pageLuaState,"on_destroy");
+    if(lua_isfunction(pageLuaState,-1))
+    {
+        lua_pcall(pageLuaState,0,0,0);
     }
 }
 
