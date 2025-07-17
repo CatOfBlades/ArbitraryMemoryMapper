@@ -535,6 +535,26 @@
 			<Option target="LuaMap32" />
 			<Option target="WinLuaMap" />
 		</Unit>
+		<Unit filename="MemoryHandle.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="LuaMap" />
+			<Option target="Lib" />
+			<Option target="UnitTest" />
+			<Option target="Lib32" />
+			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
+		</Unit>
+		<Unit filename="MemoryHandle.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="LuaMap" />
+			<Option target="Lib" />
+			<Option target="UnitTest" />
+			<Option target="Lib32" />
+			<Option target="LuaMap32" />
+			<Option target="WinLuaMap" />
+		</Unit>
 		<Unit filename="config.h">
 			<Option target="Debug" />
 			<Option target="Release" />
