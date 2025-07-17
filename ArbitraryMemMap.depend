@@ -1960,9 +1960,11 @@
 	<string>
 	<memory>
 
-1735875231 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
+1752730272 source:c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.cpp
+	<cstdint>
 	"../Defines.h"
 	"InterprocessMemorySpace.h"
+	"../LinuxMemory/src/LinuxMemoryAPI/LinuxMemory.h"
 
 1712827976 c:\users\jarem\documents\github\arbitrarymemorymapper\amm\interprocessmemoryspace.h
 	"addressSpace.h"
@@ -8141,4 +8143,7 @@
 	<cstdint>
 	<optional>
 	<vector>
+
+1752732257 c:\users\jarem\documents\github\arbitrarymemorymapper\linuxmemory\src\linuxmemoryapi\linuxmemory.h
+	<sys/types.h>
 
