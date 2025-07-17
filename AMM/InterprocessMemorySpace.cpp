@@ -1,4 +1,6 @@
 
+#include <cstdint>
+
 #include "../Defines.h"
 
 #include "InterprocessMemorySpace.h"
