@@ -1,0 +1,3 @@
+[submodule "LinuxMemory"]
+    path = ./LinuxMemory
+    url = https://github.com/CatOfBlades/LinuxMemory.git
