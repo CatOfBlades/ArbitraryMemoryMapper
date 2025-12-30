@@ -1,4 +1,4 @@
-
+#include <errno.h>
 #include "filePage.h"
 
 unsigned long int filePage::_size()
@@ -59,12 +59,32 @@ unsigned long int filePage::RW_file(bool write, unsigned long int offs, unsigned
 void filePage::FMopenFile()
 {
 	fp = 0;
-#ifndef __GNUC__ //using "safe" function if we aren't compiling with GCC which doesn't support it.
-	fopen_s(&fp,FMfilename.c_str(),"rb+"); //open file for reading and writing in binary mode.
-#else
-    fp = fopen(FMfilename.c_str(),"rb+");
-#endif
+	
+    /*first check if the file exists...*/
+	int file_exists;
+    fp=fopen(FMfilename.c_str(),"r");
+    if (fp==NULL) file_exists=0;
+    else {file_exists=1; fclose(fp);}
+    
+    /*...then open it in the appropriate way*/
+    if (file_exists==1)
+    {
+       //printf("file exists!\n");
+       fp=fopen(FMfilename.c_str(),"rw+b");
+    }
+    else
+    {
+        //printf("file does not exist!\n");
+        fp=fopen(FMfilename.c_str(),"w+b");
+    }
+	
+	if (fp == NULL) {
+		printf("can't open %s: %i\n", FMfilename.c_str(), errno);
+		exit(1);
+	}
+
 }
+
 void filePage::FMcloseFile()
 {
 	cl = fclose( fp );
@@ -113,5 +133,6 @@ filePage::filePage(std::string filename,  unsigned int Size)
 	FMfilename = filename;
 	lSize = Size;
 	memoryTypeID = "filePage";
+	FMopenFile();
 }
 
