@@ -16,6 +16,7 @@
     char* buf = readMemFromContext(string ContextID,int Address,int length)
     writeMemToContext(string ContextID,int Address,int length,char* buf)
 	multiPageSwapBanks(string ID, int bankNum)
+	addFilePage(string ID,string Filename,int length)
 --]]
 
 -- Initialize memory space and perform data tests
@@ -75,6 +76,42 @@ local function testWriteAcrossConsecutivePages()
     createMemoryContext(memID)
     addVirtualPage("page1", 5)
     addVirtualPage("page2", 5)
+	addVirtualPage("page3", 5)
+    linkPageToMemorySpace(memID, "page1")
+    linkPageToMemorySpace(memID, "page2")
+	linkPageToMemorySpace(memID, "page3")
+    print("memory space initialized for testing")
+    SysBeep(600, 200)
+
+    -- Data write test
+    print("preforming data write test")
+    local length = 15
+    local j = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+    print("writing 1 to 15")
+    writeMemToContext(memID, 0, length, j)
+    print("data written ready for read test")
+
+    -- Data read test
+    print("reading (should be 1 to 15)")
+    local k = readMemFromContext(memID, 0, length)
+    for i = 1, length do
+        print(k[i])
+    end
+
+    -- Clean up resources
+    destroyPage("page1")
+    destroyPage("page2")
+	destroyPage("page3")
+    destroyMemoryContext(memID)
+end
+
+local function testWriteAcrossPagesOfDifferentSize()
+
+	local memID = "mem1"
+    print("test split write multisize")
+    createMemoryContext(memID)
+    addVirtualPage("page1", 7)
+    addVirtualPage("page2", 3)
 	addVirtualPage("page3", 5)
     linkPageToMemorySpace(memID, "page1")
     linkPageToMemorySpace(memID, "page2")
@@ -222,8 +259,37 @@ local function testMetaPage()
     print("addMetaPage function test completed")
 end
 
+local function testFilePage()
+    local memID = "mem1"
+    local pageID1 = "page1"
+	
+	print("testing file page")
+
+	createMemoryContext(memID)
+	addFilePage(pageID1,"AMMTestFile",16)
+	linkPageToMemorySpace(memID, pageID1)
+
+    local length = 10
+    local j = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+    print("writing 1 to 10")
+    writeMemToContext(memID, 0, length, j)
+	
+    print("data written ready for read test")
+    local k = readMemFromContext(memID, 0, length)
+    for i = 1, length do
+		print(k[i])
+    end
+
+	print("addFilePage function test completed")
+end
+
 -- Run tests
 testMemoryFunctions()
 testWriteAcrossConsecutivePages()
 testAddLoggedPage()
 testMetaPage()
+testFilePage()
+testWriteAcrossPagesOfDifferentSize()
+
+print("All Tests Completed!")

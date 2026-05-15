@@ -89,8 +89,12 @@ int file_exists;
 		exit(1);
 	}
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> refs/remotes/origin/master
 }
+
 void filePage::FMcloseFile()
 {
 	cl = fclose( fp );
