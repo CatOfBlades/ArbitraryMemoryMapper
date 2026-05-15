@@ -48,6 +48,9 @@ void Beep(int freq, int dur);
 extern HINSTANCE g_hInstance;
 #endif // WINBUILD
 
+#define DBG_MESSAGES
+#define VERBOSE_DBG
+
 #ifdef DBG_MESSAGES
     #ifdef WINBUILD
         //#include <Wdm.h>
