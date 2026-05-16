@@ -79,6 +79,7 @@ void snapshotPage::updateSnapshot()
 	while(i < _pageSize)
 	{
 		_pageContent[i] = linkedPage->readByte(i);
+		i++;
 	}
 }
 

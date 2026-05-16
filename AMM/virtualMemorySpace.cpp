@@ -113,7 +113,7 @@ unsigned long int virtualMemorySpace::RW_Mem(bool write, unsigned long int Addre
             unsigned long int bytesToProcess = min(remainingLength, pageList[pageIndex]->_size() - pageOffset);
 
             #ifdef EXTRA_DEBUG_MESSAGES
-            if (bytesToProcess) {
+            if ( bytesToProcess && (pageIndex > 0) ) {
                 printf("page overflow on read/write.\n");
             }
             #endif

@@ -286,7 +286,7 @@ local function testFilePage()
 end
 
 -- Test function for addSnapshotPage
-local function addSnapshotPage()
+local function testAddSnapshotPage()
 
     local snapshotMemID = "mem1"
 	local refrenceMemID = "mem2"
@@ -294,18 +294,18 @@ local function addSnapshotPage()
 	local pageID2 = "page1"
 	local data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
     
-    print("Testing addLoggedPage function")
+    print("Testing addSnapshotPage function")
 
     -- Create snapshot memory context
     createMemoryContext(snapshotMemID)
 	
-	-- Create snapshot memory context
+	-- Create refrence memory context
     createMemoryContext(refrenceMemID)
 
 	-- Add virtual memory for snapshot page to refrence
 	addVirtualPage(pageID2, #data)
 	-- Link to memory space
-    linkPageToMemorySpace(refrenceMemID, pageID)
+    linkPageToMemorySpace(refrenceMemID, pageID2)
 
     -- Write some data to the refrence page
 	print("writing")
@@ -341,6 +341,6 @@ testAddLoggedPage()
 testMetaPage()
 testFilePage()
 testWriteAcrossPagesOfDifferentSize()
-addSnapshotPage()
+testAddSnapshotPage()
 
 print("All Tests Completed!")
