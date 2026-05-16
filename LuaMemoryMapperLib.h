@@ -22,6 +22,7 @@
 #define USING_LUA_PAGE
 #define USINGPAGELOGGING
 #define USING_FILE_PAGE
+#define USING_SNAPSHOT_PAGE
 #include "ArbitraryMemMap.h"
 #undef USINGINTERPROCESS
 #undef USING_SELF_REFRENCE
@@ -65,6 +66,8 @@ void addMetaPage(std::string ID, unsigned int PageSize,std::string SubMemorySpac
 void addLuaPage(std::string ID, std::string luafile); //Lua defined memory page.
 bool addLoggedPage(std::string ID, std::string logfile, std::string pageID);
 void addFilePage(std::string ID,std::string filename,unsigned int length);
+void addSnapshotPage(std::string ID,std::string PageID);
+void updateSnapshotPage(std::string PageID);
 
 #ifdef SUPPORT_UNUSUAL_MEMORY_ACCESSES
 float splitByteRW(std::string ContextID, bool write,unsigned long address1,unsigned long address2, char byt, float rw_ratio);
@@ -88,6 +91,8 @@ extern "C"
     int lua_addLuaPage(lua_State* L);
     int lua_addLoggedPage(lua_State* L);
     int lua_addFilePage(lua_State* L);
+	int lua_addSnapshotPage(lua_State* L);
+	int lua_updateSnapshotPage(lua_State* L);
     #ifdef BUILD_WIN_MEMACCESSOR
     int lua_addMPA_Page(lua_State* L);
     #endif //BUILD_WIN_MEMACCESSOR

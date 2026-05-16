@@ -85,6 +85,8 @@ extern "C"
         lua_register(L,"addLuaPage",lua_addLuaPage);
         lua_register(L,"addLoggedPage",lua_addLoggedPage);
         lua_register(L,"addFilePage",lua_addFilePage);
+		lua_register(L,"addSnapshotPage",lua_addSnapshotPage);
+		lua_register(L,"updateSnapshotPage",lua_updateSnapshotPage);
         #ifdef BUILD_WIN_MEMACCESSOR
         lua_register(L,"addMPA_Page",lua_addMPA_Page);
         #endif //BUILD_WIN_MEMACCESSOR
@@ -349,6 +351,38 @@ void addFilePage(std::string ID,std::string filename,unsigned int length)
     }
 }
 
+void addSnapshotPage(std::string ID, std::string pageID)
+{
+    auto pageIter = memoryPages.find(pageID);
+    if (pageIter != memoryPages.end()) {
+        std::shared_ptr<snapshotPage> AS = std::make_shared<snapshotPage>(pageIter->second);
+        auto insertResult = memoryPages.insert({ID, AS});
+        return; //insertResult.second; // Return true if insertion was successful, false otherwise
+    } else {
+        // Page with pageID doesn't exist in memoryPages
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("Page with pageID\"%s\" doesn't exist in memoryPages",pageID.c_str());
+        #endif
+        return;
+    }
+}
+void updateSnapshotPage(std::string PageID)
+{
+	    auto pageIter = memoryPages.find(PageID);
+    if (pageIter != memoryPages.end()) {
+		std::shared_ptr<snapshotPage> AS = std::make_shared<snapshotPage>(pageIter->second);
+		AS->updateSnapshot();
+		
+        return;
+    } else {
+        // Page with pageID doesn't exist in memoryPages
+        #ifdef EXTRA_DEBUG_MESSAGES
+        printf("Page with pageID\"%s\" doesn't exist in memoryPages",PageID.c_str());
+        #endif
+        return;
+    }
+}
+
 #ifdef BUILD_WIN_MEMACCESSOR
 void addMPA_Page(std::string ID)
 {
@@ -521,6 +555,22 @@ int lua_addFilePage(lua_State* L)
     addFilePage(ID,filename,length);
     return 0;
 }
+int lua_addSnapshotPage(lua_State* L)
+{
+    //(string ID, string logfile, string pageID)
+    std::string ID = lua_tostring(L,1);
+    std::string pageID = lua_tostring(L,2);
+    addSnapshotPage(ID,pageID);
+    return 0;
+}
+
+int lua_updateSnapshotPage(lua_State* L)
+{
+    std::string ID = lua_tostring(L,1);
+    updateSnapshotPage(ID);
+    return 0;
+}
+
 #ifdef WINBUILD
 int lua_addMPA_Page(lua_State* L)
 {

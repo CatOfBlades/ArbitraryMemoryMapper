@@ -41,6 +41,9 @@ And as new regions of memory become avalible, treating them as if they are in th
 #ifdef USING_FILE_PAGE
     #include "AMM/filePage.h"
 #endif
+#ifdef USING_SNAPSHOT_PAGE
+    #include "AMM/snapshotPage.h"
+#endif
 
 
 #endif // ARBITRARYMEMMAP_H_INCLUDED

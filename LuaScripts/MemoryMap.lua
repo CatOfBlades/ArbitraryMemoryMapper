@@ -11,6 +11,7 @@
     addMetaPage(string ID, int PageSize,string SubMemorySpaceName,int address)
     addLuaPage(string ID, string luafile)
 	addLoggedPage(string ID, string logfile, string pageID)
+	addSnapshotPage(string ID, string pageID)
     linkPageToMemorySpace(string MemorySpaceName,string PageName)
     destroyPage(string ID)
     char* buf = readMemFromContext(string ContextID,int Address,int length)
@@ -284,6 +285,55 @@ local function testFilePage()
 	print("addFilePage function test completed")
 end
 
+-- Test function for addSnapshotPage
+local function addSnapshotPage()
+
+    local snapshotMemID = "mem1"
+	local refrenceMemID = "mem2"
+    local pageID = "snapshot_page"
+	local pageID2 = "page1"
+	local data = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
+    
+    print("Testing addLoggedPage function")
+
+    -- Create snapshot memory context
+    createMemoryContext(snapshotMemID)
+	
+	-- Create snapshot memory context
+    createMemoryContext(refrenceMemID)
+
+	-- Add virtual memory for snapshot page to refrence
+	addVirtualPage(pageID2, #data)
+	-- Link to memory space
+    linkPageToMemorySpace(refrenceMemID, pageID)
+
+    -- Write some data to the refrence page
+	print("writing")
+    writeMemToContext(refrenceMemID, 0, #data, data )
+	
+    -- Add a snapshot page
+    addSnapshotPage(pageID, pageID2)
+    -- Link to memory space
+    linkPageToMemorySpace(snapshotMemID, pageID)
+
+    -- Data read test
+    print("reading")
+    local k = readMemFromContext(snapshotMemID, 0, #data)
+    for i = 1, #data do
+        print(k[i])
+    end
+
+    -- Clean up resources
+	destroyPage(pageID2)
+    destroyPage(pageID)
+    destroyMemoryContext(snapshotMemID)
+	destroyMemoryContext(refrenceMemID)
+	
+	--TODO: impliment test read of data changes after updating the snapshot
+
+    print("addSnapshotPage function test completed")
+end
+
 -- Run tests
 testMemoryFunctions()
 testWriteAcrossConsecutivePages()
@@ -291,5 +341,6 @@ testAddLoggedPage()
 testMetaPage()
 testFilePage()
 testWriteAcrossPagesOfDifferentSize()
+addSnapshotPage()
 
 print("All Tests Completed!")
