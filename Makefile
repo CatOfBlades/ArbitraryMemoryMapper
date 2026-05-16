@@ -9,7 +9,6 @@ RM      = rm -f
 BINDIR = ./bin
 AMMDIR = ./AMM
 LUADIR = ./lua-5.4.4/src
-LINUXMEMDIR = ./LinuxMemory/src/LinuxMemoryAPI
 
 #Comment this out if you are linking a pre-built lua
 COMPILE_AND_LINK_LUA =1 
@@ -72,9 +71,7 @@ LuaMap: LuaMemoryMapper.cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lvm.o $(LUADIR)/lvm.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(LUADIR)/lzio.o $(LUADIR)/lzio.c
 	
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(LINUXMEMDIR)/LinuxMemory.o $(LINUXMEMDIR)/LinuxMemory.c
-	
-	$(CPP) -o $(BINDIR)/LuaMap/LuaMap $(LUADIR)/lapi.o $(LUADIR)/lauxlib.o $(LUADIR)/lbaselib.o $(LUADIR)/lcode.o $(LUADIR)/lcorolib.o $(LUADIR)/lctype.o $(LUADIR)/ldblib.o $(LUADIR)/ldebug.o $(LUADIR)/ldo.o $(LUADIR)/ldump.o $(LUADIR)/lfunc.o $(LUADIR)/lgc.o $(LUADIR)/linit.o $(LUADIR)/liolib.o $(LUADIR)/llex.o $(LUADIR)/lmathlib.o $(LUADIR)/lmem.o $(LUADIR)/loadlib.o $(LUADIR)/lobject.o $(LUADIR)/lopcodes.o $(LUADIR)/loslib.o $(LUADIR)/lparser.o $(LUADIR)/lstate.o $(LUADIR)/lstring.o $(LUADIR)/lstrlib.o $(LUADIR)/ltable.o $(LUADIR)/ltablib.o $(LUADIR)/ltm.o $(LUADIR)/lundump.o $(LUADIR)/lutf8lib.o $(LUADIR)/lvm.o $(LUADIR)/lzio.o $(AMMDIR)/InterprocessMemorySpace.o $(AMMDIR)/LoggedPage.o $(AMMDIR)/LuaPage.o $(AMMDIR)/WindowsPageAccessor.o $(AMMDIR)/addressSpace.o $(AMMDIR)/callbackOnWritePage.o $(AMMDIR)/filePage.o $(AMMDIR)/math/hsv2rgb.o $(AMMDIR)/multiPage.o $(AMMDIR)/pageVisualizer.o $(AMMDIR)/selfRefrence.o $(AMMDIR)/virtualMemorySpace.o $(AMMDIR)/virtualPage.o $(AMMDIR)/snapshotPage.o LuaMemoryMapperLib.o LuaMemoryMapper.o $(LINUXMEMDIR)/LinuxMemory.o
+	$(CPP) -o $(BINDIR)/LuaMap/LuaMap $(LUADIR)/lapi.o $(LUADIR)/lauxlib.o $(LUADIR)/lbaselib.o $(LUADIR)/lcode.o $(LUADIR)/lcorolib.o $(LUADIR)/lctype.o $(LUADIR)/ldblib.o $(LUADIR)/ldebug.o $(LUADIR)/ldo.o $(LUADIR)/ldump.o $(LUADIR)/lfunc.o $(LUADIR)/lgc.o $(LUADIR)/linit.o $(LUADIR)/liolib.o $(LUADIR)/llex.o $(LUADIR)/lmathlib.o $(LUADIR)/lmem.o $(LUADIR)/loadlib.o $(LUADIR)/lobject.o $(LUADIR)/lopcodes.o $(LUADIR)/loslib.o $(LUADIR)/lparser.o $(LUADIR)/lstate.o $(LUADIR)/lstring.o $(LUADIR)/lstrlib.o $(LUADIR)/ltable.o $(LUADIR)/ltablib.o $(LUADIR)/ltm.o $(LUADIR)/lundump.o $(LUADIR)/lutf8lib.o $(LUADIR)/lvm.o $(LUADIR)/lzio.o $(AMMDIR)/InterprocessMemorySpace.o $(AMMDIR)/LoggedPage.o $(AMMDIR)/LuaPage.o $(AMMDIR)/WindowsPageAccessor.o $(AMMDIR)/addressSpace.o $(AMMDIR)/callbackOnWritePage.o $(AMMDIR)/filePage.o $(AMMDIR)/math/hsv2rgb.o $(AMMDIR)/multiPage.o $(AMMDIR)/pageVisualizer.o $(AMMDIR)/selfRefrence.o $(AMMDIR)/virtualMemorySpace.o $(AMMDIR)/virtualPage.o $(AMMDIR)/snapshotPage.o LuaMemoryMapperLib.o LuaMemoryMapper.o 
 	
 clean LuaMapclean:
 	$(RM) $(BINDIR)/LuaMap/LuaMap
